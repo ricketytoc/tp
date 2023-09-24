@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Leong Yuan Kun
 
-<img src="images/leongyuankun.png" width="200px">
+<img src="images/aexolate.png" width="200px">
 
 [[github](https://github.com/aexolate)]
 [[portfolio](team/johndoe.md)]
