@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Goh Li Ting
 
-<img src="images/gohliting.jpg" width="200px">
+<img src="images/goh-li-ting.png" width="200px">
 
 [[github](https://github.com/Goh-Li-Ting)]
 [[portfolio](team/johndoe.md)]
