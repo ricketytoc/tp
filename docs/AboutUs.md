@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Huang Wei'En
 
-<img src="images/HuangWeiEn.jpg" width="200px">
+<img src="images/Weiennn.png" width="200px">
 
 [[github](https://github.com/Weiennn)] [[portfolio](team/johndoe.md)]
 
