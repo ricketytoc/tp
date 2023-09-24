@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Kuei
 
-<img src="images/ChenKuei.png" width="200px">
+<img src="images/chen-kuei.png" width="200px">
 
 [[github](https://github.com/Chen-Kuei)]
 [[portfolio](team/johndoe.md)]
