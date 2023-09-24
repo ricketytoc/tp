@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Leong Yuan Kun
 
-<img src="images/leongyuankun.png" width="200px">
+<img src="images/aexolate.png" width="200px">
 
 [[github](https://github.com/aexolate)]
 [[portfolio](team/johndoe.md)]
@@ -37,11 +37,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Richard Hew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ricketytoc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ricketytoc)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Kuei
 
-<img src="images/ChenKuei.png" width="200px">
+<img src="images/chen-kuei.png" width="200px">
 
 [[github](https://github.com/Chen-Kuei)]
 [[portfolio](team/johndoe.md)]
