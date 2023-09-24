@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Goh Li Ting
 
-<img src="images/gohliting.jpg" width="200px">
+<img src="images/goh-li-ting.png" width="200px">
 
 [[github](https://github.com/Goh-Li-Ting)]
 [[portfolio](team/johndoe.md)]
@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Huang Wei'En
 
-<img src="images/Weiennn.png" width="200px">
+<img src="images/weiennn.png" width="200px">
 
 [[github](https://github.com/Weiennn)] [[portfolio](team/johndoe.md)]
 
