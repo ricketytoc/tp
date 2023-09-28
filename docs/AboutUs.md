@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/goh-li-ting.png" width="200px">
 
 [[github](https://github.com/Goh-Li-Ting)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/goh-li-ting.md)]
 
 * Role: Project Advisor
 
