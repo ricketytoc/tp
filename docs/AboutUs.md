@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/goh-li-ting.png" width="200px">
 
 [[github](https://github.com/Goh-Li-Ting)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/goh-li-ting.md)]
 
 * Role: Project Advisor
 
@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/aexolate.png" width="200px">
 
 [[github](https://github.com/aexolate)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/aexolate.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/weiennn.png" width="200px">
 
-[[github](https://github.com/Weiennn)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Weiennn)] [[portfolio](team/weiennn.md)]
 
 * Role: Developer
 * Responsibilities: Data
