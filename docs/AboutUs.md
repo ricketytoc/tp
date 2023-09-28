@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/weiennn.png" width="200px">
 
-[[github](https://github.com/Weiennn)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Weiennn)] [[portfolio](team/weiennn.md)]
 
 * Role: Developer
 * Responsibilities: Data
