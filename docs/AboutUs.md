@@ -41,8 +41,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ricketytoc.png" width="200px">
 
-[[github](http://github.com/ricketytoc)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ricketytoc)]
+[[portfolio](team/ricketytoc.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chen-kuei.png" width="200px">
 
 [[github](https://github.com/Chen-Kuei)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chen-kuei.md)]
 
 * Role: Developer
 * Responsibilities: UI
