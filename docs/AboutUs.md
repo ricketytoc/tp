@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/aexolate.png" width="200px">
 
 [[github](https://github.com/aexolate)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/aexolate.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
