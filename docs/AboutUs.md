@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chen-kuei.png" width="200px">
 
 [[github](https://github.com/Chen-Kuei)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chen-kuei.md)]
 
 * Role: Developer
 * Responsibilities: UI
