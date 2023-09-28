@@ -12,7 +12,7 @@ and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=goh-li-ting&breakdown=true)
+* **Code contributed**: 
 
 * **Enhancements implemented**:
     * To be added soon
