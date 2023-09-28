@@ -11,19 +11,20 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=chen-kuei&breakdown=true)
 
-* **Project management**:
-    * `to be added soon`
+* **Enhancements implemented**:
+    * To be added soon
 
-* **Enhancements to existing features**:
-    * `to be added soon`
 * **Documentation**:
     * User Guide:
-        * `to be added soon`
+        * To be added soon
     * Developer Guide:
-        * `to be added soon`
+        * To be added soon
 
-* **Community**:
-    * `to be added soon`
+* **Contributions to team-based tasks**:
+    * To be added soon
 
-* **Tools**:
-    * `to be added soon`
+* **Review/mentoring contributions**:
+    * To be added soon
+
+* **Contributions beyond the project team**:
+    * To be added soon
