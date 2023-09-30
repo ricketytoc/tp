@@ -127,19 +127,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an employee : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified employee from the employee book.
 
-Format: `delete INDEX`
+Format: `delete id/EMPLOYEE_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the employee with the specified `EMPLOYEE_ID`.
+* The `EMPLOYEE_ID` should be the ID of an employee that exists in the employee book.
+* If the `EMPLOYEE_ID` specified does not match any employee in the employee book, 
+no employee will be deleted or modified.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete id/A1234567B` deletes the employee with the ID `A1234567B` if such employee exists.
 
 ### Clearing all entries : `clear`
 
