@@ -4,7 +4,15 @@
 
 **EmployeeManager**
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
+Hi there and welcome to EmployeeManager! Are you looking for a way to manage your employees more effectively?
+Do you find spreadsheets to be too time-consuming and difficult to use?
+Or does your organization not have a proper employee management system in place?
+If so, then EmployeeManager is the perfect solution for you!
+
+EmployeeManager is a **desktop application** for **Human Resource** staff to 
+**manage employees in a relatively large organisation** of about 50 - 200 employees.
+
+* EmployeeManager is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
   * as a case study
