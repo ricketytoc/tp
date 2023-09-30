@@ -86,11 +86,16 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing a list of employees : `list`
 
-Shows a list of all persons in the address book.
-
-Format: `list`
+* Shows a list of all persons in the address book.
+* Command Format: `list`
+* Examples:`list`
+* Expected outputs when the command succeeds:  
+`1. A1234 John Supervisor Accounting 10000`  
+`2. A1235 Mary Supervisor Finance 10000`
+* Expected outputs when the command fails:  
+`Error with displaying the list of employees.`
 
 ### Editing a person : `edit`
 
