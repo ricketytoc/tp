@@ -3,10 +3,39 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Welcome to **EmployeeManager**! Do you need to manage employees? Are you having trouble using spreadsheets? Or does your
+organisation not have a proper employee management system? EmployeeManager is the application for you!
 
-* Table of Contents
+EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a relatively
+large organisation (about 50 - 200 employees)**.
+
+Here’s an **overview** of EmployeeManager’s features:
+* Consolidate and manage employee details in a single application 
+* Conveniently view, add, or delete employee details
+
+EmployeeManager is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, EmployeeManager can get your employee management tasks done more
+quickly than traditional GUI apps, so HR staff can be more efficient.
+
+This User Guide aims to help both new and experienced users use EmployeeManager. Learn to leverage the features of 
+EmployeeManager to make managing employees easier!
+
+If you are a **new user**:
+* Get started with EmployeeManager by going through [Quick start](#quick-start) and [Navigating the user guide](#navigating-the-user-guide)
+* If you have no prior experience with CLI or require a refresher, refer to this guide *(coming soon)*
+
+If you are an **experienced user**:
+* Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Navigating the user guide
+*Coming soon*
 
 --------------------------------------------------------------------------------------------------------------------
 
