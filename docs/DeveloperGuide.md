@@ -272,68 +272,112 @@ spent on data entry tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                                                                                              | So that I can…​                                                             |
-|----------|--------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| `* * *`  | HR staff member          | easily access and update employee information, including roles, salaries, departments and contact details | ensure that employee records are accurate                                   |
-| `*`      | HR staff member          | generate reports                                                                                          | so that the upper management can have better insights into their employees. |
-| `* *`    | Expert user              | combine functions together                                                                                | I can save time on commonly performed tasks                                 |
-| `* *`    | Expert user              | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                 |
-| `* * *`  | Advanced user            | order my search results by various indicators (such as name and department)                               | view a list of employees in my desired manner.                              |
-| `* * *`  | long-time user           | remove unused data                                                                                        | I am not distracted by irrelevant data.                                     |
-| `* *`    | HR staff member          | know the history of changes, including who and when the change was made                                   | I can use them for auditing purposes.                                       |
-| `* *`    | HR member                | add notes to employee’s profiles                                                                          | I can document important information and interactions                       |
-| `*`      | advanced user            | edit the saved files manually without using the application                                               | it’s more convenient to update and organise new information                 |
-| `*`      | user with poor eyesight  | view the information easily                                                                               | it is not difficult for me to use the application.                          |
-| `*`      | HR professional          | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                      |
-| `* *`    | user                     | export and import employee details                                                                        | I can create backups and recover from data corruption                       |
-| `*`      | HR manager               | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                       |
-| `*`      | HR manager               | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances           |
-| `* *`    | busy HR staff member     | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                       |
-| `* *`    | careless HR staff member | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes    |
-*{More to be added}*
+| Priority | As a …​                             | I want to …​                                                                                              | So that I can…​                                                                         |
+|----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `*`      | potential user exploring the app    | see the app populated with sample data                                                                    | easily see how the app will look when it is in use                                      |
+| `* *`    | new user                            | always find solutions from the User Guide                                                                 | use this app easily when I encounter difficulties                                       |
+| `* *`    | user paranoid about losing progress | have the progress automatically saved                                                                     | be reassured that I will not lose any progress when my computer shuts down unexpectedly |
+| `* *`    | new user                            | purge all current data                                                                                    | get rid of sample/experimental data I used for exploring the app                        |
+| `* *`    | new user                            | have the application provide a user-friendly tutorial                                                     | understand its features                                                                 |
+| `* * *`  | user ready to start using the app   | add existing employees in the company to the application                                                  | keep track of the employee details                                                      |
+| `*`      | meticulous user                     | let the app accurately compare and point out differences between employees                                | not have to manually check each employee one by one                                     |
+| `* *`    | careless user                       | edit employee details easily that I have keyed in wrongly                                                 | change erroneous data                                                                   |
+| `* * *`  | HR staff member                     | remove employees who have left the company                                                                | ensure their data does not clutter the application                                      |
+| `*`      | HR staff member                     | search for employees using their names                                                                    | find the employee that I am looking for                                                 |
+| `*`      | HR staff member                     | filter employees based on their department, salary, etc.                                                  | narrow down my search to a target group of employees                                    |
+| `*`      | HR staff member                     | find employees based on their departments                                                                 | obtain the contact information of the employees in a department                         |
+| `*`      | HR staff member                     | find employees based on their roles                                                                       | easily increment the pay of all the staff with that role efficiently                    |
+| `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                                            | easily fetch employees that I have analyzed recently and make my work more convenient   |
+| `* * *`  | HR staff member                     | easily access and update employee information, including roles, salaries, departments and contact details | ensure that employee records are accurate                                               |
+| `*`      | HR staff member                     | generate reports                                                                                          | so that the upper management can have better insights into their employees.             |
+| `* *`    | Expert user                         | combine functions together                                                                                | I can save time on commonly performed tasks                                             |
+| `* *`    | Expert user                         | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                             |
+| `* * *`  | Advanced user                       | order my search results by various indicators (such as name and department)                               | view a list of employees in my desired manner.                                          |
+| `* * *`  | long-time user                      | remove unused data                                                                                        | I am not distracted by irrelevant data.                                                 |
+| `* *`    | HR staff member                     | know the history of changes, including who and when the change was made                                   | I can use them for auditing purposes.                                                   |
+| `* *`    | HR staff member                     | add notes to employee’s profiles                                                                          | I can document important information and interactions                                   |
+| `*`      | advanced user                       | edit the saved files manually without using the application                                               | it’s more convenient to update and organise new information                             |
+| `*`      | user with poor eyesight             | view the information easily                                                                               | it is not difficult for me to use the application.                                      |
+| `*`      | HR staff member                     | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                                  |
+| `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                   |
+| `*`      | HR staff member                     | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                                   |
+| `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                       |
+| `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                   |
+| `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes                |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EmployeeManager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - View all employees**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list all employees.
+1. EmployeeManager shows a list of employees.
+1. Use case ends.
 
-    Use case ends.
+**Use case: UC2 - Add a new employee**
+
+**MSS**
+
+1. User requests to add a new employee with employee details.
+1. EmployeeManager adds the employee.
+1. EmployeeManager shows an updated list of employees.
+1. Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. EmployeeManager detects that not all required information is entered.
+  * 1a1. EmployeeManager informs user that some information is missing.
+  * 1a2. EmployeeManager requests user to enter details of the employee.
+  * 1a3. User enters the requested details.
+  * Steps 1a1 - 1a3 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+* 1b. EmployeeManager detects invalid information.
+  * 1b1. EmployeeManager informs user that some information is invalid.
+  * 1b2. EmployeeManager requests user to enter details of the employee.
+  * 1b3. User enters the requested details.
+  * Steps 1b1 - 1b3 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+* 1c. EmployeeManager detects a duplicate employee.
+  * 1c1. EmployeeManager informs user that the employee already exists.
+  * Use case ends.
+* 1d. EmployeeManager detects that there are no employee IDs available.
+  * 1d1. EmployeeManager informs user that there are no employee IDs available.
+  * Use case ends.
 
-  Use case ends.
+**Use case: UC3 - Delete an employee**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to delete an employee with an employee ID.
+1. EmployeeManager deletes the employee.
+1. EmployeeManager shows an updated list of employees.
+1. Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
 
-*{More to be added}*
+* 1a. The given employee ID is invalid.
+  * 1a1. EmployeeManager informs user that the employee ID is invalid.
+  * 1a2. User enters new employee ID.
+  * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
+  * Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  **Storage Capacity**: Should be able to store up to `100` persons without a noticeable sluggishness in performance for typical usage.
+3.  **UI Responsiveness**: The UI should respond to user interaction. 
+4.  **Error Handling**: Should gracefully handle input errors without system crash and data loss.
+5.  **Code Documentation**: Code should be well-documented to facilitate maintenance and updates.
+6.  **Code Version Control**: The software codebase should be managed using _Git Milestone_ to track changes.
+7.  **Keyboard Efficiency**: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **UI**: User Interface, the graphical or textual interface through which a user interacts with a software application.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
