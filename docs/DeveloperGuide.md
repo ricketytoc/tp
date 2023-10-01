@@ -270,6 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+<<<<<<< Updated upstream
 | Priority | As a …​                             | I want to …​                                                               | So that I can…​                                                                         |
 |----------|-------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
 | `*`      | potential user exploring the app    | see the app populated with sample data                                     | easily see how the app will look when it is in use                                      |
@@ -287,6 +288,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                | find employees based on their roles                                        | easily increment the pay of all the staff with that role efficiently                    |
 | `*`      | user                                | view who I have looked at recently when I click the search bar             | easily fetch employees that I have analyzed recently and make my work more convenient   |
 *{More to be added}*
+=======
+| Priority | As a …​                             | I want to …​                                                                                              | So that I can…​                                                                         |
+|----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `*`      | potential user exploring the app    | see the app populated with sample data                                                                    | easily see how the app will look when it is in use                                      |
+| `* *`    | new user                            | always find solutions from the User Guide                                                                 | use this app easily when I encounter difficulties                                       |
+| `* *`    | user paranoid about losing progress | have the progress automatically saved                                                                     | be reassured that I will not lose any progress when my computer shuts down unexpectedly |
+| `* *`    | new user                            | purge all current data                                                                                    | get rid of sample/experimental data I used for exploring the app                        |
+| `* *`    | new user                            | have the application provide a user-friendly tutorial                                                     | understand its features                                                                 |
+| `* * *`  | user ready to start using the app   | add existing employees in the company to the application                                                  | keep track of the employee details                                                      |
+| `*`      | meticulous user                     | let the app accurately compare and point out differences between employees                                | not have to manually check each employee one by one                                     |
+| `* *`    | careless user                       | edit employee details easily that I have keyed in wrongly                                                 | change erroneous data                                                                   |
+| `* * *`  | HR staff member                     | remove employees who have left the company                                                                | ensure their data does not clutter the application                                      |
+| `*`      | HR staff member                     | search for employees using their names                                                                    | find the employee that I am looking for                                                 |
+| `*`      | HR staff member                     | filter employees based on their department, salary, etc.                                                  | narrow down my search to a target group of employees                                    |
+| `*`      | HR staff member                     | find employees based on their departments                                                                 | obtain the contact information of the employees in a department                         |
+| `*`      | HR staff member                     | find employees based on their roles                                                                       | easily increment the pay of all the staff with that role efficiently                    |
+| `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                                            | easily fetch employees that I have analyzed recently and make my work more convenient   |
+| `* * *`  | HR staff member                     | easily access and update employee information, including roles, salaries, departments and contact details | ensure that employee records are accurate                                               |
+| `*`      | HR staff member                     | generate reports                                                                                          | so that the upper management can have better insights into their employees.             |
+| `* *`    | Expert user                         | combine functions together                                                                                | I can save time on commonly performed tasks                                             |
+| `* *`    | Expert user                         | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                             |
+| `* * *`  | Advanced user                       | order my search results by various indicators (such as name and department)                               | view a list of employees in my desired manner.                                          |
+| `* * *`  | long-time user                      | remove unused data                                                                                        | I am not distracted by irrelevant data.                                                 |
+| `* *`    | HR staff member                     | know the history of changes, including who and when the change was made                                   | I can use them for auditing purposes.                                                   |
+| `* *`    | HR staff member                     | add notes to employee’s profiles                                                                          | I can document important information and interactions                                   |
+| `*`      | advanced user                       | edit the saved files manually without using the application                                               | it’s more convenient to update and organise new information                             |
+| `*`      | user with poor eyesight             | view the information easily                                                                               | it is not difficult for me to use the application.                                      |
+| `*`      | HR staff member                     | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                                  |
+| `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                   |
+| `*`      | HR staff member                     | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                                   |
+| `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                       |
+| `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                   |
+| `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes                |
+>>>>>>> Stashed changes
 
 ### Use cases
 
