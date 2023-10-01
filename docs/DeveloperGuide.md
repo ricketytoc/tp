@@ -322,8 +322,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **UI**: User Interface, the graphical or textual interface through which a user interacts with a software application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
