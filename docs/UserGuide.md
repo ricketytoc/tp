@@ -56,9 +56,9 @@ If you are an **experienced user**:
 
    * `list` : Lists all employees.
 
-   * `add id/ A035B name/ John Doe position/ Supervisor department/ Marketing salary/ 5000` : Adds a contact named `John Doe` to EmployeeManager.
+   * `add id/A035B name/John Doe position/Supervisor department/Marketing salary/5000` : Adds a contact named `John Doe` to EmployeeManager.
 
-   * `delete 3` : Deletes the 3rd employee shown in the current list.
+   * `delete id/A035B` : Deletes the employee with id `A035B`.
 
    * `exit` : Exits the app.
 
