@@ -79,11 +79,11 @@ Employee ID can either be specified or not. If specified, the application will c
 to check whether the entered ID is unique. If not unique it will show an error. If no Employer ID is specified then the 
 application will automatically assign a unique ID to the employee.
 
-Format: `add [id/ <Employee ID>] name/ <Name> position/ <Position> department/ <Department> salary/ <Salary>`
+Format: `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
 Examples:
-* `add id/ A035B name/ Richard Hew Jia Liang position/ Supervisor department/ Marketing salary/ 5000`
-* `add name/ Richard Hew Jia Liang position/ Supervisor department/ Marketing salary/ 5000`
+* `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+* `add name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
 
 Constraints:
 * Employee ID must be unique if specified and up to 10 characters
@@ -91,16 +91,16 @@ Constraints:
 * Name, Position, and Department up to 100 characters each
 
 Expected output when employee added successfully:
-* `Employee <id> <name> successfully added!`
+* `Employee EMPLOYEE_ID NAME successfully added!`
 
 Expected output when add command fails:
 * Invalid Salary : `Please input a non-negative salary as a numerical value (e.g. 4000)`
-* Duplicate employee ID : `<employee id> already exists`
+* Duplicate employee ID : `EMPLOYEE_ID already exists`
 * Unable to assign employee ID : `There is no employee ID available to be assigned. Please delete unused employees 
 to free up employee IDs`
-* Too long name/position/department : `Please keep the <name/position/department> up to 100 characters.`
+* Too long name/position/department : `Please keep the <NAME/POSITION/DEPARTMENT up to 100 characters.`
 * Missing inputs : `<Inputs that are missing> are missing from the command. Please input the add command in the format:
-add [id/ <Employer ID>] name/ <Name> position/ <Position> department/ <Department> salary/ <Salary>`
+add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
 ### Listing all persons : `list`
 
