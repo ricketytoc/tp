@@ -270,25 +270,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-<<<<<<< Updated upstream
-| Priority | As a …​                             | I want to …​                                                               | So that I can…​                                                                         |
-|----------|-------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `*`      | potential user exploring the app    | see the app populated with sample data                                     | easily see how the app will look when it is in use                                      |
-| `* *`    | new user                            | always find solutions from the User Guide                                  | use this app easily when I encounter difficulties                                       |
-| `* *`    | user paranoid about losing progress | have the progress automatically saved                                      | be reassured that I will not lose any progress when my computer shuts down unexpectedly |
-| `* *`    | new user                            | purge all current data                                                     | get rid of sample/experimental data I used for exploring the app                        |
-| `* *`    | new user                            | have the application provide a user-friendly tutorial                      | understand its features                                                                 |
-| `* * *`  | user ready to start using the app   | add existing employees in the company to the application                   | keep track of the employee details                                                      |
-| `*`      | meticulous user                     | let the app accurately compare and point out differences between employees | not have to manually check each employee one by one                                     |
-| `* *`    | careless user                       | edit employee details easily that I have keyed in wrongly                  | change erroneous data                                                                   |
-| `* * *`  | user                                | remove employees who have left the company                                 | ensure their data does not clutter the application                                      |
-| `*`      | user                                | search for employees using their names                                     | find the employee that I am looking for                                                 |
-| `*`      | user                                | filter employees based on their department, salary, etc.                   | narrow down my search to a target group of employees                                    |
-| `*`      | user                                | find employees based on their departments                                  | obtain the contact information of the employees in a department                         |
-| `*`      | user                                | find employees based on their roles                                        | easily increment the pay of all the staff with that role efficiently                    |
-| `*`      | user                                | view who I have looked at recently when I click the search bar             | easily fetch employees that I have analyzed recently and make my work more convenient   |
-*{More to be added}*
-=======
 | Priority | As a …​                             | I want to …​                                                                                              | So that I can…​                                                                         |
 |----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
 | `*`      | potential user exploring the app    | see the app populated with sample data                                                                    | easily see how the app will look when it is in use                                      |
@@ -321,7 +302,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                       |
 | `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                   |
 | `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes                |
->>>>>>> Stashed changes
 
 ### Use cases
 
