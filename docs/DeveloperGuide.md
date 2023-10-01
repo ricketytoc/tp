@@ -299,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a new employee with employee details.
 1. EmployeeManager adds the employee.
-1. EmployeeManage shows an updated list of employees.
+1. EmployeeManager shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to delete an employee with an employee ID.
 1. EmployeeManager deletes the employee.
-1. EmployeeManage shows an updated list of employees.
+1. EmployeeManager shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
