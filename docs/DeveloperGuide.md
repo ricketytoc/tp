@@ -318,6 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  **Error Handling**: Should gracefully handle input errors without system crash and data loss.
 5.  **Code Documentation**: Code should be well-documented to facilitate maintenance and updates.
 6.  **Code Version Control**: The software codebase should be managed using _Git Milestone_ to track changes.
+7.  **Keyboard Efficiency**: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
