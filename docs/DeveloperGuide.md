@@ -272,15 +272,24 @@ spent on data entry tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​                  | I want to …​                                                                                              | So that I can…​                                                             |
+|----------|--------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | HR staff member          | easily access and update employee information, including roles, salaries, departments and contact details | ensure that employee records are accurate                                   |
+| `*`      | HR staff member          | generate reports                                                                                          | so that the upper management can have better insights into their employees. |
+| `* *`    | Expert user              | combine functions together                                                                                | I can save time on commonly performed tasks                                 |
+| `* *`    | Expert user              | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                 |
+| `* * *`  | Advanced user            | order my search results by various indicators (such as name and department)                               | view a list of employees in my desired manner.                              |
+| `* * *`  | long-time user           | remove unused data                                                                                        | I am not distracted by irrelevant data.                                     |
+| `* *`    | HR staff member          | know the history of changes, including who and when the change was made                                   | I can use them for auditing purposes.                                       |
+| `* *`    | HR member                | add notes to employee’s profiles                                                                          | I can document important information and interactions                       |
+| `*`      | advanced user            | edit the saved files manually without using the application                                               | it’s more convenient to update and organise new information                 |
+| `*`      | user with poor eyesight  | view the information easily                                                                               | it is not difficult for me to use the application.                          |
+| `*`      | HR professional          | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                      |
+| `* *`    | user                     | export and import employee details                                                                        | I can create backups and recover from data corruption                       |
+| `*`      | HR manager               | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                       |
+| `*`      | HR manager               | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances           |
+| `* *`    | busy HR staff member     | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                       |
+| `* *`    | careless HR staff member | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes    |
 *{More to be added}*
 
 ### Use cases
