@@ -129,11 +129,16 @@ to free up employee IDs`
 * Missing inputs : `<Inputs that are missing> are missing from the command. Please input the add command in the format:
 add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
-### Listing all persons : `list`
+### Listing a list of employees : `list`
 
-Shows a list of all persons in the address book.
-
-Format: `list`
+* Shows a list of all persons in the address book.
+* Command Format: `list`
+* Examples:`list`
+* Expected outputs when the command succeeds:  
+`1. A1234 John Supervisor Accounting 10000`  
+`2. A1235 Mary Supervisor Finance 10000`
+* Expected outputs when the command fails:  
+`Error with displaying the list of employees.`
 
 ### Editing a person : `edit`
 
