@@ -297,52 +297,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new employee.
-1. EmployeeManager requests for details of the employee to be added.
-1. User enters the requested details.
+1. User requests to add a new employee with employee details.
 1. EmployeeManager adds the employee.
 1. EmployeeManage shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
 
-* 3a. EmployeeManager detects that not all required information is entered.
-  * 3a1. EmployeeManager informs user that some information is missing.
-  * 3a2. EmployeeManager requests user to enter details of the employee.
-  * 3a3. User enters the requested details.
-  * Steps 3a1 - 3a3 are repeated until the data entered are correct.
-  * Use case resumes from step 4.
-* 3b. EmployeeManager detects invalid information.
-  * 3b1. EmployeeManager informs user that some information is invalid.
-  * 3b2. EmployeeManager requests user to enter details of the employee.
-  * 3b3. User enters the requested details.
-  * Steps 3b1 - 3b3 are repeated until the data entered are correct.
-  * Use case resumes from step 4.
-* 3c. EmployeeManager detects a duplicate employee.
-  * 3c1. EmployeeManager informs user that the employee already exists.
+* 1a. EmployeeManager detects that not all required information is entered.
+  * 1a1. EmployeeManager informs user that some information is missing.
+  * 1a2. EmployeeManager requests user to enter details of the employee.
+  * 1a3. User enters the requested details.
+  * Steps 1a1 - 1a3 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+* 1b. EmployeeManager detects invalid information.
+  * 1b1. EmployeeManager informs user that some information is invalid.
+  * 1b2. EmployeeManager requests user to enter details of the employee.
+  * 1b3. User enters the requested details.
+  * Steps 1b1 - 1b3 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+* 1c. EmployeeManager detects a duplicate employee.
+  * 1c1. EmployeeManager informs user that the employee already exists.
   * Use case ends.
-* 3d. EmployeeManager detects that there are no employee IDs available.
-  * 3d1. EmployeeManager informs user that there are no employee IDs available.
+* 1d. EmployeeManager detects that there are no employee IDs available.
+  * 1d1. EmployeeManager informs user that there are no employee IDs available.
   * Use case ends.
 
 **Use case: UC3 - Delete an employee**
 
 **MSS**
 
-1. User requests to delete an employee.
-1. EmployeeManager requests for the employee ID of the employee to delete.
-1. User enters the employee ID.
+1. User requests to delete an employee with an employee ID.
 1. EmployeeManager deletes the employee.
 1. EmployeeManage shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
 
-* 3a. The given employee ID is invalid.
-  * 3a1. EmployeeManager informs user that the employee ID is invalid.
-  * 3a2. User enters new employee ID.
-  * Steps 3a1-3a2 are repeated until the employee ID entered is valid.
-  * Use case resumes from step 4.
+* 1a. The given employee ID is invalid.
+  * 1a1. EmployeeManager informs user that the employee ID is invalid.
+  * 1a2. User enters new employee ID.
+  * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
+  * Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
