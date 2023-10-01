@@ -307,32 +307,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EmployeeManager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - View all employees**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list all employees.
+1. EmployeeManager shows a list of employees.
+1. Use case ends.
 
-    Use case ends.
+**Use case: UC2 - Add a new employee**
+
+**MSS**
+
+1. User requests to add a new employee with employee details.
+1. EmployeeManager adds the employee.
+1. EmployeeManager shows an updated list of employees.
+1. Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. EmployeeManager detects that not all required information is entered.
+  * 1a1. EmployeeManager informs user that some information is missing.
+  * 1a2. EmployeeManager requests user to enter details of the employee.
+  * 1a3. User enters the requested details.
+  * Steps 1a1 - 1a3 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+* 1b. EmployeeManager detects invalid information.
+  * 1b1. EmployeeManager informs user that some information is invalid.
+  * 1b2. EmployeeManager requests user to enter details of the employee.
+  * 1b3. User enters the requested details.
+  * Steps 1b1 - 1b3 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+* 1c. EmployeeManager detects a duplicate employee.
+  * 1c1. EmployeeManager informs user that the employee already exists.
+  * Use case ends.
+* 1d. EmployeeManager detects that there are no employee IDs available.
+  * 1d1. EmployeeManager informs user that there are no employee IDs available.
+  * Use case ends.
 
-  Use case ends.
+**Use case: UC3 - Delete an employee**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to delete an employee with an employee ID.
+1. EmployeeManager deletes the employee.
+1. EmployeeManager shows an updated list of employees.
+1. Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
 
-*{More to be added}*
+* 1a. The given employee ID is invalid.
+  * 1a1. EmployeeManager informs user that the employee ID is invalid.
+  * 1a2. User enters new employee ID.
+  * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
+  * Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
