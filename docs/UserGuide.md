@@ -177,7 +177,7 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 **Q2**: Are the employees listed in the order of id or name?<br>
-**A**: No, the new added employees will be placed from the end of the list.
+**A**: No, the employees are not listed in any explicit order. Newly added employees will be placed at the end of the list.
 
 **Q3**: Can I simply update certain details of an employee without deleting the old information?<br>
 **A**: You can only delete and add the updated employee information again so far, the new `update` feature is coming soon!
