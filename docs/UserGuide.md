@@ -99,19 +99,35 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an employee: `add`
 
-Adds a person to the address book.
+Adds employees into the EmployeeManager application. 
+Employee ID can either be specified or not. If specified, the application will check the existing list of employees 
+to check whether the entered ID is unique. If not unique it will show an error. If no Employer ID is specified then the 
+application will automatically assign a unique ID to the employee.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+* `add name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+
+Constraints:
+* Employee ID must be unique if specified and up to 10 characters
+* Salary must be numerical and >= 0
+* Name, Position, and Department up to 100 characters each
+
+Expected output when employee added successfully:
+* `Employee EMPLOYEE_ID NAME successfully added!`
+
+Expected output when add command fails:
+* Invalid Salary : `Please input a non-negative salary as a numerical value (e.g. 4000)`
+* Duplicate employee ID : `EMPLOYEE_ID already exists`
+* Unable to assign employee ID : `There is no employee ID available to be assigned. Please delete unused employees 
+to free up employee IDs`
+* Too long name/position/department : `Please keep the <NAME/POSITION/DEPARTMENT up to 100 characters.`
+* Missing inputs : `<Inputs that are missing> are missing from the command. Please input the add command in the format:
+add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
 ### Listing all persons : `list`
 
@@ -213,12 +229,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
