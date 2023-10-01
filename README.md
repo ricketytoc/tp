@@ -1,5 +1,4 @@
-[![codecov](https://codecov.io/gh/AY2324S1-CS2103T-T14-1/tp/graph/badge.svg?token=RT9BAYPBJJ)](https://codecov.io/gh/AY2324S1-CS2103T-T14-1/tp)
-
+[![Java CI](https://github.com/AY2324S1-CS2103T-T14-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S1-CS2103T-T14-1/tp/actions/workflows/gradle.yml)
 ![Ui](docs/images/Ui.png)
 
 **EmployeeManager**
@@ -22,5 +21,5 @@ GUI interface.
   * It provides a **reasonably well-written** code base with around 6KLoC.
   * It comes with a **reasonable level of user and developer documentation**.
 
-* For the detailed documentation of this project, see the **[EmployeeManager Website](https://ay2324s1-cs2103t-t14-1.github.io/tp/)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* For the detailed documentation of this project, see the **[EmployeeManager Product Website](https://ay2324s1-cs2103t-t14-1.github.io/tp/)**.
+* Acknowledgement: This project is based on the **AddressBook-Level3 project** created by the **SE-EDU** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
