@@ -13,5 +13,6 @@ GUI interface.
   * It is **written in OOP fashion**.
   * It provides a **reasonably well-written** code base with around 6KLoC.
   * It comes with a **reasonable level of user and developer documentation**.
+
 * For the detailed documentation of this project, see the **[EmployeeManager Website](https://ay2324s1-cs2103t-t14-1.github.io/tp/)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

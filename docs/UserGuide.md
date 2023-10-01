@@ -3,35 +3,62 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Welcome to **EmployeeManager**! Do you need to manage employees? Are you having trouble using spreadsheets? Or does your
+organisation not have a proper employee management system? EmployeeManager is the application for you!
 
-* Table of Contents
+EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a relatively
+large organisation (about 50 - 200 employees)**.
+
+Here’s an **overview** of EmployeeManager’s features:
+* Consolidate and manage employee details in a single application 
+* Conveniently view, add, or delete employee details
+
+EmployeeManager is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, EmployeeManager can get your employee management tasks done more
+quickly than traditional GUI apps, so HR staff can be more efficient.
+
+This User Guide aims to help both new and experienced users use EmployeeManager. Learn to leverage the features of 
+EmployeeManager to make managing employees easier!
+
+If you are a **new user**:
+* Get started with EmployeeManager by going through [Quick start](#quick-start) and [Navigating the user guide](#navigating-the-user-guide)
+* If you have no prior experience with CLI or require a refresher, refer to this guide *(coming soon)*
+
+If you are an **experienced user**:
+* Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Navigating the user guide
+*Coming soon*
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `employeemanager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar employeemanager.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all employees.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add id/A035B name/John Doe position/Supervisor department/Marketing salary/5000` : Adds a contact named `John Doe` to EmployeeManager.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
+   * `delete id/A035B` : Deletes the employee with id `A035B`.
 
    * `exit` : Exits the app.
 
@@ -72,19 +99,35 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an employee: `add`
 
-Adds a person to the address book.
+Adds employees into the EmployeeManager application. 
+Employee ID can either be specified or not. If specified, the application will check the existing list of employees 
+to check whether the entered ID is unique. If not unique it will show an error. If no Employer ID is specified then the 
+application will automatically assign a unique ID to the employee.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+* `add name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+
+Constraints:
+* Employee ID must be unique if specified and up to 10 characters
+* Salary must be numerical and >= 0
+* Name, Position, and Department up to 100 characters each
+
+Expected output when employee added successfully:
+* `Employee EMPLOYEE_ID NAME successfully added!`
+
+Expected output when add command fails:
+* Invalid Salary : `Please input a non-negative salary as a numerical value (e.g. 4000)`
+* Duplicate employee ID : `EMPLOYEE_ID already exists`
+* Unable to assign employee ID : `There is no employee ID available to be assigned. Please delete unused employees 
+to free up employee IDs`
+* Too long name/position/department : `Please keep the <NAME/POSITION/DEPARTMENT up to 100 characters.`
+* Missing inputs : `<Inputs that are missing> are missing from the command. Please input the add command in the format:
+add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
 
 ### Listing all persons : `list`
 
@@ -186,12 +229,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
