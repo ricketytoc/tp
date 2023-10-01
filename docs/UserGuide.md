@@ -3,35 +3,62 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Welcome to **EmployeeManager**! Do you need to manage employees? Are you having trouble using spreadsheets? Or does your
+organisation not have a proper employee management system? EmployeeManager is the application for you!
 
-* Table of Contents
+EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a relatively
+large organisation (about 50 - 200 employees)**.
+
+Here’s an **overview** of EmployeeManager’s features:
+* Consolidate and manage employee details in a single application 
+* Conveniently view, add, or delete employee details
+
+EmployeeManager is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, EmployeeManager can get your employee management tasks done more
+quickly than traditional GUI apps, so HR staff can be more efficient.
+
+This User Guide aims to help both new and experienced users use EmployeeManager. Learn to leverage the features of 
+EmployeeManager to make managing employees easier!
+
+If you are a **new user**:
+* Get started with EmployeeManager by going through [Quick start](#quick-start) and [Navigating the user guide](#navigating-the-user-guide)
+* If you have no prior experience with CLI or require a refresher, refer to this guide *(coming soon)*
+
+If you are an **experienced user**:
+* Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Navigating the user guide
+*Coming soon*
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `employeemanager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar employeemanager.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all employees.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add id/A035B name/John Doe position/Supervisor department/Marketing salary/5000` : Adds a contact named `John Doe` to EmployeeManager.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
+   * `delete id/A035B` : Deletes the employee with id `A035B`.
 
    * `exit` : Exits the app.
 
