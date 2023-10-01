@@ -173,8 +173,14 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q1**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+**Q2**: Are the employees listed in the order of id or name?<br>
+**A**: No, the new added employees will be placed from the end of the list.
+
+**Q3**: Can I simply update certain details of an employee without deleting the old information?<br>
+**A**: You can only delete and add the updated employee information again so far, the new `update` feature is coming soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,12 +192,8 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                                                                                                                                    |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY` <br> e.g., `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`, `name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000` |
+| **Delete** | `delete id/EMPLOYEE_ID`<br> e.g., `delete id/A1234567B`                                                                                                                                                                                                                             |
+| **List**   | `list`                                                                                                                                                                                                                                                                              |
