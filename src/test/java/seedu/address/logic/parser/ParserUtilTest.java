@@ -18,6 +18,7 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,11 +27,13 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DEPARTMENT = "^Finance";
+    private static final String INVALID_SALARY = "-5000";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_DEPARTMENT = "Finance";
+    private static final String VALID_SALARY = "5000";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +149,29 @@ public class ParserUtilTest {
         String departmentWithWhitespace = WHITESPACE + VALID_DEPARTMENT + WHITESPACE;
         Department expectedDepartment = new Department(VALID_DEPARTMENT);
         assertEquals(expectedDepartment, ParserUtil.parseDepartment(departmentWithWhitespace));
+    }
+
+    @Test
+    public void parseSalary_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSalary((String) null));
+    }
+
+    @Test
+    public void parseSalary_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSalary(INVALID_SALARY));
+    }
+
+    @Test
+    public void parseSalary_validValueWithoutWhitespace_returnsSalary() throws Exception {
+        Salary expectedSalary = new Salary(VALID_SALARY);
+        assertEquals(expectedSalary, ParserUtil.parseSalary(VALID_SALARY));
+    }
+
+    @Test
+    public void parseSalary_validValueWithWhitespace_returnsTrimmedSalary() throws Exception {
+        String salaryWithWhitespace = WHITESPACE + VALID_SALARY + WHITESPACE;
+        Salary expectedSalary = new Salary(VALID_SALARY);
+        assertEquals(expectedSalary, ParserUtil.parseDepartment(salaryWithWhitespace));
     }
 
     @Test
