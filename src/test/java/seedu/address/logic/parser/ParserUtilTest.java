@@ -171,7 +171,7 @@ public class ParserUtilTest {
     public void parseSalary_validValueWithWhitespace_returnsTrimmedSalary() throws Exception {
         String salaryWithWhitespace = WHITESPACE + VALID_SALARY + WHITESPACE;
         Salary expectedSalary = new Salary(VALID_SALARY);
-        assertEquals(expectedSalary, ParserUtil.parseDepartment(salaryWithWhitespace));
+        assertEquals(expectedSalary, ParserUtil.parseSalary(salaryWithWhitespace));
     }
 
     @Test
