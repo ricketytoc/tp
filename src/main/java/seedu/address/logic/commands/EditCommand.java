@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -51,6 +54,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ID + "A0123456B "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_DEPARTMENT + "Finance "
@@ -104,6 +108,7 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
+        Id updatedId = editPersonDescriptor.getId().orElse(personToEdit.getId());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
@@ -112,8 +117,8 @@ public class EditCommand extends Command {
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedDepartment, updatedRole, updatedSalary,
-                updatedTags);
+        return new Person(updatedId, updatedName, updatedPhone, updatedEmail, updatedDepartment,
+                updatedRole, updatedSalary, updatedTags);
     }
 
     @Override
@@ -145,6 +150,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private Id id;
         private Name name;
         private Phone phone;
         private Email email;
@@ -160,6 +166,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setId(toCopy.id);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -173,7 +180,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, department, role, salary, tags);
+            return CollectionUtil.isAnyNonNull(id, name, phone, email, department, role, salary, tags);
+        }
+
+        public void setId(Id id) {
+            this.id = id;
+        }
+
+        public Optional<Id> getId() {
+            return Optional.ofNullable(id);
         }
 
         public void setName(Name name) {
@@ -253,7 +268,8 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
+            return Objects.equals(id, otherEditPersonDescriptor.id)
+                    && Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(department, otherEditPersonDescriptor.department)
@@ -265,6 +281,7 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
+                    .add("id", id)
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
