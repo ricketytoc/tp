@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,7 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_DEPARTMENT_AMY = "Finance";
     public static final String VALID_DEPARTMENT_BOB = "Sales";
-
+    public static final String VALID_ROLE_AMY = "Intern";
+    public static final String VALID_ROLE_BOB = "Admin Staff";
     public static final String VALID_SALARY_AMY = "1000";
     public static final String VALID_SALARY_BOB = "2000";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -49,6 +51,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String DEPARTMENT_DESC_AMY = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_AMY;
     public static final String DEPARTMENT_DESC_BOB = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_BOB;
+    public static final String ROLE_DESC_AMY = " " + PREFIX_ROLE + VALID_ROLE_AMY;
+    public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -58,6 +62,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT + "Finance&"; // '&' not allowed
     // in departments
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "M@nager"; // '@' not allowed in roles
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "-5000"; // negative numbers not allowed in
     // salary
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -71,11 +76,13 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withDepartment(VALID_DEPARTMENT_AMY).withSalary(VALID_SALARY_AMY)
+                .withDepartment(VALID_DEPARTMENT_AMY).withRole(VALID_ROLE_AMY)
+                .withSalary(VALID_SALARY_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withDepartment(VALID_DEPARTMENT_BOB).withSalary(VALID_SALARY_BOB)
+                .withDepartment(VALID_DEPARTMENT_BOB).withRole(VALID_ROLE_BOB)
+                .withSalary(VALID_SALARY_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

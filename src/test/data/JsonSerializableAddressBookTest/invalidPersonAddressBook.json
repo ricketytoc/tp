@@ -4,6 +4,7 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "department": "Finance",
+    "role": "Manager",
     "salary" : "5000"
   } ]
 }

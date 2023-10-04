@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -53,6 +54,10 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDepartment(VALID_DEPARTMENT_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different role -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRole(VALID_ROLE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different salaries -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDepartment(VALID_SALARY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -69,6 +74,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", department="
+                + editPersonDescriptor.getRole().orElse(null) + ", role="
                 + editPersonDescriptor.getDepartment().orElse(null) + ", salary="
                 + editPersonDescriptor.getSalary().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
