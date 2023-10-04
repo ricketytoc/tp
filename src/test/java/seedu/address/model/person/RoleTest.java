@@ -20,7 +20,7 @@ class RoleTest {
     }
 
     @Test
-    void isValidRole() {
+    public void isValidRole() {
         // null role
         assertThrows(NullPointerException.class, () -> Role.isValidRole(null));
 

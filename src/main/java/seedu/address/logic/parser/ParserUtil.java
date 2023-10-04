@@ -83,7 +83,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String department} into an {@code Department}.
+     * Parses a {@code String department} into a {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code department} is invalid.
@@ -98,7 +98,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String role} into an {@code Role}.
+     * Parses a {@code String role} into a {@code Role}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code role} is invalid.
@@ -113,7 +113,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String salary} into an {@code Salary}.
+     * Parses a {@code String salary} into a {@code Salary}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code salary} is invalid.
