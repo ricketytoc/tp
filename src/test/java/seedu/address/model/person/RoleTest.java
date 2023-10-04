@@ -21,7 +21,7 @@ class RoleTest {
 
     @Test
     void isValidRole() {
-        // null name
+        // null role
         assertThrows(NullPointerException.class, () -> Role.isValidRole(null));
 
         // invalid role

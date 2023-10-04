@@ -28,7 +28,7 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        this.value = role;
+        value = role;
     }
 
     /**
