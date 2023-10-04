@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -21,12 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_DEPARTMENT = "Finance";
+    public static final String DEFAULT_ROLE = "Intern";
     public static final String DEFAULT_SALARY = "1000";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Department department;
+    private Role role;
     private Salary salary;
     private Set<Tag> tags;
 
@@ -38,6 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         department = new Department(DEFAULT_DEPARTMENT);
+        role = new Role(DEFAULT_ROLE);
         salary = new Salary(DEFAULT_SALARY);
         tags = new HashSet<>();
     }
@@ -50,6 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         department = personToCopy.getDepartment();
+        role = personToCopy.getRole();
         salary = personToCopy.getSalary();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -95,6 +100,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Role} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRole(String role) {
+        this.role = new Role(role);
+        return this;
+    }
+
+    /**
      * Sets the {@code Salary} of the {@code Person} that we are building.
      */
     public PersonBuilder withSalary(String salary) {
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, department, salary, tags);
+        return new Person(name, phone, email, department, role, salary, tags);
     }
 
 }
