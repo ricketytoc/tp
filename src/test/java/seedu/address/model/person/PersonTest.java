@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
@@ -37,8 +38,9 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withDepartment(VALID_DEPARTMENT_BOB).withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withDepartment(VALID_DEPARTMENT_BOB)
+                .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -105,14 +107,16 @@ public class PersonTest {
 
     @Test
     public void hashCodeMethod() {
-        int expected = Objects.hash(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getDepartment(),
-                ALICE.getRole(), ALICE.getSalary(), ALICE.getTags());
+        int expected = Objects.hash(ALICE.getId(), ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
+                ALICE.getDepartment(), ALICE.getRole(), ALICE.getSalary(), ALICE.getTags());
         assertEquals(expected, ALICE.hashCode());
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+        String expected = Person.class.getCanonicalName() + "{id=" + ALICE.getId()
+                + ", name=" + ALICE.getName()
+                + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", department=" + ALICE.getDepartment() + ", role=" + ALICE.getRole()
                 + ", salary=" + ALICE.getSalary() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());

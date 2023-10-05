@@ -1,6 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "id": "A000000",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -9,6 +10,7 @@
     "salary" : "1000",
     "tags" : [ "friends" ]
   }, {
+    "id": "A000001",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -17,6 +19,7 @@
     "salary" : "2000",
     "tags" : [ "owesMoney", "friends" ]
   }, {
+    "id": "A000002",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
@@ -25,6 +28,7 @@
     "salary" : "3000",
     "tags" : [ ]
   }, {
+    "id": "A000003",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -33,6 +37,7 @@
     "salary" : "4000",
     "tags" : [ "friends" ]
   }, {
+    "id": "A000004",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
@@ -41,6 +46,7 @@
     "salary" : "5000",
     "tags" : [ ]
   }, {
+    "id": "A000005",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
@@ -49,6 +55,7 @@
     "salary" : "6000",
     "tags" : [ ]
   }, {
+    "id": "A000006",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
