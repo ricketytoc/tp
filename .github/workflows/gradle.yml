@@ -43,3 +43,13 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Create JAR file
+        run: ./gradlew shadowJar
+
+      - name: Upload JAR file as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: employee_manager_artifact
+          path: build/libs/*.jar
+          retention-days: 6
