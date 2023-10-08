@@ -52,3 +52,4 @@ jobs:
         with:
           name: employee_manager_artifact
           path: build/libs/*.jar
+          retention-days: 6
