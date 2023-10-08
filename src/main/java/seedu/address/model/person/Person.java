@@ -17,6 +17,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -30,9 +31,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Department department, Role role, Salary salary,
-                  Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, department, role, salary, tags);
+    public Person(Id id, Name name, Phone phone, Email email, Department department,
+                  Role role, Salary salary, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, department, role, salary, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,6 +44,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    public Id getId() {
+        return id;
+    }
     public Name getName() {
         return name;
     }
@@ -103,7 +108,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return id.equals(otherPerson.id)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && department.equals(otherPerson.department)
@@ -115,12 +121,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, department, role, salary, tags);
+        return Objects.hash(id, name, phone, email, department, role, salary, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
