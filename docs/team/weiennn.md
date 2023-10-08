@@ -5,7 +5,10 @@ title: Weiennn's Project Portfolio Page
 
 ### Project: Employee Manager
 
-Employee Manager - 
+EmployeeManager is a desktop application used by Human Resource (HR) staff in a relatively large company (of 50 - 200
+employees). EmployeeManager provides HR management features to provide HR staff a convenient way to access and update
+employee details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java,
+and has about 10 kLoC.
 
 Given below are my contributions to the project.
 

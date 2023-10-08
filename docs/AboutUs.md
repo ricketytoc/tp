@@ -16,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Goh-Li-Ting)]
 [[portfolio](team/goh-li-ting.md)]
 
-* Role: Project Advisor
+* Role: Documentation
+* Responsibilities: UI
 
 ### Leong Yuan Kun
 
@@ -25,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/aexolate)]
 [[portfolio](team/aexolate.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration
+* Responsibilities: Storage
 
 ### Huang Wei'En
 
@@ -34,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/Weiennn)] [[portfolio](team/weiennn.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: Commands
 
 ### Richard Hew
 
@@ -44,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ricketytoc)]
 [[portfolio](team/ricketytoc.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Deliverables and Deadlines
+* Responsibilities: Model
 
 ### Chen Kuei
 
@@ -54,5 +55,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Chen-Kuei)]
 [[portfolio](team/chen-kuei.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Parser
