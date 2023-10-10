@@ -17,9 +17,10 @@ public class IdContainsKeywordPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         // The check is case-insensitive
-        return person.getId()
+        return (!this.keyword.isEmpty())
+                && (person.getId()
                 .value.toUpperCase()
-                .contains(keyword.toUpperCase());
+                .contains(keyword.toUpperCase()));
     }
 
     @Override

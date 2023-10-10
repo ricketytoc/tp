@@ -26,6 +26,17 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_emptyPrefix_throwsParseException() {
+        assertParseFailure(parser,
+                " " + PREFIX_ID,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                " " + PREFIX_NAME,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // ID attribute - no leading and trailing whitespaces
         FindCommand expectedFindCommand =

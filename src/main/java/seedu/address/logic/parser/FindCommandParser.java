@@ -38,7 +38,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_ROLE, PREFIX_SALARY);
 
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            return new FindCommand(new IdContainsKeywordPredicate(argMultimap.getValue(PREFIX_ID).get()));
+            String keyword = argMultimap.getValue(PREFIX_ID).get();
+            if (keyword.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+            return new FindCommand(new IdContainsKeywordPredicate(keyword));
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
