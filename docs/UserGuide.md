@@ -6,12 +6,12 @@ title: User Guide
 Welcome to **EmployeeManager**! Do you need to manage employees? Are you having trouble using spreadsheets? Or does your
 organisation not have a proper employee management system? EmployeeManager is the application for you!
 
-EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a relatively
-large organisation (about 50 - 200 employees)**.
+EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a large organisation (more than 200 employees)**.
 
 Here’s an **overview** of EmployeeManager’s features:
 * Consolidate and manage employee details in a single application 
 * Conveniently view, add, or delete employee details
+* Easily increment salary or delete many employees at once
 
 EmployeeManager is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
 Graphical User Interface (GUI). If you can type fast, EmployeeManager can get your employee management tasks done more
