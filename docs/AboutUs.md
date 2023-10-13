@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Goh Li Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/goh-li-ting.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Goh-Li-Ting)]
+[[portfolio](team/goh-li-ting.md)]
 
-* Role: Project Advisor
+* Role: Documentation
+* Responsibilities: UI
 
-### Jane Doe
+### Leong Yuan Kun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aexolate.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/aexolate)]
+[[portfolio](team/aexolate.md)]
+
+* Role: Integration
+* Responsibilities: Storage
+
+### Huang Wei'En
+
+<img src="images/weiennn.png" width="200px">
+
+[[github](https://github.com/Weiennn)] [[portfolio](team/weiennn.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Commands
 
-### Johnny Doe
+### Richard Hew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ricketytoc.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ricketytoc)]
+[[portfolio](team/ricketytoc.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and Deadlines
+* Responsibilities: Model
 
-### Jean Doe
+### Chen Kuei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chen-kuei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Chen-Kuei)]
+[[portfolio](team/chen-kuei.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Parser
