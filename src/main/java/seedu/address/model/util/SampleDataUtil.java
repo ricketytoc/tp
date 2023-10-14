@@ -14,7 +14,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -24,27 +23,27 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Id("A0001"), new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Department("Finance"), new Role("Supervisor"),
-                new Salary("5000"), getTagSet("friends")),
+                new Salary("5000")),
 
             new Person(new Id("A0002"), new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Department("Marketing"), new Role("Manager"),
-                new Salary("4000"), getTagSet("colleagues", "friends")),
+                new Salary("4000")),
 
             new Person(new Id("A0003"), new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Department("Sales"), new Role("Supervisor"),
-                new Salary("6000"), getTagSet("neighbours")),
+                new Salary("6000")),
 
             new Person(new Id("A0004"), new Name("David Li"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Department("Management"), new Role("Senior Executive"),
-                new Salary("10000"), getTagSet("family")),
+                new Salary("10000")),
 
             new Person(new Id("A0005"), new Name("Irfan Ibrahim"), new Phone("92492021"),
                 new Email("irfan@example.com"), new Department("Accounting"), new Role("Executive"),
-                new Salary("9000"), getTagSet("classmates")),
+                new Salary("9000")),
 
             new Person(new Id("A0006"), new Name("Roy Balakrishnan"), new Phone("92624417"),
                 new Email("royb@example.com"), new Department("Human Resources"), new Role("Team Lead"),
-                new Salary("4000"), getTagSet("colleagues"))
+                new Salary("4000"))
         };
     }
 
@@ -55,14 +54,4 @@ public class SampleDataUtil {
         }
         return sampleAb;
     }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
 }
