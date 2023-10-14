@@ -6,7 +6,7 @@ title: User Guide
 Welcome to **EmployeeManager**! Do you need to manage employees? Are you having trouble using spreadsheets? Or does your
 organisation not have a proper employee management system? EmployeeManager is the application for you!
 
-EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a large organisation (more than 200 employees)**.
+EmployeeManager is a **desktop application** for **Human Resources (HR) staff** to **manage employees in a small or medium-sized enterprise (SME)**.
 
 Here’s an **overview** of EmployeeManager’s features:
 * Consolidate and manage employee details in a single application 
