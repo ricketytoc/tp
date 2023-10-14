@@ -11,7 +11,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.IdContainsKeywordPredicate;
+import seedu.address.model.person.IdContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -40,7 +40,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // ID attribute - no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new IdContainsKeywordPredicate("A0001"));
+                new FindCommand(new IdContainsKeywordsPredicate("A0001"));
         assertParseSuccess(parser, " " + PREFIX_ID + "A0001", expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
