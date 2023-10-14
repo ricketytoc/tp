@@ -39,7 +39,7 @@
   }, {
     "id": "A000004",
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822241",
     "email" : "werner@example.com",
     "department": "Accounting",
     "role": "Manager",
@@ -48,7 +48,7 @@
   }, {
     "id": "A000005",
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94824271",
     "email" : "lydia@example.com",
     "department": "Management",
     "role": "Manager",
@@ -57,11 +57,38 @@
   }, {
     "id": "A000006",
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824421",
     "email" : "anna@example.com",
     "department": "Finance",
     "role": "Executive",
     "salary" : "7000",
+    "tags" : [ ]
+  }, {
+    "id": "A000009",
+    "name" : "John Lim",
+    "phone" : "94824455",
+    "email" : "JL@example.com",
+    "department": "Finance",
+    "role": "Intern",
+    "salary" : "800",
+    "tags" : [ ]
+  }, {
+    "id": "A000010",
+    "name" : "John Tan",
+    "phone" : "94824423",
+    "email" : "JT@example.com",
+    "department": "Finance",
+    "role": "Executive",
+    "salary" : "8000",
+    "tags" : [ ]
+  }, {
+    "id": "A000011",
+    "name" : "John Wong",
+    "phone" : "94811423",
+    "email" : "JW@example.com",
+    "department": "Finance",
+    "role": "Manager",
+    "salary" : "5000",
     "tags" : [ ]
   } ]
 }

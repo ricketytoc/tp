@@ -44,17 +44,32 @@ public class TypicalPersons {
             .withSalary("4000").withTags("friends")
             .build();
     public static final Person ELLE = new PersonBuilder().withId("A000004").withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("94822241")
             .withEmail("werner@example.com").withDepartment("Accounting").withRole("Manager")
             .withSalary("5000")
             .build();
     public static final Person FIONA = new PersonBuilder().withId("A000005").withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("94824271")
             .withEmail("lydia@example.com").withDepartment("Management").withRole("Manager").withSalary("6000")
             .build();
     public static final Person GEORGE = new PersonBuilder().withId("A000006").withName("George Best")
-            .withPhone("9482442")
+            .withPhone("94824421")
             .withEmail("anna@example.com").withDepartment("Finance").withRole("Executive").withSalary("7000")
+            .build();
+
+    // Clear EmployeeManager test
+    public static final Person JOHN_LIM = new PersonBuilder().withId("A000009").withName("John Lim")
+            .withPhone("94824455")
+            .withEmail("JL@example.com").withDepartment("Finance").withRole("Intern").withSalary("800")
+            .build();
+    public static final Person JOHN_TAN = new PersonBuilder().withId("A000010").withName("John Tan")
+            .withPhone("94824423")
+            .withEmail("JT@example.com").withDepartment("Finance").withRole("Executive").withSalary("8000")
+            .build();
+
+    public static final Person JOHN_WONG = new PersonBuilder().withId("A000011").withName("John Wong")
+            .withPhone("94811423")
+            .withEmail("JW@example.com").withDepartment("Finance").withRole("Manager").withSalary("5000")
             .build();
 
     // Manually added
@@ -90,6 +105,25 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JOHN_LIM,
+                JOHN_TAN, JOHN_WONG));
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the person after the find n/John and clear command.
+     */
+    public static AddressBook getClearedAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getClearedPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    public static List<Person> getClearedPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+
+
 }
