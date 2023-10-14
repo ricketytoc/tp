@@ -131,7 +131,7 @@ add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SA
 
 ### Listing a list of employees : `list`
 
-* Shows a list of all persons in the address book.
+* Shows a list of all persons in EmployeeManager.
 * Command Format: `list`
 * Examples:`list`
 * Expected outputs when the command succeeds:  
@@ -142,9 +142,9 @@ add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SA
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in EmployeeManager.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -154,7 +154,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567`.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -191,7 +191,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears the current list of entries from EmployeeManager.
 
 Format: `clear`
 
@@ -203,14 +203,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EmployeeManager data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EmployeeManager data are saved automatically as a JSON file `[JAR file location]/data/employeemanager.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -222,7 +222,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q1**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EmployeeManager home folder.
 
 **Q2**: Are the employees listed in the order of id or name?<br>
 **A**: No, the employees are not listed in any explicit order. Newly added employees will be placed at the end of the list.
