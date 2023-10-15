@@ -21,7 +21,7 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         List<Person> shownList = model.getFilteredPersonList();
 
-        while (shownList.size() != 0) {
+        while (!shownList.isEmpty()) {
             Person personToDelete = shownList.get(0);
             model.deletePerson(personToDelete);
         }
