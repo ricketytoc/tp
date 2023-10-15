@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -19,12 +19,9 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> shownList = model.getFilteredPersonList();
+        ArrayList<Person> copyList = new ArrayList<>(model.getFilteredPersonList());
+        copyList.forEach(model::deletePerson);
 
-        while (!shownList.isEmpty()) {
-            Person personToDelete = shownList.get(0);
-            model.deletePerson(personToDelete);
-        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
