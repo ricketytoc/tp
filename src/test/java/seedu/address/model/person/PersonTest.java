@@ -10,8 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -22,13 +20,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
-
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
-    }
-
     @Test
     public void isSamePerson() {
         // same object -> returns true
@@ -40,8 +31,7 @@ public class PersonTest {
         // same id, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withDepartment(VALID_DEPARTMENT_BOB)
-                .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different id, all other attributes same -> returns false
@@ -98,16 +88,12 @@ public class PersonTest {
         // different salary -> returns false
         editedAlice = new PersonBuilder(ALICE).withSalary(VALID_SALARY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void hashCodeMethod() {
         int expected = Objects.hash(ALICE.getId(), ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getDepartment(), ALICE.getRole(), ALICE.getSalary(), ALICE.getTags());
+                ALICE.getDepartment(), ALICE.getRole(), ALICE.getSalary());
         assertEquals(expected, ALICE.hashCode());
     }
 
@@ -117,7 +103,7 @@ public class PersonTest {
                 + ", name=" + ALICE.getName()
                 + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", department=" + ALICE.getDepartment() + ", role=" + ALICE.getRole()
-                + ", salary=" + ALICE.getSalary() + ", tags=" + ALICE.getTags() + "}";
+                + ", salary=" + ALICE.getSalary() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

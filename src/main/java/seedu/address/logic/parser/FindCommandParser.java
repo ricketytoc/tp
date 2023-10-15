@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
@@ -32,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DEPARTMENT,
-                        PREFIX_ROLE, PREFIX_SALARY, PREFIX_TAG);
+                        PREFIX_ROLE, PREFIX_SALARY);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DEPARTMENT,
                 PREFIX_ROLE, PREFIX_SALARY);

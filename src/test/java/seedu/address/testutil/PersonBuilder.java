@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Id;
@@ -11,8 +8,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -34,7 +29,6 @@ public class PersonBuilder {
     private Department department;
     private Role role;
     private Salary salary;
-    private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,7 +41,6 @@ public class PersonBuilder {
         department = new Department(DEFAULT_DEPARTMENT);
         role = new Role(DEFAULT_ROLE);
         salary = new Salary(DEFAULT_SALARY);
-        tags = new HashSet<>();
     }
 
     /**
@@ -61,7 +54,6 @@ public class PersonBuilder {
         department = personToCopy.getDepartment();
         role = personToCopy.getRole();
         salary = personToCopy.getSalary();
-        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -77,14 +69,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -129,7 +113,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(id, name, phone, email, department, role, salary, tags);
+        return new Person(id, name, phone, email, department, role, salary);
     }
 
 }
