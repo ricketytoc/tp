@@ -48,8 +48,7 @@ public class Messages {
                 .append("; Role: ")
                 .append(person.getRole())
                 .append("; Salary: ")
-                .append(person.getSalary())
-                .append("; Tags: ");
+                .append(person.getSalary());
         return builder.toString();
     }
 
