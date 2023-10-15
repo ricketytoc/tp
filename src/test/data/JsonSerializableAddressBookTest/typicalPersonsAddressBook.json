@@ -1,39 +1,67 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "id": "A000000",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
+    "department": "Finance",
+    "role": "Intern",
+    "salary" : "1000",
     "tags" : [ "friends" ]
   }, {
+    "id": "A000001",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
+    "department": "Marketing",
+    "role": "Intern",
+    "salary" : "2000",
     "tags" : [ "owesMoney", "friends" ]
   }, {
+    "id": "A000002",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
+    "department": "Sales",
+    "role": "Admin staff",
+    "salary" : "3000",
     "tags" : [ ]
   }, {
+    "id": "A000003",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
+    "department": "Human Resources",
+    "role": "Team Leader",
+    "salary" : "4000",
     "tags" : [ "friends" ]
   }, {
+    "id": "A000004",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "department": "Accounting",
+    "role": "Manager",
+    "salary" : "5000",
     "tags" : [ ]
   }, {
+    "id": "A000005",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
+    "department": "Management",
+    "role": "Manager",
+    "salary" : "6000",
     "tags" : [ ]
   }, {
+    "id": "A000006",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "department": "Finance",
+    "role": "Executive",
+    "salary" : "7000",
     "tags" : [ ]
   } ]
 }

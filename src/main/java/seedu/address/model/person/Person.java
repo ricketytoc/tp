@@ -17,9 +17,13 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Department department;
+    private final Role role;
+    private final Salary salary;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -27,14 +31,22 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+    public Person(Id id, Name name, Phone phone, Email email, Department department,
+                  Role role, Salary salary, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, department, role, salary, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.department = department;
+        this.role = role;
+        this.salary = salary;
         this.tags.addAll(tags);
     }
 
+    public Id getId() {
+        return id;
+    }
     public Name getName() {
         return name;
     }
@@ -45,6 +57,18 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public Salary getSalary() {
+        return salary;
     }
 
     /**
@@ -65,7 +89,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getId().equals(getId());
     }
 
     /**
@@ -84,24 +108,32 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return id.equals(otherPerson.id)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && department.equals(otherPerson.department)
+                && role.equals(otherPerson.role)
+                && salary.equals(otherPerson.salary)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(id, name, phone, email, department, role, salary, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("department", department)
+                .add("role", role)
+                .add("salary", salary)
                 .add("tags", tags)
                 .toString();
     }

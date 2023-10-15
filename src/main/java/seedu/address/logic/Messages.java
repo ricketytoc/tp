@@ -36,11 +36,19 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(person.getId())
+                .append("; Name: ")
+                .append(person.getName())
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
+                .append("; Department: ")
+                .append(person.getDepartment())
+                .append("; Role: ")
+                .append(person.getRole())
+                .append("; Salary: ")
+                .append(person.getSalary())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

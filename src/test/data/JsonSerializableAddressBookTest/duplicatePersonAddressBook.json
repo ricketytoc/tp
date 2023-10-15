@@ -1,12 +1,20 @@
 {
   "persons": [ {
+    "id": "A012345",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "department": "Finance",
+    "role": "Manager",
+    "salary" : "5000",
     "tags": [ "friends" ]
   }, {
+    "id": "A012345",
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com"
+    "email": "pauline@example.com",
+    "department": "Finance",
+    "role": "Manager",
+    "salary" : "5000"
   } ]
 }
