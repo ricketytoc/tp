@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -168,5 +169,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String increment} into a {@code Increment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code increment} is invalid.
+     */
+    public static Increment parseIncrement(String increment) throws ParseException {
+        requireNonNull(increment);
+        String trimmedIncrement = increment.trim();
+        if (!Increment.isValidIncrement(trimmedIncrement)) {
+            throw new ParseException(Increment.MESSAGE_CONSTRAINTS);
+        }
+        return new Increment(trimmedIncrement);
     }
 }

@@ -65,4 +65,22 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Trims s and removes the trailing zero (.0) of s, if any.
+     *
+     * @param s The string to remove the trailing zero from.
+     * @return Trimmed string without trailing zero.
+     */
+    public static String removeTrailingZero(String s) {
+        requireNonNull(s);
+
+        String trimmedString = s.trim();
+
+        if (trimmedString.endsWith(".0")) {
+            return trimmedString.substring(0, trimmedString.length() - 2);
+        } else {
+            return trimmedString;
+        }
+    }
 }

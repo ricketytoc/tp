@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.increment.Increment;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -32,6 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_DEPARTMENT = "^Finance";
     private static final String INVALID_ROLE = "M@nager";
     private static final String INVALID_SALARY = "-5000";
+    private static final String INVALID_INCREMENT = "^2";
 
     private static final String VALID_ID = "A000001";
     private static final String VALID_NAME = "Rachel Walker";
@@ -42,6 +44,7 @@ public class ParserUtilTest {
     private static final String VALID_SALARY = "5000";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_INCREMENT = "1000";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -270,5 +273,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseIncrement_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIncrement((String) null));
+    }
+
+    @Test
+    public void parseIncrement_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIncrement(INVALID_INCREMENT));
+    }
+
+    @Test
+    public void parseIncrement_validValueWithoutWhitespace_returnsIncrement() throws Exception {
+        Increment expectedIncrement = new Increment(VALID_INCREMENT);
+        assertEquals(expectedIncrement, ParserUtil.parseIncrement(VALID_INCREMENT));
+    }
+
+    @Test
+    public void parseIncrement_validValueWithWhitespace_returnsTrimmedIncrement() throws Exception {
+        String incrementWithWhitespace = WHITESPACE + VALID_INCREMENT + WHITESPACE;
+        Increment expectedIncrement = new Increment(VALID_INCREMENT);
+        assertEquals(expectedIncrement, ParserUtil.parseIncrement(incrementWithWhitespace));
     }
 }

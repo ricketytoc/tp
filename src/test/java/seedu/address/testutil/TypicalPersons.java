@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.increment.Increment;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
@@ -85,6 +86,20 @@ public class TypicalPersons {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons with their salary incremented by the
+     * given {@code increment}.
+     */
+    public static AddressBook getTypicalAddressBookWithIncrementedSalary(Increment increment) {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersons()) {
+            Person editedPerson = new PersonBuilder(person)
+                    .withSalary(person.getSalary().getIncrementedSalary(increment).value).build();
+            ab.addPerson(editedPerson);
         }
         return ab;
     }

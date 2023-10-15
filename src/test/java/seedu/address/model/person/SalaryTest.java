@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.increment.Increment;
 
 public class SalaryTest {
 
@@ -33,6 +36,32 @@ public class SalaryTest {
         // valid salary
         assertTrue(Salary.isValidSalary("1000")); // non-negative numbers only
         assertTrue(Salary.isValidSalary("12")); // numbers only
+    }
+
+    @Test
+    public void getIncrementedSalary() {
+        Salary salary = new Salary("1000");
+        Increment increment = new Increment("1000");
+
+        // null increment
+        assertThrows(NullPointerException.class, () -> salary.getIncrementedSalary(null));
+
+        // valid increment
+        assertEquals(new Salary("2000"), salary.getIncrementedSalary(increment));
+    }
+
+    @Test
+    public void isNegativeAfterIncrement() {
+        Salary salary = new Salary("1000");
+
+        // positive increment -> returns false
+        assertFalse(salary.isNegativeAfterIncrement(new Increment("1000")));
+
+        // negative increment for sufficient salary -> returns false
+        assertFalse(salary.isNegativeAfterIncrement(new Increment("-500")));
+
+        // negative increment for insufficient salary -> returns true
+        assertTrue(salary.isNegativeAfterIncrement(new Increment("-2000")));
     }
 
     @Test
