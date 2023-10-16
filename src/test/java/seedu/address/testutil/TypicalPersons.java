@@ -14,8 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,30 +29,43 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withId("A000000").withName("Alice Pauline")
             .withEmail("alice@example.com").withPhone("94351253")
-            .withDepartment("Finance").withRole("Intern").withSalary("1000").withTags("friends").build();
+            .withDepartment("Finance").withRole("Intern").withSalary("1000").build();
     public static final Person BENSON = new PersonBuilder().withId("A000001").withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withDepartment("Marketing").withRole("Intern").withSalary("2000").withTags("owesMoney", "friends")
-            .build();
+            .withDepartment("Marketing").withRole("Intern").withSalary("2000").build();
     public static final Person CARL = new PersonBuilder().withId("A000002").withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withDepartment("Sales").withRole("Admin staff").withSalary("3000").build();
     public static final Person DANIEL = new PersonBuilder().withId("A000003").withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com").withDepartment("Human Resources").withRole("Team Leader")
-            .withSalary("4000").withTags("friends")
-            .build();
+            .withSalary("4000").build();
     public static final Person ELLE = new PersonBuilder().withId("A000004").withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("94822241")
             .withEmail("werner@example.com").withDepartment("Accounting").withRole("Manager")
             .withSalary("5000")
             .build();
     public static final Person FIONA = new PersonBuilder().withId("A000005").withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("94824271")
             .withEmail("lydia@example.com").withDepartment("Management").withRole("Manager").withSalary("6000")
             .build();
     public static final Person GEORGE = new PersonBuilder().withId("A000006").withName("George Best")
-            .withPhone("9482442")
+            .withPhone("94824421")
             .withEmail("anna@example.com").withDepartment("Finance").withRole("Executive").withSalary("7000")
+            .build();
+
+    // Clear EmployeeManager test
+    public static final Person JOHN_LIM = new PersonBuilder().withId("A000009").withName("John Lim")
+            .withPhone("94824455")
+            .withEmail("JL@example.com").withDepartment("Finance").withRole("Intern").withSalary("800")
+            .build();
+    public static final Person JOHN_TAN = new PersonBuilder().withId("A000010").withName("John Tan")
+            .withPhone("94824423")
+            .withEmail("JT@example.com").withDepartment("Finance").withRole("Executive").withSalary("8000")
+            .build();
+
+    public static final Person JOHN_WONG = new PersonBuilder().withId("A000011").withName("John Wong")
+            .withPhone("94811423")
+            .withEmail("JW@example.com").withDepartment("Finance").withRole("Manager").withSalary("5000")
             .build();
 
     // Manually added
@@ -68,11 +79,10 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withId(VALID_ID_AMY).withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withDepartment(VALID_DEPARTMENT_AMY)
-            .withRole(VALID_ROLE_AMY).withSalary(VALID_SALARY_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withRole(VALID_ROLE_AMY).withSalary(VALID_SALARY_AMY).build();
     public static final Person BOB = new PersonBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withDepartment(VALID_DEPARTMENT_BOB)
-            .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -90,6 +100,25 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JOHN_LIM,
+                JOHN_TAN, JOHN_WONG));
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the person after the find n/John and clear command.
+     */
+    public static AddressBook getClearedAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getClearedPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    public static List<Person> getClearedPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+
+
 }

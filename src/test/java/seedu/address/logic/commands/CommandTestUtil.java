@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -43,8 +42,6 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "Admin Staff";
     public static final String VALID_SALARY_AMY = "1000";
     public static final String VALID_SALARY_BOB = "2000";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
@@ -60,8 +57,6 @@ public class CommandTestUtil {
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "#000000"; // '#' not allowed in IDs
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -71,7 +66,6 @@ public class CommandTestUtil {
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "M@nager"; // '@' not allowed in roles
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "-5000"; // negative numbers not allowed in
     // salary
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -84,12 +78,12 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withDepartment(VALID_DEPARTMENT_AMY).withRole(VALID_ROLE_AMY)
                 .withSalary(VALID_SALARY_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .build();
         DESC_BOB = new EditPersonDescriptorBuilder().withId(VALID_ID_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withDepartment(VALID_DEPARTMENT_BOB).withRole(VALID_ROLE_BOB)
                 .withSalary(VALID_SALARY_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .build();
     }
 
     /**
