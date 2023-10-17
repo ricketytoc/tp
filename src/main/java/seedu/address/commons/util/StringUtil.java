@@ -51,7 +51,7 @@ public class StringUtil {
         checkArgument(!preppedLetters.isEmpty(), "Letter parameter cannot be empty");
         checkArgument(preppedLetters.split("\\s+").length == 1, "Letter parameter "
                 + "should not have any spacing between them");
-        return email.toUpperCase().contains(letters.toUpperCase());
+        return email.toUpperCase().contains(preppedLetters.toUpperCase());
     }
 
     /**

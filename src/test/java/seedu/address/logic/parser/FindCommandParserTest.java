@@ -1,8 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -11,8 +16,13 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.IdContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryWithinRangePredicate;
 
 public class FindCommandParserTest {
 
@@ -34,6 +44,26 @@ public class FindCommandParserTest {
         assertParseFailure(parser,
                 " " + PREFIX_NAME,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                " " + PREFIX_PHONE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                " " + PREFIX_EMAIL,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                " " + PREFIX_DEPARTMENT,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                " " + PREFIX_ROLE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -42,6 +72,31 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(new IdContainsKeywordsPredicate("A0001"));
         assertParseSuccess(parser, " " + PREFIX_ID + "A0001", expectedFindCommand);
+
+        // Phone attribute - no leading and trailing whitespaces
+        expectedFindCommand =
+                new FindCommand(new PhoneContainsKeywordsPredicate("9001"));
+        assertParseSuccess(parser, " " + PREFIX_PHONE + "9001", expectedFindCommand);
+
+        // Email attribute - no leading and trailing whitespaces
+        expectedFindCommand =
+                new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " " + PREFIX_EMAIL + "Alice Bob", expectedFindCommand);
+
+        // Department attribute - no leading and trailing whitespaces
+        expectedFindCommand =
+                new FindCommand(new DepartmentContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " " + PREFIX_DEPARTMENT + "Alice Bob", expectedFindCommand);
+
+        // Role attribute - no leading and trailing whitespaces
+        expectedFindCommand =
+                new FindCommand(new RoleContainsKeywordsPredicate(Arrays.asList("Manager", "Intern")));
+        assertParseSuccess(parser, " " + PREFIX_ROLE + "Manager Intern", expectedFindCommand);
+
+        // Salary attribute - no leading and trailing whitespaces
+        expectedFindCommand =
+                new FindCommand(new SalaryWithinRangePredicate(1000, 5000));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
         expectedFindCommand =
