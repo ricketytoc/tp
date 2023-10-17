@@ -1,9 +1,12 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 class SalaryWithinRangePredicateTest {
     @Test
@@ -13,14 +16,17 @@ class SalaryWithinRangePredicateTest {
         int secondRangeLowerBound = 2000;
         int secondRangeUpperBound = 6000;
 
-        SalaryWithinRangePredicate firstPredicate = new SalaryWithinRangePredicate(firstRangeLowerBound, firstRangeUpperBound);
-        SalaryWithinRangePredicate secondPredicate = new SalaryWithinRangePredicate(secondRangeLowerBound, secondRangeUpperBound);
+        SalaryWithinRangePredicate firstPredicate =
+                new SalaryWithinRangePredicate(firstRangeLowerBound, firstRangeUpperBound);
+        SalaryWithinRangePredicate secondPredicate =
+                new SalaryWithinRangePredicate(secondRangeLowerBound, secondRangeUpperBound);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        SalaryWithinRangePredicate firstPredicateCopy = new SalaryWithinRangePredicate(firstRangeLowerBound, firstRangeUpperBound);
+        SalaryWithinRangePredicate firstPredicateCopy =
+                new SalaryWithinRangePredicate(firstRangeLowerBound, firstRangeUpperBound);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

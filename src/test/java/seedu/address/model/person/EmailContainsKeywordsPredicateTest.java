@@ -1,13 +1,16 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 class EmailContainsKeywordsPredicateTest {
     @Test
@@ -22,7 +25,8 @@ class EmailContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EmailContainsKeywordsPredicate firstPredicateCopy = new EmailContainsKeywordsPredicate(firstPredicateKeywordList);
+        EmailContainsKeywordsPredicate firstPredicateCopy =
+                new EmailContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,7 +42,8 @@ class EmailContainsKeywordsPredicateTest {
     @Test
     public void test_emailContainsKeywords_returnsTrue() {
         // One keyword
-        EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("alice"));
+        EmailContainsKeywordsPredicate predicate =
+                new EmailContainsKeywordsPredicate(Collections.singletonList("alice"));
         assertTrue(predicate.test(new PersonBuilder().withEmail("aliceyeoh@example.com").build()));
 
         // Multiple keywords
@@ -58,11 +63,11 @@ class EmailContainsKeywordsPredicateTest {
     public void test_emailDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(Collections.emptyList());
-//        assertFalse(predicate.test(new PersonBuilder().withEmail("aliceyeoh@example.com").build()));
+        assertFalse(predicate.test(new PersonBuilder().withEmail("aliceyeoh@example.com").build()));
 
         // Non-matching keyword
-//        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("carol"));
-//        assertFalse(predicate.test(new PersonBuilder().withEmail("aliceyeoh@example.com").build()));
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("carol"));
+        assertFalse(predicate.test(new PersonBuilder().withEmail("aliceyeoh@example.com").build()));
 
         // Keywords match ID, phone, address, name, department and salary, but does not match email
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("A12345", "Bernice", "12345", "bernice@gmail.com",

@@ -31,7 +31,7 @@ public class FindCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_ID + "ID] " + "or [" + PREFIX_NAME + "NAME] " + "or [" + PREFIX_PHONE + "PHONE] "
             + "or [" + PREFIX_EMAIL + "EMAIL] " + "or [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
-            + "or [" + PREFIX_ROLE + "ROLE] "+ "or [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND] "
+            + "or [" + PREFIX_ROLE + "ROLE] " + "or [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND] "
             + "\n"
             + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID + "A0001 "
             + "\n" + COMMAND_WORD + " " + PREFIX_NAME + "Alex "

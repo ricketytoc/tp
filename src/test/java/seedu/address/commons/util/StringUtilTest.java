@@ -145,8 +145,8 @@ public class StringUtilTest {
 
     @Test
     public void containsLettersIgnoreCase_spacingBetweenLetters_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Letter parameter should not have any spacing between them",
-                () -> StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "alice yeoh"));
+        assertThrows(IllegalArgumentException.class, "Letter parameter should not have any spacing between them", ()
+                -> StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "alice yeoh"));
     }
 
     @Test
@@ -162,17 +162,22 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsLettersIgnoreCase("    ", "123"));
 
         // Does not contain letter sequence
-        assertFalse(StringUtil.containsLettersIgnoreCase("aliceyeoh@examplecom", "teo")); // Sentence word bigger than query word
+        assertFalse(StringUtil.containsLettersIgnoreCase("aliceyeoh@examplecom", "teo"));
+        // Sentence word bigger than query word
 
 
         // Email contains letter sequence, different upper/lower case letters
 
-
-        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "alice")); // Starting part of email
-        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", ".com")); // Ending part of email
-        assertTrue(StringUtil.containsLettersIgnoreCase("AlIceYeoh@examplecom", "alice")); // Email has different cases
-        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "aliceyeoh@example.com")); // Exact email
-        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "  Alice  ")); // Leading/trailing spaces
+        // Starting part of email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "alice"));
+        // Ending part of email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", ".com"));
+        // Email has different cases
+        assertTrue(StringUtil.containsLettersIgnoreCase("AlIceYeoh@examplecom", "alice"));
+        // Exact email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "aliceyeoh@example.com"));
+        // Leading/trailing spaces
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "  Alice  "));
 
         // Matches multiple letter sequences in one email
         assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeohalice@example.com", "AliCe"));

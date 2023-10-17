@@ -10,6 +10,10 @@ import seedu.address.commons.util.ToStringBuilder;
 public class SalaryWithinRangePredicate implements Predicate<Person> {
     private final int lowerBound;
     private final int upperBound;
+
+    /**
+     * Constructor method that takes in a lowerBound and an upperBound for the range
+     */
     public SalaryWithinRangePredicate(int lowerBound, int upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
@@ -36,8 +40,8 @@ public class SalaryWithinRangePredicate implements Predicate<Person> {
         }
 
         SalaryWithinRangePredicate otherSalaryWithinRangePredicate = (SalaryWithinRangePredicate) other;
-        return (lowerBound == otherSalaryWithinRangePredicate.lowerBound) &&
-                (upperBound == otherSalaryWithinRangePredicate.upperBound);
+        return (lowerBound == otherSalaryWithinRangePredicate.lowerBound)
+                && (upperBound == otherSalaryWithinRangePredicate.upperBound);
     }
 
     @Override

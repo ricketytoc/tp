@@ -33,7 +33,8 @@ public class DepartmentContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        DepartmentContainsKeywordsPredicate otherDepartmentContainsKeywordsPredicate = (DepartmentContainsKeywordsPredicate) other;
+        DepartmentContainsKeywordsPredicate otherDepartmentContainsKeywordsPredicate =
+                (DepartmentContainsKeywordsPredicate) other;
         return keywords.equals(otherDepartmentContainsKeywordsPredicate.keywords);
     }
 
