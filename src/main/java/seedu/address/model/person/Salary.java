@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Employee's Salary in EmployeeManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
-public class Salary {
+public class Salary implements Comparable<Salary> {
     public static final String MESSAGE_CONSTRAINTS =
             "Salary should only contain numbers, and it should be non-negative";
     /*
@@ -56,5 +56,10 @@ public class Salary {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Salary other) {
+        return Double.compare(Double.parseDouble(this.value), Double.parseDouble(other.value));
     }
 }
