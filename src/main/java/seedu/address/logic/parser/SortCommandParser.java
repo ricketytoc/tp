@@ -1,13 +1,20 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Comparator;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -23,7 +30,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DEPARTMENT,
-                        PREFIX_ROLE, PREFIX_SALARY, PREFIX_TAG);
+                        PREFIX_ROLE, PREFIX_SALARY);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DEPARTMENT,
                 PREFIX_ROLE, PREFIX_SALARY);
