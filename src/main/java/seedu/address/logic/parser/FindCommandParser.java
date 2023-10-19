@@ -96,8 +96,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             int lowerBound = findLowerBound(trimmedArgs);
             int upperBound = findUpperBound(trimmedArgs);
-            System.out.println(lowerBound);
-            System.out.println(upperBound);
             return new FindCommand(new SalaryWithinRangePredicate(lowerBound, upperBound));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
