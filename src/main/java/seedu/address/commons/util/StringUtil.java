@@ -39,6 +39,22 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code email} contains the {@code letters}.
+     *   Ignores case, but a full word match is required.
+     * @param email cannot be null
+     * @param letters cannot be null, cannot be empty, must not have any spacing between letters
+     */
+    public static boolean containsLettersIgnoreCase(String email, String letters) {
+        requireNonNull(email);
+        requireNonNull(letters);
+        String preppedLetters = letters.trim();
+        checkArgument(!preppedLetters.isEmpty(), "Letter parameter cannot be empty");
+        checkArgument(preppedLetters.split("\\s+").length == 1, "Letter parameter "
+                + "should not have any spacing between them");
+        return email.toUpperCase().contains(preppedLetters.toUpperCase());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
