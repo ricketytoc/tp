@@ -67,6 +67,29 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_invalidSalaryInput_throwsParseException() {
+        // no numbers
+        assertParseFailure(parser,
+                "abc - wxy" + PREFIX_SALARY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // no space before dash
+        assertParseFailure(parser,
+                "500- 6000" + PREFIX_SALARY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // no space after dash
+        assertParseFailure(parser,
+                "500 -6000" + PREFIX_SALARY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // negative numbers
+        assertParseFailure(parser,
+                "-500 - 6000" + PREFIX_SALARY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // ID attribute - no leading and trailing whitespaces
         FindCommand expectedFindCommand =
@@ -97,6 +120,11 @@ public class FindCommandParserTest {
         expectedFindCommand =
                 new FindCommand(new SalaryWithinRangePredicate(1000, 5000));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
+
+        // Salary attribute - lowerBound bigger than upperBound
+        expectedFindCommand =
+                new FindCommand(new SalaryWithinRangePredicate(5000, 1000));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + "5000 - 1000", expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
         expectedFindCommand =
