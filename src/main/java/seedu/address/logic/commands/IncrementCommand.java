@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.util.ToStringBuilder;
@@ -18,7 +17,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
-import seedu.address.model.tag.Tag;
 
 /**
  * Increments the salary of all persons in the displayed person list by the given increment.
@@ -88,9 +86,8 @@ public class IncrementCommand extends Command {
         Department department = personToEdit.getDepartment();
         Role role = personToEdit.getRole();
         Salary updatedSalary = personToEdit.getSalary().getIncrementedSalary(increment);
-        Set<Tag> tags = personToEdit.getTags();
 
-        return new Person(id, name, phone, email, department, role, updatedSalary, tags);
+        return new Person(id, name, phone, email, department, role, updatedSalary);
     }
 
     @Override
