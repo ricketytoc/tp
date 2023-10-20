@@ -32,6 +32,7 @@ public class SalaryTest {
         assertFalse(Salary.isValidSalary(" ")); // spaces only
         assertFalse(Salary.isValidSalary("^")); // only numbers
         assertFalse(Salary.isValidSalary("-1000")); // only non-negative numbers
+        assertFalse(Salary.isValidSalary("1000.999")); // contains more than 2 decimals
 
         // valid salary
         assertTrue(Salary.isValidSalary("1000")); // non-negative numbers only
@@ -62,6 +63,14 @@ public class SalaryTest {
 
         // negative increment for insufficient salary -> returns true
         assertTrue(salary.isNegativeAfterIncrement(new Increment("-2000")));
+    }
+
+    @Test
+    public void getValueAsString() {
+        double value = 1000;
+        Salary salary = new Salary(value);
+        String expectedString = String.format("%.2f", value);
+        assertEquals(expectedString, salary.getValueAsString());
     }
 
     @Test

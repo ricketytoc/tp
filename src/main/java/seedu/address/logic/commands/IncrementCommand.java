@@ -26,7 +26,7 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Increases the salary of all persons in the displayed person list by the input value.\n"
-            + "Parameters: INCREMENT\n"
+            + "Parameters: INCREMENT (" + Increment.MESSAGE_CONSTRAINTS + ")\n"
             + "Example: " + COMMAND_WORD + " 100";
 
     public static final String MESSAGE_INCREMENT_SUCCESS = "Incremented salary of %1$s person(s) by: %2$s";

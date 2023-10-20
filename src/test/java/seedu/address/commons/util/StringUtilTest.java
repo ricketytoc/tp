@@ -1,6 +1,5 @@
 package seedu.address.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -200,21 +199,4 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
-
-    //---------------- Tests for removeTrailingZero ------------------------------
-
-    @Test
-    public void removeTrailingZero_nullGiven_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.removeTrailingZero(null));
-    }
-
-    @Test
-    public void removeTrailingZero() {
-        assertEquals("", StringUtil.removeTrailingZero("")); // empty string
-        assertEquals("", StringUtil.removeTrailingZero(" ")); // spaces only
-        assertEquals("100", StringUtil.removeTrailingZero("100")); // no trailing zero
-        assertEquals("100", StringUtil.removeTrailingZero("100.0")); // trailing zero
-        assertEquals("100", StringUtil.removeTrailingZero("100.0 ")); // trailing zero and spaces behind
-    }
-
 }

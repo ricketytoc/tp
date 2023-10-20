@@ -29,6 +29,7 @@ public class IncrementTest {
         assertFalse(Increment.isValidIncrement("")); // empty string
         assertFalse(Increment.isValidIncrement(" ")); // spaces only
         assertFalse(Increment.isValidIncrement("^")); // non-number
+        assertFalse(Increment.isValidIncrement("1000.999")); // more than 2 decimal places
 
         // valid increment
         assertTrue(Increment.isValidIncrement("1000.99")); // non-negative number
@@ -45,8 +46,9 @@ public class IncrementTest {
     @Test
     public void toStringMethod() {
         String incrementAmount = "100";
+        String expected = String.format("%.2f", Double.parseDouble(incrementAmount));
         Increment increment = new Increment(incrementAmount);
-        assertEquals(incrementAmount, increment.toString());
+        assertEquals(expected, increment.toString());
     }
 
     @Test

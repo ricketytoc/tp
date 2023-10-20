@@ -4,30 +4,38 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.commons.core.increment.Increment;
-import seedu.address.commons.util.StringUtil;
 
 /**
- * Represents a Employee's Salary in EmployeeManager.
+ * Represents an Employee's Salary in EmployeeManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS =
-            "Salary should only contain numbers, and it should be non-negative";
+            "Salary should only contain numbers, be non-negative, and contain at most 2 decimals";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]+)?$";
-    public final String value;
+    public static final String VALIDATION_REGEX = "^?[0-9]+(\\.[0-9]{1,2})?$";
+    public final double value;
+
+    /**
+     * Constructs a {@code Salary}.
+     *
+     * @param salary A valid salary string.
+     */
+    public Salary(String salary) {
+        requireNonNull(salary);
+        checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
+        value = Double.parseDouble(salary);
+    }
 
     /**
      * Constructs a {@code Salary}.
      *
      * @param salary A valid salary.
      */
-    public Salary(String salary) {
-        requireNonNull(salary);
-        checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
+    public Salary(double salary) {
         value = salary;
     }
 
@@ -43,21 +51,27 @@ public class Salary {
      */
     public Salary getIncrementedSalary(Increment increment) {
         requireNonNull(increment);
-        double updatedSalary = Double.parseDouble(value) + increment.getValue();
-        String updatedSalaryString = StringUtil.removeTrailingZero(Double.toString(updatedSalary));
-        return new Salary(updatedSalaryString);
+        double updatedSalary = value + increment.getValue();
+        return new Salary(updatedSalary);
     }
 
     /**
      * Returns true if the salary is less than the given {@code increment}.
      */
     public boolean isNegativeAfterIncrement(Increment increment) {
-        return Double.parseDouble(value) + increment.getValue() < 0;
+        return value + increment.getValue() < 0;
+    }
+
+    /**
+     * Returns the salary value as a string.
+     */
+    public String getValueAsString() {
+        return String.format("%.2f", value);
     }
 
     @Override
     public String toString() {
-        return value;
+        return String.format("%.2f", value);
     }
 
     @Override
@@ -72,11 +86,11 @@ public class Salary {
         }
 
         Salary otherSalary = (Salary) other;
-        return value.equals(otherSalary.value);
+        return value == otherSalary.value;
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Double.hashCode(value);
     }
 }
