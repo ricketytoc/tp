@@ -10,8 +10,10 @@ import seedu.address.commons.core.increment.Increment;
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
 public class Salary {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Salary should only contain numbers, be non-negative, and contain at most 2 decimals";
+    public static final double MAXIMUM_SALARY = 1000000000;
+    public static final String MESSAGE_CONSTRAINTS = String.format(
+            "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %.2f",
+            MAXIMUM_SALARY);
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -36,6 +38,7 @@ public class Salary {
      * @param salary A valid salary.
      */
     public Salary(double salary) {
+        checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
         value = salary;
     }
 
@@ -43,7 +46,14 @@ public class Salary {
      * Returns true if a given string is a valid salary.
      */
     public static boolean isValidSalary(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isValidSalary(Double.parseDouble(test));
+    }
+
+    /**
+     * Returns true if a given double is a valid salary.
+     */
+    public static boolean isValidSalary(double test) {
+        return test <= MAXIMUM_SALARY && test >= 0;
     }
 
     /**
@@ -56,10 +66,12 @@ public class Salary {
     }
 
     /**
-     * Returns true if the salary is less than the given {@code increment}.
+     * Returns true if the given {@code increment} is valid for the salary.
+     * An {@code increment} is valid if the resulting salary after the increment is valid.
      */
-    public boolean isNegativeAfterIncrement(Increment increment) {
-        return value + increment.getValue() < 0;
+    public boolean isValidIncrement(Increment increment) {
+        double resultantSalary = value + increment.getValue();
+        return isValidSalary(resultantSalary);
     }
 
     /**

@@ -23,7 +23,7 @@ public class SalaryTest {
     }
 
     @Test
-    public void isValidSalary() {
+    public void isValidSalary_stringSalary() {
         // null salary
         assertThrows(NullPointerException.class, () -> Salary.isValidSalary(null));
 
@@ -40,6 +40,16 @@ public class SalaryTest {
     }
 
     @Test
+    public void isValidSalary_doubleSalary() {
+        // invalid salary
+        assertFalse(Salary.isValidSalary(-1000)); // only non-negative numbers
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY + Salary.MAXIMUM_SALARY)); // exceeds maximum salary
+
+        // valid salary
+        assertTrue(Salary.isValidSalary(1000)); // within range
+    }
+
+    @Test
     public void getIncrementedSalary() {
         Salary salary = new Salary("1000");
         Increment increment = new Increment("1000");
@@ -52,17 +62,20 @@ public class SalaryTest {
     }
 
     @Test
-    public void isNegativeAfterIncrement() {
+    public void isValidIncrement() {
         Salary salary = new Salary("1000");
 
-        // positive increment -> returns false
-        assertFalse(salary.isNegativeAfterIncrement(new Increment("1000")));
+        // positive increment -> returns true
+        assertTrue(salary.isValidIncrement(new Increment("1000")));
 
-        // negative increment for sufficient salary -> returns false
-        assertFalse(salary.isNegativeAfterIncrement(new Increment("-500")));
+        // negative increment for sufficient salary -> returns true
+        assertTrue(salary.isValidIncrement(new Increment("-500")));
 
-        // negative increment for insufficient salary -> returns true
-        assertTrue(salary.isNegativeAfterIncrement(new Increment("-2000")));
+        // negative increment for insufficient salary -> returns false
+        assertFalse(salary.isValidIncrement(new Increment("-2000")));
+
+        // too big positive increment -> returns false
+        assertFalse(salary.isValidIncrement(new Increment(String.format("%.2f", Salary.MAXIMUM_SALARY))));
     }
 
     @Test

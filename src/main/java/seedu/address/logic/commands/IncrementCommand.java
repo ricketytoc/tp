@@ -31,7 +31,8 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_INCREMENT_SUCCESS = "Incremented salary of %1$s person(s) by: %2$s";
 
-    public static final String MESSAGE_INVALID_INCREMENT = "Increment of %1$s causes salary of {%2$s} to fall below 0";
+    public static final String MESSAGE_INVALID_INCREMENT = "Increment of %1$s causes salary of {%2$s} to fall below 0 "
+            + "or exceed the maximum salary of %3$.2f";
 
     private final Increment increment;
 
@@ -66,9 +67,10 @@ public class IncrementCommand extends Command {
     private void checkValidIncrement(List<Person> personList) throws CommandException {
         requireNonNull(personList);
         for (Person person : personList) {
-            if (person.getSalary().isNegativeAfterIncrement(increment)) {
+            if (!person.getSalary().isValidIncrement(increment)) {
                 throw new CommandException(
-                        String.format(MESSAGE_INVALID_INCREMENT, increment, Messages.format(person)));
+                        String.format(MESSAGE_INVALID_INCREMENT, increment, Messages.format(person),
+                                Salary.MAXIMUM_SALARY));
             }
         }
     }

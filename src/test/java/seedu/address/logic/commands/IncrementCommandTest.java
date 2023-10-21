@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Salary;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -32,7 +33,8 @@ public class IncrementCommandTest {
     public void execute_invalidIncrement_throwsCommandException() {
         IncrementCommand incrementCommand = new IncrementCommand(INCREMENT_OBJ_NEG);
         assertCommandFailure(incrementCommand, model,
-                String.format(IncrementCommand.MESSAGE_INVALID_INCREMENT, INCREMENT_OBJ_NEG, Messages.format(ALICE)));
+                String.format(IncrementCommand.MESSAGE_INVALID_INCREMENT, INCREMENT_OBJ_NEG, Messages.format(ALICE),
+                        Salary.MAXIMUM_SALARY));
     }
 
     @Test
