@@ -75,4 +75,11 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Returns whether the argMultimap contains less than one key value pair
+     */
+    public boolean hasLessThanOneElement() {
+        return argMultimap.size() <= 1;
+    }
 }
