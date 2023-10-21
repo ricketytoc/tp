@@ -52,7 +52,7 @@ public class IncrementCommand extends Command {
         checkValidIncrement(lastShownList);
 
         for (Person personToEdit : lastShownList) {
-            Person editedPerson = createdEditedPerson(personToEdit);
+            Person editedPerson = incrementPersonSalary(personToEdit);
             model.setPerson(personToEdit, editedPerson);
         }
 
@@ -78,7 +78,7 @@ public class IncrementCommand extends Command {
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit} and with the incremented salary.
      */
-    private Person createdEditedPerson(Person personToEdit) {
+    private Person incrementPersonSalary(Person personToEdit) {
         assert personToEdit != null;
 
         Id id = personToEdit.getId();
