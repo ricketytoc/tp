@@ -140,7 +140,7 @@ public class SortCommandTest {
     @Test
     public void execute_salary_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> Double.parseDouble(p.getSalary().value));
+        Comparator<Person> comparator = Comparator.comparing(p -> p.getSalary().value);
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 

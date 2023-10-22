@@ -7,10 +7,10 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code Id} matches any the keyword given.
  */
-public class IdContainsKeywordPredicate implements Predicate<Person> {
+public class IdContainsKeywordsPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public IdContainsKeywordPredicate(String keyword) {
+    public IdContainsKeywordsPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -30,12 +30,12 @@ public class IdContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof IdContainsKeywordPredicate)) {
+        if (!(other instanceof IdContainsKeywordsPredicate)) {
             return false;
         }
 
-        IdContainsKeywordPredicate otherNameContainsKeywordsPredicate = (IdContainsKeywordPredicate) other;
-        return keyword.equals(otherNameContainsKeywordsPredicate.keyword);
+        IdContainsKeywordsPredicate otherIdContainsKeywordsPredicate = (IdContainsKeywordsPredicate) other;
+        return keyword.equals(otherIdContainsKeywordsPredicate.keyword);
     }
 
     @Override
