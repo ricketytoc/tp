@@ -1,12 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.ToStringBuilder;
+
+/**
+ * Tests that a {@code Person}'s attributes matches all the attributes required.
+ */
 public class GeneralPredicate implements Predicate<Person> {
     private final ArrayList<Predicate<Person>> predicateList;
 
@@ -16,6 +17,9 @@ public class GeneralPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (predicateList.isEmpty()) {
+            return false;
+        }
         boolean result = true;
         for (Predicate<Person> predicate : predicateList) {
             if (!predicate.test(person)) {
