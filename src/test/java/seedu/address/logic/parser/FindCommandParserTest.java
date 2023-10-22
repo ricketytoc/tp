@@ -87,6 +87,11 @@ public class FindCommandParserTest {
         assertParseFailure(parser,
                 "-500 - 6000" + PREFIX_SALARY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Salary attribute - lowerBound bigger than upperBound
+        assertParseFailure(parser,
+                "5000 - 4000" + PREFIX_SALARY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -121,10 +126,6 @@ public class FindCommandParserTest {
                 new FindCommand(new SalaryWithinRangePredicate(1000, 5000));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
 
-        // Salary attribute - lowerBound bigger than upperBound
-        expectedFindCommand =
-                new FindCommand(new SalaryWithinRangePredicate(5000, 1000));
-        assertParseSuccess(parser, " " + PREFIX_SALARY + "5000 - 1000", expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
         expectedFindCommand =

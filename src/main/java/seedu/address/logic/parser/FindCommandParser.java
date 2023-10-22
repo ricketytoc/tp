@@ -111,7 +111,15 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private boolean isValidFindSalaryArgs(String salaryArgs) {
         String validationRegex = "^\\d+\\s-\\s\\d+$";
-        return salaryArgs.matches(validationRegex);
+        if (!salaryArgs.matches(validationRegex)) {
+            return false;
+        }
+        String[] bounds = salaryArgs.split(" - ", 2);
+        String lowerBound = bounds[0];
+        String upperBound = bounds[1];
+        int lowerBoundInt = Integer.parseInt(lowerBound);
+        int upperBoundInt = Integer.parseInt(upperBound);
+        return lowerBoundInt <= upperBoundInt;
     }
 
     private int findLowerBound(String salaryArgs) {

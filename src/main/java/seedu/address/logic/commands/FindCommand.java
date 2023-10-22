@@ -27,7 +27,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Except for Salary attribute, finds all persons whose "
             + "attributes contain the keyword (case-insensitive) specified for those attributes and displays them as a "
-            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead.\n"
+            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead and the "
+            + "lower bound has to be smaller than the upper bound.\n"
             + "Parameters: "
             + "[" + PREFIX_ID + "ID] " + "or [" + PREFIX_NAME + "NAME] " + "or [" + PREFIX_PHONE + "PHONE] "
             + "or [" + PREFIX_EMAIL + "EMAIL] " + "or [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
