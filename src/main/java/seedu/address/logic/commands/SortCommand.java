@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Comparator;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -33,6 +34,7 @@ public class SortCommand extends Command {
 
             + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID
             + "\n" + COMMAND_WORD + " " + PREFIX_NAME;
+
     private final Comparator<Person> comparator;
 
     public SortCommand(Comparator<Person> comparator) {
@@ -44,5 +46,27 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.updateSortedPersonList(comparator);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand otherFindCommand = (SortCommand) other;
+        return comparator.equals(otherFindCommand.comparator);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("comparator", comparator)
+                .toString();
     }
 }

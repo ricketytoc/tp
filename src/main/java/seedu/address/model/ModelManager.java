@@ -122,7 +122,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Person> getSortedFilteredPersonList() {
         return sortedPersons;
     }
 
