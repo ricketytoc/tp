@@ -29,6 +29,12 @@ public class SortCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArg_throwsParseException() {
+        assertParseFailure(parser, " invalid/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsSortCommand() {
         SortCommand expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_DEPARTMENT);
         assertParseSuccess(parser, " " + PREFIX_DEPARTMENT.getPrefix(), expectedSortCommand);

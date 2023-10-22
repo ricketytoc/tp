@@ -1,12 +1,16 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.SortCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.EVE;
 import static seedu.address.testutil.TypicalPersons.MALLORY;
 import static seedu.address.testutil.TypicalPersons.TRUDY;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,8 +21,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-
+import seedu.address.model.person.PersonComparators;
 
 
 /**
@@ -36,6 +41,32 @@ public class SortCommandTest {
         model = new ModelManager(addressBook, new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
+
+    @Test
+    public void equals() {
+        Comparator<Person> firstComparator = PersonComparators.COMPARATOR_ID;
+        Comparator<Person> secondComparator = PersonComparators.COMPARATOR_EMAIL;
+
+        SortCommand sortFirstCommand = new SortCommand(firstComparator);
+        SortCommand sortSecondCommand = new SortCommand(secondComparator);
+
+        // same object -> returns true
+        assertTrue(sortFirstCommand.equals(sortFirstCommand));
+
+        // same values -> returns true
+        SortCommand sortFirstCommandCopy = new SortCommand(firstComparator);
+        assertTrue(sortFirstCommand.equals(sortFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(sortFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(sortFirstCommand.equals(null));
+
+        // different sort attribute -> returns false
+        assertFalse(sortFirstCommand.equals(sortSecondCommand));
+    }
+
 
     // For quick reference of the details of EVE, MALLORY, and TRUDY:
     // Mallory Tan (ID: A001080) - Finance - Salesperson, Phone: 90003333, Email: mallory@example.com, Salary: $5000

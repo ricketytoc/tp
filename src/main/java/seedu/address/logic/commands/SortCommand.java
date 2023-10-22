@@ -63,10 +63,4 @@ public class SortCommand extends Command {
         return comparator.equals(otherFindCommand.comparator);
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("comparator", comparator)
-                .toString();
-    }
 }
