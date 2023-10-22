@@ -9,8 +9,6 @@ import static seedu.address.testutil.TypicalPersons.EVE;
 import static seedu.address.testutil.TypicalPersons.MALLORY;
 import static seedu.address.testutil.TypicalPersons.TRUDY;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,7 +19,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonComparators;
 

@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Comparator;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
