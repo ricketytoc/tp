@@ -82,4 +82,13 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Returns the total number of non-empty prefixes in the argMultimap.
+     */
+    public int getPrefixCount() {
+        return (int) argMultimap.keySet().stream()
+                .filter(prefix -> !prefix.getPrefix().isBlank())
+                .count();
+    }
 }

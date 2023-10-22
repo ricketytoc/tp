@@ -68,6 +68,23 @@ public class TypicalPersons {
             .withEmail("JW@example.com").withDepartment("Finance").withRole("Manager").withSalary("5000")
             .build();
 
+    // Persons for testing SortCommand
+    // The fields are varied to test if the sorting function works properly.
+    public static final Person MALLORY = new PersonBuilder().withId("A001080").withName("Mallory Tan")
+            .withPhone("90003333")
+            .withEmail("mallory@example.com").withDepartment("Finance").withRole("Salesperson").withSalary("5000")
+            .build();
+
+    public static final Person EVE = new PersonBuilder().withId("A001060").withName("Eve Lim")
+            .withPhone("90004444")
+            .withEmail("eve@example.com").withDepartment("Admin").withRole("Personal Assistant").withSalary("10000")
+            .build();
+
+    public static final Person TRUDY = new PersonBuilder().withId("A000FFF").withName("Trudy Koh")
+            .withPhone("90002222")
+            .withEmail("trudy@example.com").withDepartment("Technical").withRole("Developer").withSalary("4750")
+            .build();
+
     // Manually added
     public static final Person HOON = new PersonBuilder().withId("A000007").withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withDepartment("Marketing").withRole("Executive")
