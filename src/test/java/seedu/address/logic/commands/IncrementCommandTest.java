@@ -33,7 +33,7 @@ public class IncrementCommandTest {
     public void execute_invalidIncrement_throwsCommandException() {
         IncrementCommand incrementCommand = new IncrementCommand(INCREMENT_OBJ_NEG);
         assertCommandFailure(incrementCommand, model,
-                String.format(IncrementCommand.MESSAGE_INVALID_INCREMENT, INCREMENT_OBJ_NEG, Messages.format(ALICE),
+                String.format(IncrementCommand.MESSAGE_INVALID_INCREMENT, Messages.format(ALICE),
                         Salary.MAXIMUM_SALARY));
     }
 
