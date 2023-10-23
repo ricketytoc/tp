@@ -109,8 +109,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             if (!isValidFindSalaryArgs(trimmedArgs)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
-            int lowerBound = findLowerBound(trimmedArgs);
-            int upperBound = findUpperBound(trimmedArgs);
+            long lowerBound = findLowerBound(trimmedArgs);
+            long upperBound = findUpperBound(trimmedArgs);
             predicateList.add(new SalaryWithinRangePredicate(lowerBound, upperBound));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
@@ -127,17 +127,37 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(generalPredicate);
     }
 
+    /**
+     * Checks whether salary arguments are valid. If the argument is not in the format of "400 - 5000" for example,
+     * it will return false. If the user enters a number greater than can be assigned to a long or if user inputs number
+     * greater than the maximum allowed salary, it will also return false.
+     * @param salaryArgs user input for find command with PREFIX_SALARY.
+     * @return true if argument is valid and false otherwise.
+     */
     private boolean isValidFindSalaryArgs(String salaryArgs) {
         String validationRegex = "^\\d+\\s-\\s\\d+$";
-        return salaryArgs.matches(validationRegex);
+        if (!salaryArgs.matches(validationRegex)) {
+            return false;
+        }
+        String upperBound = salaryArgs.split(" - ", 2)[1];
+        try {
+            long upperBoundLong = Long.parseLong(upperBound);
+            // will replace by the maximum salary once merged
+            if (upperBoundLong > 1000000000) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
-    private int findLowerBound(String salaryArgs) {
-        return Integer.parseInt(salaryArgs.split(" - ", 2)[0]);
+    private long findLowerBound(String salaryArgs) {
+        return Long.parseLong(salaryArgs.split(" - ", 2)[0]);
     }
 
-    private int findUpperBound(String salaryArgs) {
-        return Integer.parseInt(salaryArgs.split(" - ", 2)[1]);
+    private long findUpperBound(String salaryArgs) {
+        return Long.parseLong(salaryArgs.split(" - ", 2)[1]);
     }
 
 }

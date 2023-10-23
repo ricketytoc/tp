@@ -8,13 +8,13 @@ import seedu.address.commons.util.ToStringBuilder;
  * Tests that a {@code Person}'s {@code Salary} is within the range given.
  */
 public class SalaryWithinRangePredicate implements Predicate<Person> {
-    private final int lowerBound;
-    private final int upperBound;
+    private final long lowerBound;
+    private final long upperBound;
 
     /**
      * Constructor method that takes in a lowerBound and an upperBound for the range
      */
-    public SalaryWithinRangePredicate(int lowerBound, int upperBound) {
+    public SalaryWithinRangePredicate(long lowerBound, long upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }
@@ -24,7 +24,7 @@ public class SalaryWithinRangePredicate implements Predicate<Person> {
         if (person.getSalary().value == null) {
             return false;
         }
-        int key = Integer.parseInt(person.getSalary().value);
+        long key = Long.parseLong(person.getSalary().value);
         return (key >= lowerBound) && (key <= upperBound);
     }
 
