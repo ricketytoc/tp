@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_DEPARTMENT + person.getDepartment().value + " ");
         sb.append(PREFIX_ROLE + person.getRole().value + " ");
-        sb.append(PREFIX_SALARY + person.getSalary().value + " ");
+        sb.append(PREFIX_SALARY + person.getSalary().getValueAsString() + " ");
         return sb.toString();
     }
 

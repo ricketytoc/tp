@@ -43,9 +43,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DEPARTMENT,
                 PREFIX_ROLE, PREFIX_SALARY);
-        // When user enters the find command without any prefix, there is one key value pair in argMultimap where
-        // the key is "" and the value is also ""
-        if (argMultimap.hasLessThanOneElement()) {
+        if (argMultimap.getPrefixCount() <= 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
