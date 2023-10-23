@@ -401,6 +401,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
   * Use case resumes from step 2.
 
+**Use case: UC4 - Bulk increment salaries**
+
+**MSS**
+
+1. User requests to increment salaries of all employees in the displayed list by an increment amount.
+1. EmployeeManager increments the salaries of all employees in the displayed list.
+1. EmployeeManager shows an updated list of employees.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The given increment amount is invalid.
+    * 1a1. EmployeeManager informs user that the increment amount is invalid.
+    * 1a2. User enters new increment amount.
+    * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
+    * Use case resumes from step 2.
+
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
