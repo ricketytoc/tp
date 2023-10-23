@@ -9,11 +9,13 @@ import seedu.address.commons.core.increment.Increment;
  * Represents an Employee's Salary in EmployeeManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
-public class Salary {
+
+public class Salary implements Comparable<seedu.address.model.person.Salary> {
     public static final double MAXIMUM_SALARY = 1000000000;
     public static final String MESSAGE_CONSTRAINTS = String.format(
             "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %.2f",
             MAXIMUM_SALARY);
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -104,5 +106,10 @@ public class Salary {
     @Override
     public int hashCode() {
         return Double.hashCode(value);
+    }
+
+    @Override
+    public int compareTo(Salary other) {
+        return Double.compare(this.value, other.value);
     }
 }

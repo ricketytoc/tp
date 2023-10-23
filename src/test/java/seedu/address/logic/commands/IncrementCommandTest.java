@@ -41,7 +41,8 @@ public class IncrementCommandTest {
     public void execute_validIncrementUnfilteredList_success() {
         IncrementCommand incrementCommand = new IncrementCommand(INCREMENT_OBJ_POS);
         String expectedMessage = String.format(
-                IncrementCommand.MESSAGE_INCREMENT_SUCCESS, model.getFilteredPersonList().size(), INCREMENT_OBJ_POS);
+                IncrementCommand.MESSAGE_INCREMENT_SUCCESS, model.getSortedFilteredPersonList().size(),
+                INCREMENT_OBJ_POS);
         Model expectedModel = new ModelManager(
                 getTypicalAddressBookWithIncrementedSalary(INCREMENT_OBJ_POS), new UserPrefs());
         assertCommandSuccess(incrementCommand, model, expectedMessage, expectedModel);
@@ -54,10 +55,11 @@ public class IncrementCommandTest {
         IncrementCommand incrementCommand = new IncrementCommand(INCREMENT_OBJ_POS);
 
         String expectedMessage = String.format(
-                IncrementCommand.MESSAGE_INCREMENT_SUCCESS, model.getFilteredPersonList().size(), INCREMENT_OBJ_POS);
+                IncrementCommand.MESSAGE_INCREMENT_SUCCESS, model.getSortedFilteredPersonList().size(),
+                INCREMENT_OBJ_POS);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person person = model.getSortedFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(person)
                 .withSalary(person.getSalary().getIncrementedSalary(INCREMENT_OBJ_POS).getValueAsString()).build();
         expectedModel.setPerson(person, editedPerson);
