@@ -52,6 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArrayList<Predicate<Person>> predicateList = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
             String keyword = argMultimap.getValue(PREFIX_ID).get();
+            ParserUtil.checkFindArgs(keyword);
             if (keyword.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -60,6 +61,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
+            ParserUtil.checkFindArgs(trimmedArgs);
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -69,6 +71,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ROLE).get().trim();
+            ParserUtil.checkFindArgs(trimmedArgs);
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -78,6 +81,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_DEPARTMENT).get().trim();
+            ParserUtil.checkFindArgs(trimmedArgs);
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -87,6 +91,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
+            ParserUtil.checkFindArgs(trimmedArgs);
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -96,6 +101,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_SALARY).get().trim();
+            ParserUtil.checkFindArgs(trimmedArgs);
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -109,6 +115,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
+            ParserUtil.checkFindArgs(trimmedArgs);
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

@@ -71,26 +71,32 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_invalidSalaryInput_throwsParseException() {
-        // no numbers
+    public void parse_invalidInput_throwsParseException() {
+        // Invalid Salary input : no numbers
         assertParseFailure(parser,
-                "abc - wxy" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "abc - wxy",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // no space before dash
+        // Invalid Salary input : no space before dash
         assertParseFailure(parser,
-                "500- 6000" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "500- 6000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // no space after dash
+        // Invalid Salary input : no space after dash
         assertParseFailure(parser,
-                "500 -6000" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "500 -6000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // negative numbers
+        // Invalid Salary input : negative numbers
         assertParseFailure(parser,
-                "-500 - 6000" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "-500 - 6000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Invalid Find Command args : ID argument contains "/"
+        assertParseFailure(parser,
+                " " + PREFIX_ID + "A0001 INVALID/12345",
+                FindCommand.INVALID_FIND_ARGS_MESSAGE);
+
     }
 
     @Test
@@ -118,10 +124,10 @@ public class FindCommandParserTest {
 
         // Department attribute - no leading and trailing whitespaces
         predicateList.clear();
-        predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList("Finance", "Marketing")));
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));
-        assertParseSuccess(parser, " " + PREFIX_DEPARTMENT + "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_DEPARTMENT + "Finance Marketing", expectedFindCommand);
 
         // Role attribute - no leading and trailing whitespaces
         predicateList.clear();
@@ -153,6 +159,28 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_NAME + " \n Alice \n \t Bob  \t", expectedFindCommand);
+
+        // Multiple attributes - no leading and trailing whitespaces
+        predicateList.clear();
+        predicateList.add(new IdContainsKeywordsPredicate("A0001"));
+        predicateList.add(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        predicateList.add(new RoleContainsKeywordsPredicate(Arrays.asList("Manager", "Intern")));
+        predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList("Finance", "Marketing")));
+        predicateList.add(new EmailContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        predicateList.add(new SalaryWithinRangePredicate(1000, 5000));
+        predicateList.add(new PhoneContainsKeywordsPredicate("9001"));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " "
+                + PREFIX_ID + "A0001 "
+                + PREFIX_NAME + "Alice Bob "
+                + PREFIX_PHONE + "9001 "
+                + PREFIX_EMAIL + "Alice Bob "
+                + PREFIX_DEPARTMENT + "Finance Marketing "
+                + PREFIX_ROLE + "Manager Intern "
+                + PREFIX_SALARY + "1000 - 5000 ",
+                expectedFindCommand);
+
     }
 
 }
