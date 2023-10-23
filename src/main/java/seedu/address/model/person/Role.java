@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's role in EmployeeManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
-public class Role {
+public class Role implements Comparable<Role> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -61,5 +61,10 @@ public class Role {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Role other) {
+        return this.value.compareTo(other.value);
     }
 }

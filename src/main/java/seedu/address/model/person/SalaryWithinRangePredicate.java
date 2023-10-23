@@ -21,10 +21,7 @@ public class SalaryWithinRangePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (person.getSalary().value == null) {
-            return false;
-        }
-        int key = Integer.parseInt(person.getSalary().value);
+        double key = person.getSalary().value;
         return (key >= lowerBound) && (key <= upperBound);
     }
 

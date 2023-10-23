@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         department = source.getDepartment().value;
         role = source.getRole().value;
-        salary = source.getSalary().value;
+        salary = source.getSalary().getValueAsString();
     }
 
     /**

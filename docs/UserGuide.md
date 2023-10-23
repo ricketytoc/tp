@@ -189,6 +189,28 @@ no employee will be deleted or modified.
 Examples:
 * `delete id/A1234567B` deletes the employee with the ID `A1234567B` if such employee exists.
 
+
+### Sort displayed entries : `sort`
+
+Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
+
+Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
+
+* The prefix specifies the attribute to be sorted with.
+* Exactly one of the prefix must be specified.
+* Attributes are sorted by lexicographical order except for salary which
+is simply by numerical order.
+
+Examples:
+* `sort i/` sorts the displayed list in ascending ID.
+* `sort d/` sorts the displayed list in ascending department.
+* `sort e/` sorts the displayed list in ascending email.
+* `sort s/` sorts the displayed list in ascending salary.
+* `sort r/` sorts the displayed list in ascending role.
+* `sort n/` sorts the displayed list in ascending name.
+* `sort p/` sorts the displayed list in ascending phone.
+
+
 ### Clearing all entries : `clear`
 
 Clears the current list of entries from EmployeeManager.
