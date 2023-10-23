@@ -154,6 +154,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Increment Feature
+
+#### Implementation
+
+The increment feature is facilitated by the following operations:
+* `Model#getFilteredPersonList()` — Returns the list of employees in the filtered list.
+* `Model#setPerson(target, editedPerson)` — Replaces the given `target` with the `editedPerson` that has the incremented salary with all other attributes of `target` unchanged.
+
+Given below is an example usage scenario and how the increment mechanism behaves at each step.
+
+Step 1.  The user has executed `find d/Marketing` to filter the employee list by the department `Marketing`.
+* The `FindCommand` updates the filtered list in `Model` to contain only employees whose department is `Marketing`.
+
+Step 2. The user executes `increment 1000` to increment the salaries of all employees in the filtered list.
+The associated command `IncrementCommand` first calls `Model#getFilteredPersonList()` to obtain the filtered list of persons.
+
+Step 3. `IncrementCommand` then checks that the increment is valid for all persons in the filtered list using `IncrementCommand#checkValidIncrement(personList)`.
+
+Step 4. For each person in the filtered list, an `editedPerson` with the incremented salary and no other details changed is constructed, before `Model#setPerson(target, editedPerson)` is called to replace the current person with the `editedPerson`.
+
+The following sequence diagram illustrates how the increment feature works:
+![IncrementSequenceDiagram](images/IncrementSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `IncrementCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+#### Design considerations:
+
+**Aspect: When the validity of the given `increment` is checked:**
+
+* **Alternative 1 (current choice)**: Check validity before incrementing any person’s salary.
+  * Pros: Ensures that `increment` is valid before any modifications is made to the persons in EmployeeManager.
+  * Cons: Have to loop through the filtered list twice: once to check the validity of `increment` and once to increment the salaries.
+
+* **Alternative 2:** Check validity while incrementing each person’s salary.
+  * Pros: Less time required to check and increment salaries.
+  * Cons: If the `increment` is invalid for a person halfway through the list, some persons would have their salaries incremented while the remaining persons would not have their salaries incremented.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
