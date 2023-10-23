@@ -164,7 +164,7 @@ The increment feature is facilitated by the following operations:
 
 Given below is an example usage scenario and how the increment mechanism behaves at each step.
 
-Step 1.  The user has executed `find d/Marketing` to filter the employee list by the department `Marketing`.
+Step 1. The user has executed `find d/Marketing` to filter the employee list by the department `Marketing`.
 * The `FindCommand` updates the filtered list in `Model` to contain only employees whose department is `Marketing`.
 
 Step 2. The user executes `increment 1000` to increment the salaries of all employees in the filtered list.
