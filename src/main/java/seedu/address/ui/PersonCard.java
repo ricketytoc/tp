@@ -55,6 +55,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         department.setText(person.getDepartment().value);
         role.setText(person.getRole().value);
-        salary.setText(person.getSalary().value);
+        salary.setText(person.getSalary().toString());
     }
 }

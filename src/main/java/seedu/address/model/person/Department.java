@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Employee's Department in EmployeeManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidDepartment(String)}
  */
-public class Department {
+public class Department implements Comparable<Department> {
     public static final String MESSAGE_CONSTRAINTS =
             "Department names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -60,5 +60,10 @@ public class Department {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Department other) {
+        return this.value.compareTo(other.value);
     }
 }
