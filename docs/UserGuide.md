@@ -210,6 +210,19 @@ Examples:
 * `sort n/` sorts the displayed list in ascending name.
 * `sort p/` sorts the displayed list in ascending phone.
 
+### Bulk increment salaries of displayed entries: `increment`
+
+Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
+
+Format: `increment INCREMENT`
+* Increments the salaries of all employees in the displayed list by `INCREMENT`.
+* `INCREMENT` can be positive or negative.
+* `INCREMENT` is invalid if `INCREMENT` causes the salary of any employee in the displayed list to fall below 0 or exceed the maximum salary.
+* `INCREMENT` can have at most 2 decimals.
+
+Examples:
+* `increment 1000` increments the salaries of all employees in the displayed list by `1000`.
+* `increment -100.65` decrements the salaries of all employees in the displayed list by `100.65`.
 
 ### Clearing all entries : `clear`
 
