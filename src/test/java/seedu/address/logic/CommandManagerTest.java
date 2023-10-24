@@ -1,14 +1,12 @@
 package seedu.address.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CommandManagerTest {
 
@@ -69,7 +67,21 @@ public class CommandManagerTest {
         // null -> returns false
         assertNotEquals(null, commandHistoryWithA);
 
+        // Diff types
+        assertFalse(commandHistoryWithA.equals("String"));
+
         // different values -> returns false
         assertNotEquals(commandHistoryWithA, commandHistoryWithB);
+    }
+
+    @Test
+    public void testHashCode_consistency() {
+        final CommandHistory commandHistory1 = new CommandHistory();
+        commandHistory1.add("list");
+
+        final CommandHistory commandHistory2 = new CommandHistory();
+        commandHistory2.add("list");
+
+        assertEquals(commandHistory1.hashCode(), commandHistory2.hashCode());
     }
 }

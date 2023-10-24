@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,26 @@ public class HistoryCommandTest {
         HistoryCommand historyCommand2 = new HistoryCommand(2);
         HistoryCommand historyCommand3 = new HistoryCommand(3);
 
+        // same object -> returns true
+        assertEquals(historyCommand1, historyCommand1);
+
+        // same values -> returns true
         assertEquals(historyCommand1, historyCommand2);
+
+        // null -> returns false
+        assertNotEquals(null, historyCommand1);
+
+        // diff types -> returns false
+        assertFalse(historyCommand1.equals("String"));
+
+        // different values -> returns false
         assertNotEquals(historyCommand1, historyCommand3);
+    }
+
+    @Test
+    public void testToString() {
+        HistoryCommand historyCommand = new HistoryCommand(3);
+        String expectedString = HistoryCommand.class.getCanonicalName() + "{numberOfUserCommands=3}";
+        assertEquals(expectedString, historyCommand.toString());
     }
 }
