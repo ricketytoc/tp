@@ -56,9 +56,9 @@ If you are an **experienced user**:
 
    * `list` : Lists all employees.
 
-   * `add id/A035B name/John Doe position/Supervisor department/Marketing salary/5000` : Adds a contact named `John Doe` to EmployeeManager.
+   * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` : Adds an employee named `John Doe` to EmployeeManager.
 
-   * `delete id/A035B` : Deletes the employee with id `A035B`.
+   * `delete 2` : Deletes the 2nd contact shown in the current list.
 
    * `exit` : Exits the app.
 
@@ -76,10 +76,7 @@ If you are an **experienced user**:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `INDEX [n/NAME] [p/PHONE]` can be used as `1 n/John Doe p/97328601` or as `1 n/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -92,7 +89,7 @@ If you are an **experienced user**:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -101,61 +98,33 @@ Format: `help`
 
 ### Adding an employee: `add`
 
-Adds employees into the EmployeeManager application. 
-Employee ID can either be specified or not. If specified, the application will check the existing list of employees 
-to check whether the entered ID is unique. If not unique it will show an error. If no Employer ID is specified then the 
-application will automatically assign a unique ID to the employee.
+Adds an employee to EmployeeManager.
 
-Format: `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
+Format: `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY`
 
 Examples:
-* `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
-* `add name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+* `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
+* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200` Adds an employee `Betsy Crowe` into the list.
 
-Constraints:
-* Employee ID must be unique if specified and up to 10 characters
-* Salary must be numerical and >= 0
-* Name, Position, and Department up to 100 characters each
+### Listing all employees : `list`
 
-Expected output when employee added successfully:
-* `Employee EMPLOYEE_ID NAME successfully added!`
+Shows a list of all employees in EmployeeManager.
 
-Expected output when add command fails:
-* Invalid Salary : `Please input a non-negative salary as a numerical value (e.g. 4000)`
-* Duplicate employee ID : `EMPLOYEE_ID already exists`
-* Unable to assign employee ID : `There is no employee ID available to be assigned. Please delete unused employees 
-to free up employee IDs`
-* Too long name/position/department : `Please keep the <NAME/POSITION/DEPARTMENT up to 100 characters.`
-* Missing inputs : `<Inputs that are missing> are missing from the command. Please input the add command in the format:
-add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
+Format: `list`
 
-### Listing a list of employees : `list`
+### Editing an employee : `edit`
 
-* Shows a list of all persons in EmployeeManager.
-* Command Format: `list`
-* Examples:`list`
-* Expected outputs when the command succeeds:  
-`1. A1234 John Supervisor Accounting 10000`  
-`2. A1235 Mary Supervisor Finance 10000`
-* Expected outputs when the command fails:  
-`Error with displaying the list of employees.`
+Edits an existing employee in EmployeeManager.
 
-### Editing a person : `edit`
+Format: `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`
 
-Edits an existing person in EmployeeManager.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
 ### Locating persons by name: `find`
 
@@ -177,18 +146,17 @@ Examples:
 
 ### Deleting an employee : `delete`
 
-Deletes the specified employee from the employee book.
+Deletes the specified employee from EmployeeManager.
 
-Format: `delete id/EMPLOYEE_ID`
+Format: `delete INDEX`
 
-* Deletes the employee with the specified `EMPLOYEE_ID`.
-* The `EMPLOYEE_ID` should be the ID of an employee that exists in the employee book.
-* If the `EMPLOYEE_ID` specified does not match any employee in the employee book, 
-no employee will be deleted or modified.
+* Deletes the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employee list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete id/A1234567B` deletes the employee with the ID `A1234567B` if such employee exists.
-
+* `list` followed by `delete 2` deletes the 2nd person in EmployeeManager.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Sort displayed entries : `sort`
 
