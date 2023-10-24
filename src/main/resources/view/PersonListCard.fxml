@@ -2,40 +2,44 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Separator?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane style="-fx-background-color: #c5d4eb; -fx-background-radius: 5; -fx-border-color: #007aa2; -fx-border-radius: 5;" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+      <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-font-weight: bold; -fx-background-color: #007aa2; -fx-background-radius: 5;">
+        <Label fx:id="id" style="-fx-text-fill: white;" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="employeeId" styleClass="cell_big_label" text="\$id" />
-        <Separator/>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="employeeId" style="-fx-text-fill: white;" styleClass="cell_big_label" text="\$id" />
+        <Separator />
+        <Label fx:id="name" style="-fx-text-fill: white;" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="department" styleClass="cell_small_label" text="\$department" />
-      <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
-      <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
+      <Label fx:id="phone" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$phone" />
+      <Label fx:id="email" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="department" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$department" />
+      <Label fx:id="role" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$role" />
+      <Label fx:id="salary" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$salary" />
     </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>
