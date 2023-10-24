@@ -159,21 +159,36 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds the employees that satisfy the find requirements based on attributes.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Find command must be used with at least one prefix and the keyword for the prefix must not be empty.
+* Refer to the prefix summary to understand which employee attribute corresponds with which prefix.
+* Find command for all attributes are case-insensitive. 
+* For finding by ID and Phone number, the command will find employees whose ID and Phone number contains the respective keywords.
+* For finding by Name, Email, Department and Role, the order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* For finding by Name, Department and Role, only full words will be matched e.g. `Han` will not match `Hans` and `Fina` will not match `Finance`.
+* For finding by Email, Email will be matched if it contains the letter sequence e.g. `alex` will match `alexyeoh@example.com`.
+* For finding by Name, Email, Department and Role, matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` e.g. `alex yeoh` will return `alextan@example.com`, `berniceyeoh@example.com`.
+* For finding by Salary, command will find employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOEWRBOUND and UPPERBOUND.
+* The LOWERBOUND cannot be larger than the UPPERBOUND. 
+* There must be a dash before and after the dash
+* LOWERBOUND and UPPERBOUND must be non-negative integers and cannot be larger than 1 000 000 000. 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find i/A00` returns employees with IDs `A00`, `A00001`, `a0001`.
+* `find i/A00 p/9001` returns employees who match the ID and also have Phone numbers such as `90018989`, `9001`.
+* `find n/John` return employees with names `john` and `John Doe`.
+* `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
+* `find d/Finance` return employees in departments `finance`, `Finance 1`.
+* `find d/finance marketing` returns employees in departments `finance 1`, `marketing 2`.
+* `find r/Manager` returns employees whose roles are `manager`, `Excutive Manager`.
+* `find r/executive manager` returns employees whose roles are `Executive Chef`, `Product manager`.
+* `find e/alex bernice` returns employees with emails `alexyeoh@example.com`, `bernicetan@example.com`.
+* `find s/1000 - 5000` returns employees with salaries `1000.00`, `4321.10`, `5000.00`.
+
 
 ### Deleting an employee : `delete`
 
@@ -210,6 +225,15 @@ Examples:
 * `sort n/` sorts the displayed list in ascending name.
 * `sort p/` sorts the displayed list in ascending phone.
 
+### Redoing an Undo : `redo`
+
+If the previous command was an `undo`, then will restore EmployeeManager to the state before `undo`.
+
+Format: `redo`
+
+Examples:
+* Adding `John`, `undo` and then `redo` will return `John` back into EmployeeManager.
+* Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
 
 ### Clearing all entries : `clear`
 
