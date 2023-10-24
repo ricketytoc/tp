@@ -154,6 +154,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### History feature
+The `history` feature allows users to access past valid commands that they made. This feature is supported by 
+three classes, `CommandHistory`, `HistoryCommandParser` and `HistoryCommand`. 
+
+#### Implementation
+
+`CommandHistory`: This class is responsible for storing the history of valid commands that the user has entered.  
+`HistoryCommandParser`: Parses the user input to create an appropriate HistoryCommand object.  
+`HistoryCommand`: Executes the history command.  
+
+After a successful user command has been executed `CommandHistory#add(input)` will be called to store the successful 
+user input in the `CommandHistory`. When a user inputs a inputs a history command with the appropriate argument, the 
+`AddressBookParser` will be called to produce the `HistoryCommandParser` to properly parse the input. A 
+`HistoryCommand` object will be created. When the `Command#execute(model, commandHistory)` is called on the 
+`HistoryCommand`, the `HistoryCommand` will call `CommandHistory#getUserCommandHistory()` to get the list of
+valid user commands. `HistoryCommand` will then return a string of the appropriate number of user command that the
+user has specified.
+
+![History Command Class Diagram](images/HistoryCommandClassDiagram.png)
+
+
+#### Design Considerations
+
+**Aspect: Which component should we choose to store CommandHistory:**
+
+* **Alternative 1 (current choice):** Store it under `Logic`.  
+**Why:** The Logic component is responsible for command execution and parsing. 
+Adding a history feature here would allow you to easily keep track of commands as they are executed.
+
+* **Alternative 2:** Store it under `Model`.  
+**Why:** The `Model` component is responsible for maintaining the state of the application. If we consider
+the command history part of the application's state, it might make more sense to put it here.
+
+**Decision:** Since the command history is only active for the duration of the application and does not need
+to be saved, placing it in the `logic` component is more appropriate. If the command history need to persist
+across sessions, it might be better to place it in the `model` component, as this layer is generally responsible
+for data to be saved.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

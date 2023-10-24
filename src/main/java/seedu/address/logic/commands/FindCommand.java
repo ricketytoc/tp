@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -49,7 +50,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

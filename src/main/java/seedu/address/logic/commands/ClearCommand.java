@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -17,7 +18,7 @@ public class ClearCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         ArrayList<Person> copyList = new ArrayList<>(model.getSortedFilteredPersonList());
         copyList.forEach(model::deletePerson);

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ROLE = "M@nager";
     private static final String INVALID_SALARY = "-5000";
     private static final String INVALID_INCREMENT = "^2";
+    private static final String INVALID_HISTORY = "a";
 
     private static final String VALID_ID = "A000001";
     private static final String VALID_NAME = "Rachel Walker";
@@ -35,6 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_ROLE = "Manager";
     private static final String VALID_SALARY = "5000";
     private static final String VALID_INCREMENT = "1000";
+    private static final String VALID_HISTORY = "5";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -240,5 +243,31 @@ public class ParserUtilTest {
         String incrementWithWhitespace = WHITESPACE + VALID_INCREMENT + WHITESPACE;
         Increment expectedIncrement = new Increment(VALID_INCREMENT);
         assertEquals(expectedIncrement, ParserUtil.parseIncrement(incrementWithWhitespace));
+    }
+
+    @Test
+    public void parseHistory_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHistory((String) null));
+    }
+
+    @Test
+    public void parseHistory_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHistory(INVALID_HISTORY));
+        assertThrows(ParseException.class, () -> ParserUtil.parseHistory("10 a"));
+    }
+
+    @Test
+    public void parseHistory_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_NUMBER, ()
+                -> ParserUtil.parseHistory(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseHistory_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(Integer.parseInt(VALID_HISTORY), ParserUtil.parseHistory(VALID_HISTORY));
+
+        // Leading and trailing whitespaces
+        assertEquals(1, ParserUtil.parseHistory("  1  "));
     }
 }
