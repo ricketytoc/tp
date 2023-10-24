@@ -192,6 +192,17 @@ Examples:
 * `increment 1000` increments the salaries of all employees in the displayed list by `1000`.
 * `increment -100.65` decrements the salaries of all employees in the displayed list by `100.65`.
 
+### Undoing a modification : `undo`
+
+Restores EmployeeManager to the state before the last command that made a modification to the data in EmployeeManager.
+Such commands include `add`, `delete`, `edit`, `clear` and `increment`.
+
+Format: `undo`
+
+Examples:
+* `clear` followed by `undo` restores EmployeeManager to the state before `clear` was executed.
+* `delete 3` followed by `sort n/` followed by `undo` restores EmployeeManager to the state before `delete 3` was executed.
+
 ### Clearing all entries : `clear`
 
 Clears the current list of entries from EmployeeManager.
