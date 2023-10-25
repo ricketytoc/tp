@@ -157,6 +157,9 @@ This section describes some noteworthy details on how certain features are imple
 ### Sort feature
 
 #### Implementation
+
+<img src="images/SortCommandDiagram.png" width="574" />
+
 The sort command is facilitated by `ModelManager`. `ModelManager` contains a `SortedList<Person>` and 
 `FilteredList<Person>` to provide sorting and filtering on the same list. The original list is fetched from 
 `AddressBook#getPersonList()` and passed to the `FilteredList`. The `FilteredList` is then passed to the `SortedList`.
