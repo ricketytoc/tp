@@ -15,6 +15,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Salary;
 
 /**
  * Finds and lists all persons in address book whose attribute contain any of the keywords
@@ -32,7 +33,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Except for Salary attribute, finds all persons whose "
             + "attributes contain the keyword (case-insensitive) specified for those attributes and displays them as a "
             + "list with index numbers. For Salary, finds all persons whose salary is within a range instead. "
-            + "Upper bound of the range should be less than the maximum allowed salary which is 1 000 000 000.\n"
+            + "Upper bound of the range should be less than the maximum allowed salary which is " + Salary.MAXIMUM_SALARY
+            + ".\n"
             + "Parameters: "
             + "[" + PREFIX_ID + "ID] " + " [" + PREFIX_NAME + "NAME] " + " [" + PREFIX_PHONE + "PHONE] "
             + " [" + PREFIX_EMAIL + "EMAIL] " + " [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
