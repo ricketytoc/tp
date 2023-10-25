@@ -221,14 +221,14 @@ Format: `clear`
 ### View command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
-If the number of valid user commands is less than `N`, it shows all available commands.
+If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
 
 Format: `history N`
 * N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
 * N must be a positive integer.
 
 Examples:
-* `history 5` displays the last 5 valid user commands.
+* `history 5` displays up to the last 5 valid user commands.
 * `history 1` displays the most recent valid user command.
 * `history 10` displays up to the last 10 valid user commands. 
 If fewer than 10 commands have been executed, all available commands are shown.
