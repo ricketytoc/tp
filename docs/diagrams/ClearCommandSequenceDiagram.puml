@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+participant ":ClearCommand" as ClearCommand LOGIC_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+
+activate ClearCommand LOGIC_COLOR
+
+ClearCommand -[LOGIC_COLOR]> ModelManager: clearSortedFilteredPersonsList()
+activate ModelManager MODEL_COLOR
+
+loop For each person in the displayed list
+    ModelManager -> ModelManager: deletePerson
+    activate ModelManager MODEL_COLOR
+    deactivate ModelManager
+end loop
+
+ModelManager --> ClearCommand
+deactivate ModelManager
+
+deactivate ClearCommand
+@enduml
+
