@@ -299,10 +299,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with poor eyesight             | view the information easily                                                                               | it is not difficult for me to use the application.                                    |
 | `*`      | HR staff member                     | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                                |
 | `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                 |
-| `*`      | HR staff member                     | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                                 |
+| `*`      | HR staff member                     | set performance goals for employees                                                                       | I can align the employee with the company’s objectives.                               |
 | `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                     |
-| `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                 |
-| `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes              |
+| `* *`    | careless HR staff member            | undo my last command                                                                                      | if there are any mistakes I can easily revert to a copy with no mistakes              |
 
 ### Use cases
 
