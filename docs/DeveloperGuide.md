@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort feature
+
+#### Implementation
+The sort command is facilitated by `ModelManager`. `ModelManager` contains a `SortedList<Person>` and 
+`FilteredList<Person>` to provide sorting and filtering on the same list. The original list is fetched from 
+`AddressBook#getPersonList()` and passed to the `FilteredList`. The `FilteredList` is then passed to the `SortedList`.
+By returning the `SortedList` as an `ObservableList<Person>`, the UI will be able to update the person cards displayed
+after the `find` or `sort` command has been used.
+
+To facilitate comparing between two `Person` objects, the attributes also implement `Comparable<Person>`. The 
+`PersonCompmarators` class contains the comparators that can be used to compare persons based on the attribute.
+
+The command only allows for the sorting to be performed on one of the Person's attribute. The `SortCommandParser` will
+extract the attribute, and create a `SortCommand` using the corresponding `Comparator<Person>` for that attribute.
+
+#### Why it is implemented this way
+The comparators are accessed through static variables in `PersonComparators` to facilitate easier testing and reduce
+code duplication. If the comparators were simply passed as lambda functions, it would not be possible to check if two
+comparators are equal.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
