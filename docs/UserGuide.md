@@ -29,7 +29,7 @@ If you are an **experienced user**:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table of contents
+* Table of contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -63,6 +63,21 @@ If you are an **experienced user**:
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Prefix Summary
+| Prefix | Attribute   | Constraint                                                   |
+|--------|-------------|--------------------------------------------------------------|
+| `\d`   | Department  | Alphanumeric characters and whitespaces only                 |
+| `\e`   | Email       | Valid email address format                                   |
+| `\i`   | Employee ID | Alphanumeric characters only                                 |
+| `\n`   | Name        | Alphanumeric characters and whitespaces only                 |
+| `\p`   | Phone       | Numerical with at least 3 digits                             |
+| `\r`   | Phone       | Alphanumeric characters and whitespaces only                 |
+| `\s`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
