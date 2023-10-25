@@ -244,7 +244,7 @@ The `clear` feature is used to clear all persons from the displayed list in Empl
 
 #### Proposed Implementation
 When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
-The method will loop through the displayed list and delete each person from the list using the
+The method will loop through the filtered list and delete each person from the filtered list using the
 `Model#deletePerson`. This continues until the list is cleared.
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
