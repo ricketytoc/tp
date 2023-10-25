@@ -154,17 +154,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Clear Feature
-
-The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
-
-#### Proposed Implementation
-When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
-The method will loop through the displayed list and delete each person from the list using the
-`Model#deletePerson`. This continues until the list is cleared.
-
-![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -248,6 +237,17 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### Clear Feature
+
+The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
+
+#### Proposed Implementation
+When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
+The method will loop through the displayed list and delete each person from the list using the
+`Model#deletePerson`. This continues until the list is cleared.
+
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
