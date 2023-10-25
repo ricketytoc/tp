@@ -28,8 +28,9 @@ If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Table of contents
+
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
