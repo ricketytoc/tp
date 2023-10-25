@@ -27,7 +27,7 @@ activate SortCommandParser
 SortCommandParser --> AddressBookParser
 deactivate SortCommandParser
 
-AddressBookParser -> SortCommandParser : parse("i/")
+AddressBookParser -> SortCommandParser : parse(" i/")
 activate SortCommandParser
 
 create SortCommand
