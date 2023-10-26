@@ -94,17 +94,17 @@ public class FindCommandParserTest {
 
         // Invalid Salary input : lowerBound bigger than upperBound
         assertParseFailure(parser,
-                "5000 - 4000" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "5000 - 4000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Salary input : upperBound is bigger than max salary
         assertParseFailure(parser,
-                "5000 - 1000000001" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "5000 - 1000000001",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Salary input : upperBound is bigger than value that can be stored in Double
         assertParseFailure(parser,
-                "5000 - 1000000000000000" + PREFIX_SALARY,
+                " " + PREFIX_SALARY + "5000 - 1000000000000000000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Find Command args : ID argument contains "/"
