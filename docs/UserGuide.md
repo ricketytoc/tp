@@ -67,15 +67,20 @@ If you are an **experienced user**:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Prefix Summary
+
+The prefixes are commonly used in commands such as `add`, `edit`, `find`, `sort` etc.
+The table below provides a summary on the corresponding prefix for each Employee's attribute.
+The constraint for the attribute is also listed in the table.
+
 | Prefix | Attribute   | Constraint                                                   |
 |--------|-------------|--------------------------------------------------------------|
-| `\d`   | Department  | Alphanumeric characters and whitespaces only                 |
-| `\e`   | Email       | Valid email address format                                   |
-| `\i`   | Employee ID | Alphanumeric characters only                                 |
-| `\n`   | Name        | Alphanumeric characters and whitespaces only                 |
-| `\p`   | Phone       | Numerical with at least 3 digits                             |
-| `\r`   | Phone       | Alphanumeric characters and whitespaces only                 |
-| `\s`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
+| `d/`   | Department  | Alphanumeric characters and whitespaces only                 |
+| `e/`   | Email       | Valid email address format                                   |
+| `i/`   | Employee ID | Alphanumeric characters only                                 |
+| `n/`   | Name        | Alphanumeric characters and whitespaces only                 |
+| `p/`   | Phone       | Numerical with at least 3 digits                             |
+| `r/`   | Role        | Alphanumeric characters and whitespaces only                 |
+| `s/`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
 
 
 
