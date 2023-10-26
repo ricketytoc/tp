@@ -161,7 +161,7 @@ three classes, `EditCommand`, `EditCommandParser` and `Model`.
 #### Implementation
 
 `EditCommand`: Stores the edited changes to be changed.<br>
-`EditCommandParser`: Parses the user edit command to create an appropriate EditCommand object.<br>
+`EditCommandParser`: Parses the user's edit command to create an appropriate EditCommand object.<br>
 `Model`: Fetches the employee list from `Model#getSortedFilteredPersonList()` and finds the employee whose information needs to be edited.
 
 Given below is an example usage scenario of edit command. 
