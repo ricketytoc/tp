@@ -280,8 +280,8 @@ The `clear` feature is used to clear all persons from the displayed list in Empl
 
 #### Proposed Implementation
 When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
-`Model#clearSortedFilteredPersonList` will loop through the persons in the filtered list and 
-delete each person from the filtered list using `Model#deletePerson` until the list is cleared.
+The method will loop through the filtered list and delete each person from the filtered list using the
+`Model#deletePerson`. This continues until the list is cleared.
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                 |
 | `*`      | HR staff member                     | set performance goals for employees                                                                       | I can align the employee with the company’s objectives.                               |
 | `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                     |
-| `* *`    | careless HR staff member            | undo my last command                                                                                      | I can easily revert to a copy with no mistakes if I made mistakes                     |
+| `* *`    | careless HR staff member            | undo my last command                                                                                      | if there are any mistakes I can easily revert to a copy with no mistakes              |
 
 ### Use cases
 
