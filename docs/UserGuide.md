@@ -163,19 +163,19 @@ Finds the employees that satisfy the find requirements based on attributes.
 
 Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
-* Find command must be used with at least one prefix and the keyword for the prefix must not be empty.
+* Find command must be used with **at least one prefix** and the keyword for the prefix **must not be empty**.
 * Refer to the prefix summary to understand which employee attribute corresponds with which prefix.
-* Find command for all attributes are case-insensitive. 
+* Find command for all attributes are **case-insensitive**. 
 * For finding by ID and Phone number, the command will find employees whose ID and Phone number contains the respective keywords.
 * For finding by Name, Email, Department and Role, the order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* For finding by Name, Department and Role, only full words will be matched e.g. `Han` will not match `Hans` and `Fina` will not match `Finance`.
-* For finding by Email, Email will be matched if it contains the letter sequence e.g. `alex` will match `alexyeoh@example.com`.
-* For finding by Name, Email, Department and Role, matching at least one keyword will be returned (i.e. `OR` search).
+* For finding by Name, Department and Role, only **full words** will be matched e.g. `Han` will not match `Hans` and `Fina` will not match `Finance`.
+* For finding by Email, Email will be matched if it **contains the letter sequence** e.g. `alex` will match `alexyeoh@example.com`.
+* For finding by Name, Email, Department and Role, **matching at least one keyword** will be returned.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` e.g. `alex yeoh` will return `alextan@example.com`, `berniceyeoh@example.com`.
-* For finding by Salary, command will find employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOEWRBOUND and UPPERBOUND.
-* The LOWERBOUND cannot be larger than the UPPERBOUND. 
-* There must be a dash before and after the dash
-* LOWERBOUND and UPPERBOUND must be non-negative integers and cannot be larger than 1 000 000 000. 
+* For finding by Salary, command will find employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
+* The LOWERBOUND **cannot be larger than** the UPPERBOUND. 
+* There must be a **spacing before and after the dash**
+* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**. 
 
 Examples:
 * `find i/A00` returns employees with IDs `A00`, `A00001`, `a0001`.
@@ -232,7 +232,7 @@ If the previous command was an `undo`, then will restore EmployeeManager to the 
 Format: `redo`
 
 Examples:
-* Adding `John`, `undo` and then `redo` will return `John` back into EmployeeManager.
+* Adding `John`, followed by `undo` and then `redo` will return `John` back into EmployeeManager.
 * Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
 
 ### Clearing all entries : `clear`
