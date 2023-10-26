@@ -154,6 +154,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find Feature
+
+#### Implementation
+
+The Find feature is facilitated by the following operations:
+* `Model#updateFilteredPersonList()` — Updates the filtered person list based on the Predicate<Person> given to the FindCommand object.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user executes `find n/alex bernice` to find all employees that either contain the full word `alex` or `bernice` in their name. 
+`FindCommandParser` parses the user input and creates a `FindCommand`.
+
+Step2. Then `FindCommand` is executed, and it will call `Model#updateFilteredPersonList()` to update the filtered list in the model to only include
+employees whose names contain either the full word `alex` or `bernice`.
+
+The following sequence diagram illustrates how the find feature works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+</div>
+
 
 ### Edit Feature
 The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
@@ -421,7 +443,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
   * Use case resumes from step 2.
 
-**Use case: UC4 - Bulk increment salaries**
+**Use case: UC4 - Finding an employee**
+
+**MSS**
+
+1. User requests to find an employee with name and surname
+2. EmployeeManager finds all employees whose names contain either the full name or surname keyword 
+3. EmployeeManager updates the displayed list with the found employees.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. The user did not use a valid predefined prefix to search for employee by name
+    * 1a1. EmployeeManager informs user that the input is invalid.
+    * 1a2. User enters new input and new prefix.
+    * Steps 1a1-1a2 are repeated until the input is valid.
+    * Use case resumes from step2.
+
+**Use case: UC5 - Bulk increment salaries**
 
 **MSS**
 
