@@ -28,8 +28,9 @@ If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Table of contents
+
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -205,9 +206,24 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears the current list of entries from EmployeeManager.
+Clears the current displayed list of entries from EmployeeManager.
 
 Format: `clear`
+
+### View command history : `history`
+
+Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
+If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
+
+Format: `history N`
+* N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
+* N must be a positive integer.
+
+Examples:
+* `history 5` displays up to the last 5 valid user commands.
+* `history 1` displays the most recent valid user command.
+* `history 10` displays up to the last 10 valid user commands. 
+If fewer than 10 commands have been executed, all available commands are shown.
 
 ### Exiting the program : `exit`
 
