@@ -160,16 +160,16 @@ three classes, `EditCommand`, `EditCommandParser` and `Model`.
 
 #### Implementation
 
-`EditCommand`: Gets the user edit command.<br>
+`EditCommand`: Stores the edited changes to be changed.<br>
 `EditCommandParser`: Parses the user edit command to create an appropriate EditCommand object.<br>
-`Model`: Fetches the employee list from `Model#getSortedFilteredPersonList()` and find the certain employee whose information needs to be edited.
+`Model`: Fetches the employee list from `Model#getSortedFilteredPersonList()` and finds the employee whose information needs to be edited.
 
 Given below is an example usage scenario of edit command. 
 
-Step 1: The user enter `edit 2 p/12345678` to update the phone number of the second employee in the list.<br>
+Step 1: The user enters `edit 2 p/12345678` to update the phone number of the second employee in the list.<br>
 `EditCommandParser` parses the user command and creates a `EditCommand`.
 
-Step 2: Then `EditCommand` is executed, and it calls `Model#setPerson()` to update the information of certain employee.
+Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update the information of the chosen employee.
 
 The sequence diagram below illustrates how the edit command works: 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
