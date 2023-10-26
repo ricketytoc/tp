@@ -15,6 +15,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Salary;
 
 /**
  * Finds and lists all persons in address book whose attribute contain any of the keywords
@@ -25,21 +26,28 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
+    public static final String INVALID_FIND_ARGS_MESSAGE = "Arguments of the Find command should not contain '/' as it "
+            + "is reserved to be used with a prefix to define the attribute to find by. "
+            + "Please ensure that the prefix used is valid.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Except for Salary attribute, finds all persons whose "
             + "attributes contain the keyword (case-insensitive) specified for those attributes and displays them as a "
-            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead.\n"
+            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead. "
+            + "Upper bound of the range should be less than the maximum allowed salary which is "
+            + Salary.MAXIMUM_SALARY
+            + ".\n"
             + "Parameters: "
-            + "[" + PREFIX_ID + "ID] " + "or [" + PREFIX_NAME + "NAME] " + "or [" + PREFIX_PHONE + "PHONE] "
-            + "or [" + PREFIX_EMAIL + "EMAIL] " + "or [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
-            + "or [" + PREFIX_ROLE + "ROLE] " + "or [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND] "
+            + "[" + PREFIX_ID + "ID] " + " [" + PREFIX_NAME + "NAME] " + " [" + PREFIX_PHONE + "PHONE] "
+            + " [" + PREFIX_EMAIL + "EMAIL] " + " [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + " [" + PREFIX_ROLE + "ROLE] " + " [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND] "
             + "\n"
-            + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID + "A0001 "
-            + "\n" + COMMAND_WORD + " " + PREFIX_NAME + "Alex "
-            + "\n" + COMMAND_WORD + " " + PREFIX_PHONE + "98765432 "
-            + "\n" + COMMAND_WORD + " " + PREFIX_EMAIL + "alexyeoh@example.com "
-            + "\n" + COMMAND_WORD + " " + PREFIX_DEPARTMENT + "Finance "
-            + "\n" + COMMAND_WORD + " " + PREFIX_ROLE + "Manager "
-            + "\n" + COMMAND_WORD + " " + PREFIX_SALARY + "400 - 5000 ";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_ID + "A0123456B "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_DEPARTMENT + "Finance "
+            + PREFIX_ROLE + "Manager "
+            + PREFIX_SALARY + "5000";
 
 
     private final Predicate<Person> predicate;
