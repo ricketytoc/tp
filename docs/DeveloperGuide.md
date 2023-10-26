@@ -457,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The user did not use a valid predefined prefix to search for employee by name
     * 1a1. EmployeeManager informs user that the input is invalid.
     * 1a2. User enters new input and new prefix.
-    * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
+    * Steps 1a1-1a2 are repeated until the input is valid.
     * Use case resumes from step2.
 
 **Use case: UC5 - Bulk increment salaries**
