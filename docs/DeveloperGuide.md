@@ -237,7 +237,6 @@ The following sequence diagram illustrates how the find feature works:
 
 </div>
 
-
 ### Edit Feature
 The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
 three classes, `EditCommand`, `EditCommandParser` and `Model`.
