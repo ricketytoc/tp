@@ -230,6 +230,29 @@ Clears the current displayed list of entries from EmployeeManager.
 
 Format: `clear`
 
+### Import Data : `import`
+
+Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
+data stored in the application.
+
+* The file path must be valid, and the application must have permission to read from the file.
+
+Format: `import FILE_PATH`
+
+Examples:
+* `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
+
+### Export Data : `export`
+
+Exports a .csv file based on the data stored in EmployeeManager into the specified path.
+
+* The file path must be valid, and the application must have permission to write to the directory.
+
+Format: `export FILE_PATH`
+
+Examples:
+* `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
+
 ### View command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
