@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'EmployeeManager.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
