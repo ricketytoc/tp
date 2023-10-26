@@ -173,6 +173,9 @@ diagram below illustrates how the comparator is obtained and passed to the Model
 
 <img src="images/SortSequenceDiagram.png" width="574" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 
 ### Edit Feature
 The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
