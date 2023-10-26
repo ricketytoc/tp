@@ -184,7 +184,7 @@ Examples:
 * `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
 * `find d/Finance` return employees in departments `finance`, `Finance 1`.
 * `find d/finance marketing` returns employees in departments `finance 1`, `marketing 2`.
-* `find r/Manager` returns employees whose roles are `manager`, `Excutive Manager`.
+* `find r/Manager` returns employees whose roles are `manager`, `Executive Manager`.
 * `find r/executive manager` returns employees whose roles are `Executive Chef`, `Product manager`.
 * `find e/alex bernice` returns employees with emails `alexyeoh@example.com`, `bernicetan@example.com`.
 * `find s/1000 - 5000` returns employees with salaries `1000.00`, `4321.10`, `5000.00`.
