@@ -33,7 +33,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Except for Salary attribute, finds all persons whose "
             + "attributes contain the keyword (case-insensitive) specified for those attributes and displays them as a "
             + "list with index numbers. For Salary, finds all persons whose salary is within a range instead and the "
-            + "lower bound has to be smaller than the upper bound. "
+            + "lower bound has to be smaller or equal to the upper bound. "
             + "Upper bound of the range should be less than the maximum allowed salary which is "
             + Salary.MAXIMUM_SALARY
             + ".\n"
