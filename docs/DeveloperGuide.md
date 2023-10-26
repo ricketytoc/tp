@@ -154,6 +154,110 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Sort feature
+
+#### Implementation
+
+The sort command is facilitated by `ModelManager`. `ModelManager` contains a `SortedList<Person>` and 
+`FilteredList<Person>` to provide sorting and filtering on the same list. The original list is fetched from 
+`AddressBook#getPersonList()` and passed to the `FilteredList`. The `FilteredList` is then passed to the `SortedList`.
+By returning the `SortedList` as an `ObservableList<Person>`, the UI will be able to update the person cards displayed
+after the `find` or `sort` command has been used.
+
+To facilitate comparing between two `Person` objects, the attributes also implement `Comparable<Person>`. The
+comparators for the attributes can be used to then compare two Person on a specific attribute.
+
+The command only allows for the sorting to be performed on one of the Person's attribute. The `SortCommandParser` will
+extract the attribute, and create a `SortCommand` using the corresponding comparator for that attribute. The sequence 
+diagram below illustrates how the comparator is obtained and passed to the Model to be executed.
+
+<img src="images/SortSequenceDiagram.png" width="574" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+  
+### Find Feature
+
+#### Implementation
+
+The Find feature is facilitated by the following operations:
+* `Model#updateFilteredPersonList()` — Updates the filtered person list based on the Predicate<Person> given to the FindCommand object.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user executes `find n/alex bernice` to find all employees that either contain the full word `alex` or `bernice` in their name. 
+`FindCommandParser` parses the user input and creates a `FindCommand`.
+
+Step2. Then `FindCommand` is executed, and it will call `Model#updateFilteredPersonList()` to update the filtered list in the model to only include
+employees whose names contain either the full word `alex` or `bernice`.
+
+The following sequence diagram illustrates how the find feature works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+</div>
+
+
+### Edit Feature
+The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
+three classes, `EditCommand`, `EditCommandParser` and `Model`.
+
+#### Implementation
+
+`EditCommand`: Stores the edited changes to be changed.<br>
+`EditCommandParser`: Parses the user's edit command to create an appropriate EditCommand object.<br>
+`Model`: Fetches the employee list from `Model#getSortedFilteredPersonList()` and finds the employee whose information needs to be edited.
+
+Given below is an example usage scenario of edit command. 
+
+Step 1: The user enters `edit 2 p/12345678` to update the phone number of the second employee in the list.<br>
+`EditCommandParser` parses the user command and creates a `EditCommand`.
+
+Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update the information of the chosen employee.
+
+The sequence diagram below illustrates how the edit command works: 
+![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
+
+
+### Increment Feature
+
+#### Implementation
+
+The increment feature is facilitated by the following operations:
+* `Model#getSortedFilteredPersonList()` — Returns the list of employees in the filtered list.
+* `Model#setPerson(target, editedPerson)` — Replaces the given `target` with the `editedPerson` that has the incremented salary with all other attributes of `target` unchanged.
+
+Given below is an example usage scenario and how the increment mechanism behaves at each step.
+
+Step 1. The user has executed `find d/Marketing` to filter the employee list by the department `Marketing`.
+* The `FindCommand` updates the filtered list in `Model` to contain only employees whose department is `Marketing`.
+
+Step 2. The user executes `increment 1000` to increment the salaries of all employees in the filtered list.
+The associated command `IncrementCommand` first calls `Model#getSortedFilteredPersonList()` to obtain the filtered list of persons.
+
+Step 3. `IncrementCommand` then checks that the increment is valid for all persons in the filtered list using `IncrementCommand#checkValidIncrement(personList)`.
+
+Step 4. For each person in the filtered list, an `editedPerson` with the incremented salary and no other details changed is constructed, before `Model#setPerson(target, editedPerson)` is called to replace the current person with the `editedPerson`.
+
+The following sequence diagram illustrates how the increment feature works:
+![IncrementSequenceDiagram](images/IncrementSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: When the validity of the given `increment` is checked:**
+
+* **Alternative 1 (current choice)**: Check validity before incrementing any person’s salary.
+  * Pros: Ensures that `increment` is valid before any modifications is made to the persons in EmployeeManager.
+  * Cons: Have to loop through the filtered list twice: once to check the validity of `increment` and once to increment the salaries.
+
+* **Alternative 2:** Check validity while incrementing each person’s salary.
+  * Pros: Less time required to check and increment salaries.
+  * Cons: If the `increment` is invalid for a person halfway through the list, some persons would have their salaries incremented while the remaining persons would not have their salaries incremented.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -238,6 +342,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Clear Feature
+
+The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
+
+#### Proposed Implementation
+When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
+`Model#clearSortedFilteredPersonList` will loop through the persons in the filtered list and
+delete each person from the filtered list using `Model#deletePerson` until the list is cleared.
+
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,10 +414,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with poor eyesight             | view the information easily                                                                               | it is not difficult for me to use the application.                                    |
 | `*`      | HR staff member                     | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                                |
 | `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                 |
-| `*`      | HR staff member                     | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                                 |
+| `*`      | HR staff member                     | set performance goals for employees                                                                       | I can align the employee with the company’s objectives.                               |
 | `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                     |
-| `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                 |
-| `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes              |
+| `* *`    | careless HR staff member            | undo my last command                                                                                      | I can easily revert to a copy with no mistakes if I made mistakes                     |
 
 ### Use cases
 
@@ -362,6 +476,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a2. User enters new employee ID.
   * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
   * Use case resumes from step 2.
+
+**Use case: UC4 - Finding an employee**
+
+**MSS**
+
+1. User requests to find an employee with name and surname
+2. EmployeeManager finds all employees whose names contain either the full name or surname keyword 
+3. EmployeeManager updates the displayed list with the found employees.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. The user did not use a valid predefined prefix to search for employee by name
+    * 1a1. EmployeeManager informs user that the input is invalid.
+    * 1a2. User enters new input and new prefix.
+    * Steps 1a1-1a2 are repeated until the input is valid.
+    * Use case resumes from step2.
+
+**Use case: UC5 - Bulk increment salaries**
+
+**MSS**
+
+1. User requests to increment salaries of all employees in the displayed list by an increment amount.
+1. EmployeeManager increments the salaries of all employees in the displayed list.
+1. EmployeeManager shows an updated list of employees.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The given increment amount is invalid.
+    * 1a1. EmployeeManager informs user that the increment amount is invalid.
+    * 1a2. User enters new increment amount.
+    * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
+    * Use case resumes from step 2.
 
 ### Non-Functional Requirements
 

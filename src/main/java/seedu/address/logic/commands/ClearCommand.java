@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
  * Clears the address book.
@@ -19,8 +16,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ArrayList<Person> copyList = new ArrayList<>(model.getSortedFilteredPersonList());
-        copyList.forEach(model::deletePerson);
+        model.clearSortedFilteredPersonList();
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
