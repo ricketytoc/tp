@@ -177,8 +177,6 @@ Step 4. For each person in the filtered list, an `editedPerson` with the increme
 The following sequence diagram illustrates how the increment feature works:
 ![IncrementSequenceDiagram](images/IncrementSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `IncrementCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
 #### Design considerations:
 
 **Aspect: When the validity of the given `increment` is checked:**

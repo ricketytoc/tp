@@ -3,52 +3,18 @@
 skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":IncrementCommandParser" as IncrementCommandParser LOGIC_COLOR
 participant "i:IncrementCommand" as IncrementCommand LOGIC_COLOR
-participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("increment 1000")
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand("increment 1000")
-activate AddressBookParser
-
-create IncrementCommandParser
-AddressBookParser -> IncrementCommandParser
-activate IncrementCommandParser
-
-IncrementCommandParser --> AddressBookParser
-deactivate IncrementCommandParser
-
-AddressBookParser -> IncrementCommandParser : parse(" 1000")
-activate IncrementCommandParser
-
-create IncrementCommand
-IncrementCommandParser -> IncrementCommand
+[-> IncrementCommand : execute(model)
 activate IncrementCommand
 
-IncrementCommand --> IncrementCommandParser : i
-deactivate IncrementCommand
-
-IncrementCommandParser --> AddressBookParser : i
-deactivate IncrementCommandParser
-IncrementCommandParser -[hidden]-> AddressBookParser : i
-destroy IncrementCommandParser
-
-AddressBookParser --> LogicManager : i
-deactivate AddressBookParser
-
-LogicManager -> IncrementCommand : execute(model)
-activate IncrementCommand
-
-IncrementCommand -> Model : getFilteredPersonList()
+IncrementCommand -> Model : getSortedFilteredPersonList()
 activate Model
 
 Model --> IncrementCommand : lastShownList
@@ -61,32 +27,27 @@ IncrementCommand --> IncrementCommand
 deactivate IncrementCommand
 
 loop for each person in lastShownList
+    IncrementCommand -> IncrementCommand : incrementPersonSalary(personToEdit)
+    activate IncrementCommand
 
-IncrementCommand -> IncrementCommand : incrementPersonSalary(personToEdit)
-activate IncrementCommand
+    IncrementCommand --> IncrementCommand : editedPerson
+    deactivate IncrementCommand
 
-IncrementCommand --> IncrementCommand : editedPerson
-deactivate IncrementCommand
+    IncrementCommand -> Model : setPerson(personToEdit, editedPerson)
+    activate Model
 
-IncrementCommand -> Model : setPerson(personToEdit, editedPerson)
-activate Model
-
-Model --> IncrementCommand
-deactivate Model
-
+    Model --> IncrementCommand
+    deactivate Model
 end
 
 create CommandResult
 IncrementCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> IncrementCommand : cr
+CommandResult --> IncrementCommand : r
 deactivate CommandResult
 
-IncrementCommand --> LogicManager : cr
+IncrementCommand -->[ : r
 deactivate IncrementCommand
-
-LogicManager -->[
-deactivate LogicManager
 
 @enduml
