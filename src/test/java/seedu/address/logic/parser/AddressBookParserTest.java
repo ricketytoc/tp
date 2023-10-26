@@ -16,8 +16,10 @@ import static seedu.address.testutil.TypicalIncrements.INCREMENT_OBJ_POS;
 import static seedu.address.testutil.TypicalIncrements.INCREMENT_STRING_POS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,7 @@ import seedu.address.logic.commands.IncrementCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.GeneralPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -92,7 +95,10 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        ArrayList<Predicate<Person>> predicateList = new ArrayList<>();
+        predicateList.add(new NameContainsKeywordsPredicate(keywords));
+        GeneralPredicate generalPredicate = new GeneralPredicate(predicateList);
+        assertEquals(new FindCommand(generalPredicate), command);
     }
 
     @Test
