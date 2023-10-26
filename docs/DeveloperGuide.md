@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 
 The increment feature is facilitated by the following operations:
-* `Model#getFilteredPersonList()` — Returns the list of employees in the filtered list.
+* `Model#getSortedFilteredPersonList()` — Returns the list of employees in the filtered list.
 * `Model#setPerson(target, editedPerson)` — Replaces the given `target` with the `editedPerson` that has the incremented salary with all other attributes of `target` unchanged.
 
 Given below is an example usage scenario and how the increment mechanism behaves at each step.
@@ -168,7 +168,7 @@ Step 1. The user has executed `find d/Marketing` to filter the employee list by 
 * The `FindCommand` updates the filtered list in `Model` to contain only employees whose department is `Marketing`.
 
 Step 2. The user executes `increment 1000` to increment the salaries of all employees in the filtered list.
-The associated command `IncrementCommand` first calls `Model#getFilteredPersonList()` to obtain the filtered list of persons.
+The associated command `IncrementCommand` first calls `Model#getSortedFilteredPersonList()` to obtain the filtered list of persons.
 
 Step 3. `IncrementCommand` then checks that the increment is valid for all persons in the filtered list using `IncrementCommand#checkValidIncrement(personList)`.
 
