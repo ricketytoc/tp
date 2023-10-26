@@ -158,24 +158,20 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-<img src="images/SortCommandDiagram.png" width="574" />
-
 The sort command is facilitated by `ModelManager`. `ModelManager` contains a `SortedList<Person>` and 
 `FilteredList<Person>` to provide sorting and filtering on the same list. The original list is fetched from 
 `AddressBook#getPersonList()` and passed to the `FilteredList`. The `FilteredList` is then passed to the `SortedList`.
 By returning the `SortedList` as an `ObservableList<Person>`, the UI will be able to update the person cards displayed
 after the `find` or `sort` command has been used.
 
-To facilitate comparing between two `Person` objects, the attributes also implement `Comparable<Person>`. The 
-`PersonCompmarators` class contains the comparators that can be used to compare persons based on the attribute.
+To facilitate comparing between two `Person` objects, the attributes also implement `Comparable<Person>`. The
+comparators for the attributes can be used to then compare two Person on a specific attribute.
 
 The command only allows for the sorting to be performed on one of the Person's attribute. The `SortCommandParser` will
-extract the attribute, and create a `SortCommand` using the corresponding `Comparator<Person>` for that attribute.
+extract the attribute, and create a `SortCommand` using the corresponding comparator for that attribute. The sequence 
+diagram below illustrates how the comparator is obtained and passed to the Model to be executed.
 
-#### Why it is implemented this way
-The comparators are accessed through static variables in `PersonComparators` to facilitate easier testing and reduce
-code duplication. If the comparators were simply passed as lambda functions, it would not be possible to check if two
-comparators are equal.
+<img src="images/SortSequenceDiagram.png" width="574" />
 
 
 ### \[Proposed\] Undo/redo feature
