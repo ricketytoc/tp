@@ -55,14 +55,15 @@ activate Model
 Model --> EditCommand : personToEdit
 deactivate Model
 
+create EditPersonDescriptor
+EditCommand -> EditPersonDescriptor
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommand
+deactivate EditPersonDescriptor
+
 EditCommand -> EditPersonDescriptor :
 activate EditPersonDescriptor
-
-EditPersonDescriptor -> EditPersonDescriptor : isAnyFieldEdited()
-activate EditPersonDescriptor
-
-EditPersonDescriptor --> EditPersonDescriptor :
-deactivate EditPersonDescriptor
 
 EditPersonDescriptor -> EditPersonDescriptor : setPhone()
 activate EditPersonDescriptor
