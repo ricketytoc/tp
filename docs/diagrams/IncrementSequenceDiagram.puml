@@ -1,0 +1,53 @@
+@startuml
+!include Style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant "i:IncrementCommand" as IncrementCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> IncrementCommand : execute(model)
+activate IncrementCommand
+
+IncrementCommand -> Model : getSortedFilteredPersonList()
+activate Model
+
+Model --> IncrementCommand : lastShownList
+deactivate Model
+
+IncrementCommand -> IncrementCommand : checkValidIncrement(lastShownList)
+activate IncrementCommand
+
+IncrementCommand --> IncrementCommand
+deactivate IncrementCommand
+
+loop for each person in lastShownList
+    IncrementCommand -> IncrementCommand : incrementPersonSalary(personToEdit)
+    activate IncrementCommand
+
+    IncrementCommand --> IncrementCommand : editedPerson
+    deactivate IncrementCommand
+
+    IncrementCommand -> Model : setPerson(personToEdit, editedPerson)
+    activate Model
+
+    Model --> IncrementCommand
+    deactivate Model
+end
+
+create CommandResult
+IncrementCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> IncrementCommand : r
+deactivate CommandResult
+
+IncrementCommand -->[ : r
+deactivate IncrementCommand
+
+@enduml
