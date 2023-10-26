@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -137,6 +138,20 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Checks a {@code String findArgs} is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code findArgs} is invalid.
+     */
+    public static void checkFindArgs(String findArgs) throws ParseException {
+        requireNonNull(findArgs);
+        String trimmedFindArgs = findArgs.trim();
+        if (trimmedFindArgs.contains("/")) {
+            throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
+        }
     }
 
     /**
