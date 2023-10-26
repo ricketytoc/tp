@@ -28,8 +28,9 @@ If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Table of contents
+
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -56,13 +57,33 @@ If you are an **experienced user**:
 
    * `list` : Lists all employees.
 
-   * `add id/A035B name/John Doe position/Supervisor department/Marketing salary/5000` : Adds a contact named `John Doe` to EmployeeManager.
+   * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` : Adds an employee named `John Doe` to EmployeeManager.
 
-   * `delete id/A035B` : Deletes the employee with id `A035B`.
+   * `delete 2` : Deletes the 2nd contact shown in the current list.
 
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Prefix Summary
+
+The prefixes are commonly used in commands such as `add`, `edit`, `find`, `sort` etc.
+The table below provides a summary on the corresponding prefix for each Employee's attribute.
+The constraint for the attribute is also listed in the table.
+
+| Prefix | Attribute   | Constraint                                                   |
+|--------|-------------|--------------------------------------------------------------|
+| `d/`   | Department  | Alphanumeric characters and whitespaces only                 |
+| `e/`   | Email       | Valid email address format                                   |
+| `i/`   | Employee ID | Alphanumeric characters only                                 |
+| `n/`   | Name        | Alphanumeric characters and whitespaces only                 |
+| `p/`   | Phone       | Numerical with at least 3 digits                             |
+| `r/`   | Role        | Alphanumeric characters and whitespaces only                 |
+| `s/`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,10 +97,7 @@ If you are an **experienced user**:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `find [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY_LOWER_BOUND - SALARY_UPPER_BOUND]` can be used as `find n/John Doe` or as `find n/John Doe d/finance`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -92,7 +110,7 @@ If you are an **experienced user**:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -101,94 +119,80 @@ Format: `help`
 
 ### Adding an employee: `add`
 
-Adds employees into the EmployeeManager application. 
-Employee ID can either be specified or not. If specified, the application will check the existing list of employees 
-to check whether the entered ID is unique. If not unique it will show an error. If no Employer ID is specified then the 
-application will automatically assign a unique ID to the employee.
+Adds an employee to EmployeeManager.
 
-Format: `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
+Format: `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY`
 
 Examples:
-* `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
-* `add name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`
+* `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
+* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200` Adds an employee `Betsy Crowe` into the list.
 
-Constraints:
-* Employee ID must be unique if specified and up to 10 characters
-* Salary must be numerical and >= 0
-* Name, Position, and Department up to 100 characters each
+### Listing all employees : `list`
 
-Expected output when employee added successfully:
-* `Employee EMPLOYEE_ID NAME successfully added!`
+Shows a list of all employees in EmployeeManager.
 
-Expected output when add command fails:
-* Invalid Salary : `Please input a non-negative salary as a numerical value (e.g. 4000)`
-* Duplicate employee ID : `EMPLOYEE_ID already exists`
-* Unable to assign employee ID : `There is no employee ID available to be assigned. Please delete unused employees 
-to free up employee IDs`
-* Too long name/position/department : `Please keep the <NAME/POSITION/DEPARTMENT up to 100 characters.`
-* Missing inputs : `<Inputs that are missing> are missing from the command. Please input the add command in the format:
-add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY`
+Format: `list`
 
-### Listing a list of employees : `list`
+### Editing an employee : `edit`
 
-* Shows a list of all persons in EmployeeManager.
-* Command Format: `list`
-* Examples:`list`
-* Expected outputs when the command succeeds:  
-`1. A1234 John Supervisor Accounting 10000`  
-`2. A1235 Mary Supervisor Finance 10000`
-* Expected outputs when the command fails:  
-`Error with displaying the list of employees.`
+Edits an existing employee in EmployeeManager.
 
-### Editing a person : `edit`
+Format: `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`
 
-Edits an existing person in EmployeeManager.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds the employees that satisfy the find requirements based on attributes.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Find command must be used with **at least one prefix** and the keyword for the prefix **must not be empty**.
+* Refer to the prefix summary to understand which employee attribute corresponds with which prefix.
+* Find command for all attributes are **case-insensitive**. 
+* For finding by ID and Phone number, the command will find employees whose ID and Phone number contains the respective keywords.
+* For finding by Name, Email, Department and Role, the order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* For finding by Name, Department and Role, only **full words** will be matched e.g. `Han` will not match `Hans` and `Fina` will not match `Finance`.
+* For finding by Email, Email will be matched if it **contains the letter sequence** e.g. `alex` will match `alexyeoh@example.com`.
+* For finding by Name, Email, Department and Role, **matching at least one keyword** will be returned.
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` e.g. `alex yeoh` will return `alextan@example.com`, `berniceyeoh@example.com`.
+* For finding by Salary, command will find employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
+* The LOWERBOUND **cannot be larger than** the UPPERBOUND. 
+* There must be a **spacing before and after the dash**
+* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**. 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find i/A00` returns employees with IDs `A00`, `A00001`, `a0001`.
+* `find i/A00 p/9001` returns employees who match the ID and also have Phone numbers such as `90018989`, `9001`.
+* `find n/John` return employees with names `john` and `John Doe`.
+* `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
+* `find d/Finance` return employees in departments `finance`, `Finance 1`.
+* `find d/finance marketing` returns employees in departments `finance 1`, `marketing 2`.
+* `find r/Manager` returns employees whose roles are `manager`, `Executive Manager`.
+* `find r/executive manager` returns employees whose roles are `Executive Chef`, `Product manager`.
+* `find e/alex bernice` returns employees with emails `alexyeoh@example.com`, `bernicetan@example.com`.
+* `find s/1000 - 5000` returns employees with salaries `1000.00`, `4321.10`, `5000.00`.
+
 
 ### Deleting an employee : `delete`
 
-Deletes the specified employee from the employee book.
+Deletes the specified employee from EmployeeManager.
 
-Format: `delete id/EMPLOYEE_ID`
+Format: `delete INDEX`
 
-* Deletes the employee with the specified `EMPLOYEE_ID`.
-* The `EMPLOYEE_ID` should be the ID of an employee that exists in the employee book.
-* If the `EMPLOYEE_ID` specified does not match any employee in the employee book, 
-no employee will be deleted or modified.
+* Deletes the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employee list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete id/A1234567B` deletes the employee with the ID `A1234567B` if such employee exists.
-
+* `list` followed by `delete 2` deletes the 2nd person in EmployeeManager.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Sort displayed entries : `sort`
 
@@ -210,12 +214,61 @@ Examples:
 * `sort n/` sorts the displayed list in ascending name.
 * `sort p/` sorts the displayed list in ascending phone.
 
+### Bulk increment salaries of displayed entries: `increment`
+
+  Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
+
+  Format: `increment INCREMENT`
+* Increments the salaries of all employees in the displayed list by `INCREMENT`.
+* `INCREMENT` can be positive or negative.
+* `INCREMENT` is invalid if `INCREMENT` causes the salary of any employee in the displayed list to fall below 0 or exceed the maximum salary.
+* `INCREMENT` can have at most 2 decimals.
+
+  Examples:
+* `increment 1000` increments the salaries of all employees in the displayed list by `1000`.
+* `increment -100.65` decrements the salaries of all employees in the displayed list by `100.65`.
+
+### Undoing a modification : `undo`
+
+  Restores EmployeeManager to the state before the last command that made a modification to the data in EmployeeManager.
+  Such commands include `add`, `delete`, `edit`, `clear` and `increment`.
+
+  Format: `undo`
+
+  Examples:
+* `clear` followed by `undo` restores EmployeeManager to the state before `clear` was executed.
+* `delete 3` followed by `sort n/` followed by `undo` restores EmployeeManager to the state before `delete 3` was executed.
+
+### Redoing an Undo : `redo`
+
+If the previous command was an `undo`, then will restore EmployeeManager to the state before `undo`.
+
+Format: `redo`
+
+Examples:
+* Adding `John`, followed by `undo` and then `redo` will return `John` back into EmployeeManager.
+* Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
 
 ### Clearing all entries : `clear`
 
-Clears the current list of entries from EmployeeManager.
+Clears the current displayed list of entries from EmployeeManager.
 
 Format: `clear`
+
+### View command history : `history`
+
+Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
+If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
+
+Format: `history N`
+* N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
+* N must be a positive integer.
+
+Examples:
+* `history 5` displays up to the last 5 valid user commands.
+* `history 1` displays the most recent valid user command.
+* `history 10` displays up to the last 10 valid user commands. 
+If fewer than 10 commands have been executed, all available commands are shown.
 
 ### Exiting the program : `exit`
 
@@ -262,8 +315,22 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add [id/EMPLOYEE_ID] name/NAME position/POSITION department/DEPARTMENT salary/SALARY` <br> e.g., `add id/A035B name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000`, `name/Richard Hew Jia Liang position/Supervisor department/Marketing salary/5000` |
-| **Delete** | `delete id/EMPLOYEE_ID`<br> e.g., `delete id/A1234567B`                                                                                                                                                                                                                             |
-| **List**   | `list`                                                                                                                                                                                                                                                                              |
+| Action        | Format, Examples                                                                                                                                                                                                                                    |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY` <br> e.g.,`add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000`                                                                                    |
+| **Clear**     | `clear`                                                                                                                                                                                                                                             |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                 |
+| **Edit**      | `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`<br> e.g., `edit 1 p/91234567 e/johndoe@example.com`, `edit 2 n/Betsy Crower`                                                                                    |
+| **Exit**      | `exit`                                                                                                                                                                                                                                              |
+| **Export**    | `export FILE_PATH`<br> e.g., `export C:\Users\user\Downloads\EmployeeList.csv`                                                                                                                                                                      |
+| **Find**      | `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`<br> e.g., `find n/John`, `find i/A00 p/9001`, `find r/executive manager` |
+| **History**   | `history N`<br> e.g., `history 2`                                                                                                                                                                                                                   |
+| **Increment** | `increment INCREMENT`<br> e.g., `increment 1000`, `increment -100.65`                                                                                                                                                                               |
+| **Import**    | `import FILE_PATH`<br> e.g., `import C:\Users\user\Downloads\EmployeeList.csv`                                                                                                                                                                      |
+| **List**      | `list`                                                                                                                                                                                                                                              |
+| **Redo**      | `redo`                                                                                                                                                                                                                                              |
+| **Sort**      | `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`<br> e.g., `sort i/`, `sort n/`, `sort p/`                                                                                                                                                                 |
+| **Undo**      | `undo`                                                                                                                                                                                                                                              |
+
+
+
