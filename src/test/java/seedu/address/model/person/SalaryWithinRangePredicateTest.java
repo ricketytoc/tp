@@ -63,8 +63,8 @@ class SalaryWithinRangePredicateTest {
 
     @Test
     public void toStringMethod() {
-        int keywordLowerBound = 1000;
-        int keywordUpperBound = 5000;
+        double keywordLowerBound = 1000.0;
+        double keywordUpperBound = 5000.0;
         SalaryWithinRangePredicate predicate = new SalaryWithinRangePredicate(keywordLowerBound, keywordUpperBound);
 
         String expected = SalaryWithinRangePredicate.class.getCanonicalName() + "{lowerBound=" + keywordLowerBound
