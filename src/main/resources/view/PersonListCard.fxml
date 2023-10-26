@@ -21,7 +21,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" scaleX="1.05" spacing="5" style="-fx-background-color: #007aa2; -fx-background-radius: 5;" translateX="-5.0" translateY="-5.0">
+      <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: #007aa2; -fx-background-radius: 5;" translateX="-5.0" translateY="-5.0">
         <Label fx:id="id" style="-fx-font-weight: bold;" styleClass="cell_big_label" textFill="WHITE">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -40,6 +40,9 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
       </HBox>
       <FlowPane fx:id="tags" />
          <HBox prefHeight="0.0" prefWidth="130.0">
