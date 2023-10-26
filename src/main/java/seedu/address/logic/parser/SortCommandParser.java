@@ -12,7 +12,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonComparators;
+import seedu.address.model.person.comparators.DepartmentComparator;
+import seedu.address.model.person.comparators.EmailComparator;
+import seedu.address.model.person.comparators.IdComparator;
+import seedu.address.model.person.comparators.NameComparator;
+import seedu.address.model.person.comparators.PhoneComparator;
+import seedu.address.model.person.comparators.RoleComparator;
+import seedu.address.model.person.comparators.SalaryComparator;
 
 
 /**
@@ -41,31 +47,31 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         if (argMultimap.hasPrefix(PREFIX_ID)) {
-            return new SortCommand(PersonComparators.COMPARATOR_ID);
+            return new SortCommand(new IdComparator());
         }
 
         if (argMultimap.hasPrefix(PREFIX_NAME)) {
-            return new SortCommand(PersonComparators.COMPARATOR_NAME);
+            return new SortCommand(new NameComparator());
         }
 
         if (argMultimap.hasPrefix(PREFIX_DEPARTMENT)) {
-            return new SortCommand(PersonComparators.COMPARATOR_DEPARTMENT);
+            return new SortCommand(new DepartmentComparator());
         }
 
         if (argMultimap.hasPrefix(PREFIX_EMAIL)) {
-            return new SortCommand(PersonComparators.COMPARATOR_EMAIL);
+            return new SortCommand(new EmailComparator());
         }
 
         if (argMultimap.hasPrefix(PREFIX_ROLE)) {
-            return new SortCommand(PersonComparators.COMPARATOR_ROLE);
+            return new SortCommand(new RoleComparator());
         }
 
         if (argMultimap.hasPrefix(PREFIX_SALARY)) {
-            return new SortCommand(PersonComparators.COMPARATOR_SALARY);
+            return new SortCommand(new SalaryComparator());
         }
 
         if (argMultimap.hasPrefix(PREFIX_PHONE)) {
-            return new SortCommand(PersonComparators.COMPARATOR_PHONE);
+            return new SortCommand(new PhoneComparator());
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
