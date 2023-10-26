@@ -11,7 +11,7 @@ ClearCommand -[LOGIC_COLOR]> ModelManager: clearSortedFilteredPersonsList()
 activate ModelManager MODEL_COLOR
 
 loop For each person in the displayed list
-    ModelManager -[MODEL_COLOR]> ModelManager: deletePerson
+    ModelManager -[MODEL_COLOR]> ModelManager: deletePerson()
     activate ModelManager MODEL_COLOR_T1
     ModelManager --[MODEL_COLOR]> ModelManager
     deactivate ModelManager
