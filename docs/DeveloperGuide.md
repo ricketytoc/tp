@@ -154,6 +154,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Edit Feature
+The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
+three classes, `EditCommand`, `EditCommandParser` and `Model`.
+
+#### Implementation
+
+`EditCommand`: Stores the edited changes to be changed.<br>
+`EditCommandParser`: Parses the user's edit command to create an appropriate EditCommand object.<br>
+`Model`: Fetches the employee list from `Model#getSortedFilteredPersonList()` and finds the employee whose information needs to be edited.
+
+Given below is an example usage scenario of edit command. 
+
+Step 1: The user enters `edit 2 p/12345678` to update the phone number of the second employee in the list.<br>
+`EditCommandParser` parses the user command and creates a `EditCommand`.
+
+Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update the information of the chosen employee.
+
+The sequence diagram below illustrates how the edit command works: 
+![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
+
+
 ### Increment Feature
 
 #### Implementation
