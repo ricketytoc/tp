@@ -139,12 +139,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             return false;
         }
         String upperBound = salaryArgs.split(" - ", 2)[1];
-        try {
-            double upperBoundDouble = Double.parseDouble(upperBound);
-            if (upperBoundDouble > Salary.MAXIMUM_SALARY) {
-                return false;
-            }
-        } catch (NumberFormatException e) {
+        String lowerBound = salaryArgs.split(" - ", 2)[0];
+        double upperBoundDouble = Double.parseDouble(upperBound);
+        double lowerBoundDouble = Double.parseDouble(lowerBound);
+        if (upperBoundDouble > Salary.MAXIMUM_SALARY || lowerBoundDouble > upperBoundDouble) {
             return false;
         }
         return true;

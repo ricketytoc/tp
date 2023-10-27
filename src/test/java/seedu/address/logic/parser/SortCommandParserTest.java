@@ -14,8 +14,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.model.person.PersonComparators;
-
+import seedu.address.model.person.comparators.DepartmentComparator;
+import seedu.address.model.person.comparators.EmailComparator;
+import seedu.address.model.person.comparators.IdComparator;
+import seedu.address.model.person.comparators.NameComparator;
+import seedu.address.model.person.comparators.PhoneComparator;
+import seedu.address.model.person.comparators.RoleComparator;
+import seedu.address.model.person.comparators.SalaryComparator;
 
 public class SortCommandParserTest {
 
@@ -36,25 +41,25 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSortCommand() {
-        SortCommand expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_DEPARTMENT);
+        SortCommand expectedSortCommand = new SortCommand(new DepartmentComparator());
         assertParseSuccess(parser, " " + PREFIX_DEPARTMENT.getPrefix(), expectedSortCommand);
 
-        expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_EMAIL);
+        expectedSortCommand = new SortCommand(new EmailComparator());
         assertParseSuccess(parser, " " + PREFIX_EMAIL.getPrefix(), expectedSortCommand);
 
-        expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_ID);
+        expectedSortCommand = new SortCommand(new IdComparator());
         assertParseSuccess(parser, " " + PREFIX_ID.getPrefix(), expectedSortCommand);
 
-        expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_NAME);
+        expectedSortCommand = new SortCommand(new NameComparator());
         assertParseSuccess(parser, " " + PREFIX_NAME.getPrefix(), expectedSortCommand);
 
-        expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_PHONE);
+        expectedSortCommand = new SortCommand(new PhoneComparator());
         assertParseSuccess(parser, " " + PREFIX_PHONE.getPrefix(), expectedSortCommand);
 
-        expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_ROLE);
+        expectedSortCommand = new SortCommand(new RoleComparator());
         assertParseSuccess(parser, " " + PREFIX_ROLE.getPrefix(), expectedSortCommand);
 
-        expectedSortCommand = new SortCommand(PersonComparators.COMPARATOR_SALARY);
+        expectedSortCommand = new SortCommand(new SalaryComparator());
         assertParseSuccess(parser, " " + PREFIX_SALARY.getPrefix(), expectedSortCommand);
     }
 
