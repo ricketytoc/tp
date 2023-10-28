@@ -160,9 +160,11 @@ Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OT
 Examples:
 * `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, whose name contains the word `alex` and whose phone number contains `9001`.
 
-#### Finding an employee by name: `find n/KEYWORD [OTHER KEYWORD]`
+#### Finding an employee by name: `find n/`
 
 Find employees whose name matches at least one of the keywords in full.
+
+Format: `find n/KEYWORD [OTHER KEYWORD]`
 
 * The order of the keywords does not matter.
 * Only **full keywords** will be matched.
@@ -172,21 +174,27 @@ Examples:
 * `find n/John` return employees with names `john` and `John Doe`.
 * `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
 
-#### Finding an employee by department: `find d/KEYWORD [OTHER KEYWORD]`
+#### Finding an employee by department: `find d/`
 
 Find employees whose department matches at least one of the keywords in full.
 
+Format: `find d/KEYWORD [OTHER KEYWORD]`
+
 * Works the same as finding an employee by name.
 
-#### Finding an employee by role: `find r/KEYWORD [OTHER KEYWORD]`
+#### Finding an employee by role: `find r/`
 
 Find employees whose role matches at least one of the keywords in full.
 
+Format: `find r/KEYWORD [OTHER KEYWORD]`
+
 * Works the same as finding an employee by name.
 
-#### Finding an employee by email: `find e/KEYWORD [OTHER KEYWORD]`
+#### Finding an employee by email: `find e/`
 
 Find employees whose email contains at least one of the keywords.
+
+Format: `find e/KEYWORD [OTHER KEYWORD]`
 
 * The order of the keywords does not matter.
 * Email will be matched if it **contains a keyword**.
@@ -195,24 +203,30 @@ Find employees whose email contains at least one of the keywords.
 Examples:
 * `find e/alex bernice` returns employees with emails `alexyeoh@example.com`, `bernicetan@example.com`.
 
-#### Finding an employee by ID: `find i/KEYWORD`
+#### Finding an employee by ID: `find i/`
 
 Finds employees whose ID contains the keyword.
+
+Format: `find i/KEYWORD`
 
 * The command will find employees whose ID and Phone number contains the respective keywords.
 
 Examples:
 * `find i/A00` returns employees with IDs `A00`, `A00001` and `a0001`.
 
-#### Finding an employee by phone number: `find p/KEYWORD`
+#### Finding an employee by phone number: `find p/`
 
 Find employees whose phone number contains the keyword.
 
+Format: `find p/KEYWORD`
+
 * Works the same as finding an employee by ID.
 
-#### Finding an employee by salary: `find s/LOWERBOUND - UPPERBOUND`
+#### Finding an employee by salary: `find s/`
 
 Finds employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
+
+Format: `find s/LOWERBOUND - UPPERBOUND`
 
 * The LOWERBOUND **cannot be larger than** the UPPERBOUND.
 * There must be a **spacing before and after the dash**
