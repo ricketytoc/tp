@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -32,7 +33,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Except for Salary attribute, finds all persons whose "
             + "attributes contain the keyword (case-insensitive) specified for those attributes and displays them as a "
-            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead. "
+            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead and the "
+            + "lower bound has to be smaller or equal to the upper bound. "
             + "Upper bound of the range should be less than the maximum allowed salary which is "
             + Salary.MAXIMUM_SALARY
             + ".\n"
@@ -57,7 +59,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

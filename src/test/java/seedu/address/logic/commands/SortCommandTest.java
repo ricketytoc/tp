@@ -20,7 +20,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonComparators;
+import seedu.address.model.person.comparators.DepartmentComparator;
+import seedu.address.model.person.comparators.EmailComparator;
+import seedu.address.model.person.comparators.IdComparator;
+import seedu.address.model.person.comparators.NameComparator;
+import seedu.address.model.person.comparators.PhoneComparator;
+import seedu.address.model.person.comparators.RoleComparator;
+import seedu.address.model.person.comparators.SalaryComparator;
 
 
 /**
@@ -41,8 +47,8 @@ public class SortCommandTest {
 
     @Test
     public void equals() {
-        Comparator<Person> firstComparator = PersonComparators.COMPARATOR_ID;
-        Comparator<Person> secondComparator = PersonComparators.COMPARATOR_EMAIL;
+        Comparator<Person> firstComparator = new IdComparator();
+        Comparator<Person> secondComparator = new EmailComparator();
 
         SortCommand sortFirstCommand = new SortCommand(firstComparator);
         SortCommand sortSecondCommand = new SortCommand(secondComparator);
@@ -73,7 +79,7 @@ public class SortCommandTest {
     @Test
     public void execute_id_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getId().value);
+        Comparator<Person> comparator = new IdComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 
@@ -84,7 +90,7 @@ public class SortCommandTest {
     @Test
     public void execute_name_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getName().fullName);
+        Comparator<Person> comparator = new NameComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 
@@ -96,7 +102,7 @@ public class SortCommandTest {
     @Test
     public void execute_phone_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getPhone().value);
+        Comparator<Person> comparator = new PhoneComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 
@@ -107,7 +113,7 @@ public class SortCommandTest {
     @Test
     public void execute_department_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getDepartment().value);
+        Comparator<Person> comparator = new DepartmentComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 
@@ -118,7 +124,7 @@ public class SortCommandTest {
     @Test
     public void execute_role_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getRole().value);
+        Comparator<Person> comparator = new RoleComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 
@@ -129,7 +135,7 @@ public class SortCommandTest {
     @Test
     public void execute_email_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getEmail().value);
+        Comparator<Person> comparator = new EmailComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 
@@ -140,7 +146,7 @@ public class SortCommandTest {
     @Test
     public void execute_salary_multiplePersons() {
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        Comparator<Person> comparator = Comparator.comparing(p -> p.getSalary().value);
+        Comparator<Person> comparator = new SalaryComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
 

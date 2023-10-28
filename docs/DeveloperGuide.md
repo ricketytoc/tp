@@ -154,6 +154,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### History feature
+The `history` feature allows users to access past valid commands that they made. This feature is supported by 
+three classes, `CommandHistory`, `HistoryCommandParser` and `HistoryCommand`. 
+
+#### Implementation
+
+`CommandHistory`: This class is responsible for storing the history of valid commands that the user has entered.  
+`HistoryCommandParser`: Parses the user input to create an appropriate HistoryCommand object.  
+`HistoryCommand`: Executes the history command.  
+
+After a successful user command has been executed `CommandHistory#add(input)` will be called to store the successful 
+user input in the `CommandHistory`. When a user inputs a inputs a history command with the appropriate argument, the 
+`AddressBookParser` will be called to produce the `HistoryCommandParser` to properly parse the input. A 
+`HistoryCommand` object will be created. When the `Command#execute(model, commandHistory)` is called on the 
+`HistoryCommand`, the `HistoryCommand` will call `CommandHistory#getUserCommandHistory()` to get the list of
+valid user commands. `HistoryCommand` will then return a string of the appropriate number of user command that the
+user has specified.
+
+![History Command Class Diagram](images/HistoryCommandClassDiagram.png)
+
+
+#### Design Considerations
+
+**Aspect: Which component should we choose to store CommandHistory:**
+
+* **Alternative 1 (current choice):** Store it under `Logic`.  
+**Why:** The Logic component is responsible for command execution and parsing. 
+Adding a history feature here would allow you to easily keep track of commands as they are executed.
+
+* **Alternative 2:** Store it under `Model`.  
+**Why:** The `Model` component is responsible for maintaining the state of the application. If we consider
+the command history part of the application's state, it might make more sense to put it here.
+
+**Decision:** Since the command history is only active for the duration of the application and does not need
+to be saved, placing it in the `logic` component is more appropriate. If the command history need to persist
+across sessions, it might be better to place it in the `model` component, as this layer is generally responsible
+for data to be saved.
 
 ### Sort feature
 
@@ -200,7 +237,6 @@ The following sequence diagram illustrates how the find feature works:
 
 </div>
 
-
 ### Edit Feature
 The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
 three classes, `EditCommand`, `EditCommandParser` and `Model`.
@@ -220,7 +256,6 @@ Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update
 
 The sequence diagram below illustrates how the edit command works: 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
-
 
 ### Increment Feature
 
@@ -256,7 +291,6 @@ The following sequence diagram illustrates how the increment feature works:
 * **Alternative 2:** Check validity while incrementing each person’s salary.
   * Pros: Less time required to check and increment salaries.
   * Cons: If the `increment` is invalid for a person halfway through the list, some persons would have their salaries incremented while the remaining persons would not have their salaries incremented.
-
 
 ### \[Proposed\] Undo/redo feature
 
@@ -342,6 +376,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Clear Feature
+
+The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
+
+#### Proposed Implementation
+When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
+`Model#clearSortedFilteredPersonList` will loop through the persons in the filtered list and
+delete each person from the filtered list using `Model#deletePerson` until the list is cleared.
+
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -403,10 +448,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with poor eyesight             | view the information easily                                                                               | it is not difficult for me to use the application.                                    |
 | `*`      | HR staff member                     | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                                |
 | `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                 |
-| `*`      | HR staff member                     | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                                 |
+| `*`      | HR staff member                     | set performance goals for employees                                                                       | I can align the employee with the company’s objectives.                               |
 | `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                     |
-| `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                 |
-| `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes              |
+| `* *`    | careless HR staff member            | undo my last command                                                                                      | I can easily revert to a copy with no mistakes if I made mistakes                     |
 
 ### Use cases
 
