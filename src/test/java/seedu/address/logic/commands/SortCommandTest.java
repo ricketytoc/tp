@@ -82,6 +82,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new IdComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(TRUDY, EVE, MALLORY), model.getSortedFilteredPersonList());
@@ -93,6 +94,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new NameComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(EVE, MALLORY, TRUDY), model.getSortedFilteredPersonList());
@@ -105,6 +107,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new PhoneComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(TRUDY, MALLORY, EVE), model.getSortedFilteredPersonList());
@@ -116,6 +119,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new DepartmentComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(EVE, MALLORY, TRUDY), model.getSortedFilteredPersonList());
@@ -127,6 +131,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new RoleComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(TRUDY, EVE, MALLORY), model.getSortedFilteredPersonList());
@@ -138,6 +143,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new EmailComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(EVE, MALLORY, TRUDY), model.getSortedFilteredPersonList());
@@ -149,6 +155,7 @@ public class SortCommandTest {
         Comparator<Person> comparator = new SalaryComparator();
         SortCommand command = new SortCommand(comparator);
         expectedModel.updateSortedPersonList(comparator);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(TRUDY, MALLORY, EVE), model.getSortedFilteredPersonList());
