@@ -96,12 +96,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             return false;
         }
         String upperBound = salaryArgs.split(" - ", 2)[1];
-        try {
-            double upperBoundDouble = Double.parseDouble(upperBound);
-            if (upperBoundDouble > Salary.MAXIMUM_SALARY) {
-                return false;
-            }
-        } catch (NumberFormatException e) {
+        double upperBoundDouble = Double.parseDouble(upperBound);
+        if (upperBoundDouble > Salary.MAXIMUM_SALARY) {
             return false;
         }
         return true;
@@ -115,7 +111,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         return Double.parseDouble(salaryArgs.split(" - ", 2)[1]);
     }
 
-    private void parseIdKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parseIdKeyword(ArrayList<Predicate<Person>> predicateList,
+                                String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -124,7 +121,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         predicateList.add(new IdContainsKeywordsPredicate(trimmedArgs));
     }
 
-    private void parseNameKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parseNameKeyword(ArrayList<Predicate<Person>> predicateList,
+                                  String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -134,7 +132,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         predicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
-    private void parseRoleKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parseRoleKeyword(ArrayList<Predicate<Person>> predicateList,
+                                  String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -144,7 +143,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         predicateList.add(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
     }
 
-    private void parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList,
+                                        String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -154,7 +154,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
     }
 
-    private void parseEmailKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parseEmailKeyword(ArrayList<Predicate<Person>> predicateList,
+                                   String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -164,7 +165,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         predicateList.add(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
     }
 
-    private void parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList,
+                                    String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -178,7 +180,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         predicateList.add(new SalaryWithinRangePredicate(lowerBound, upperBound));
     }
 
-    private void parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList, String trimmedArgs) throws ParseException {
+    private void parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList,
+                                   String trimmedArgs) throws ParseException {
         ParserUtil.checkFindArgs(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
