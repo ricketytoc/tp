@@ -147,36 +147,78 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
-### Locating persons by name: `find`
+### Finding an employee by multiple attributes: `find`
 
 Finds the employees that satisfy the find requirements based on attributes.
 
 Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
 * Find command must be used with **at least one prefix** and the keyword for the prefix **must not be empty**.
-* Refer to the prefix summary to understand which employee attribute corresponds with which prefix.
 * Find command for all attributes are **case-insensitive**. 
-* For finding by ID and Phone number, the command will find employees whose ID and Phone number contains the respective keywords.
-* For finding by Name, Email, Department and Role, the order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* For finding by Name, Department and Role, only **full words** will be matched e.g. `Han` will not match `Hans` and `Fina` will not match `Finance`.
-* For finding by Email, Email will be matched if it **contains the letter sequence** e.g. `alex` will match `alexyeoh@example.com`.
-* For finding by Name, Email, Department and Role, **matching at least one keyword** will be returned.
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` e.g. `alex yeoh` will return `alextan@example.com`, `berniceyeoh@example.com`.
-* For finding by Salary, command will find employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
-* The LOWERBOUND **cannot be larger than** the UPPERBOUND. 
-* There must be a **spacing before and after the dash**
-* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**. 
+* Finds employees whose attributes satisfy all the requirements of the FindCommand
 
 Examples:
-* `find i/A00` returns employees with IDs `A00`, `A00001`, `a0001`.
-* `find i/A00 p/9001` returns employees who match the ID and also have Phone numbers such as `90018989`, `9001`.
+* `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, whose name contains the word `alex` and whose phone number contains `9001`.
+
+#### Finding an employee by name: `find n/KEYWORD [OTHER KEYWORD]`
+
+Find employees whose name matches at least one of the keywords in full.
+
+* The order of the keywords does not matter.
+* Only **full keywords** will be matched.
+* Employees whose name **matches at least one keyword** will be returned.
+
+Examples:
 * `find n/John` return employees with names `john` and `John Doe`.
 * `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
-* `find d/Finance` return employees in departments `finance`, `Finance 1`.
-* `find d/finance marketing` returns employees in departments `finance 1`, `marketing 2`.
-* `find r/Manager` returns employees whose roles are `manager`, `Executive Manager`.
-* `find r/executive manager` returns employees whose roles are `Executive Chef`, `Product manager`.
+
+#### Finding an employee by department: `find d/KEYWORD [OTHER KEYWORD]`
+
+Find employees whose department matches at least one of the keywords in full.
+
+* Works the same as finding an employee by name.
+
+#### Finding an employee by role: `find r/KEYWORD [OTHER KEYWORD]`
+
+Find employees whose role matches at least one of the keywords in full.
+
+* Works the same as finding an employee by name.
+
+#### Finding an employee by email: `find e/KEYWORD [OTHER KEYWORD]`
+
+Find employees whose email contains at least one of the keywords.
+
+* The order of the keywords does not matter.
+* Email will be matched if it **contains a keyword**.
+* Email **containing at least one keyword** will be returned.
+
+Examples:
 * `find e/alex bernice` returns employees with emails `alexyeoh@example.com`, `bernicetan@example.com`.
+
+#### Finding an employee by ID: `find i/KEYWORD`
+
+Finds employees whose ID contains the keyword.
+
+* The command will find employees whose ID and Phone number contains the respective keywords.
+
+Examples:
+* `find i/A00` returns employees with IDs `A00`, `A00001` and `a0001`.
+
+#### Finding an employee by phone number: `find p/KEYWORD`
+
+Find employees whose phone number contains the keyword.
+
+* Works the same as finding an employee by ID.
+
+#### Finding an employee by salary: `find s/LOWERBOUND - UPPERBOUND`
+
+Finds employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
+
+* The LOWERBOUND **cannot be larger than** the UPPERBOUND.
+* There must be a **spacing before and after the dash**
+* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**.
+
+Examples:
 * `find s/1000 - 5000` returns employees with salaries `1000.00`, `4321.10`, `5000.00`.
 
 
