@@ -34,6 +34,10 @@ public class SortCommand extends Command {
 
             + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID
             + "\n" + COMMAND_WORD + " " + PREFIX_NAME;
+    public static final String MESSAGE_SUMMARY = "Sort: " + COMMAND_WORD
+            + "[" + PREFIX_ID + "] " + "or " + "[" + PREFIX_DEPARTMENT + "] " + "or " + "[" + PREFIX_EMAIL + "] "
+            + "or " + "[" + PREFIX_SALARY + "] " + "or " + "[" + PREFIX_ROLE + "] "
+            + "or " + "[" + PREFIX_NAME + "] " + "or " + "[" + PREFIX_PHONE + "] ";
 
     private final Comparator<Person> comparator;
 

@@ -9,23 +9,50 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.IncrementCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2324s1-cs2103t-t14-1.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "For more detailed help, please refer to the user guide: " +
+            USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "HelpWindow.fxml";
+    private static final String FXML = "DraftHelpWindow.fxml";
+    private static final String COMMAND_SUMMARY = AddCommand.MESSAGE_SUMMARY + "\n"
+            + ClearCommand.MESSAGE_SUMMARY + "\n"
+            + DeleteCommand.MESSAGE_SUMMARY + "\n"
+            + EditCommand.MESSAGE_SUMMARY + "\n"
+            + ExitCommand.MESSAGE_SUMMARY + "\n"
+            + FindCommand.MESSAGE_SUMMARY + "\n"
+            + HelpCommand.MESSAGE_SUMMARY + "\n"
+            + HistoryCommand.MESSAGE_SUMMARY + "\n"
+            + IncrementCommand.MESSAGE_SUMMARY + "\n"
+            + ListCommand.MESSAGE_SUMMARY + "\n"
+            + SortCommand.MESSAGE_SUMMARY;
 
     @FXML
     private Button copyButton;
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label commandSummary;
+
 
     /**
      * Creates a new HelpWindow.
@@ -35,6 +62,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        commandSummary.setText(COMMAND_SUMMARY);
     }
 
     /**
