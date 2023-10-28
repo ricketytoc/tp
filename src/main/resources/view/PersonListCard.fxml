@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" style="-fx-background-color: white; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane style="-fx-background-color: #c5d4eb; -fx-background-radius: 5; -fx-border-color: #007aa2; -fx-border-radius: 5;" HBox.hgrow="ALWAYS">
+  <GridPane style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: #007aa2; -fx-border-radius: 5;" styleClass="person-card" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-radius: 5;" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-radius: 5; -fx-background-color: #c5d4eb;" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
