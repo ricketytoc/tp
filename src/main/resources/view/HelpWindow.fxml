@@ -20,11 +20,11 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <VBox fx:id="helpMessageContainer" prefHeight="619.0" prefWidth="745.0">
+      <VBox fx:id="helpMessageContainer" prefHeight="619.0" prefWidth="745.0" style="-fx-background-color: #c5d4eb;">
         <children>
           <HBox prefHeight="852.0" prefWidth="901.0">
             <children>
-              <Label fx:id="commandSummary" text="Label" textFill="#fffefe" wrapText="true">
+              <Label fx:id="commandSummary" text="Label" wrapText="true">
                 <font>
                   <Font size="13.0" />
                 </font>
