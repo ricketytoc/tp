@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -19,6 +21,7 @@ import seedu.address.model.person.Salary;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -136,5 +139,47 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Checks a {@code String findArgs} is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code findArgs} is invalid.
+     */
+    public static void checkFindArgs(String findArgs) throws ParseException {
+        requireNonNull(findArgs);
+        String trimmedFindArgs = findArgs.trim();
+        if (trimmedFindArgs.contains("/")) {
+            throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
+        }
+    }
+
+    /**
+     * Parses {@code String increment} into a {@code Increment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code increment} is invalid.
+     */
+    public static Increment parseIncrement(String increment) throws ParseException {
+        requireNonNull(increment);
+        String trimmedIncrement = increment.trim();
+        if (!Increment.isValidIncrement(trimmedIncrement)) {
+            throw new ParseException(Increment.MESSAGE_CONSTRAINTS);
+        }
+        return new Increment(trimmedIncrement);
+    }
+
+    /**
+     * Parses {@code String number} into an {@code int} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified number is invalid (not non-zero unsigned integer).
+     */
+    public static int parseHistory(String number) throws ParseException {
+        String trimmedIndex = number.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER);
+        }
+        return Integer.parseInt(trimmedIndex);
     }
 }
