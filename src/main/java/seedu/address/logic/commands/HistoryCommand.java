@@ -26,7 +26,8 @@ public class HistoryCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Displayed up to the last %1$s valid user commands. "
             + "If fewer than %2$s commands are available, all are shown.\n"
             + "%3$s";
-    public static final String MESSAGE_SUMMARY =  "History: " + COMMAND_WORD + " N";
+    public static final String MESSAGE_SUMMARY = "History: " + COMMAND_WORD + " N" + "\n"
+            + "Example: " + COMMAND_WORD + " 3" + "\n";
 
     private final int numberOfUserCommands;
 

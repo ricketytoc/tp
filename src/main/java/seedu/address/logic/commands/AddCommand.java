@@ -50,7 +50,15 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_DEPARTMENT + "DEPARTMENT "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_SALARY + "SALARY";
+            + PREFIX_SALARY + "SALARY" + "\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_ID + "A00001 "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_DEPARTMENT + "Finance "
+            + PREFIX_ROLE + "Manager "
+            + PREFIX_SALARY + "5000 " + "\n";
 
     private final Person toAdd;
 

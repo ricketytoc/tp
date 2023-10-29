@@ -66,7 +66,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
             + "[" + PREFIX_ROLE + "ROLE] "
-            + "[" + PREFIX_SALARY + "SALARY]";
+            + "[" + PREFIX_SALARY + "SALARY]" + "\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ID + "A0123456B "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_DEPARTMENT + "Finance "
+            + PREFIX_ROLE + "Manager "
+            + PREFIX_SALARY + "5000" + "\n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

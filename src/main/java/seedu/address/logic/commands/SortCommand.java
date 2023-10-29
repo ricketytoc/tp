@@ -31,13 +31,13 @@ public class SortCommand extends Command {
             + "or " + "[" + PREFIX_SALARY + "] " + "or " + "[" + PREFIX_ROLE + "] "
             + "or " + "[" + PREFIX_NAME + "] " + "or " + "[" + PREFIX_PHONE + "] "
             + "\n"
-
             + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID
             + "\n" + COMMAND_WORD + " " + PREFIX_NAME;
     public static final String MESSAGE_SUMMARY = "Sort: " + COMMAND_WORD
             + "[" + PREFIX_ID + "] " + "or " + "[" + PREFIX_DEPARTMENT + "] " + "or " + "[" + PREFIX_EMAIL + "] "
             + "or " + "[" + PREFIX_SALARY + "] " + "or " + "[" + PREFIX_ROLE + "] "
-            + "or " + "[" + PREFIX_NAME + "] " + "or " + "[" + PREFIX_PHONE + "] ";
+            + "or " + "[" + PREFIX_NAME + "] " + "or " + "[" + PREFIX_PHONE + "] " + "\n"
+            + "Examples: " + COMMAND_WORD + " " + PREFIX_ID + "\n";
 
     private final Comparator<Person> comparator;
 

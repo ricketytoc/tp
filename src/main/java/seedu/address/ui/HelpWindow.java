@@ -27,12 +27,13 @@ import seedu.address.logic.commands.SortCommand;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2324s1-cs2103t-t14-1.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "For more detailed help, please refer to the user guide: " +
-            USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "For more detailed help, please refer to the user guide: "
+            + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "DraftHelpWindow.fxml";
-    private static final String COMMAND_SUMMARY = AddCommand.MESSAGE_SUMMARY + "\n"
+    private static final String FXML = "HelpWindow.fxml";
+    private static final String COMMAND_SUMMARY = "Command Summary" + "\n"
+            + AddCommand.MESSAGE_SUMMARY + "\n"
             + ClearCommand.MESSAGE_SUMMARY + "\n"
             + DeleteCommand.MESSAGE_SUMMARY + "\n"
             + EditCommand.MESSAGE_SUMMARY + "\n"

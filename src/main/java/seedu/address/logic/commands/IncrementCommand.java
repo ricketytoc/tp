@@ -34,7 +34,8 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_INVALID_INCREMENT = "Increment causes salary of {%1$s} to fall below 0 "
             + "or exceed the maximum salary of %2$.2f";
-    public static final String MESSAGE_SUMMARY = "Increment: " + COMMAND_WORD + " INCREMENT";
+    public static final String MESSAGE_SUMMARY = "Increment: " + COMMAND_WORD + " INCREMENT" + "\n"
+            + "Example: " + COMMAND_WORD + " 100" + "\n";
 
     private final Increment increment;
 

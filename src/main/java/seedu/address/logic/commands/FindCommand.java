@@ -54,7 +54,14 @@ public class FindCommand extends Command {
     public static final String MESSAGE_SUMMARY = "Find: " + COMMAND_WORD + " "
             + "[" + PREFIX_ID + "ID] " + " [" + PREFIX_NAME + "NAME] " + " [" + PREFIX_PHONE + "PHONE] "
             + " [" + PREFIX_EMAIL + "EMAIL] " + " [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
-            + " [" + PREFIX_ROLE + "ROLE] " + " [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND] ";
+            + " [" + PREFIX_ROLE + "ROLE] " + " [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND]" + "\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_ID + "A0123456B "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_DEPARTMENT + "Finance "
+            + PREFIX_ROLE + "Manager "
+            + PREFIX_SALARY + "5000" + "\n";
 
     private final Predicate<Person> predicate;
 
