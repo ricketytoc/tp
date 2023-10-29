@@ -49,8 +49,8 @@ public class IncrementCommandTest {
         String expectedMessage = String.format(
                 IncrementCommand.MESSAGE_INCREMENT_SUCCESS, model.getSortedFilteredPersonList().size(),
                 INCREMENT_OBJ_POS);
-        Model expectedModel = new ModelManager(
-                getTypicalAddressBookWithIncrementedSalary(INCREMENT_OBJ_POS), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.setAddressBook(getTypicalAddressBookWithIncrementedSalary(INCREMENT_OBJ_POS));
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(incrementCommand, model, expectedMessage, expectedModel);
