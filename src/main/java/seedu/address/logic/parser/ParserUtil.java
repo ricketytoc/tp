@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
@@ -8,12 +9,24 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
+import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.IdContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryWithinRangePredicate;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -153,6 +166,7 @@ public class ParserUtil {
         if (trimmedFindArgs.contains("/")) {
             throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
         }
+        checkTrimmedArgsNotEmpty(trimmedFindArgs);
     }
 
     /**
@@ -182,4 +196,93 @@ public class ParserUtil {
         }
         return Integer.parseInt(trimmedIndex);
     }
+
+    public static void parseIdKeyword(ArrayList<Predicate<Person>> predicateList,
+                                String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        predicateList.add(new IdContainsKeywordsPredicate(trimmedArgs));
+    }
+
+    public static void parseNameKeyword(ArrayList<Predicate<Person>> predicateList,
+                                  String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+        predicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
+
+    public static void parseRoleKeyword(ArrayList<Predicate<Person>> predicateList,
+                                  String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] roleKeywords = trimmedArgs.split("\\s+");
+        predicateList.add(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
+    }
+
+    public static void parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList,
+                                        String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] departmentKeywords = trimmedArgs.split("\\s+");
+        predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
+    }
+
+    public static void parseEmailKeyword(ArrayList<Predicate<Person>> predicateList,
+                                   String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] emailKeywords = trimmedArgs.split("\\s+");
+        predicateList.add(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
+    }
+
+    public static void parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList,
+                                    String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        if (!isValidFindSalaryArgs(trimmedArgs)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        double lowerBound = findLowerBound(trimmedArgs);
+        double upperBound = findUpperBound(trimmedArgs);
+        predicateList.add(new SalaryWithinRangePredicate(lowerBound, upperBound));
+    }
+
+    public static void parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList,
+                                   String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        predicateList.add(new PhoneContainsKeywordsPredicate(trimmedArgs));
+    }
+
+    /**
+     * Checks whether salary arguments are valid. If the argument is not in the format of "400 - 5000" for example,
+     * it will return false. If the user enters a number greater than can be assigned to a long or if user inputs number
+     * greater than the maximum allowed salary, it will also return false.
+     * @param salaryArgs user input for find command with PREFIX_SALARY.
+     * @return true if argument is valid and false otherwise.
+     */
+    private static boolean isValidFindSalaryArgs(String salaryArgs) {
+        String validationRegex = "^\\d+\\s-\\s\\d+$";
+        if (!salaryArgs.matches(validationRegex)) {
+            return false;
+        }
+        String upperBound = salaryArgs.split(" - ", 2)[1];
+        String lowerBound = salaryArgs.split(" - ", 2)[0];
+        double upperBoundDouble = Double.parseDouble(upperBound);
+        double lowerBoundDouble = Double.parseDouble(lowerBound);
+        if (upperBoundDouble > Salary.MAXIMUM_SALARY || lowerBoundDouble > upperBoundDouble) {
+            return false;
+        }
+        return true;
+    }
+
+    private static double findLowerBound(String salaryArgs) {
+        return Double.parseDouble(salaryArgs.split(" - ", 2)[0]);
+    }
+
+    private static double findUpperBound(String salaryArgs) {
+        return Double.parseDouble(salaryArgs.split(" - ", 2)[1]);
+    }
+
+    private static void checkTrimmedArgsNotEmpty(String trimmedArgs) throws ParseException {
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
 }

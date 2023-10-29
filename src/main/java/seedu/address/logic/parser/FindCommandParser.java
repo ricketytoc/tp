@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.ParserUtil.parseNameKeyword;
+import static seedu.address.logic.parser.ParserUtil.parseRoleKeyword;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,143 +54,34 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArrayList<Predicate<Person>> predicateList = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ID).get().trim();
-            parseIdKeyword(predicateList, trimmedArgs);
+            ParserUtil.parseIdKeyword(predicateList, trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
-            parseNameKeyword(predicateList, trimmedArgs);
+            ParserUtil.parseNameKeyword(predicateList, trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ROLE).get().trim();
-            parseRoleKeyword(predicateList, trimmedArgs);
+            ParserUtil.parseRoleKeyword(predicateList, trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_DEPARTMENT).get().trim();
-            parseDepartmentKeyword(predicateList, trimmedArgs);
+            ParserUtil.parseDepartmentKeyword(predicateList, trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
-            parseEmailKeyword(predicateList, trimmedArgs);
+            ParserUtil.parseEmailKeyword(predicateList, trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_SALARY).get().trim();
-            parseSalaryKeyword(predicateList, trimmedArgs);
+            ParserUtil.parseSalaryKeyword(predicateList, trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
-            parsePhoneKeyword(predicateList, trimmedArgs);
+            ParserUtil.parsePhoneKeyword(predicateList, trimmedArgs);
         }
         assert !predicateList.isEmpty() : "predicate list is empty, please enter find command with valid prefix";
         GeneralPredicate generalPredicate = new GeneralPredicate(predicateList);
         return new FindCommand(generalPredicate);
-    }
-
-    /**
-     * Checks whether salary arguments are valid. If the argument is not in the format of "400 - 5000" for example,
-     * it will return false. If the user enters a number greater than can be assigned to a long or if user inputs number
-     * greater than the maximum allowed salary, it will also return false.
-     * @param salaryArgs user input for find command with PREFIX_SALARY.
-     * @return true if argument is valid and false otherwise.
-     */
-    private boolean isValidFindSalaryArgs(String salaryArgs) {
-        String validationRegex = "^\\d+\\s-\\s\\d+$";
-        if (!salaryArgs.matches(validationRegex)) {
-            return false;
-        }
-        String upperBound = salaryArgs.split(" - ", 2)[1];
-        String lowerBound = salaryArgs.split(" - ", 2)[0];
-        double upperBoundDouble = Double.parseDouble(upperBound);
-        double lowerBoundDouble = Double.parseDouble(lowerBound);
-        if (upperBoundDouble > Salary.MAXIMUM_SALARY || lowerBoundDouble > upperBoundDouble) {
-            return false;
-        }
-        return true;
-    }
-
-    private double findLowerBound(String salaryArgs) {
-        return Double.parseDouble(salaryArgs.split(" - ", 2)[0]);
-    }
-
-    private double findUpperBound(String salaryArgs) {
-        return Double.parseDouble(salaryArgs.split(" - ", 2)[1]);
-    }
-
-    private void parseIdKeyword(ArrayList<Predicate<Person>> predicateList,
-                                String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        predicateList.add(new IdContainsKeywordsPredicate(trimmedArgs));
-    }
-
-    private void parseNameKeyword(ArrayList<Predicate<Person>> predicateList,
-                                  String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-    }
-
-    private void parseRoleKeyword(ArrayList<Predicate<Person>> predicateList,
-                                  String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String[] roleKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
-    }
-
-    private void parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList,
-                                        String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String[] departmentKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
-    }
-
-    private void parseEmailKeyword(ArrayList<Predicate<Person>> predicateList,
-                                   String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String[] emailKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
-    }
-
-    private void parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList,
-                                    String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        if (!isValidFindSalaryArgs(trimmedArgs)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        double lowerBound = findLowerBound(trimmedArgs);
-        double upperBound = findUpperBound(trimmedArgs);
-        predicateList.add(new SalaryWithinRangePredicate(lowerBound, upperBound));
-    }
-
-    private void parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList,
-                                   String trimmedArgs) throws ParseException {
-        ParserUtil.checkFindArgs(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        predicateList.add(new PhoneContainsKeywordsPredicate(trimmedArgs));
     }
 }
