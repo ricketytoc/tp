@@ -110,7 +110,7 @@ The constraint for the attribute is also listed in the table.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to use the commands and where to look for more detailed help.
 
 ![help message](images/helpMessage.png)
 

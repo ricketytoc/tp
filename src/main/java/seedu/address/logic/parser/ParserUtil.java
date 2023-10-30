@@ -6,6 +6,7 @@ import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -21,7 +22,6 @@ import seedu.address.model.person.Salary;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -176,10 +176,14 @@ public class ParserUtil {
      * @throws ParseException if the specified number is invalid (not non-zero unsigned integer).
      */
     public static int parseHistory(String number) throws ParseException {
-        String trimmedIndex = number.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_NUMBER);
+        String trimmedNumber = number.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedNumber)) {
+            throw new ParseException(HistoryCommand.MESSAGE_INVALID_N);
         }
-        return Integer.parseInt(trimmedIndex);
+        int historyCommandNumber = Integer.parseInt(trimmedNumber);
+        if (historyCommandNumber > Integer.parseInt(HistoryCommand.MAX_HISTORY_NUMBER)) {
+            throw new ParseException(HistoryCommand.MESSAGE_INVALID_N);
+        }
+        return historyCommandNumber;
     }
 }
