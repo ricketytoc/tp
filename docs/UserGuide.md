@@ -125,7 +125,7 @@ Format: `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY`
 
 Examples:
 * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
-* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200` Adds an employee `Betsy Crowe` into the list.
+* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200.11` Adds an employee `Betsy Crowe` into the list.
 
 ### Listing all employees : `list`
 
@@ -149,13 +149,13 @@ Examples:
 
 ### Finding an employee by multiple attributes: `find`
 
-Finds the employees that satisfy the find requirements based on attributes.
+Finds the employees that satisfy the find requirements based on multiple attributes.
 
 Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
 * Find command must be used with **at least one prefix** and the keyword for the prefix **must not be empty**.
 * Find command for all attributes are **case-insensitive**. 
-* Finds employees whose attributes satisfy all the requirements of the FindCommand
+* Finds employees whose attributes satisfy all the search parameters.
 
 Examples:
 * `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, name contains the word `alex` and phone number contains `9001`.
@@ -297,13 +297,15 @@ Examples:
 
 ### Redoing an Undo : `redo`
 
-If the previous command was an `undo`, then will restore EmployeeManager to the state before `undo`.
+Restores EmployeeManager to the state before the last `undo` as long as no command that made a modification to the data in EmployeeManager was executed since the last `undo`.
+Commands that change the data in EmployeeManager include `add`, `delete`, `edit`, `clear` and `increment`.
 
 Format: `redo`
 
 Examples:
-* Adding `John`, followed by `undo` and then `redo` will return `John` back into EmployeeManager.
-* Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
+* `clear` followed by `undo`, followed by adding `John` and then `redo` will show `No more commands to redo!`.
+* `delete 3` followed by `undo` followed by `find n/alex`, then `redo` restores EmployeeManager to the state after `delete 3` was executed.
+
 
 ### Clearing all entries : `clear`
 
