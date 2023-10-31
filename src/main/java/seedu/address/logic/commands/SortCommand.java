@@ -45,7 +45,6 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateSortedPersonList(comparator);
-        model.commitAddressBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
