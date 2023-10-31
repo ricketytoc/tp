@@ -412,4 +412,12 @@ _Details coming soon ..._
 | **Undo**      | `undo`                                                                                                                                                                                                                                              |
 
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary Table
+
+| Term          | Description                                                                                                                                                                                                                                         |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**       | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                                                                                                         |
+| **GUI**       | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system.                                                                                       |
 
