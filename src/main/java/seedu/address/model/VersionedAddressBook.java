@@ -1,10 +1,10 @@
 package seedu.address.model;
 
-import seedu.address.model.exceptions.NoRedoableStateException;
-import seedu.address.model.exceptions.NoUndoableStateException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.model.exceptions.NoRedoableStateException;
+import seedu.address.model.exceptions.NoUndoableStateException;
 
 /**
  * {@code AddressBook} that keeps track of its own history.
