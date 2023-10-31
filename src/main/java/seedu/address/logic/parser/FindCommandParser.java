@@ -9,25 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.ParserUtil.parseNameKeyword;
-import static seedu.address.logic.parser.ParserUtil.parseRoleKeyword;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.GeneralPredicate;
-import seedu.address.model.person.IdContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PhoneContainsKeywordsPredicate;
-import seedu.address.model.person.RoleContainsKeywordsPredicate;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.SalaryWithinRangePredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
