@@ -250,7 +250,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in EmployeeManager.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sort displayed entries : `sort`
+### Sorting displayed employees : `sort`
 
 Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
 
@@ -270,7 +270,7 @@ Examples:
 * `sort n/` sorts the displayed list in ascending name.
 * `sort p/` sorts the displayed list in ascending phone.
 
-### Bulk increment salaries of displayed entries: `increment`
+### Incrementing multiple employees' salaries: `increment`
 
   Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
 
@@ -295,7 +295,7 @@ Examples:
 * `clear` followed by `undo` restores EmployeeManager to the state before `clear` was executed.
 * `delete 3` followed by `sort n/` followed by `undo` restores EmployeeManager to the state before `delete 3` was executed.
 
-### Redoing an Undo : `redo`
+### Redoing the previous undone command : `redo`
 
 If the previous command was an `undo`, then will restore EmployeeManager to the state before `undo`.
 
@@ -305,13 +305,13 @@ Examples:
 * Adding `John`, followed by `undo` and then `redo` will return `John` back into EmployeeManager.
 * Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
 
-### Clearing all entries : `clear`
+### Clearing multiple employees' data : `clear`
 
 Clears the current displayed list of entries from EmployeeManager.
 
 Format: `clear`
 
-### Import Data : `import`
+### Importing data : `import`
 
 Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
 data stored in the application.
@@ -323,7 +323,7 @@ Format: `import FILE_PATH`
 Examples:
 * `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
 
-### Export Data : `export`
+### Exporting data : `export`
 
 Exports a .csv file based on the data stored in EmployeeManager into the specified path.
 
@@ -334,7 +334,7 @@ Format: `export FILE_PATH`
 Examples:
 * `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
 
-### View command history : `history`
+### Viewing command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
 If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
