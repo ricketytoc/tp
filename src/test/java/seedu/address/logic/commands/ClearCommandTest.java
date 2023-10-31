@@ -47,6 +47,7 @@ public class ClearCommandTest {
 
         FindCommand command = new FindCommand(findJohn);
         expectedModel.updateFilteredPersonList(findJohn);
+        expectedModel.commitAddressBook();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
         expectedModel.setAddressBook(getClearedAddressBook());

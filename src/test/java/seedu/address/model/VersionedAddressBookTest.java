@@ -13,6 +13,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.exceptions.NoRedoableStateException;
+import seedu.address.model.exceptions.NoUndoableStateException;
 import seedu.address.testutil.AddressBookBuilder;
 
 // Solution below inspired by https://github.com/se-edu/addressbook-level4
@@ -51,7 +53,7 @@ public class VersionedAddressBookTest {
         VersionedAddressBook versionedAddressBook = createVersionedAddressBook(
                 emptyAddressBook, addressBookWithAmy, addressBookWithBob);
         shiftStatePointerLeft(versionedAddressBook, 2);
-        assertThrows(VersionedAddressBook.NoUndoableStateException.class, versionedAddressBook::undo);
+        assertThrows(NoUndoableStateException.class, versionedAddressBook::undo);
     }
 
     @Test
@@ -113,7 +115,7 @@ public class VersionedAddressBookTest {
     public void redo_pointerAtEndOfStateList_throwsNoRedoableStateException() {
         VersionedAddressBook versionedAddressBook = createVersionedAddressBook(
                 emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        assertThrows(VersionedAddressBook.NoRedoableStateException.class, versionedAddressBook::redo);
+        assertThrows(NoRedoableStateException.class, versionedAddressBook::redo);
     }
 
     @Test
