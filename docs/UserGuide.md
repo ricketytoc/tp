@@ -158,7 +158,7 @@ Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OT
 * Finds employees whose attributes satisfy all the requirements of the FindCommand
 
 Examples:
-* `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, whose name contains the word `alex` and whose phone number contains `9001`.
+* `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, name contains the word `alex` and phone number contains `9001`.
 
 #### Finding an employee by name: `find n/`
 
@@ -209,7 +209,7 @@ Finds employees whose ID contains the keyword.
 
 Format: `find i/KEYWORD`
 
-* The command will find employees whose ID and Phone number contains the respective keywords.
+* The command will find employees whose ID contains the keyword.
 
 Examples:
 * `find i/A00` returns employees with IDs `A00`, `A00001` and `a0001`.
