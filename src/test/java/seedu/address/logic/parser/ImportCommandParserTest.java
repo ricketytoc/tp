@@ -23,8 +23,8 @@ public class ImportCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        String currentDirectoryPath = "////";
-        assertParseFailure(parser, currentDirectoryPath, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        String path = "ABC" + '\0';
+        assertParseFailure(parser, path, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ImportCommand.MESSAGE_USAGE));
     }
 }
