@@ -541,7 +541,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
 
-**Use case: UC6 - Viewing Command History**
+**Use case: UC6 - View Command History**
 
 **MSS**
 
@@ -558,13 +558,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the number entered is valid.
     * Use case resumes from step 2.
 
-**Use case: UC7 - Clearing the displayed list**
+**Use case: UC7 - Clear the displayed list**
 
 **MSS**
 
 1. User requests clear the displayed list.
 1. EmployeeManager clears the displayed list.
-1. EmployeeManager an empty list.
+1. EmployeeManager displays an empty list.
 1. Use case ends.
 
 ### Non-Functional Requirements
@@ -615,6 +615,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
        Expected: Person with the correct details is added to the end of the list
 
+   1. Test case: `add`<br>
+      Expected: No person is added. Error details shown in the status message.
+
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -634,7 +638,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a person in the displayed list of persons.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. At least one person in the list.
 
     1. Test case: `edit 1 n/John Tan`<br>
        Expected: First person in the list has their name edited to `John Tan`. Details of the edited person is shown in the status message.
@@ -681,11 +685,9 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `find`<br>
       Expected: The displayed list is not filtered. Error details shown in the status message.
 
-### Viewing command History
+### Viewing command history
 
-1. Editing a person in the displayed list of persons.
-
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Viewing the command history.
 
     1. Test case: `delete 1` followed by `history 1`<br>
        Expected: The previous command `delete 1` is shown in the status message.
