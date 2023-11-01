@@ -7,11 +7,11 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -19,11 +19,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.storage.JsonAddressBookStorage;
 
 class ImportCommandTest {
-    private Model model;
-    private CommandHistory commandHistory;
-
     @TempDir
     public Path temporaryFolder;
+    private Model model;
+    private CommandHistory commandHistory;
 
     @BeforeEach
     public void setUp() {
