@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
   * Use case resumes from step 2.
 
-**Use case: UC4 - Finding an employee**
+**Use case: UC4 - Find an employee**
 
 **MSS**
 
