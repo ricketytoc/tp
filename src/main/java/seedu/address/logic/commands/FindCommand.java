@@ -61,7 +61,7 @@ public class FindCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_DEPARTMENT + "Finance "
             + PREFIX_ROLE + "Manager "
-            + PREFIX_SALARY + "5000" + "\n";
+            + PREFIX_SALARY + "5000 - 6000" + "\n";
 
     private final Predicate<Person> predicate;
 
