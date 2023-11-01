@@ -22,8 +22,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             Path path = ParserUtil.parsePath(args);
             return new ImportCommand(path);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE), pe);
         }
     }
 

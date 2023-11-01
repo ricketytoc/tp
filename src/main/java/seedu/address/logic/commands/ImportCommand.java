@@ -40,4 +40,18 @@ public class ImportCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ImportCommand)) {
+            return false;
+        }
+
+        ImportCommand otherImportCommand = (ImportCommand) other;
+        return filePath.equals(otherImportCommand.filePath);
+    }
 }

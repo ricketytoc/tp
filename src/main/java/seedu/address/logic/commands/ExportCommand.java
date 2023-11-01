@@ -33,4 +33,18 @@ public class ExportCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ExportCommand)) {
+            return false;
+        }
+
+        ExportCommand otherExportCommand = (ExportCommand) other;
+        return filePath.equals(otherExportCommand.filePath);
+    }
 }

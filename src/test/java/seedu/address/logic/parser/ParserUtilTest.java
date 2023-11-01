@@ -62,6 +62,13 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePath_invalidInput_throwsParseException() {
+        // Asterisks are not allowed in file path
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(
+                "C:\\Users\\ExampleUser\\Documents\\File*.txt"));
+    }
+
+    @Test
     public void parseId_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseId((String) null));
     }
