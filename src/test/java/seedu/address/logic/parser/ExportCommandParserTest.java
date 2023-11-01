@@ -23,7 +23,7 @@ public class ExportCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        String path = "ABC" + '\0';
+        String path = "ABC" + '\0' + "DEF";
         assertParseFailure(parser, path, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ExportCommand.MESSAGE_USAGE));
     }
