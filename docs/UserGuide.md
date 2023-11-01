@@ -38,6 +38,15 @@ If you are an **experienced user**:
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your Computer.
+   1. Open the **terminal** on your Computer.
+      1. **Windows**: Open Windows Search and search for "terminal".
+      1. **Mac**: Open Spotlight Search and search for "terminal".
+      1. **Linux**: Press `Ctrl + Alt + T`.
+   1. Type `java --version` into the terminal.
+   1. If you have java installed, it should look similar to this: <br>
+      <img src="images/JavaVersion.png" width="600" />
+   1. Check that your version starts with `11` or higher.
+   1. If you do not have Java `11` or above installed, you can download Java `11` [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 1. Download the latest `employeemanager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
@@ -47,7 +56,7 @@ If you are an **experienced user**:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all employees.
@@ -66,7 +75,7 @@ If you are an **experienced user**:
 
 <img src="images/CommandLineGuide.png" width="700" />
 
-1. Click on the command line.
+1. Click on the command box.
 
 1. Type the command word.
    1. Example: `add` is the command word for adding an employee.
