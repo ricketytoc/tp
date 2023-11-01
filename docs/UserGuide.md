@@ -21,8 +21,8 @@ This User Guide aims to help both new and experienced users use EmployeeManager.
 EmployeeManager to make managing employees easier!
 
 If you are a **new user**:
-* Get started with EmployeeManager by going through [Quick start](#quick-start) and [Navigating the user guide](#navigating-the-user-guide)
-* If you have no prior experience with CLI or require a refresher, refer to this guide *(coming soon)*
+* Get started with EmployeeManager by going through [Quick start](#quick-start)
+* If you have no prior experience with CLI or require a refresher, refer to this [guide](#how-to-use-command-line-interface)
 
 If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
@@ -32,11 +32,6 @@ If you are an **experienced user**:
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## Navigating the user guide
-*Coming soon*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -64,6 +59,24 @@ If you are an **experienced user**:
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## How to use command line interface
+
+<img src="images/CommandLineGuide.png" width="700" />
+
+1. Click on the command line.
+
+1. Type the command word.
+   1. Example: `add` is the command word for adding an employee.
+
+1. Follow the command format of the command and type the prefixes and/or fields required.
+   1. Refer to the [Features](#features) for the details on the command format for each command.
+   1. Example: `i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000`.
+
+1. Press enter to execute the command.
+   1. `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
 
