@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
@@ -52,7 +53,7 @@ public class ParserUtil {
         String trimmedPath = filePath.trim();
 
         try {
-            return Path.of(trimmedPath);
+            return Paths.get(trimmedPath);
         } catch (InvalidPathException ipe) {
             throw new ParseException(MESSAGE_INVALID_PATH + " " + ipe.getReason());
         }

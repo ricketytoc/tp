@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -16,7 +17,9 @@ public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
     public static final String MESSAGE_SUCCESS = "Data successfully imported";
-    public static final String MESSAGE_FAILURE = "Data could not be imported";
+    public static final String MESSAGE_FILE_ERROR = "An error occurred during loading of data. The file "
+            + "might be corrupted.";
+    public static final String MESSAGE_FILE_MISSING = "The specified file does not exists";
     public static final String MESSAGE_USAGE = "import FILE_PATH";
 
     private final Path filePath;
@@ -26,17 +29,17 @@ public class ImportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         try {
             Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(filePath).readAddressBook(filePath);
             if (addressBook.isPresent()) {
                 model.setAddressBook(addressBook.get());
                 return new CommandResult(MESSAGE_SUCCESS);
             } else {
-                return new CommandResult(MESSAGE_FAILURE);
+                throw new CommandException(MESSAGE_FILE_MISSING);
             }
         } catch (DataLoadingException ex) {
-            return new CommandResult(MESSAGE_FAILURE + ": " + ex.getMessage());
+            throw new CommandException(MESSAGE_FILE_ERROR);
         }
     }
 

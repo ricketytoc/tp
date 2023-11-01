@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.storage.JsonAddressBookStorage;
 
@@ -24,11 +25,11 @@ public class ExportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         try {
             new JsonAddressBookStorage(filePath).saveAddressBook(model.getAddressBook(), filePath);
         } catch (IOException ex) {
-            return new CommandResult(MESSAGE_FAILURE + ": " + ex.getMessage());
+            throw new CommandException(MESSAGE_FAILURE + ": " + ex.getMessage());
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }

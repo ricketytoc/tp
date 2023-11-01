@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Files;
@@ -10,6 +12,9 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -20,6 +25,9 @@ class ExportCommandTest {
     private Model model;
     private CommandHistory commandHistory;
 
+    @TempDir
+    public Path temporaryFolder;
+
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -29,7 +37,7 @@ class ExportCommandTest {
     @Test
     public void execute_validPath() throws Exception {
         // Export to location
-        Path validPath = Path.of("./data/persons.json");
+        Path validPath = temporaryFolder.resolve("test.json");
         ExportCommand exportCommand = new ExportCommand(validPath);
         exportCommand.execute(model, commandHistory);
 
@@ -42,8 +50,8 @@ class ExportCommandTest {
 
     @Test
     public void equals() {
-        Path firstFilePath = Path.of("./data/persons.json");
-        Path secondFilePath = Path.of("./data/persons2.json");
+        Path firstFilePath = temporaryFolder.resolve("test1.json");
+        Path secondFilePath = temporaryFolder.resolve("test2.json");
         ExportCommand exportFirstCommand = new ExportCommand(firstFilePath);
         ExportCommand exportSecondCommand = new ExportCommand(secondFilePath);
 

@@ -9,6 +9,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -68,6 +70,27 @@ public class ParserUtilTest {
     public void parseId_validPath_returnsId() throws Exception {
         Path expectedPath = Path.of(VALID_PATH);
         assertEquals(expectedPath, ParserUtil.parsePath(VALID_PATH));
+    }
+
+    @Test
+    @EnabledOnOs({OS.WINDOWS})
+    public void parseId_invalidPathWindows_throwsParseException() {
+        String invalidPath = "./data/per*sons.json";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(invalidPath));
+    }
+
+    @Test
+    @EnabledOnOs({OS.LINUX})
+    public void parseId_invalidPathLinux_throwsParseException() {
+        String invalidPath = "/";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(invalidPath));
+    }
+
+    @Test
+    @EnabledOnOs({OS.MAC})
+    public void parseId_invalidPathMac_throwsParseException() {
+        String invalidPath = "./data/per:sons.json";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(invalidPath));
     }
 
     @Test
