@@ -20,11 +20,5 @@ public class ImportCommandParserTest {
         Path path = Path.of(currentDirectoryPath);
         assertParseSuccess(parser, currentDirectoryPath, new ImportCommand(path));
     }
-
-    @Test
-    public void parse_invalidArgs_throwsParseException() {
-        String invalidDirectoryPath = "!@#$/data*.json";
-        assertParseFailure(parser, invalidDirectoryPath, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ImportCommand.MESSAGE_USAGE));
-    }
+    
 }

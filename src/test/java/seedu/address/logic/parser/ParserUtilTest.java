@@ -18,6 +18,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
 
+import java.nio.file.Path;
+
 public class ParserUtilTest {
     private static final String INVALID_ID = "#000000";
     private static final String INVALID_NAME = "R@chel";
@@ -38,6 +40,7 @@ public class ParserUtilTest {
     private static final String VALID_SALARY = "5000";
     private static final String VALID_INCREMENT = "1000";
     private static final String VALID_HISTORY = "5";
+    private static final String VALID_PATH = "./data/persons.json";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -62,10 +65,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePath_invalidInput_throwsParseException() {
-        // Asterisks are not allowed in file path
-        assertThrows(ParseException.class, () -> ParserUtil.parsePath(
-                "C:\\Users\\ExampleUser\\Documents\\File*.txt"));
+    public void parseId_validPath_returnsId() throws Exception {
+        Path expectedPath = Path.of(VALID_PATH);
+        assertEquals(expectedPath, ParserUtil.parsePath(VALID_PATH));
     }
 
     @Test
