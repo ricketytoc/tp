@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -12,10 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 
 class ImportCommandTest {
@@ -43,7 +46,9 @@ class ImportCommandTest {
         ImportCommand importCommand = new ImportCommand(filePath);
         importCommand.execute(model, commandHistory);
 
-        assertTrue(model.getAddressBook().equals(original));
+        ObservableList<Person> importedPersons = model.getAddressBook().getPersonList();
+        ObservableList<Person> originalPersons = original.getPersonList();
+        assertEquals(importedPersons, originalPersons);
     }
 
     @Test
