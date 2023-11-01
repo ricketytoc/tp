@@ -47,7 +47,7 @@ public class HistoryCommandParserTest {
         // zero input
         assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
 
-        // greater than max input (Boundary value analysis
+        // greater than max input (Boundary value analysis)
         assertParseFailure(parser, "1001", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
 
         // greater than max int
