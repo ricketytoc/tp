@@ -252,23 +252,24 @@ Examples:
 
 ### Sorting displayed employees : `sort`
 
-Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
+Sorts the displayed list based on the specified employee's attribute in _ascending_ order.
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
-* Attributes are sorted by lexicographical order except for salary which
-is simply by numerical order.
+* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix
+* Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
+and "100" comes before "200".
 
 Examples:
-* `sort i/` sorts the displayed list in ascending ID.
-* `sort d/` sorts the displayed list in ascending department.
-* `sort e/` sorts the displayed list in ascending email.
-* `sort s/` sorts the displayed list in ascending salary.
-* `sort r/` sorts the displayed list in ascending role.
-* `sort n/` sorts the displayed list in ascending name.
-* `sort p/` sorts the displayed list in ascending phone.
+* `sort i/` sorts the list by ID.
+* `sort d/` sorts the list by department.
+* `sort e/` sorts the list by email.
+* `sort s/` sorts the list by salary.
+* `sort r/` sorts the list by role.
+* `sort n/` sorts the list by name.
+* `sort p/` sorts the list by phone.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -313,26 +314,31 @@ Format: `clear`
 
 ### Importing data : `import`
 
-Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
-data stored in the application.
+Imports an EmployeeManager data file into the application.
 
 * The file path must be valid, and the application must have permission to read from the file.
+* No changes will be made if the data file is invalid or not found.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
+data, it is recommended to use the `export` command to save a copy of the current data.
+</div>
 
 Format: `import FILE_PATH`
 
 Examples:
-* `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
+* `import ./data.json` imports the data in the data.json data file.
 
 ### Exporting data : `export`
 
-Exports a .csv file based on the data stored in EmployeeManager into the specified path.
+Exports the data file in EmployeeManager to the specified path.
 
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Format: `export FILE_PATH`
 
 Examples:
-* `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
+* `export ./data.json` will create the data file under the specified path.
 
 ### Viewing command history : `history`
 
