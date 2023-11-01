@@ -541,6 +541,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
 
+**Use case: UC6 - Viewing Command History**
+
+**MSS**
+
+1. User requests to view the command history of a certain number of past commands.
+1. EmployeeManager validates the input and fetches the required number of recent valid commands from the CommandHistory.
+1. EmployeeManager displays the fetched commands to the user.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid number.
+    * 1a1. EmployeeManager informs user that the number is invalid.
+    * 1a2. User enters new number.
+    * Steps 1a1-1a2 are repeated until the number entered is valid.
+    * Use case resumes from step 2.
+
+**Use case: UC7 - Clearing the displayed list**
+
+**MSS**
+
+1. User requests clear the displayed list.
+1. EmployeeManager clears the displayed list.
+1. EmployeeManager an empty list.
+1. Use case ends.
+
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
