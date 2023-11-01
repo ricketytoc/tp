@@ -6,17 +6,17 @@ import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ExportCommand;
 
-public class ImportCommandParserTest {
+public class ExportCommandParserTest {
 
-    private ImportCommandParser parser = new ImportCommandParser();
+    private ExportCommandParser parser = new ExportCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         String currentDirectoryPath = "data.json";
         Path path = Path.of(currentDirectoryPath);
-        assertParseSuccess(parser, currentDirectoryPath, new ImportCommand(path));
+        assertParseSuccess(parser, currentDirectoryPath, new ExportCommand(path));
     }
 
 }

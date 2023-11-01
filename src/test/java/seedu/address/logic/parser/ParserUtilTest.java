@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.increment.Increment;
@@ -17,8 +19,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
-
-import java.nio.file.Path;
 
 public class ParserUtilTest {
     private static final String INVALID_ID = "#000000";
