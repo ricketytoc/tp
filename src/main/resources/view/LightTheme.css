@@ -100,21 +100,21 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #95b9c7; /* 3c3e3f*/
+    -fx-background-color: #c5d4eb; /* 3c3e3f*/
     -fx-background-radius: 5; /*new*/
     -fx-border-color: #007aa2; /*new*/
     -fx-border-radius: 5; /*new*/
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #95b9c7; /*515658*/
+    -fx-background-color: #c5d4eb; /*515658*/
     -fx-background-radius: 5; /*new*/
     -fx-border-color: #007aa2; /*new*/
     -fx-border-radius: 5; /*new*/
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #566d7e; /*424d5f*/
+    -fx-background-color: #87afc7; /*424d5f*/
 }
 
 .list-cell:filled:selected #cardPane {
@@ -226,7 +226,7 @@
     -fx-border-color: #e2e2e2; /*e2e2e2*/
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #ff0000; /*#1d1d1d*/
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8; /*#d8d8d8*/
@@ -234,7 +234,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #3a3a3a; /*#3a3a3a*/
 }
 
 .button:pressed, .button:default:hover:pressed {
