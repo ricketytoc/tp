@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane styleClass="person-card" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -42,7 +42,7 @@
       <FlowPane fx:id="tags" />
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <Label styleClass="cell_small_label" text=" 📞 " textFill="#007aa2" />
+               <Label styleClass="cell-small-label" text=" 📞 " textFill="#007aa2" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             </children>
          </HBox>
