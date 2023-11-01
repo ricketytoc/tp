@@ -180,7 +180,7 @@ user has specified.
 **Aspect: Which component should we choose to store CommandHistory:**
 
 * **Alternative 1 (current choice):** Store it under `Logic`.  
-**Why:** The Logic component is responsible for command execution and parsing. 
+**Why:** The `Logic` component is responsible for command execution and parsing. 
 Adding a history feature here would allow you to easily keep track of commands as they are executed.
 
 * **Alternative 2:** Store it under `Model`.  
@@ -372,15 +372,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Clear Feature
 
 The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
 
-#### Proposed Implementation
+#### Implementation
 When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
 `Model#clearSortedFilteredPersonList` will loop through the persons in the filtered list and
 delete each person from the filtered list using `Model#deletePerson` until the list is cleared.
