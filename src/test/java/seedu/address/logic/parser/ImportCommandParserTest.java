@@ -8,7 +8,6 @@ import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.ImportCommand;
 
 public class ImportCommandParserTest {
