@@ -19,7 +19,7 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Data successfully imported";
     public static final String MESSAGE_FILE_ERROR = "An error occurred during loading of data. The file "
             + "might be corrupted.";
-    public static final String MESSAGE_FILE_MISSING = "The specified file does not exists";
+    public static final String MESSAGE_FILE_MISSING = "The specified file does not exist";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports the data file from the specified location "
             + "into the application. "
             + "\n"
