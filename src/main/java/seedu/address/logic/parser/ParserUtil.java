@@ -3,13 +3,10 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
@@ -25,15 +22,12 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.IdContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryWithinRangePredicate;
-
-
 
 
 /**
@@ -236,8 +230,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static IdContainsKeywordsPredicate parseIdKeyword(ArrayList<Predicate<Person>> predicateList,
-                                String trimmedArgs) throws ParseException {
+    public static IdContainsKeywordsPredicate parseIdKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         return new IdContainsKeywordsPredicate(trimmedArgs);
     }
@@ -248,8 +241,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static NameContainsKeywordsPredicate parseNameKeyword(ArrayList<Predicate<Person>> predicateList,
-                                  String trimmedArgs) throws ParseException {
+    public static NameContainsKeywordsPredicate parseNameKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] nameKeywords = trimmedArgs.split("\\s+");
         return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
@@ -261,8 +253,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static RoleContainsKeywordsPredicate parseRoleKeyword(ArrayList<Predicate<Person>> predicateList,
-                                  String trimmedArgs) throws ParseException {
+    public static RoleContainsKeywordsPredicate parseRoleKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] roleKeywords = trimmedArgs.split("\\s+");
         return new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords));
@@ -274,8 +265,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList,
-                                        String trimmedArgs) throws ParseException {
+    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] departmentKeywords = trimmedArgs.split("\\s+");
         return new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords));
@@ -287,8 +277,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static EmailContainsKeywordsPredicate parseEmailKeyword(ArrayList<Predicate<Person>> predicateList,
-                                   String trimmedArgs) throws ParseException {
+    public static EmailContainsKeywordsPredicate parseEmailKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] emailKeywords = trimmedArgs.split("\\s+");
         return new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords));
@@ -300,8 +289,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static SalaryWithinRangePredicate parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList,
-                                    String trimmedArgs) throws ParseException {
+    public static SalaryWithinRangePredicate parseSalaryKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         if (!isValidFindSalaryArgs(trimmedArgs)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -317,8 +305,7 @@ public class ParserUtil {
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static PhoneContainsKeywordsPredicate parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList,
-                                   String trimmedArgs) throws ParseException {
+    public static PhoneContainsKeywordsPredicate parsePhoneKeyword(String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         return new PhoneContainsKeywordsPredicate(trimmedArgs);
     }

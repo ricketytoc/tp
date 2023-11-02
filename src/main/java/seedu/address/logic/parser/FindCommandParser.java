@@ -51,43 +51,43 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ID).get().trim();
             IdContainsKeywordsPredicate idContainsKeywordsPredicate = ParserUtil
-                    .parseIdKeyword(predicateList, trimmedArgs);
+                    .parseIdKeyword(trimmedArgs);
             predicateList.add(idContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
             NameContainsKeywordsPredicate nameContainsKeywordsPredicate = ParserUtil
-                    .parseNameKeyword(predicateList, trimmedArgs);
+                    .parseNameKeyword(trimmedArgs);
             predicateList.add(nameContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ROLE).get().trim();
             RoleContainsKeywordsPredicate roleContainsKeywordsPredicate = ParserUtil
-                    .parseRoleKeyword(predicateList, trimmedArgs);
+                    .parseRoleKeyword(trimmedArgs);
             predicateList.add(roleContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_DEPARTMENT).get().trim();
             DepartmentContainsKeywordsPredicate departmentContainsKeywordsPredicate = ParserUtil
-                    .parseDepartmentKeyword(predicateList, trimmedArgs);
+                    .parseDepartmentKeyword(trimmedArgs);
             predicateList.add(departmentContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
             EmailContainsKeywordsPredicate emailContainsKeywordsPredicate = ParserUtil
-                    .parseEmailKeyword(predicateList, trimmedArgs);
+                    .parseEmailKeyword(trimmedArgs);
             predicateList.add(emailContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_SALARY).get().trim();
             SalaryWithinRangePredicate salaryWithinRangePredicate = ParserUtil
-                    .parseSalaryKeyword(predicateList, trimmedArgs);
+                    .parseSalaryKeyword(trimmedArgs);
             predicateList.add(salaryWithinRangePredicate);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
             PhoneContainsKeywordsPredicate phoneContainsKeywordsPredicate = ParserUtil
-                    .parsePhoneKeyword(predicateList, trimmedArgs);
+                    .parsePhoneKeyword(trimmedArgs);
             predicateList.add(phoneContainsKeywordsPredicate);
         }
         assert !predicateList.isEmpty() : "predicate list is empty, please enter find command with valid prefix";
