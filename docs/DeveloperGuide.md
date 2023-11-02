@@ -608,58 +608,58 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a person
+### Adding an employee
 
-1. Adding a person to the list
+1. Adding an employee to the displayed list
 
     1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
-       Expected: Person with the correct details is added to the end of the list
+       Expected: An employee with the correct details is added to the end of the list
 
-   1. Test case: `add`<br>
-      Expected: No person is added. Error details shown in the status message.
+    1. Test case: `add`<br>
+       Expected: No employee is added. Error details shown in the status message.
 
 
-### Deleting a person
+### Deleting an employee
 
-1. Deleting a person while all persons are being shown
+1. Deleting an employee from the displayed list
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+      Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+      Expected: No employee is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Editing a person
+### Editing an employee
 
-1. Editing a person in the displayed list of persons.
+1. Editing an employee in the displayed list of employees.
 
-    1. Prerequisites: List all persons using the `list` command. At least one person in the list.
+    1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
 
     1. Test case: `edit 1 n/John Tan`<br>
-       Expected: First person in the list has their name edited to `John Tan`. Details of the edited person is shown in the status message.
+       Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
 
     1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
        Expected: Similar to previous, the respective fields gets edited.
 
     1. Test case: `edit 0`<br>
-       Expected: No person is edited. Error details shown in the status message.
+       Expected: No employee is edited. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.       
 
 ### Sorting the list
 
-1. Sorting the displayed list of persons.
+1. Sorting the displayed list of employees.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
     1. Test case: `sort n/`<br>
-       Expected: Displayed list is sorted by alphabetical order.
+       Expected: Displayed list is sorted by alphabetical order of the name field.
 
     1. Other correct sort commands to try: `sort d/`, `sort r/` and `sort e/`<br>
        Expected: Similar to previous, the respective fields gets sorted based on lexicographical order.
@@ -667,22 +667,22 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `sort`<br>
        Expected: Displayed list is not sorted. Error details shown in the status message.
 
-### Finding a person
+### Finding an employee
 
-1. Finds a person by the given field.
+1. Finds an employee by the given field.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
     1. Test case: `find n/John`<br>
-       Expected: Finds all persons whose names include the word `John`.
+       Expected: Finds all employees whose names include the word `John`.
 
     1. Test case: `find d/Finance`<br>
-       Expected: Finds all persons whose department include the word `Finance`.
+       Expected: Finds all employees whose department include the word `Finance`.
 
-   1. Test case: `find r/Manager`<br>
-      Expected: Finds all persons whose role include the word `Manager`.
+    1. Test case: `find r/Manager`<br>
+      Expected: Finds all employees whose role include the word `Manager`.
 
-   1. Test case: `find`<br>
+    1. Test case: `find`<br>
       Expected: The displayed list is not filtered. Error details shown in the status message.
 
 ### Viewing command history
