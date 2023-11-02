@@ -40,6 +40,7 @@ public class ImportCommand extends Command {
             Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(filePath).readAddressBook(filePath);
             if (addressBook.isPresent()) {
                 model.setAddressBook(addressBook.get());
+                model.commitAddressBook();
                 return new CommandResult(MESSAGE_SUCCESS);
             } else {
                 throw new CommandException(MESSAGE_FILE_MISSING);
