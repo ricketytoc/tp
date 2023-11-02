@@ -343,7 +343,7 @@ Format: `clear`
 
 Imports an EmployeeManager data file into the application.
 
-* The data file must be of '.json' file type.
+* The data file must be of '.json' file type. Otherwise, an error will be thrown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
 
@@ -373,6 +373,7 @@ look different depending on your operating system._
 
 Exports the data file in EmployeeManager to the specified path.
 
+* The data file must be of '.json' file type. Otherwise, an error will be thrown.
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Format: `export FILE_PATH`

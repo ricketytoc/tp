@@ -16,6 +16,7 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_SUCCESS = "Data successfully exported";
     public static final String MESSAGE_FAILURE = "Data could not be exported";
+    public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the data file to the specified location. "
             + "\n"
             + "Parameters: "
@@ -33,6 +34,10 @@ public class ExportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        if (!filePath.getFileName().toString().endsWith(".json")) {
+            throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
+        }
+
         try {
             new JsonAddressBookStorage(filePath).saveAddressBook(model.getAddressBook(), filePath);
         } catch (IOException ex) {

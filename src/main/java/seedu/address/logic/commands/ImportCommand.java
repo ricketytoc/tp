@@ -20,6 +20,7 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_FILE_ERROR = "An error occurred during loading of data. The file "
             + "might be corrupted.";
     public static final String MESSAGE_FILE_MISSING = "The specified file does not exist";
+    public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports the data file from the specified location "
             + "into the application. "
             + "\n"
@@ -38,6 +39,10 @@ public class ImportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        if (!filePath.getFileName().toString().endsWith(".json")) {
+            throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
+        }
+
         try {
             Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(filePath).readAddressBook(filePath);
             if (addressBook.isPresent()) {
