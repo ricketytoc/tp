@@ -634,6 +634,43 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Incrementing salaries of multiple employees
+
+1. Incrementing salaries of all employees in the displayed list of employees.
+
+   1. Test case: `increment 1000`<br>
+      Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
+      Expected: Salaries of all employees in the list increased by 1000.
+   
+   1. Test case: `increment -10000` <br>
+      Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
+      Expected: No change in salaries of all employees. Error details shown in the status message.
+
+### Undoing a modification
+
+1. Undo the previous command that caused a modification in employee data.
+
+   1. Test case: `delete 1` followed by `undo`<br>
+      Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+      Expected: The list is reverted to the list of employees before `delete 1` was executed.
+   
+   1. Test case: `undo`<br>
+      Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
+      Expected: No change in displayed list and employee data. Error details shown in the status message.
+      1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
+
+### Redoing the previous undone command
+
+1. Redo the previous undone command caused by `undo`.
+
+   1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
+      Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+      Expected: The list is reverted to the list of employees after `delete 1` was executed.
+   
+   1. Test case: `redo`<br>
+      Prerequisite: No commands have been undone.<br>
+      Expected: No change in displayed list and employee data. Error details shown in the status message.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
