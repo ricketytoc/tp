@@ -252,23 +252,24 @@ Examples:
 
 ### Sorting displayed employees : `sort`
 
-Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
+Sorts the displayed list based on the specified employee's attribute in _ascending_ order.
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
-* Attributes are sorted by lexicographical order except for salary which
-is simply by numerical order.
+* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix
+* Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
+and "100" comes before "200".
 
 Examples:
-* `sort i/` sorts the displayed list in ascending ID.
-* `sort d/` sorts the displayed list in ascending department.
-* `sort e/` sorts the displayed list in ascending email.
-* `sort s/` sorts the displayed list in ascending salary.
-* `sort r/` sorts the displayed list in ascending role.
-* `sort n/` sorts the displayed list in ascending name.
-* `sort p/` sorts the displayed list in ascending phone.
+* `sort i/` sorts the list by ID.
+* `sort d/` sorts the list by department.
+* `sort e/` sorts the list by email.
+* `sort s/` sorts the list by salary.
+* `sort r/` sorts the list by role.
+* `sort n/` sorts the list by name.
+* `sort p/` sorts the list by phone.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -315,26 +316,61 @@ Format: `clear`
 
 ### Importing data : `import`
 
-Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
-data stored in the application.
+Imports an EmployeeManager data file into the application.
 
+* The data file must be of '.json' file type.
 * The file path must be valid, and the application must have permission to read from the file.
+* No changes will be made if the data file is invalid or not found.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
+data, it is recommended to use the `export` command to save a copy of the current data.
+</div>
 
 Format: `import FILE_PATH`
 
 Examples:
-* `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
+* `import ./persons.json` imports the "persons.json" data file.
+
+#### GUI Option
+Alternatively, you may use the GUI option to import the data file. 
+1. Click File > Import in the top left corner of the application.
+![Ui](images/ug-import-gui.png)
+2. The file explorer will open and prompt you to select the data file. _The file explorer will look
+look different depending on your operating system._
+![Ui](images/ug-import-explorer.png)
+3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
+
+* The file explorer will only allow you to select .json files as that is the format of the data file.
+
 
 ### Exporting data : `export`
 
-Exports a .csv file based on the data stored in EmployeeManager into the specified path.
+Exports the data file in EmployeeManager to the specified path.
 
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Format: `export FILE_PATH`
 
 Examples:
-* `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
+* `export ./data.json` will create the data file under the specified path.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The export command will **overwrite** any file in the specified location.
+</div>
+
+#### GUI Option
+Alternatively, you may use the GUI option to export the data file.
+1. Click File > Export in the top left corner of the application.
+   ![Ui](images/ug-export-gui.png)
+2. The file explorer will open and prompt you to save the data file. _The file explorer will look
+different depending on your operating system._
+   ![Ui](images/ug-export-explorer.png)
+3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
+
+* The file explorer will save the file as a .json file format.
+* The data file can be given any _valid name_, e.g. `abc_pte_ltd.json` as shown in the image above.
+* Valid file name is dependent on the operating system.
 
 ### Viewing command history : `history`
 
