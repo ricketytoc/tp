@@ -18,7 +18,7 @@
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="3" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-background-color: #007aa2; -fx-background-radius: 5;">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -29,8 +29,8 @@
         </Label>
         <Label fx:id="employeeId" styleClass="cell_big_label" text="\$id">
         </Label>
-        <Separator />
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first">
+        <Separator/>
+          <Label fx:id="name" styleClass="cell_big_label" text="\$first">
         </Label>
             <VBox.margin>
                <Insets left="-15.0" right="-5.0" top="-5.0" />
