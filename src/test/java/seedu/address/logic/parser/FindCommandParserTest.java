@@ -92,11 +92,25 @@ public class FindCommandParserTest {
                 " " + PREFIX_SALARY + "-500 - 6000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
+        // Invalid Salary input : lowerBound bigger than upperBound
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "5000 - 4000",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Invalid Salary input : upperBound is bigger than max salary
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "5000 - 1000000001",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Invalid Salary input : upperBound is bigger than value that can be stored in Double
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "5000 - 1000000000000000000",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
         // Invalid Find Command args : ID argument contains "/"
         assertParseFailure(parser,
                 " " + PREFIX_ID + "A0001 INVALID/12345",
                 FindCommand.INVALID_FIND_ARGS_MESSAGE);
-
     }
 
     @Test
@@ -142,13 +156,6 @@ public class FindCommandParserTest {
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
-
-        // Salary attribute - lowerBound bigger than upperBound
-        predicateList.clear();
-        predicateList.add(new SalaryWithinRangePredicate(5000, 1000));
-        expectedFindCommand =
-                new FindCommand(new GeneralPredicate(predicateList));
-        assertParseSuccess(parser, " " + PREFIX_SALARY + "5000 - 1000", expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
         predicateList.clear();

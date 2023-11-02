@@ -154,6 +154,98 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Implementation
+
+The add feature is facilitated by the following operations:
+* `AddCommandParser#parse` — Parses user's inputs and checks that inputs are valid.
+* `model#hasPerson` — Checks if the employee exists in EmployeeManager.
+* `model#addPerson` — Adds an employee to EmployeeManager.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user enters `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000` to add a new employee `John Doe`.
+The user input is parsed and checked using `AddCommandParser#parse` to create an `AddCommand` that contains the new employee.
+
+Step 2: `AddCommand` then checks that the new employee is not a duplicate employee using `model#hasPerson` before
+adding the new employee into EmployeeManager using `model#addPerson`.
+
+The following activity diagram summarizes what happens when a user executes the add command:
+
+<img src="images/AddActivityDiagram.png" width="425" />
+
+#### Design considerations
+
+Aspect: What is considered a duplicate employee:
+* **Alternative 1:** Check if the name of the given employee matches the name of another employee in EmployeeManager.
+  * Pros: Only need to check for duplicate names.
+  * Cons: Employees can have the same names so it is not realistic to restrict the addition of employees to only employees with different names.
+* **Alternative 2 (current choice):** Check if the ID of an employee matches the ID of another employee in EmployeeManager.
+  * Pros: Able to store employees with the same attributes if their IDs are different.
+  * Cons: Need to store an additional field for ID.
+
+### History feature
+The `history` feature allows users to access past valid commands that they made. This feature is supported by 
+three classes, `CommandHistory`, `HistoryCommandParser` and `HistoryCommand`. 
+
+#### Implementation
+
+`CommandHistory`: This class is responsible for storing the history of valid commands that the user has entered.  
+`HistoryCommandParser`: Parses the user input to create an appropriate HistoryCommand object.  
+`HistoryCommand`: Executes the history command.  
+
+After a successful user command has been executed `CommandHistory#add(input)` will be called to store the successful 
+user input in the `CommandHistory`. When a user inputs a inputs a history command with the appropriate argument, the 
+`AddressBookParser` will be called to produce the `HistoryCommandParser` to properly parse the input. A 
+`HistoryCommand` object will be created. When the `Command#execute(model, commandHistory)` is called on the 
+`HistoryCommand`, the `HistoryCommand` will call `CommandHistory#getUserCommandHistory()` to get the list of
+valid user commands. `HistoryCommand` will then return a string of the appropriate number of user command that the
+user has specified.
+
+![History Command Class Diagram](images/HistoryCommandClassDiagram.png)
+
+
+#### Design Considerations
+
+**Aspect: Which component should we choose to store CommandHistory:**
+
+* **Alternative 1 (current choice):** Store it under `Logic`.  
+**Why:** The `Logic` component is responsible for command execution and parsing. 
+Adding a history feature here would allow you to easily keep track of commands as they are executed.
+
+* **Alternative 2:** Store it under `Model`.  
+**Why:** The `Model` component is responsible for maintaining the state of the application. If we consider
+the command history part of the application's state, it might make more sense to put it here.
+
+**Decision:** Since the command history is only active for the duration of the application and does not need
+to be saved, placing it in the `logic` component is more appropriate. If the command history need to persist
+across sessions, it might be better to place it in the `model` component, as this layer is generally responsible
+for data to be saved.
+
+### Sort feature
+
+#### Implementation
+
+The sort command is facilitated by `ModelManager`. `ModelManager` contains a `SortedList<Person>` and 
+`FilteredList<Person>` to provide sorting and filtering on the same list. The original list is fetched from 
+`AddressBook#getPersonList()` and passed to the `FilteredList`. The `FilteredList` is then passed to the `SortedList`.
+By returning the `SortedList` as an `ObservableList<Person>`, the UI will be able to update the person cards displayed
+after the `find` or `sort` command has been used.
+
+To facilitate comparing between two `Person` objects, the attributes also implement `Comparable<Person>`. The
+comparators for the attributes can be used to then compare two Person on a specific attribute.
+
+The command only allows for the sorting to be performed on one of the Person's attribute. The `SortCommandParser` will
+extract the attribute, and create a `SortCommand` using the corresponding comparator for that attribute. The sequence 
+diagram below illustrates how the comparator is obtained and passed to the Model to be executed.
+
+<img src="images/SortSequenceDiagram.png" width="574" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+  
 ### Find Feature
 
 #### Implementation
@@ -176,7 +268,6 @@ The following sequence diagram illustrates how the find feature works:
 
 </div>
 
-
 ### Edit Feature
 The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
 three classes, `EditCommand`, `EditCommandParser` and `Model`.
@@ -196,7 +287,6 @@ Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update
 
 The sequence diagram below illustrates how the edit command works: 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
-
 
 ### Increment Feature
 
@@ -221,11 +311,11 @@ Step 4. For each person in the filtered list, an `editedPerson` with the increme
 The following sequence diagram illustrates how the increment feature works:
 ![IncrementSequenceDiagram](images/IncrementSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: When the validity of the given `increment` is checked:**
 
-* **Alternative 1 (current choice)**: Check validity before incrementing any person’s salary.
+* **Alternative 1 (current choice):** Check validity before incrementing any person’s salary.
   * Pros: Ensures that `increment` is valid before any modifications is made to the persons in EmployeeManager.
   * Cons: Have to loop through the filtered list twice: once to check the validity of `increment` and once to increment the salaries.
 
@@ -233,14 +323,13 @@ The following sequence diagram illustrates how the increment feature works:
   * Pros: Less time required to check and increment salaries.
   * Cons: If the `increment` is invalid for a person halfway through the list, some persons would have their salaries incremented while the remaining persons would not have their salaries incremented.
 
+### Undo/redo feature
 
-### \[Proposed\] Undo/redo feature
+#### Implementation
 
-#### Proposed Implementation
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history and remove undone states.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
 * `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
@@ -299,7 +388,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -312,11 +401,16 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+### Clear Feature
 
-### \[Proposed\] Data archiving
+The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
+`Model#clearSortedFilteredPersonList` will loop through the persons in the filtered list and
+delete each person from the filtered list using `Model#deletePerson` until the list is cleared.
+
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -352,37 +446,36 @@ spent on data entry tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                                                                                              | So that                                                                               |
-|----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `*`      | potential user exploring the app    | view the app populated with sample data                                                                   | I can easily see how the app will look when it is in use                              |
-| `* *`    | user paranoid about losing progress | have the data automatically saved                                                                         | I will not lose any progress when the application shuts down unexpectedly             |
-| `* *`    | new user                            | clear all current data                                                                                    | I can get rid of experimental data I used for exploring the app                       |
-| `*`      | new user                            | have the application provide a user-friendly tutorial                                                     | I can understand its features                                                         |
-| `* * *`  | HR staff member                     | add an employee to the application                                                                        | I can keep track of the employee's detail                                             |
-| `*`      | HR staff member                     | view two employees' details side by side                                                                  | I can easily compare the differences                                                  |
-| `* *`    | HR staff member                     | edit employees' details                                                                                   | the application contains up-to-date details of the employees                          |
-| `* * *`  | HR staff member                     | remove employees who have left the company                                                                | ensure their data does not clutter the application                                    |
-| `*`      | HR staff member                     | search for employees using their names                                                                    | find the employee that I am looking for                                               |
-| `*`      | HR staff member                     | filter employees based on their department, salary, etc.                                                  | narrow down my search to a target group of employees                                  |
-| `*`      | HR staff member                     | find employees based on their departments                                                                 | obtain the contact information of the employees in a department                       |
-| `*`      | HR staff member                     | find employees based on their roles                                                                       | easily increment the pay of all the staff with that role efficiently                  |
-| `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                                            | easily fetch employees that I have analyzed recently and make my work more convenient |
-| `* * *`  | HR staff member                     | easily access and update employee information, including roles, salaries, departments and contact details | ensure that employee records are accurate                                             |
-| `*`      | HR staff member                     | generate reports                                                                                          | so that the upper management can have better insights into their employees.           |
-| `* *`    | Expert user                         | combine functions together                                                                                | I can save time on commonly performed tasks                                           |
-| `* *`    | Expert user                         | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                           |
-| `* * *`  | Advanced user                       | order my search results by various indicators (such as name and department)                               | view a list of employees in my desired manner.                                        |
-| `* * *`  | long-time user                      | remove unused data                                                                                        | I am not distracted by irrelevant data.                                               |
-| `* *`    | HR staff member                     | know the history of changes, including who and when the change was made                                   | I can use them for auditing purposes.                                                 |
-| `* *`    | HR staff member                     | add notes to employee’s profiles                                                                          | I can document important information and interactions                                 |
-| `*`      | advanced user                       | edit the saved files manually without using the application                                               | it’s more convenient to update and organise new information                           |
-| `*`      | user with poor eyesight             | view the information easily                                                                               | it is not difficult for me to use the application.                                    |
-| `*`      | HR staff member                     | collect and analyze diversity metrics                                                                     | I can promote a more diverse workplace                                                |
-| `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                 |
-| `*`      | HR staff member                     | set performance goals for employees                                                                       | I’m able to align them with the company’s objectives.                                 |
-| `*`      | HR staff member                     | use the application to create analytics that will give me insights into the employee's performances       | I can give proper recognition to employees with good performances                     |
-| `* *`    | busy HR staff member                | use the application with a minimal number of inputs                                                       | I can be more efficient with my work.                                                 |
-| `* *`    | careless HR staff member            | reverse the history                                                                                       | if there are any mistakes I can easily revert to a copy with no mistakes              |
+| Priority | As a …​                             | I want to …​                                                                                              | So that                                                                                     |
+|----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `*`      | potential user exploring the app    | view the app populated with sample data                                                                   | I can easily see how the app will look when it is in use                                    |
+| `* *`    | user paranoid about losing progress | have the data automatically saved                                                                         | I will not lose any progress when the application shuts down unexpectedly                   |
+| `* *`    | new user                            | clear all current data                                                                                    | I can get rid of experimental data I used for exploring the app                             |
+| `*`      | new user                            | view a user-friendly tutorial of the app                                                                  | I can understand the app's features                                                         |
+| `* * *`  | HR staff member                     | add an employee to the application                                                                        | I can keep track of their details                                                           |
+| `*`      | HR staff member                     | view two employees' details side by side                                                                  | I can easily compare the differences of the employees                                       |
+| `* * *`  | HR staff member                     | edit employees' details                                                                                   | I can keep the details of the employees up-to-date                                          |
+| `* * *`  | HR staff member                     | remove employees who have left the company                                                                | their data does not clutter the application                                                 |
+| `* * *`  | HR staff member                     | search for employees using their names                                                                    | I can find the employee that I am looking for                                               |
+| `* * *`  | HR staff member                     | search for employees based on their departments                                                           | I can obtain the contact information of the employees in a department                       |
+| `* * *`  | HR staff member                     | search for employees based on their roles                                                                 | I can easily increment the pay of all the staff with that role efficiently                  |
+| `* * *`  | HR staff member                     | search for employees using multiple attributes (e.g. department, salary, etc.)                            | I can narrow down my search to a target group of employees                                  |
+| `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                                            | I can easily fetch employees that I have analyzed recently and make my work more convenient |
+| `*`      | HR staff member                     | generate reports on employees' performance                                                                | I can provide the upper management better insights into their employees                     |
+| `* *`    | expert user                         | combine functions together                                                                                | I can save time on commonly performed tasks that requires more than one function            |
+| `* *`    | expert user                         | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                                 |
+| `* * *`  | HR staff member                     | order my search results by various attributes (e.g. name, department, etc.)                               | I can view a list of employees in my desired manner                                         |
+| `* * *`  | long-time user                      | remove unused employee data                                                                               | I am not distracted by irrelevant data                                                      |
+| `* *`    | HR staff member                     | view the history of changes, including who made the change and when the change was made                   | I can use them for auditing purposes                                                        |
+| `* *`    | HR staff member                     | add notes to employees' details                                                                           | I can document important information and interactions                                       |
+| `*`      | advanced user                       | edit the saved data files manually without using the application                                          | I can update and organise new information more conveniently                                 |
+| `*`      | user with poor eyesight             | view the information without straining my eyes by adjusting the text size                                 | it is not difficult for me to use the application                                           |
+| `*`      | HR staff member                     | collect and view an analysis of diversity metrics                                                         | I can promote a more diverse workplace                                                      |
+| `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                       |
+| `*`      | HR staff member                     | set performance goals for employees                                                                       | I can align the employees with the company’s objectives                                     |
+| `* *`    | careless HR staff member            | undo my last command                                                                                      | I can easily revert to a copy with no mistakes if I made mistakes                           |
+| `* *`    | careless HR staff member            | redo my command                                                                                           | I can redo a command that I accidentally undid                                              |
+| `* *`    | HR staff member                     | increment and decrement multiple employees' salaries together by the same amount                          | I do not need to repeat the same action for multiple employees                              |
 
 ### Use cases
 
@@ -443,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
   * Use case resumes from step 2.
 
-**Use case: UC4 - Finding an employee**
+**Use case: UC4 - Find an employee**
 
 **MSS**
 
@@ -476,6 +569,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters new increment amount.
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
+
+**Use case: UC6 - View Command History**
+
+**MSS**
+
+1. User requests to view the command history of a certain number of past commands.
+1. EmployeeManager fetches the required number of recent valid commands from the CommandHistory.
+1. EmployeeManager displays the fetched commands to the user.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid number.
+    * 1a1. EmployeeManager informs user that the number is invalid.
+    * 1a2. User enters history command with number.
+    * Steps 1a1-1a2 are repeated until the number entered is valid.
+    * Use case resumes from step 2.
+
+**Use case: UC7 - Clear the displayed list**
+
+**MSS**
+
+1. User requests clear the displayed list.
+1. EmployeeManager clears the displayed list.
+1. EmployeeManager displays an empty list.
+1. Use case ends.
 
 ### Non-Functional Requirements
 
@@ -518,29 +637,127 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding an employee
 
-### Deleting a person
+1. Adding an employee to the displayed list
 
-1. Deleting a person while all persons are being shown
+    1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
+       Expected: An employee with the correct details is added to the end of the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add`<br>
+       Expected: No employee is added. Error details shown in the status message.
+
+
+### Deleting an employee
+
+1. Deleting an employee from the displayed list
+
+   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No employee is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Incrementing salaries of multiple employees
 
-### Saving data
+1. Incrementing salaries of all employees in the displayed list of employees.
 
-1. Dealing with missing/corrupted data files
+    1. Test case: `increment 1000`<br>
+       Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
+       Expected: Salaries of all employees in the list increased by 1000.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: `increment -10000` <br>
+       Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
+       Expected: No change in salaries of all employees. Error details shown in the status message.
 
-1. _{ more test cases …​ }_
+### Undoing a modification
+
+1. Undo the previous command that caused a modification in employee data.
+
+    1. Test case: `delete 1` followed by `undo`<br>
+       Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+       Expected: The list is reverted to the list of employees before `delete 1` was executed.
+
+    1. Test case: `undo`<br>
+       Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
+       Expected: No change in displayed list and employee data. Error details shown in the status message.
+        1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
+
+### Redoing the previous undone command
+
+1. Redo the previous undone command caused by `undo`.
+
+    1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
+       Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+       Expected: The list is reverted to the list of employees after `delete 1` was executed.
+
+    1. Test case: `redo`<br>
+       Prerequisite: No commands have been undone.<br>
+       Expected: No change in displayed list and employee data. Error details shown in the status message.
+
+### Editing an employee
+
+1. Editing an employee in the displayed list of employees.
+
+    1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
+
+    1. Test case: `edit 1 n/John Tan`<br>
+       Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
+
+    1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
+       Expected: Similar to previous, the respective fields gets edited.
+
+    1. Test case: `edit 0`<br>
+       Expected: No employee is edited. Error details shown in the status message.
+
+    1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.       
+
+### Sorting the list
+
+1. Sorting the displayed list of employees.
+
+    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+
+    1. Test case: `sort n/`<br>
+       Expected: Displayed list is sorted by alphabetical order of the name field.
+
+    1. Other correct sort commands to try: `sort d/`, `sort r/` and `sort e/`<br>
+       Expected: Similar to previous, the respective fields gets sorted based on lexicographical order.
+
+    1. Test case: `sort`<br>
+       Expected: Displayed list is not sorted. Error details shown in the status message.
+
+### Finding an employee
+
+1. Finds an employee by the given field.
+
+    1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
+   and one with the role `Manager` to effectively test whether the find command works for each field.
+
+    1. Test case: `find n/John`<br>
+       Expected: Finds all employees whose names include the word `John`.
+
+    1. Test case: `find d/Finance`<br>
+       Expected: Finds all employees whose department include the word `Finance`.
+
+    1. Test case: `find r/Manager`<br>
+      Expected: Finds all employees whose role include the word `Manager`.
+
+    1. Test case: `find`<br>
+      Expected: The displayed list is not filtered. Error details shown in the status message.
+
+### Viewing command history
+
+1. Viewing the command history.
+
+    1. Test case: `delete 1` followed by `history 1`<br>
+       Expected: The previous command `delete 1` is shown in the status message.
+
+    1. Test case: `history 0`<br>
+       Expected: Error details shown in the status message.

@@ -80,6 +80,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getSortedFilteredPersonList();
 
+    /** Clears the filtered person list */
+    void clearSortedFilteredPersonList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -91,4 +94,30 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Returns true if the model has previous address book states to restore.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Returns true if the model has undone address book states to restore.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's address book to its previous state.
+     */
+    void undoAddressBook();
+
+    /**
+     * Restores the model's address book to its previously undone state.
+     */
+    void redoAddressBook();
+
+    /**
+     * Saves the current address book state for undo/redo.
+     */
+    void commitAddressBook();
+
 }

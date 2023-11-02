@@ -48,13 +48,13 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        id.setText("   " + displayedIndex + ". ");
         employeeId.setText(person.getId().value);
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        department.setText(person.getDepartment().value);
-        role.setText(person.getRole().value);
-        salary.setText(person.getSalary().toString());
+        phone.setText(" " + person.getPhone().value);
+        email.setText(" " + person.getEmail().value);
+        department.setText(" " + person.getDepartment().value);
+        role.setText(" " + person.getRole().value);
+        salary.setText(" $" + person.getSalary().value);
     }
 }

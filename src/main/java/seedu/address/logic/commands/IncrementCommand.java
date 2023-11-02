@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -33,6 +34,8 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_INVALID_INCREMENT = "Increment causes salary of {%1$s} to fall below 0 "
             + "or exceed the maximum salary of %2$.2f";
+    public static final String MESSAGE_SUMMARY = "Increment: " + COMMAND_WORD + " INCREMENT" + "\n"
+            + "Example: " + COMMAND_WORD + " 100" + "\n";
 
     private final Increment increment;
 
@@ -46,7 +49,7 @@ public class IncrementCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getSortedFilteredPersonList();
         checkValidIncrement(lastShownList);
@@ -55,7 +58,7 @@ public class IncrementCommand extends Command {
             Person editedPerson = incrementPersonSalary(personToEdit);
             model.setPerson(personToEdit, editedPerson);
         }
-
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_INCREMENT_SUCCESS, lastShownList.size(), increment.toString()));
     }
 

@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Comparator;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -22,17 +23,21 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_SUCCESS = "List successfully sorted.";
-    public static final String MESSAGE_MULTIPLE_PREFIXES = "Sorting by multiple prefixes is not supported.";
 
-    public static final String MESSAGE_USAGE = "Sorts the list displayed based on the prefix provided."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list displayed based on the prefix provided."
             + "\n" + "Parameters: "
-            + "[" + PREFIX_ID + "] " + "or " + "[" + PREFIX_DEPARTMENT + "] " + "or " + "[" + PREFIX_EMAIL + "] "
-            + "or " + "[" + PREFIX_SALARY + "] " + "or " + "[" + PREFIX_ROLE + "] "
-            + "or " + "[" + PREFIX_NAME + "] " + "or " + "[" + PREFIX_PHONE + "] "
+            + "[" + PREFIX_ID + "] " + "[" + PREFIX_DEPARTMENT + "] " + "[" + PREFIX_EMAIL + "] "
+            + "[" + PREFIX_SALARY + "] " + "[" + PREFIX_ROLE + "] "
+            + "[" + PREFIX_NAME + "] " + "[" + PREFIX_PHONE + "] "
             + "\n"
-
             + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID
             + "\n" + COMMAND_WORD + " " + PREFIX_NAME;
+
+    public static final String MESSAGE_SUMMARY = "Sort: " + COMMAND_WORD
+            + " [" + PREFIX_ID + "] " + "[" + PREFIX_DEPARTMENT + "] " + "[" + PREFIX_EMAIL + "] "
+            + "[" + PREFIX_SALARY + "] " + "[" + PREFIX_ROLE + "] "
+            + "[" + PREFIX_NAME + "] " + "[" + PREFIX_PHONE + "] " + "\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ID + "\n";
 
     private final Comparator<Person> comparator;
 
@@ -41,7 +46,7 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateSortedPersonList(comparator);
         return new CommandResult(MESSAGE_SUCCESS);
