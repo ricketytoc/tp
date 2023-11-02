@@ -15,8 +15,15 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.GeneralPredicate;
+import seedu.address.model.person.IdContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryWithinRangePredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -43,31 +50,45 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArrayList<Predicate<Person>> predicateList = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ID).get().trim();
-            ParserUtil.parseIdKeyword(predicateList, trimmedArgs);
+            IdContainsKeywordsPredicate idContainsKeywordsPredicate = ParserUtil
+                    .parseIdKeyword(predicateList, trimmedArgs);
+            predicateList.add(idContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
-            ParserUtil.parseNameKeyword(predicateList, trimmedArgs);
+            NameContainsKeywordsPredicate nameContainsKeywordsPredicate = ParserUtil
+                    .parseNameKeyword(predicateList, trimmedArgs);
+            predicateList.add(nameContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ROLE).get().trim();
-            ParserUtil.parseRoleKeyword(predicateList, trimmedArgs);
+            RoleContainsKeywordsPredicate roleContainsKeywordsPredicate = ParserUtil
+                    .parseRoleKeyword(predicateList, trimmedArgs);
+            predicateList.add(roleContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_DEPARTMENT).get().trim();
-            ParserUtil.parseDepartmentKeyword(predicateList, trimmedArgs);
+            DepartmentContainsKeywordsPredicate departmentContainsKeywordsPredicate = ParserUtil
+                    .parseDepartmentKeyword(predicateList, trimmedArgs);
+            predicateList.add(departmentContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
-            ParserUtil.parseEmailKeyword(predicateList, trimmedArgs);
+            EmailContainsKeywordsPredicate emailContainsKeywordsPredicate = ParserUtil
+                    .parseEmailKeyword(predicateList, trimmedArgs);
+            predicateList.add(emailContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_SALARY).get().trim();
-            ParserUtil.parseSalaryKeyword(predicateList, trimmedArgs);
+            SalaryWithinRangePredicate salaryWithinRangePredicate = ParserUtil
+                    .parseSalaryKeyword(predicateList, trimmedArgs);
+            predicateList.add(salaryWithinRangePredicate);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
-            ParserUtil.parsePhoneKeyword(predicateList, trimmedArgs);
+            PhoneContainsKeywordsPredicate phoneContainsKeywordsPredicate = ParserUtil
+                    .parsePhoneKeyword(predicateList, trimmedArgs);
+            predicateList.add(phoneContainsKeywordsPredicate);
         }
         assert !predicateList.isEmpty() : "predicate list is empty, please enter find command with valid prefix";
         GeneralPredicate generalPredicate = new GeneralPredicate(predicateList);

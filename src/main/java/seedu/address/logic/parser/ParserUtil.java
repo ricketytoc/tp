@@ -200,94 +200,76 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code IdContainsKeywordsPredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code IdContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parseIdKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static IdContainsKeywordsPredicate parseIdKeyword(ArrayList<Predicate<Person>> predicateList,
                                 String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
-        predicateList.add(new IdContainsKeywordsPredicate(trimmedArgs));
+        return new IdContainsKeywordsPredicate(trimmedArgs);
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code NameContainsKeywordsPredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code NameContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parseNameKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static NameContainsKeywordsPredicate parseNameKeyword(ArrayList<Predicate<Person>> predicateList,
                                   String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code RoleContainsKeywordsPredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code RoleContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parseRoleKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static RoleContainsKeywordsPredicate parseRoleKeyword(ArrayList<Predicate<Person>> predicateList,
                                   String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] roleKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
+        return new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code DepartmentContainsKeywordsPredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code DepartmentContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(ArrayList<Predicate<Person>> predicateList,
                                         String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] departmentKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
+        return new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code EmailContainsKeywordsPredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code EmailContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parseEmailKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static EmailContainsKeywordsPredicate parseEmailKeyword(ArrayList<Predicate<Person>> predicateList,
                                    String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         String[] emailKeywords = trimmedArgs.split("\\s+");
-        predicateList.add(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
+        return new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code SalaryWithinRangePredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code SalaryWithinRangePredicate}. Leading and trailing whitespaces
+     * will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static SalaryWithinRangePredicate parseSalaryKeyword(ArrayList<Predicate<Person>> predicateList,
                                     String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
         if (!isValidFindSalaryArgs(trimmedArgs)) {
@@ -295,22 +277,19 @@ public class ParserUtil {
         }
         double lowerBound = findLowerBound(trimmedArgs);
         double upperBound = findUpperBound(trimmedArgs);
-        predicateList.add(new SalaryWithinRangePredicate(lowerBound, upperBound));
+        return new SalaryWithinRangePredicate(lowerBound, upperBound);
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code PhoneContainsKeywordsPredicate} and adds it to
-     * {@code ArrayList<Predicate<Person>> predicateList}. Leading and trailing whitespaces will be
-     * trimmed.
-     * @param predicateList contains {@code Predicate<Person>} that will be used to find employees that satisfy all the
-     *                      predicates.
+     * Parses {@code String trimmedArgs} into an {@code PhoneContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
      * @param trimmedArgs keyword that is entered by the user.
      * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
      */
-    public static void parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList,
+    public static PhoneContainsKeywordsPredicate parsePhoneKeyword(ArrayList<Predicate<Person>> predicateList,
                                    String trimmedArgs) throws ParseException {
         checkFindArgs(trimmedArgs);
-        predicateList.add(new PhoneContainsKeywordsPredicate(trimmedArgs));
+        return new PhoneContainsKeywordsPredicate(trimmedArgs);
     }
 
     /**
