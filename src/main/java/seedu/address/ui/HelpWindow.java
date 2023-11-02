@@ -14,9 +14,11 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.IncrementCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -40,9 +42,11 @@ public class HelpWindow extends UiPart<Stage> {
             + DeleteCommand.MESSAGE_SUMMARY + "\n"
             + EditCommand.MESSAGE_SUMMARY + "\n"
             + ExitCommand.MESSAGE_SUMMARY + "\n"
+            + ExportCommand.MESSAGE_SUMMARY + "\n"
             + FindCommand.MESSAGE_SUMMARY + "\n"
             + HelpCommand.MESSAGE_SUMMARY + "\n"
             + HistoryCommand.MESSAGE_SUMMARY + "\n"
+            + ImportCommand.MESSAGE_SUMMARY + "\n"
             + IncrementCommand.MESSAGE_SUMMARY + "\n"
             + ListCommand.MESSAGE_SUMMARY + "\n"
             + RedoCommand.MESSAGE_SUMMARY + "\n"

@@ -5,7 +5,11 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.logic.commands.HistoryCommand;
@@ -38,6 +42,7 @@ public class ParserUtilTest {
     private static final String VALID_SALARY = "5000";
     private static final String VALID_INCREMENT = "1000";
     private static final String VALID_HISTORY = "5";
+    private static final String VALID_PATH = "./data/persons.json";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -60,6 +65,21 @@ public class ParserUtilTest {
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
     }
+
+    @Test
+    public void parsePath_validPath_returnsPath() throws Exception {
+        Path expectedPath = Path.of(VALID_PATH);
+        assertEquals(expectedPath, ParserUtil.parsePath(VALID_PATH));
+    }
+
+    @Test
+    @EnabledOnOs({OS.WINDOWS})
+    public void parsePath_invalidPathWindows_throwsParseException() {
+        String invalidPath = "./data/per*sons.json";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(invalidPath));
+    }
+
+    // Linux & Mac has almost no restrictions, so no invalid tests are created
 
     @Test
     public void parseId_null_throwsNullPointerException() {
