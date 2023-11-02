@@ -23,10 +23,10 @@
             </stylesheets>
             <VBox fx:id="helpMessageContainer" prefHeight="759.0" prefWidth="764.0" style="-fx-background-color: #FFFFFF;">
                 <children>
-                    <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <ScrollPane fitToWidth="true" focusTraversable="false" pannable="true" VBox.vgrow="ALWAYS">
                         <content>
-                            <VBox prefHeight="802.0" prefWidth="762.0">
-                                <Label fx:id="commandSummary" prefHeight="728.0" prefWidth="761.0" text="Label" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox prefHeight="793.0" prefWidth="749.0">
+                                <Label fx:id="commandSummary" focusTraversable="false" text="Label" wrapText="true" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font size="13.0" />
                                     </font>

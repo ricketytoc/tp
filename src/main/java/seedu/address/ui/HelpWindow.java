@@ -51,7 +51,7 @@ public class HelpWindow extends UiPart<Stage> {
             + ListCommand.MESSAGE_SUMMARY + "\n"
             + RedoCommand.MESSAGE_SUMMARY + "\n"
             + SortCommand.MESSAGE_SUMMARY + "\n"
-            + UndoCommand.MESSAGE_SUMMARY + "\n";
+            + UndoCommand.MESSAGE_SUMMARY;
 
     @FXML
     private Button copyButton;
