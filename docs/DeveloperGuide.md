@@ -575,7 +575,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view the command history of a certain number of past commands.
-1. EmployeeManager validates the input and fetches the required number of recent valid commands from the CommandHistory.
+1. EmployeeManager fetches the required number of recent valid commands from the CommandHistory.
 1. EmployeeManager displays the fetched commands to the user.
 1. Use case ends.
 
@@ -642,7 +642,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding an employee to the displayed list
 
     1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
-       Expected: An employee with the correct details is added to the end of the list
+       Expected: An employee with the correct details is added to the end of the list.
 
     1. Test case: `add`<br>
        Expected: No employee is added. Error details shown in the status message.
@@ -738,7 +738,7 @@ testers are expected to do more *exploratory* testing.
 1. Finds an employee by the given field.
 
     1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
-   and one with the role `Manager` to effectively test the whether the find command works for each field.
+   and one with the role `Manager` to effectively test whether the find command works for each field.
 
     1. Test case: `find n/John`<br>
        Expected: Finds all employees whose names include the word `John`.
