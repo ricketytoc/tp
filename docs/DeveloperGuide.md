@@ -671,7 +671,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finds an employee by the given field.
 
-    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+    1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
+   and one with the role `Manager` to effectively test the whether the find command works for each field.
 
     1. Test case: `find n/John`<br>
        Expected: Finds all employees whose names include the word `John`.
