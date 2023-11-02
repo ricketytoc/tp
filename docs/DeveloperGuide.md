@@ -617,6 +617,31 @@ testers are expected to do more *exploratory* testing.
       Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
       Expected: No change in salaries of all employees. Error details shown in the status message.
 
+### Undoing a modification
+
+1. Undo the previous command that caused a modification in employee data.
+
+   1. Test case: `undo`<br>
+      Prerequisite: A command that caused a modification in employee data has been made.<br>
+      Expected: Displayed list shows employee data before the last modification was made.
+   
+   1. Test case: `undo`<br>
+      Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
+      Expected: No change in displayed list and employee data. Error details shown in the status message.
+      1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
+
+### Redoing the previous undone command
+
+1. Redo the previous undone command caused by `undo`.
+
+   1. Test case: `redo`<br>
+      Prerequisite: Undo a command successfully using `undo`.<br>
+      Expected: Displayed list shows employee data with the modification that was undone by the last `undo` command.
+   
+   1. Test case: `redo`<br>
+      Prerequisite: No commands have been undone.<br>
+      Expected: No change in displayed list and employee data. Error details shown in the status message.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
