@@ -27,12 +27,20 @@ public class HistoryCommandTest {
 
     @Test
     public void execute_validNumberOfUserCommands() {
-        String expectedMessage = "Displayed up to the last 2 valid user commands. "
-                + "If fewer than 2 commands are available, all are shown.\nclear\nlist";
+        String expectedMessage1 = "Displayed up to the last 2 valid user commands. "
+                + "If fewer than 2 commands are available, all are shown." + "\n"
+                + "clear" + "\n"
+                + "list";
         commandHistory.add("list");
         commandHistory.add("clear");
         HistoryCommand historyCommand = new HistoryCommand(2);
-        assertCommandSuccess(historyCommand, commandHistory, expectedMessage);
+        assertCommandSuccess(historyCommand, commandHistory, expectedMessage1);
+        String expectedMessage2 = "Displayed up to the last 2 valid user commands. "
+                + "If fewer than 2 commands are available, all are shown." + "\n"
+                + VALID_ADD_COMMAND + "\n"
+                + "clear";
+        commandHistory.add(VALID_ADD_COMMAND);
+        assertCommandSuccess(historyCommand, commandHistory, expectedMessage2);
     }
 
     @Test

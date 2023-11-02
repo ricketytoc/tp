@@ -27,10 +27,14 @@ public class HistoryCommandParserTest {
     @Test
     public void parse_validArgs_returnsHistoryCommand() {
         assertParseSuccess(parser, "1", new HistoryCommand(1));
+
+        // Boundary value analysis (Max input in 1000)
+        assertParseSuccess(parser, "999", new HistoryCommand(999));
+        assertParseSuccess(parser, "1000", new HistoryCommand(1000));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidAlphanumericArgs_throwsParseException() {
         // alphabetical inputs
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
 
@@ -42,5 +46,12 @@ public class HistoryCommandParserTest {
 
         // zero input
         assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
+
+        // greater than max input (Boundary value analysis)
+        assertParseFailure(parser, "1001", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
+
+        // greater than max int
+        assertParseFailure(parser, "10000", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HistoryCommand.MESSAGE_USAGE));
     }
 }

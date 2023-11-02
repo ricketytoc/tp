@@ -22,6 +22,8 @@ public class ExportCommand extends Command {
             + "FILE_PATH"
             + "\n"
             + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json";
+    public static final String MESSAGE_SUMMARY = "Export: " + COMMAND_WORD + " FILE_PATH" + "\n"
+            + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json" + "\n";
 
     private final Path filePath;
 
