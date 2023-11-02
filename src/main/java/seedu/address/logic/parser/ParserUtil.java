@@ -28,6 +28,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_PATH = "The path is invalid.";
+    public static final String MESSAGE_EMPTY_PATH = "The path is empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -51,6 +52,9 @@ public class ParserUtil {
     public static Path parsePath(String filePath) throws ParseException {
         requireNonNull(filePath);
         String trimmedPath = filePath.trim();
+        if (trimmedPath.isBlank()) {
+            throw new ParseException(MESSAGE_EMPTY_PATH);
+        }
 
         try {
             return Paths.get(trimmedPath);
