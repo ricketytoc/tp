@@ -316,6 +316,7 @@ Format: `clear`
 
 Imports an EmployeeManager data file into the application.
 
+* The data file must be of '.json' file type.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
 
@@ -327,7 +328,19 @@ data, it is recommended to use the `export` command to save a copy of the curren
 Format: `import FILE_PATH`
 
 Examples:
-* `import ./data.json` imports the data in the data.json data file.
+* `import ./persons.json` imports the "persons.json" data file.
+
+#### GUI Option
+Alternatively, you may use the GUI option to import the data file. 
+1. Click File > Import in the top left corner of the application.
+![Ui](images/ug-import-gui.png)
+2. The file explorer will open and prompt you to select the data file. _The file explorer will look
+look different depending on your operating system._
+![Ui](images/ug-import-explorer.png)
+3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
+
+* The file explorer will only allow you to select .json files as that is the format of the data file.
+
 
 ### Exporting data : `export`
 
@@ -339,6 +352,23 @@ Format: `export FILE_PATH`
 
 Examples:
 * `export ./data.json` will create the data file under the specified path.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The export command will **overwrite** any file in the specified location.
+</div>
+
+#### GUI Option
+Alternatively, you may use the GUI option to export the data file.
+1. Click File > Export in the top left corner of the application.
+   ![Ui](images/ug-export-gui.png)
+2. The file explorer will open and prompt you to save the data file. _The file explorer will look
+different depending on your operating system._
+   ![Ui](images/ug-export-explorer.png)
+3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
+
+* The file explorer will save the file as a .json file format.
+* The data file can be given any _valid name_, e.g. `abc_pte_ltd.json` as shown in the image above.
+* Valid file name is dependent on the operating system.
 
 ### Viewing command history : `history`
 
