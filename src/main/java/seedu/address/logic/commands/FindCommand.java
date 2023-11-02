@@ -27,21 +27,20 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String INVALID_FIND_ARGS_MESSAGE = "Arguments of the Find command should not contain '/' as it "
-            + "is reserved to be used with a prefix to define the attribute to find by. "
+    public static final String INVALID_FIND_ARGS_MESSAGE = "Search parameters of the Find command should not contain "
+            + "'/' as it is reserved to be used with a prefix to define the attribute to find by. "
             + "Please ensure that the prefix used is valid.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Except for Salary attribute, finds all persons whose "
-            + "attributes contain the keyword (case-insensitive) specified for those attributes and displays them as a "
-            + "list with index numbers. For Salary, finds all persons whose salary is within a range instead and the "
-            + "lower bound has to be smaller or equal to the upper bound. "
-            + "Upper bound of the range should be less than the maximum allowed salary which is "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the employees whose attributes matches all "
+            + "the search parameters. Search parameters cannot be empty and for finding by Salary, both the lower "
+            + "and upper bound must be non-negative integers and the lower bound has to be smaller or equal to the "
+            + "upper bound and the upper bound should be less than the maximum allowed salary which is "
             + Salary.MAXIMUM_SALARY
             + ".\n"
             + "Parameters: "
             + "[" + PREFIX_ID + "ID] " + " [" + PREFIX_NAME + "NAME] " + " [" + PREFIX_PHONE + "PHONE] "
             + " [" + PREFIX_EMAIL + "EMAIL] " + " [" + PREFIX_DEPARTMENT + "DEPARTMENT] "
-            + " [" + PREFIX_ROLE + "ROLE] " + " [" + PREFIX_SALARY + "SALARY_LOWER_BOUND - SALARY_UPPER_BOUND] "
+            + " [" + PREFIX_ROLE + "ROLE] " + " [" + PREFIX_SALARY + "LOWER_BOUND - UPPER_BOUND] "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "A0123456B "
@@ -49,7 +48,7 @@ public class FindCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_DEPARTMENT + "Finance "
             + PREFIX_ROLE + "Manager "
-            + PREFIX_SALARY + "5000";
+            + PREFIX_SALARY + "5000 - 7000";
 
     public static final String MESSAGE_SUMMARY = "Find: " + COMMAND_WORD + " "
             + "[" + PREFIX_ID + "ID] " + " [" + PREFIX_NAME + "NAME] " + " [" + PREFIX_PHONE + "PHONE] "

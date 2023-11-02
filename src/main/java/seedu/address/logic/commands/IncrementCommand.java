@@ -58,7 +58,7 @@ public class IncrementCommand extends Command {
             Person editedPerson = incrementPersonSalary(personToEdit);
             model.setPerson(personToEdit, editedPerson);
         }
-
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_INCREMENT_SUCCESS, lastShownList.size(), increment.toString()));
     }
 

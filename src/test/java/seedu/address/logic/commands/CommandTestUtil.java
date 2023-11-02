@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -159,4 +160,14 @@ public class CommandTestUtil {
         assertEquals(1, model.getSortedFilteredPersonList().size());
     }
 
+    /**
+     * Deletes the first employee from the {@code model}'s filtered and sorted list if there are employees' data
+     * in EmployeeManager.
+     */
+    public static void deleteFirstPerson(Model model) {
+        assertTrue(model.getSortedFilteredPersonList().size() > 0);
+        Person personToDelete = model.getSortedFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.deletePerson(personToDelete);
+        model.commitAddressBook();
+    }
 }
