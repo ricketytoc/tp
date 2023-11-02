@@ -37,7 +37,7 @@
                             </VBox>
                         </content>
                     </ScrollPane>
-                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #c5d4eb;">
+                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #c5d4eb;" VBox.vgrow="ALWAYS">
                         <children>
                             <Label fx:id="helpMessage" alignment="BOTTOM_LEFT" prefHeight="19.0" prefWidth="782.0" text="Label" HBox.hgrow="ALWAYS">
                                 <HBox.margin>
