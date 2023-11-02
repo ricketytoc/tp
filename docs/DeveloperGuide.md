@@ -621,9 +621,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Undo the previous command that caused a modification in employee data.
 
-   1. Test case: `undo`<br>
-      Prerequisite: A command that caused a modification in employee data has been made.<br>
-      Expected: Displayed list shows employee data before the last modification was made.
+   1. Test case: `delete 1` followed by `undo`<br>
+      Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+      Expected: The list is reverted to the list of employees before `delete 1` was executed.
    
    1. Test case: `undo`<br>
       Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
@@ -634,9 +634,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Redo the previous undone command caused by `undo`.
 
-   1. Test case: `redo`<br>
-      Prerequisite: Undo a command successfully using `undo`.<br>
-      Expected: Displayed list shows employee data with the modification that was undone by the last `undo` command.
+   1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
+      Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+      Expected: The list is reverted to the list of employees after `delete 1` was executed.
    
    1. Test case: `redo`<br>
       Prerequisite: No commands have been undone.<br>
