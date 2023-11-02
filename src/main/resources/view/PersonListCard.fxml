@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,7 +20,7 @@
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="3" left="15" right="5" top="5" />
+        <Insets bottom="8" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-background-color: #007aa2; -fx-background-radius: 5;">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -42,31 +44,51 @@
       <FlowPane fx:id="tags" />
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <Label styleClass="cell-small-label" text=" 📞 " textFill="#007aa2" />
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <image>
+                        <Image url="@../images/phone.png" />
+                    </image>
+                </ImageView>
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             </children>
          </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <Label styleClass="cell-small-label" text=" 📧 " textFill="#007aa2" />
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <image>
+                        <Image url="@../images/email.png" />
+                    </image>
+                </ImageView>
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             </children>
          </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <Label styleClass="cell-small-label" text=" 🏠 " textFill="#007aa2" />
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <image>
+                        <Image url="@../images/department.png" />
+                    </image>
+                </ImageView>
             <Label fx:id="department" styleClass="cell_small_label" text="\$department" />
             </children>
          </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <Label styleClass="cell-small-label" text="🧑‍💼 " textFill="#007aa2" />
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <image>
+                        <Image url="@../images/role.png" />
+                    </image>
+                </ImageView>
             <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
             </children>
          </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <Label styleClass="cell-small-label" text=" 💰 " textFill="#007aa2" />
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <image>
+                        <Image url="@../images/salary.png" />
+                    </image>
+                </ImageView>
             <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
             </children>
          </HBox>
