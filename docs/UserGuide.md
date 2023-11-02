@@ -21,8 +21,8 @@ This User Guide aims to help both new and experienced users use EmployeeManager.
 EmployeeManager to make managing employees easier!
 
 If you are a **new user**:
-* Get started with EmployeeManager by going through [Quick start](#quick-start) and [Navigating the user guide](#navigating-the-user-guide)
-* If you have no prior experience with CLI or require a refresher, refer to this guide *(coming soon)*
+* Get started with EmployeeManager by going through [Quick start](#quick-start)
+* If you have no prior experience with CLI or require a refresher, refer to this [guide](#how-to-use-command-line-interface)
 
 If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
@@ -35,24 +35,31 @@ If you are an **experienced user**:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Navigating the user guide
-*Coming soon*
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your Computer.
+   1. Open the **terminal** on your Computer.
+      1. **Windows**: Open Windows Search and search for "terminal".
+      1. **Mac**: Open Spotlight Search and search for "terminal".
+      1. **Linux**: Press `Ctrl + Alt + T`.
+   1. Type `java --version` into the terminal.
+   1. If you have java installed, it should look similar to this: <br>
+      <img src="images/JavaVersion.png" width="600" />
+   1. Check that your version starts with `11` or higher.
+   1. If you do not have Java `11` or above installed, you can download Java `11` [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 1. Download the latest `employeemanager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar employeemanager.jar` command to run the application.<br>
+1. Open a command terminal, type the `cd FOLDER` command, substituting `FOLDER` with the folder path of the folder you put the jar file in.<br>
+   _The `cd` command changes the working directory of the terminal, allowing EmployeeManager to be launched in the next step._
+
+1. Type the `java -jar employeemanager.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all employees.
@@ -64,6 +71,24 @@ If you are an **experienced user**:
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## How to use command line interface
+
+<img src="images/CommandLineGuide.png" width="700" />
+
+1. Click on the command box.
+
+1. Type the command word.
+   1. Example: `add` is the command word for adding an employee.
+
+1. Follow the command format of the command and type the prefixes and/or fields required.
+   1. Refer to the [Features](#features) for the details on the command format for each command.
+   1. Example: `i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000`.
+
+1. Press enter to execute the command.
+   1. `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,23 +277,24 @@ Examples:
 
 ### Sorting displayed employees : `sort`
 
-Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
+Sorts the displayed list based on the specified employee's attribute in _ascending_ order.
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
-* Attributes are sorted by lexicographical order except for salary which
-is simply by numerical order.
+* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix
+* Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
+and "100" comes before "200".
 
 Examples:
-* `sort i/` sorts the displayed list in ascending ID.
-* `sort d/` sorts the displayed list in ascending department.
-* `sort e/` sorts the displayed list in ascending email.
-* `sort s/` sorts the displayed list in ascending salary.
-* `sort r/` sorts the displayed list in ascending role.
-* `sort n/` sorts the displayed list in ascending name.
-* `sort p/` sorts the displayed list in ascending phone.
+* `sort i/` sorts the list by ID.
+* `sort d/` sorts the list by department.
+* `sort e/` sorts the list by email.
+* `sort s/` sorts the list by salary.
+* `sort r/` sorts the list by role.
+* `sort n/` sorts the list by name.
+* `sort p/` sorts the list by phone.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -315,26 +341,61 @@ Format: `clear`
 
 ### Importing data : `import`
 
-Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
-data stored in the application.
+Imports an EmployeeManager data file into the application.
 
+* The data file must be of '.json' file type.
 * The file path must be valid, and the application must have permission to read from the file.
+* No changes will be made if the data file is invalid or not found.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
+data, it is recommended to use the `export` command to save a copy of the current data.
+</div>
 
 Format: `import FILE_PATH`
 
 Examples:
-* `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
+* `import ./persons.json` imports the "persons.json" data file.
+
+#### GUI Option
+Alternatively, you may use the GUI option to import the data file. 
+1. Click File > Import in the top left corner of the application.
+![Ui](images/ug-import-gui.png)
+2. The file explorer will open and prompt you to select the data file. _The file explorer will look
+look different depending on your operating system._
+![Ui](images/ug-import-explorer.png)
+3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
+
+* The file explorer will only allow you to select .json files as that is the format of the data file.
+
 
 ### Exporting data : `export`
 
-Exports a .csv file based on the data stored in EmployeeManager into the specified path.
+Exports the data file in EmployeeManager to the specified path.
 
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Format: `export FILE_PATH`
 
 Examples:
-* `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
+* `export ./data.json` will create the data file under the specified path.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The export command will **overwrite** any file in the specified location.
+</div>
+
+#### GUI Option
+Alternatively, you may use the GUI option to export the data file.
+1. Click File > Export in the top left corner of the application.
+   ![Ui](images/ug-export-gui.png)
+2. The file explorer will open and prompt you to save the data file. _The file explorer will look
+different depending on your operating system._
+   ![Ui](images/ug-export-explorer.png)
+3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
+
+* The file explorer will save the file as a .json file format.
+* The data file can be given any _valid name_, e.g. `abc_pte_ltd.json` as shown in the image above.
+* Valid file name is dependent on the operating system.
 
 ### Viewing command history : `history`
 

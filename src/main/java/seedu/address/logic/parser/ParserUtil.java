@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -15,6 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Salary;
 
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -22,6 +27,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PATH = "The path is invalid.";
+    public static final String MESSAGE_EMPTY_PATH = "The path is empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -34,6 +41,26 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String filePath} into a {@code Path}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filePath} is invalid.
+     */
+    public static Path parsePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedPath = filePath.trim();
+        if (trimmedPath.isBlank()) {
+            throw new ParseException(MESSAGE_EMPTY_PATH);
+        }
+
+        try {
+            return Paths.get(trimmedPath);
+        } catch (InvalidPathException ipe) {
+            throw new ParseException(MESSAGE_INVALID_PATH + " " + ipe.getReason());
+        }
     }
 
     /**
