@@ -16,7 +16,12 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_SUCCESS = "Data successfully exported";
     public static final String MESSAGE_FAILURE = "Data could not be exported";
-    public static final String MESSAGE_USAGE = "export FILE_PATH";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the data file to the specified location. "
+            + "\n"
+            + "Parameters: "
+            + "FILE_PATH"
+            + "\n"
+            + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json";
 
     private final Path filePath;
 
