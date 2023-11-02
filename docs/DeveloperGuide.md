@@ -211,7 +211,7 @@ user has specified.
 **Aspect: Which component should we choose to store CommandHistory:**
 
 * **Alternative 1 (current choice):** Store it under `Logic`.  
-**Why:** The Logic component is responsible for command execution and parsing. 
+**Why:** The `Logic` component is responsible for command execution and parsing. 
 Adding a history feature here would allow you to easily keep track of commands as they are executed.
 
 * **Alternative 2:** Store it under `Model`.  
@@ -401,15 +401,11 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Clear Feature
 
 The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
 
-#### Proposed Implementation
+#### Implementation
 When the `clear` command is executed, it will call `Model#clearSortedFilteredPersonList`.
 `Model#clearSortedFilteredPersonList` will loop through the persons in the filtered list and
 delete each person from the filtered list using `Model#deletePerson` until the list is cleared.
@@ -540,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
   * Use case resumes from step 2.
 
-**Use case: UC4 - Finding an employee**
+**Use case: UC4 - Find an employee**
 
 **MSS**
 
@@ -573,6 +569,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters new increment amount.
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
+
+**Use case: UC6 - View Command History**
+
+**MSS**
+
+1. User requests to view the command history of a certain number of past commands.
+1. EmployeeManager fetches the required number of recent valid commands from the CommandHistory.
+1. EmployeeManager displays the fetched commands to the user.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid number.
+    * 1a1. EmployeeManager informs user that the number is invalid.
+    * 1a2. User enters history command with number.
+    * Steps 1a1-1a2 are repeated until the number entered is valid.
+    * Use case resumes from step 2.
+
+**Use case: UC7 - Clear the displayed list**
+
+**MSS**
+
+1. User requests clear the displayed list.
+1. EmployeeManager clears the displayed list.
+1. EmployeeManager displays an empty list.
+1. Use case ends.
 
 ### Non-Functional Requirements
 
@@ -615,66 +637,127 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding an employee
 
-### Deleting a person
+1. Adding an employee to the displayed list
 
-1. Deleting a person while all persons are being shown
+    1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
+       Expected: An employee with the correct details is added to the end of the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add`<br>
+       Expected: No employee is added. Error details shown in the status message.
+
+
+### Deleting an employee
+
+1. Deleting an employee from the displayed list
+
+   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No employee is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Incrementing salaries of multiple employees
 
 1. Incrementing salaries of all employees in the displayed list of employees.
 
-   1. Test case: `increment 1000`<br>
-      Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
-      Expected: Salaries of all employees in the list increased by 1000.
-   
-   1. Test case: `increment -10000` <br>
-      Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
-      Expected: No change in salaries of all employees. Error details shown in the status message.
+    1. Test case: `increment 1000`<br>
+       Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
+       Expected: Salaries of all employees in the list increased by 1000.
+
+    1. Test case: `increment -10000` <br>
+       Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
+       Expected: No change in salaries of all employees. Error details shown in the status message.
 
 ### Undoing a modification
 
 1. Undo the previous command that caused a modification in employee data.
 
-   1. Test case: `delete 1` followed by `undo`<br>
-      Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
-      Expected: The list is reverted to the list of employees before `delete 1` was executed.
-   
-   1. Test case: `undo`<br>
-      Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
-      Expected: No change in displayed list and employee data. Error details shown in the status message.
-      1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
+    1. Test case: `delete 1` followed by `undo`<br>
+       Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+       Expected: The list is reverted to the list of employees before `delete 1` was executed.
+
+    1. Test case: `undo`<br>
+       Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
+       Expected: No change in displayed list and employee data. Error details shown in the status message.
+        1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
 
 ### Redoing the previous undone command
 
 1. Redo the previous undone command caused by `undo`.
 
-   1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
-      Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
-      Expected: The list is reverted to the list of employees after `delete 1` was executed.
-   
-   1. Test case: `redo`<br>
-      Prerequisite: No commands have been undone.<br>
-      Expected: No change in displayed list and employee data. Error details shown in the status message.
+    1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
+       Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+       Expected: The list is reverted to the list of employees after `delete 1` was executed.
 
-### Saving data
+    1. Test case: `redo`<br>
+       Prerequisite: No commands have been undone.<br>
+       Expected: No change in displayed list and employee data. Error details shown in the status message.
 
-1. Dealing with missing/corrupted data files
+### Editing an employee
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Editing an employee in the displayed list of employees.
 
-1. _{ more test cases …​ }_
+    1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
+
+    1. Test case: `edit 1 n/John Tan`<br>
+       Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
+
+    1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
+       Expected: Similar to previous, the respective fields gets edited.
+
+    1. Test case: `edit 0`<br>
+       Expected: No employee is edited. Error details shown in the status message.
+
+    1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.       
+
+### Sorting the list
+
+1. Sorting the displayed list of employees.
+
+    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+
+    1. Test case: `sort n/`<br>
+       Expected: Displayed list is sorted by alphabetical order of the name field.
+
+    1. Other correct sort commands to try: `sort d/`, `sort r/` and `sort e/`<br>
+       Expected: Similar to previous, the respective fields gets sorted based on lexicographical order.
+
+    1. Test case: `sort`<br>
+       Expected: Displayed list is not sorted. Error details shown in the status message.
+
+### Finding an employee
+
+1. Finds an employee by the given field.
+
+    1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
+   and one with the role `Manager` to effectively test whether the find command works for each field.
+
+    1. Test case: `find n/John`<br>
+       Expected: Finds all employees whose names include the word `John`.
+
+    1. Test case: `find d/Finance`<br>
+       Expected: Finds all employees whose department include the word `Finance`.
+
+    1. Test case: `find r/Manager`<br>
+      Expected: Finds all employees whose role include the word `Manager`.
+
+    1. Test case: `find`<br>
+      Expected: The displayed list is not filtered. Error details shown in the status message.
+
+### Viewing command history
+
+1. Viewing the command history.
+
+    1. Test case: `delete 1` followed by `history 1`<br>
+       Expected: The previous command `delete 1` is shown in the status message.
+
+    1. Test case: `history 0`<br>
+       Expected: Error details shown in the status message.
