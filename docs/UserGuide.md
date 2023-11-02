@@ -125,7 +125,7 @@ Format: `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY`
 
 Examples:
 * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
-* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200` Adds an employee `Betsy Crowe` into the list.
+* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200.11` Adds an employee `Betsy Crowe` into the list.
 
 ### Listing all employees : `list`
 
@@ -149,13 +149,13 @@ Examples:
 
 ### Finding an employee by multiple attributes: `find`
 
-Finds the employees that satisfy the find requirements based on attributes.
+Finds the employees that satisfy the find requirements based on multiple attributes.
 
 Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
 * Find command must be used with **at least one prefix** and the keyword for the prefix **must not be empty**.
 * Find command for all attributes are **case-insensitive**. 
-* Finds employees whose attributes satisfy all the requirements of the FindCommand
+* Finds employees whose attributes satisfy all the search parameters.
 
 Examples:
 * `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, name contains the word `alex` and phone number contains `9001`.
@@ -250,7 +250,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in EmployeeManager.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sort displayed entries : `sort`
+### Sorting displayed employees : `sort`
 
 Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
 
@@ -270,7 +270,7 @@ Examples:
 * `sort n/` sorts the displayed list in ascending name.
 * `sort p/` sorts the displayed list in ascending phone.
 
-### Bulk increment salaries of displayed entries: `increment`
+### Incrementing multiple employees' salaries: `increment`
 
   Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
 
@@ -295,23 +295,25 @@ Examples:
 * `clear` followed by `undo` restores EmployeeManager to the state before `clear` was executed.
 * `delete 3` followed by `sort n/` followed by `undo` restores EmployeeManager to the state before `delete 3` was executed.
 
-### Redoing an Undo : `redo`
+### Redoing the previous undone command : `redo`
 
-If the previous command was an `undo`, then will restore EmployeeManager to the state before `undo`.
+Restores EmployeeManager to the state before the last `undo` as long as no command that made a modification to the data in EmployeeManager was executed since the last `undo`.
+Commands that change the data in EmployeeManager include `add`, `delete`, `edit`, `clear` and `increment`.
 
 Format: `redo`
 
 Examples:
-* Adding `John`, followed by `undo` and then `redo` will return `John` back into EmployeeManager.
-* Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
+* `clear` followed by `undo`, followed by adding `John` and then `redo` will show `No more commands to redo!`.
+* `delete 3` followed by `undo` followed by `find n/alex`, then `redo` restores EmployeeManager to the state after `delete 3` was executed.
 
-### Clearing all entries : `clear`
+
+### Clearing multiple employees' data : `clear`
 
 Clears the current displayed list of entries from EmployeeManager.
 
 Format: `clear`
 
-### Import Data : `import`
+### Importing data : `import`
 
 Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
 data stored in the application.
@@ -323,7 +325,7 @@ Format: `import FILE_PATH`
 Examples:
 * `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
 
-### Export Data : `export`
+### Exporting data : `export`
 
 Exports a .csv file based on the data stored in EmployeeManager into the specified path.
 
@@ -334,7 +336,7 @@ Format: `export FILE_PATH`
 Examples:
 * `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
 
-### View command history : `history`
+### Viewing command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
 If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
@@ -412,4 +414,12 @@ _Details coming soon ..._
 | **Undo**      | `undo`                                                                                                                                                                                                                                              |
 
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary Table
+
+| Term          | Description                                                                                                                                                                                                                                         |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**       | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                                                                                                         |
+| **GUI**       | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system.                                                                                       |
 
