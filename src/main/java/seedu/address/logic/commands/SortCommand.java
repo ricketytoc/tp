@@ -25,7 +25,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "List successfully sorted.";
     public static final String MESSAGE_MULTIPLE_PREFIXES = "Sorting by multiple prefixes is not supported.";
 
-    public static final String MESSAGE_USAGE = "Sorts the list displayed based on the prefix provided."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list displayed based on the prefix provided."
             + "\n" + "Parameters: "
             + "[" + PREFIX_ID + "] " + "or " + "[" + PREFIX_DEPARTMENT + "] " + "or " + "[" + PREFIX_EMAIL + "] "
             + "or " + "[" + PREFIX_SALARY + "] " + "or " + "[" + PREFIX_ROLE + "] "

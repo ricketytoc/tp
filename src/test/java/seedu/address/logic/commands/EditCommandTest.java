@@ -49,6 +49,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getSortedFilteredPersonList().get(0), editedPerson);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -72,6 +73,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -84,6 +86,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -101,6 +104,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getSortedFilteredPersonList().get(0), editedPerson);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

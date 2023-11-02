@@ -1,6 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 import seedu.address.commons.core.increment.Increment;
 import seedu.address.commons.core.index.Index;
@@ -8,12 +14,20 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
+import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.IdContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryWithinRangePredicate;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -22,6 +36,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PATH = "The path is invalid.";
+    public static final String MESSAGE_EMPTY_PATH = "The path is empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -34,6 +50,26 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String filePath} into a {@code Path}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filePath} is invalid.
+     */
+    public static Path parsePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedPath = filePath.trim();
+        if (trimmedPath.isBlank()) {
+            throw new ParseException(MESSAGE_EMPTY_PATH);
+        }
+
+        try {
+            return Paths.get(trimmedPath);
+        } catch (InvalidPathException ipe) {
+            throw new ParseException(MESSAGE_INVALID_PATH + " " + ipe.getReason());
+        }
     }
 
     /**
@@ -153,6 +189,7 @@ public class ParserUtil {
         if (trimmedFindArgs.contains("/")) {
             throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
         }
+        checkTrimmedArgsNotEmpty(trimmedFindArgs);
     }
 
     /**
@@ -182,4 +219,128 @@ public class ParserUtil {
         }
         return Integer.parseInt(trimmedIndex);
     }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code IdContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static IdContainsKeywordsPredicate parseIdKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        return new IdContainsKeywordsPredicate(trimmedArgs);
+    }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code NameContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static NameContainsKeywordsPredicate parseNameKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+        return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+    }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code RoleContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static RoleContainsKeywordsPredicate parseRoleKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] roleKeywords = trimmedArgs.split("\\s+");
+        return new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords));
+    }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code DepartmentContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] departmentKeywords = trimmedArgs.split("\\s+");
+        return new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords));
+    }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code EmailContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static EmailContainsKeywordsPredicate parseEmailKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        String[] emailKeywords = trimmedArgs.split("\\s+");
+        return new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords));
+    }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code SalaryWithinRangePredicate}. Leading and trailing whitespaces
+     * will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static SalaryWithinRangePredicate parseSalaryKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        if (!isValidFindSalaryArgs(trimmedArgs)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        double lowerBound = findLowerBound(trimmedArgs);
+        double upperBound = findUpperBound(trimmedArgs);
+        return new SalaryWithinRangePredicate(lowerBound, upperBound);
+    }
+
+    /**
+     * Parses {@code String trimmedArgs} into an {@code PhoneContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
+     * @param trimmedArgs keyword that is entered by the user.
+     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     */
+    public static PhoneContainsKeywordsPredicate parsePhoneKeyword(String trimmedArgs) throws ParseException {
+        checkFindArgs(trimmedArgs);
+        return new PhoneContainsKeywordsPredicate(trimmedArgs);
+    }
+
+    /**
+     * Checks whether salary arguments are valid. If the argument is not in the format of "400 - 5000" for example,
+     * it will return false. If the user enters a number greater than can be assigned to a long or if user inputs number
+     * greater than the maximum allowed salary, it will also return false.
+     * @param salaryArgs user input for find command with PREFIX_SALARY.
+     * @return true if argument is valid and false otherwise.
+     */
+    private static boolean isValidFindSalaryArgs(String salaryArgs) {
+        String validationRegex = "^\\d+\\s-\\s\\d+$";
+        if (!salaryArgs.matches(validationRegex)) {
+            return false;
+        }
+        String upperBound = salaryArgs.split(" - ", 2)[1];
+        String lowerBound = salaryArgs.split(" - ", 2)[0];
+        double upperBoundDouble = Double.parseDouble(upperBound);
+        double lowerBoundDouble = Double.parseDouble(lowerBound);
+        if (upperBoundDouble > Salary.MAXIMUM_SALARY || lowerBoundDouble > upperBoundDouble) {
+            return false;
+        }
+        return true;
+    }
+
+    private static double findLowerBound(String salaryArgs) {
+        return Double.parseDouble(salaryArgs.split(" - ", 2)[0]);
+    }
+
+    private static double findUpperBound(String salaryArgs) {
+        return Double.parseDouble(salaryArgs.split(" - ", 2)[1]);
+    }
+
+    private static void checkTrimmedArgsNotEmpty(String trimmedArgs) throws ParseException {
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
 }

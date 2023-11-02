@@ -21,8 +21,8 @@ This User Guide aims to help both new and experienced users use EmployeeManager.
 EmployeeManager to make managing employees easier!
 
 If you are a **new user**:
-* Get started with EmployeeManager by going through [Quick start](#quick-start) and [Navigating the user guide](#navigating-the-user-guide)
-* If you have no prior experience with CLI or require a refresher, refer to this guide *(coming soon)*
+* Get started with EmployeeManager by going through [Quick start](#quick-start)
+* If you have no prior experience with CLI or require a refresher, refer to this [guide](#how-to-use-command-line-interface)
 
 If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
@@ -35,24 +35,31 @@ If you are an **experienced user**:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Navigating the user guide
-*Coming soon*
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your Computer.
+   1. Open the **terminal** on your Computer.
+      1. **Windows**: Open Windows Search and search for "terminal".
+      1. **Mac**: Open Spotlight Search and search for "terminal".
+      1. **Linux**: Press `Ctrl + Alt + T`.
+   1. Type `java --version` into the terminal.
+   1. If you have java installed, it should look similar to this: <br>
+      <img src="images/JavaVersion.png" width="600" />
+   1. Check that your version starts with `11` or higher.
+   1. If you do not have Java `11` or above installed, you can download Java `11` [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 1. Download the latest `employeemanager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar employeemanager.jar` command to run the application.<br>
+1. Open a command terminal, type the `cd FOLDER` command, substituting `FOLDER` with the folder path of the folder you put the jar file in.<br>
+   _The `cd` command changes the working directory of the terminal, allowing EmployeeManager to be launched in the next step._
+
+1. Type the `java -jar employeemanager.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all employees.
@@ -64,6 +71,24 @@ If you are an **experienced user**:
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## How to use command line interface
+
+<img src="images/CommandLineGuide.png" width="700" />
+
+1. Click on the command box.
+
+1. Type the command word.
+   1. Example: `add` is the command word for adding an employee.
+
+1. Follow the command format of the command and type the prefixes and/or fields required.
+   1. Refer to the [Features](#features) for the details on the command format for each command.
+   1. Example: `i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000`.
+
+1. Press enter to execute the command.
+   1. `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -125,7 +150,7 @@ Format: `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY`
 
 Examples:
 * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
-* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200` Adds an employee `Betsy Crowe` into the list.
+* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200.11` Adds an employee `Betsy Crowe` into the list.
 
 ### Listing all employees : `list`
 
@@ -147,36 +172,92 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
-### Locating persons by name: `find`
+### Finding an employee by multiple attributes: `find`
 
-Finds the employees that satisfy the find requirements based on attributes.
+Finds the employees that satisfy the find requirements based on multiple attributes.
 
 Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`
 
 * Find command must be used with **at least one prefix** and the keyword for the prefix **must not be empty**.
-* Refer to the prefix summary to understand which employee attribute corresponds with which prefix.
 * Find command for all attributes are **case-insensitive**. 
-* For finding by ID and Phone number, the command will find employees whose ID and Phone number contains the respective keywords.
-* For finding by Name, Email, Department and Role, the order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* For finding by Name, Department and Role, only **full words** will be matched e.g. `Han` will not match `Hans` and `Fina` will not match `Finance`.
-* For finding by Email, Email will be matched if it **contains the letter sequence** e.g. `alex` will match `alexyeoh@example.com`.
-* For finding by Name, Email, Department and Role, **matching at least one keyword** will be returned.
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` e.g. `alex yeoh` will return `alextan@example.com`, `berniceyeoh@example.com`.
-* For finding by Salary, command will find employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
-* The LOWERBOUND **cannot be larger than** the UPPERBOUND. 
-* There must be a **spacing before and after the dash**
-* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**. 
+* Finds employees whose attributes satisfy all the search parameters.
 
 Examples:
-* `find i/A00` returns employees with IDs `A00`, `A00001`, `a0001`.
-* `find i/A00 p/9001` returns employees who match the ID and also have Phone numbers such as `90018989`, `9001`.
+* `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, name contains the word `alex` and phone number contains `9001`.
+
+#### Finding an employee by name: `find n/`
+
+Find employees whose name matches at least one of the keywords in full.
+
+Format: `find n/KEYWORD [OTHER KEYWORD]`
+
+* The order of the keywords does not matter.
+* Only **full keywords** will be matched.
+* Employees whose name **matches at least one keyword** will be returned.
+
+Examples:
 * `find n/John` return employees with names `john` and `John Doe`.
 * `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
-* `find d/Finance` return employees in departments `finance`, `Finance 1`.
-* `find d/finance marketing` returns employees in departments `finance 1`, `marketing 2`.
-* `find r/Manager` returns employees whose roles are `manager`, `Executive Manager`.
-* `find r/executive manager` returns employees whose roles are `Executive Chef`, `Product manager`.
+
+#### Finding an employee by department: `find d/`
+
+Find employees whose department matches at least one of the keywords in full.
+
+Format: `find d/KEYWORD [OTHER KEYWORD]`
+
+* Works the same as finding an employee by name.
+
+#### Finding an employee by role: `find r/`
+
+Find employees whose role matches at least one of the keywords in full.
+
+Format: `find r/KEYWORD [OTHER KEYWORD]`
+
+* Works the same as finding an employee by name.
+
+#### Finding an employee by email: `find e/`
+
+Find employees whose email contains at least one of the keywords.
+
+Format: `find e/KEYWORD [OTHER KEYWORD]`
+
+* The order of the keywords does not matter.
+* Email will be matched if it **contains a keyword**.
+* Email **containing at least one keyword** will be returned.
+
+Examples:
 * `find e/alex bernice` returns employees with emails `alexyeoh@example.com`, `bernicetan@example.com`.
+
+#### Finding an employee by ID: `find i/`
+
+Finds employees whose ID contains the keyword.
+
+Format: `find i/KEYWORD`
+
+* The command will find employees whose ID contains the keyword.
+
+Examples:
+* `find i/A00` returns employees with IDs `A00`, `A00001` and `a0001`.
+
+#### Finding an employee by phone number: `find p/`
+
+Find employees whose phone number contains the keyword.
+
+Format: `find p/KEYWORD`
+
+* Works the same as finding an employee by ID.
+
+#### Finding an employee by salary: `find s/`
+
+Finds employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
+
+Format: `find s/LOWERBOUND - UPPERBOUND`
+
+* The LOWERBOUND **cannot be larger than** the UPPERBOUND.
+* There must be a **spacing before and after the dash**
+* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**.
+
+Examples:
 * `find s/1000 - 5000` returns employees with salaries `1000.00`, `4321.10`, `5000.00`.
 
 
@@ -194,27 +275,28 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in EmployeeManager.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sort displayed entries : `sort`
+### Sorting displayed employees : `sort`
 
-Sorts the currently displayed list in EmployeeManager based on the specified prefix in ascending order.
+Sorts the displayed list based on the specified employee's attribute in _ascending_ order.
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
-* Attributes are sorted by lexicographical order except for salary which
-is simply by numerical order.
+* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix
+* Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
+and "100" comes before "200".
 
 Examples:
-* `sort i/` sorts the displayed list in ascending ID.
-* `sort d/` sorts the displayed list in ascending department.
-* `sort e/` sorts the displayed list in ascending email.
-* `sort s/` sorts the displayed list in ascending salary.
-* `sort r/` sorts the displayed list in ascending role.
-* `sort n/` sorts the displayed list in ascending name.
-* `sort p/` sorts the displayed list in ascending phone.
+* `sort i/` sorts the list by ID.
+* `sort d/` sorts the list by department.
+* `sort e/` sorts the list by email.
+* `sort s/` sorts the list by salary.
+* `sort r/` sorts the list by role.
+* `sort n/` sorts the list by name.
+* `sort p/` sorts the list by phone.
 
-### Bulk increment salaries of displayed entries: `increment`
+### Incrementing multiple employees' salaries: `increment`
 
   Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
 
@@ -239,46 +321,83 @@ Examples:
 * `clear` followed by `undo` restores EmployeeManager to the state before `clear` was executed.
 * `delete 3` followed by `sort n/` followed by `undo` restores EmployeeManager to the state before `delete 3` was executed.
 
-### Redoing an Undo : `redo`
+### Redoing the previous undone command : `redo`
 
-If the previous command was an `undo`, then will restore EmployeeManager to the state before `undo`.
+Restores EmployeeManager to the state before the last `undo` as long as no command that made a modification to the data in EmployeeManager was executed since the last `undo`.
+Commands that change the data in EmployeeManager include `add`, `delete`, `edit`, `clear` and `increment`.
 
 Format: `redo`
 
 Examples:
-* Adding `John`, followed by `undo` and then `redo` will return `John` back into EmployeeManager.
-* Adding `John`, deleting `John`, `undo`, `undo` and then `redo` will return `John` back into EmployeeManager and `redo` again will delete `John`.
+* `clear` followed by `undo`, followed by adding `John` and then `redo` will show `No more commands to redo!`.
+* `delete 3` followed by `undo` followed by `find n/alex`, then `redo` restores EmployeeManager to the state after `delete 3` was executed.
 
-### Clearing all entries : `clear`
+
+### Clearing multiple employees' data : `clear`
 
 Clears the current displayed list of entries from EmployeeManager.
 
 Format: `clear`
 
-### Import Data : `import`
+### Importing data : `import`
 
-Imports a .csv file compatible with EmployeeManager into the application. It will overwrite the existing
-data stored in the application.
+Imports an EmployeeManager data file into the application.
 
+* The data file must be of '.json' file type.
 * The file path must be valid, and the application must have permission to read from the file.
+* No changes will be made if the data file is invalid or not found.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
+data, it is recommended to use the `export` command to save a copy of the current data.
+</div>
 
 Format: `import FILE_PATH`
 
 Examples:
-* `import C:\Data\EmployeeList.csv` imports the .csv file from the specified path.
+* `import ./persons.json` imports the "persons.json" data file.
 
-### Export Data : `export`
+#### GUI Option
+Alternatively, you may use the GUI option to import the data file. 
+1. Click File > Import in the top left corner of the application.
+![Ui](images/ug-import-gui.png)
+2. The file explorer will open and prompt you to select the data file. _The file explorer will look
+look different depending on your operating system._
+![Ui](images/ug-import-explorer.png)
+3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
 
-Exports a .csv file based on the data stored in EmployeeManager into the specified path.
+* The file explorer will only allow you to select .json files as that is the format of the data file.
+
+
+### Exporting data : `export`
+
+Exports the data file in EmployeeManager to the specified path.
 
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Format: `export FILE_PATH`
 
 Examples:
-* `export C:\Data\EmployeeList.csv` will create the .csv under the specified path.
+* `export ./data.json` will create the data file under the specified path.
 
-### View command history : `history`
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+The export command will **overwrite** any file in the specified location.
+</div>
+
+#### GUI Option
+Alternatively, you may use the GUI option to export the data file.
+1. Click File > Export in the top left corner of the application.
+   ![Ui](images/ug-export-gui.png)
+2. The file explorer will open and prompt you to save the data file. _The file explorer will look
+different depending on your operating system._
+   ![Ui](images/ug-export-explorer.png)
+3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
+
+* The file explorer will save the file as a .json file format.
+* The data file can be given any _valid name_, e.g. `abc_pte_ltd.json` as shown in the image above.
+* Valid file name is dependent on the operating system.
+
+### Viewing command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
 If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
@@ -356,4 +475,12 @@ _Details coming soon ..._
 | **Undo**      | `undo`                                                                                                                                                                                                                                              |
 
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary Table
+
+| Term          | Description                                                                                                                                                                                                                                         |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**       | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                                                                                                         |
+| **GUI**       | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system.                                                                                       |
 
