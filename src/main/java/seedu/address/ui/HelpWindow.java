@@ -19,7 +19,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.IncrementCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UndoCommand;
 
 /**
  * Controller for a help page
@@ -43,7 +45,9 @@ public class HelpWindow extends UiPart<Stage> {
             + HistoryCommand.MESSAGE_SUMMARY + "\n"
             + IncrementCommand.MESSAGE_SUMMARY + "\n"
             + ListCommand.MESSAGE_SUMMARY + "\n"
-            + SortCommand.MESSAGE_SUMMARY;
+            + RedoCommand.MESSAGE_SUMMARY + "\n"
+            + SortCommand.MESSAGE_SUMMARY + "\n"
+            + UndoCommand.MESSAGE_SUMMARY + "\n";
 
     @FXML
     private Button copyButton;

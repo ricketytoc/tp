@@ -23,7 +23,6 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_SUCCESS = "List successfully sorted.";
-    public static final String MESSAGE_MULTIPLE_PREFIXES = "Sorting by multiple prefixes is not supported.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list displayed based on the prefix provided."
             + "\n" + "Parameters: "
@@ -33,6 +32,7 @@ public class SortCommand extends Command {
             + "\n"
             + "Examples: " + "\n" + COMMAND_WORD + " " + PREFIX_ID
             + "\n" + COMMAND_WORD + " " + PREFIX_NAME;
+
     public static final String MESSAGE_SUMMARY = "Sort: " + COMMAND_WORD
             + "[" + PREFIX_ID + "] " + "or " + "[" + PREFIX_DEPARTMENT + "] " + "or " + "[" + PREFIX_EMAIL + "] "
             + "or " + "[" + PREFIX_SALARY + "] " + "or " + "[" + PREFIX_ROLE + "] "
