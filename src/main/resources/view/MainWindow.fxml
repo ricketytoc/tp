@@ -24,7 +24,7 @@
 
       <VBox style="-fx-background-color: white;">
         <MenuBar fx:id="menuBar" style="-fx-background-color: white;" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" style="-fx-border-color: #007aa2; -fx-background-color: #c5d4eb; -fx-background-radius: 5; -fx-border-radius: 5;" text="File">
+          <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
             <MenuItem mnemonicParsing="false" onAction="#handleImport" text="Import" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -36,7 +36,7 @@
 
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets bottom="16.1" left="10" right="10" top="10" />
+            <Insets bottom="16" left="10" right="10" top="10" />
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
