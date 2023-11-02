@@ -52,7 +52,10 @@ If you are an **experienced user**:
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar employeemanager.jar` command to run the application.<br>
+1. Open a command terminal, type the `cd FOLDER` command, substituting `FOLDER` with the folder path of the folder you put the jar file in.<br>
+   _The `cd` command changes the working directory of the terminal, allowing EmployeeManager to be launched in the next step._
+
+1. Type the `java -jar employeemanager.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
