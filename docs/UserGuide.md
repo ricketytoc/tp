@@ -306,7 +306,7 @@ Examples:
 * `INCREMENT` is invalid if `INCREMENT` causes the salary of any employee in the displayed list to fall below 0 or exceed the maximum salary.
 * `INCREMENT` can have at most 2 decimals.
 
-  Examples:
+Examples:
 * `increment 1000` increments the salaries of all employees in the displayed list by `1000`.
 * `increment -100.65` decrements the salaries of all employees in the displayed list by `100.65`.
 
@@ -431,10 +431,6 @@ EmployeeManager data are saved automatically as a JSON file `[JAR file location]
 If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -444,9 +440,6 @@ _Details coming soon ..._
 
 **Q2**: Are the employees listed in the order of id or name?<br>
 **A**: No, the employees are not listed in any explicit order. Newly added employees will be placed at the end of the list.
-
-**Q3**: Can I simply update certain details of an employee without deleting the old information?<br>
-**A**: You can only delete and add the updated employee information again so far, the new `update` feature is coming soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -480,8 +473,9 @@ _Details coming soon ..._
 
 ## Glossary Table
 
-| Term          | Description                                                                                                                                                                                                                                         |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CLI**       | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                                                                                                         |
-| **GUI**       | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system.                                                                                       |
-
+| Term                  | Description                                                                                                                                                   |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**               | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                   |
+| **GUI**               | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. |
+| **File Path**         | A file path is the location of a file or folder in a computer's file system. It specifies where a file is located on the computer.                            |
+| **Working Directory** | The working directory is the folder in which the user is currently operating in the command line.                                                             |
