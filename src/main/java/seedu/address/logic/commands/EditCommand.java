@@ -59,6 +59,21 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_SUMMARY = "Edit: " + COMMAND_WORD + " INDEX "
+            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_ROLE + "ROLE] "
+            + "[" + PREFIX_SALARY + "SALARY]" + "\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ID + "A0123456B "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_DEPARTMENT + "Finance "
+            + PREFIX_ROLE + "Manager "
+            + PREFIX_SALARY + "5000" + "\n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

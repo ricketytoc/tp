@@ -27,6 +27,8 @@ public class ImportCommand extends Command {
             + "FILE_PATH"
             + "\n"
             + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json";
+    public static final String MESSAGE_SUMMARY = "Import: " + COMMAND_WORD + " FILE_PATH" + "\n"
+            + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json" + "\n";
 
     private final Path filePath;
 

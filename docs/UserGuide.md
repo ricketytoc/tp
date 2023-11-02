@@ -135,7 +135,7 @@ The constraint for the attribute is also listed in the table.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to use the commands and where to look for more detailed help.
 
 ![help message](images/helpMessage.png)
 
@@ -404,7 +404,7 @@ If the number of valid user commands is less than `N`, it shows all valid user c
 
 Format: `history N`
 * N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
-* N must be a positive integer.
+* N must be a positive integer that is less than or equal to 1000.
 
 Examples:
 * `history 5` displays up to the last 5 valid user commands.

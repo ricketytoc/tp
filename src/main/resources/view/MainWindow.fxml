@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
@@ -16,37 +17,43 @@
   </icons>
   <scene>
     <Scene>
+      <stylesheets>
+        <URL value="@LightTheme.css" />
+        <URL value="@Extensions.css" />
+      </stylesheets>
 
       <VBox style="-fx-background-color: white;">
         <MenuBar fx:id="menuBar" style="-fx-background-color: white;" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" style="-fx-border-color: #007aa2; -fx-background-color: #c5d4eb; -fx-background-radius: 5; -fx-border-radius: 5;" text="File">
+          <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
             <MenuItem mnemonicParsing="false" onAction="#handleImport" text="Import" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
-          <Menu mnemonicParsing="false" style="-fx-border-color: #007aa2; -fx-background-color: #c5d4eb; -fx-background-radius: 5; -fx-border-radius: 5;" text="Help">
+          <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
+            <Insets bottom="16" left="10" right="10" top="10" />
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
+
+
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
