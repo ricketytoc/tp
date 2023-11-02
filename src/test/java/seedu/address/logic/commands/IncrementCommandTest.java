@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookWithIncrementedSalary;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
@@ -27,7 +28,12 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for {@code IncrementCommand}.
  */
 public class IncrementCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
 
     @Test
     public void execute_invalidIncrement_throwsCommandException() {
@@ -43,8 +49,10 @@ public class IncrementCommandTest {
         String expectedMessage = String.format(
                 IncrementCommand.MESSAGE_INCREMENT_SUCCESS, model.getSortedFilteredPersonList().size(),
                 INCREMENT_OBJ_POS);
-        Model expectedModel = new ModelManager(
-                getTypicalAddressBookWithIncrementedSalary(INCREMENT_OBJ_POS), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.setAddressBook(getTypicalAddressBookWithIncrementedSalary(INCREMENT_OBJ_POS));
+        expectedModel.commitAddressBook();
+
         assertCommandSuccess(incrementCommand, model, expectedMessage, expectedModel);
     }
 
@@ -63,6 +71,7 @@ public class IncrementCommandTest {
         Person editedPerson = new PersonBuilder(person)
                 .withSalary(person.getSalary().getIncrementedSalary(INCREMENT_OBJ_POS).getValueAsString()).build();
         expectedModel.setPerson(person, editedPerson);
+        expectedModel.commitAddressBook();
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(incrementCommand, model, expectedMessage, expectedModel);

@@ -22,9 +22,11 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
+      <VBox style="-fx-background-color: white;">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: white;" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" style="-fx-border-color: #007aa2; -fx-background-color: #c5d4eb; -fx-background-radius: 5; -fx-border-radius: 5;" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
+            <MenuItem mnemonicParsing="false" onAction="#handleImport" text="Import" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
