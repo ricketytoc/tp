@@ -154,6 +154,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Implementation
+
+The add feature is facilitated by the following operations:
+* `AddCommandParser#parse` — Parses user's inputs and checks that inputs are valid.
+* `model#hasPerson` — Checks if the employee exists in EmployeeManager.
+* `model#addPerson` — Adds an employee to EmployeeManager.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user enters `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000` to add a new employee `John Doe`.
+The user input is parsed and checked using `AddCommandParser#parse` to create an `AddCommand` that contains the new employee.
+
+Step 2: `AddCommand` then checks that the new employee is not a duplicate employee using `model#hasPerson` before
+adding the new employee into EmployeeManager using `model#addPerson`.
+
+The following activity diagram summarizes what happens when a user executes the add command:
+
+<img src="images/AddActivityDiagram.png" width="425" />
+
+#### Design considerations
+
+Aspect: What is considered a duplicate employee:
+* **Alternative 1:** Check if the name of the given employee matches the name of another employee in EmployeeManager.
+  * Pros: Only need to check for duplicate names.
+  * Cons: Employees can have the same names so it is not realistic to restrict the addition of employees to only employees with different names.
+* **Alternative 2 (current choice):** Check if the ID of an employee matches the ID of another employee in EmployeeManager.
+  * Pros: Able to store employees with the same attributes if their IDs are different.
+  * Cons: Need to store an additional field for ID.
+
 ### History feature
 The `history` feature allows users to access past valid commands that they made. This feature is supported by 
 three classes, `CommandHistory`, `HistoryCommandParser` and `HistoryCommand`. 
@@ -280,11 +311,11 @@ Step 4. For each person in the filtered list, an `editedPerson` with the increme
 The following sequence diagram illustrates how the increment feature works:
 ![IncrementSequenceDiagram](images/IncrementSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: When the validity of the given `increment` is checked:**
 
-* **Alternative 1 (current choice)**: Check validity before incrementing any person’s salary.
+* **Alternative 1 (current choice):** Check validity before incrementing any person’s salary.
   * Pros: Ensures that `increment` is valid before any modifications is made to the persons in EmployeeManager.
   * Cons: Have to loop through the filtered list twice: once to check the validity of `increment` and once to increment the salaries.
 
@@ -357,7 +388,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
