@@ -38,7 +38,7 @@ If you are an **experienced user**:
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your computer.
-   1. Open the **terminal** on your Computer.
+   1. Open the **terminal** on your computer.
       1. **Windows**: Open Windows Search and search for "terminal".
       1. **Mac**: Open Spotlight Search and search for "terminal".
       1. **Linux**: Press `Ctrl + Alt + T`.
@@ -282,7 +282,7 @@ Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
-* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix
+* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
 * Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
 and "100" comes before "200".
 
@@ -434,7 +434,7 @@ If your changes to the data file makes its format invalid, EmployeeManager will 
 
 ## FAQ
 
-**Q1**: How do I transfer my data to another Computer?<br>
+**Q1**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and replace the default data file it creates with the data file of your previous EmployeeManager.
 
 **Q2**: Are the employees listed in the order of id or name?<br>
