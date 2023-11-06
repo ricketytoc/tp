@@ -430,8 +430,9 @@ EmployeeManager automatically saves your data as a JSON file `[JAR file location
 For advanced users, you have the option to directly modify this data file to update records. After editing, simply `import` the
 file to view your changes within EmployeeManager.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. 
+To safeguard against potential data loss, we recommend backing up the original data file before directly editing it. 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
