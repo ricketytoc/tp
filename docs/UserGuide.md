@@ -362,7 +362,7 @@ Alternatively, you may use the GUI option to import the data file.
 1. Click File > Import in the top left corner of the application.
 ![Ui](images/ug-import-gui.png)
 2. The file explorer will open and prompt you to select the data file. _The file explorer will look
-look different depending on your operating system._
+different depending on your operating system._
 ![Ui](images/ug-import-explorer.png)
 3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
 
@@ -436,7 +436,7 @@ If your changes to the data file makes its format invalid, EmployeeManager will 
 ## FAQ
 
 **Q1**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the default data file it creates with the file that contains the data of your previous EmployeeManager home folder.
+**A**: Install the app in the other computer and replace the default data file it creates with the data file of your previous EmployeeManager.
 
 **Q2**: Are the employees listed in the order of id or name?<br>
 **A**: No, the employees are not listed in any explicit order. Newly added employees will be placed at the end of the list.
