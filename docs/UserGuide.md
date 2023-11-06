@@ -277,6 +277,8 @@ Examples:
 ### Sorting displayed employees : `sort`
 
 Sorts the displayed list based on the specified employee's attribute in _ascending_ order.
+EmployeeManager will automatically re-sort the displayed list based on the last specified attribute after any command
+that updates the data. This will ensure that the list remains sorted even after modifications.
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
@@ -425,7 +427,7 @@ EmployeeManager data are saved in the hard disk automatically after any command 
 ### Editing the data file
 
 EmployeeManager automatically saves your data as a JSON file `[JAR file location]/data/employeemanager.json`. 
-For advanced users, you have the option to directly modify this data file to update records. After editing, simply import the
+For advanced users, you have the option to directly modify this data file to update records. After editing, simply `import` the
 file to view your changes within EmployeeManager.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
