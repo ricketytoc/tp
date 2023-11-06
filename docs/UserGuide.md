@@ -436,7 +436,7 @@ If your changes to the data file makes its format invalid, EmployeeManager will 
 ## FAQ
 
 **Q1**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EmployeeManager home folder.
+**A**: Install the app in the other computer and overwrite the default data file it creates with the file that contains the data of your previous EmployeeManager home folder.
 
 **Q2**: Are the employees listed in the order of id or name?<br>
 **A**: No, the employees are not listed in any explicit order. Newly added employees will be placed at the end of the list.
