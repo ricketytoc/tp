@@ -424,7 +424,9 @@ EmployeeManager data are saved in the hard disk automatically after any command 
 
 ### Editing the data file
 
-EmployeeManager data are saved automatically as a JSON file `[JAR file location]/data/employeemanager.json`. Advanced users are welcome to update data directly by editing that data file.
+EmployeeManager automatically saves your data as a JSON file `[JAR file location]/data/employeemanager.json`. 
+For advanced users, you have the option to directly modify this data file to update records. After editing, simply import the
+file to view your changes within EmployeeManager.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
