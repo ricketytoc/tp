@@ -299,12 +299,13 @@ Examples:
 
 ### Incrementing multiple employees' salaries: `increment`
 
-  Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
+Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
 
-  Format: `increment INCREMENT`
+Format: `increment INCREMENT`
 * Increments the salaries of all employees in the displayed list by `INCREMENT`.
 * `INCREMENT` can be positive or negative.
 * `INCREMENT` is invalid if `INCREMENT` causes the salary of any employee in the displayed list to fall below 0 or exceed the maximum salary.
+Should this happen, an error message identifying the first employee whose adjusted salary falls outside the allowed range will be shown.
 * `INCREMENT` can have at most 2 decimals.
 
 Examples:
