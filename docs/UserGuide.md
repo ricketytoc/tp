@@ -37,7 +37,7 @@ If you are an **experienced user**:
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed on your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
    1. Open the **terminal** on your Computer.
       1. **Windows**: Open Windows Search and search for "terminal".
       1. **Mac**: Open Spotlight Search and search for "terminal".
