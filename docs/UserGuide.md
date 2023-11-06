@@ -137,10 +137,9 @@ The constraint for the attribute is also listed in the table.
 
 Shows a message explaining how to use the commands and where to look for more detailed help.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
+![help message](images/helpMessage.png)
 
 ### Adding an employee: `add`
 
