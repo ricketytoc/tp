@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.increment.Increment;
@@ -54,12 +55,13 @@ public class IncrementCommand extends Command {
         List<Person> lastShownList = model.getSortedFilteredPersonList();
         checkValidIncrement(lastShownList);
 
-        for (Person personToEdit : lastShownList) {
+        List<Person> listCopy = new ArrayList<>(lastShownList);
+        for (Person personToEdit : listCopy) {
             Person editedPerson = incrementPersonSalary(personToEdit);
             model.setPerson(personToEdit, editedPerson);
         }
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_INCREMENT_SUCCESS, lastShownList.size(), increment.toString()));
+        return new CommandResult(String.format(MESSAGE_INCREMENT_SUCCESS, listCopy.size(), increment.toString()));
     }
 
     /**
