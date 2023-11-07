@@ -35,18 +35,27 @@ public class SalaryTest {
         assertFalse(Salary.isValidSalary("1000.999")); // contains more than 2 decimals
 
         // valid salary
+        assertTrue(Salary.isValidSalary("0")); // boundary value: 0
         assertTrue(Salary.isValidSalary("1000")); // non-negative numbers only
-        assertTrue(Salary.isValidSalary("12")); // numbers only
+        assertTrue(Salary.isValidSalary("12.99")); // non-negative numbers with decimal
     }
 
     @Test
-    public void isValidSalary_doubleSalary() {
+    public void isValidSalary_longSalary() {
         // invalid salary
-        assertFalse(Salary.isValidSalary(-1000)); // only non-negative numbers
-        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY + Salary.MAXIMUM_SALARY)); // exceeds maximum salary
+        // only non-negative numbers
+        assertFalse(Salary.isValidSalary(-1000));
+        // exceeds maximum salary
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY_LONG + Salary.MAXIMUM_SALARY_LONG));
+        // boundary value: maximum salary + 1
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY_LONG + 1));
+        // boundary value: -1
+        assertFalse(Salary.isValidSalary(-1));
 
         // valid salary
         assertTrue(Salary.isValidSalary(1000)); // within range
+        assertTrue(Salary.isValidSalary(Salary.MAXIMUM_SALARY_LONG)); // boundary value: maximum salary
+        assertTrue(Salary.isValidSalary(0)); // boundary value: 0
     }
 
     @Test
@@ -75,15 +84,7 @@ public class SalaryTest {
         assertFalse(salary.isValidIncrement(new Increment("-2000")));
 
         // too big positive increment -> returns false
-        assertFalse(salary.isValidIncrement(new Increment(String.format("%.2f", Salary.MAXIMUM_SALARY))));
-    }
-
-    @Test
-    public void getValueAsString() {
-        double value = 1000;
-        Salary salary = new Salary(value);
-        String expectedString = String.format("%.2f", value);
-        assertEquals(expectedString, salary.getValueAsString());
+        assertFalse(salary.isValidIncrement(new Increment(String.format("%d", Salary.MAXIMUM_SALARY))));
     }
 
     @Test

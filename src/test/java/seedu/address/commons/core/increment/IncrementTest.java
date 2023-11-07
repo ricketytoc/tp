@@ -29,25 +29,41 @@ public class IncrementTest {
         assertFalse(Increment.isValidIncrement("")); // empty string
         assertFalse(Increment.isValidIncrement(" ")); // spaces only
         assertFalse(Increment.isValidIncrement("^")); // non-number
+        assertFalse(Increment.isValidIncrement("10@")); // non-number with numbers
         assertFalse(Increment.isValidIncrement("1000.999")); // more than 2 decimal places
 
         // valid increment
+        assertTrue(Increment.isValidIncrement("0.0")); // zero
         assertTrue(Increment.isValidIncrement("1000.99")); // non-negative number
         assertTrue(Increment.isValidIncrement("-150.1")); // negative number
     }
 
     @Test
-    public void getValue() {
-        double incrementAmount = 100;
-        Increment increment = new Increment(Double.toString(incrementAmount));
-        assertEquals(incrementAmount, increment.getValue());
+    public void getLongValue() {
+        long incrementAmount = 10000;
+        String incrementAmountString = "100.00";
+        Increment increment = new Increment(incrementAmountString);
+        assertEquals(incrementAmount, increment.getLongValue());
     }
 
     @Test
     public void toStringMethod() {
+        // no decimals
         String incrementAmount = "100";
-        String expected = String.format("%.2f", Double.parseDouble(incrementAmount));
+        String expected = "100.00";
         Increment increment = new Increment(incrementAmount);
+        assertEquals(expected, increment.toString());
+
+        // one decimal
+        incrementAmount = "100.0";
+        expected = "100.00";
+        increment = new Increment(incrementAmount);
+        assertEquals(expected, increment.toString());
+
+        // two decimals
+        incrementAmount = "100.00";
+        expected = "100.00";
+        increment = new Increment(incrementAmount);
         assertEquals(expected, increment.toString());
     }
 

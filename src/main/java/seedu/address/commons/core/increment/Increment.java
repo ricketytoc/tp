@@ -3,6 +3,8 @@ package seedu.address.commons.core.increment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.Salary;
+
 /**
  * Represents an increment.
  */
@@ -10,7 +12,7 @@ public class Increment {
     public static final String MESSAGE_CONSTRAINTS = "Increment should only contain numbers and an optional "
             + "negative sign in front of the numbers and have at most 2 decimals";
     public static final String VALIDATION_REGEX = "^-?[0-9]+(\\.[0-9]{1,2})?$";
-    private double increment;
+    private long increment;
 
     /**
      * Constructs a {@code Increment}
@@ -20,7 +22,7 @@ public class Increment {
     public Increment(String increment) {
         requireNonNull(increment);
         checkArgument(isValidIncrement(increment), MESSAGE_CONSTRAINTS);
-        this.increment = Double.parseDouble(increment);
+        this.increment = Salary.convertStringToLong(increment);
     }
 
     /**
@@ -33,13 +35,13 @@ public class Increment {
     /**
      * Returns the value of the increment.
      */
-    public double getValue() {
+    public long getLongValue() {
         return increment;
     }
 
     @Override
     public String toString() {
-        return String.format("%.2f", increment);
+        return Salary.convertLongSalaryToString(increment);
     }
 
     @Override
