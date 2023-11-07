@@ -51,6 +51,7 @@ public class ImportCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
         }
 
+        // Attempt to read address book from disk
         try {
             Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(filePath).readAddressBook(filePath);
             if (addressBook.isPresent()) {

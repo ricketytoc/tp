@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -50,6 +49,7 @@ public class ExportCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
         }
 
+        // Attempt to save address book into disk
         try {
             new JsonAddressBookStorage(filePath).saveAddressBook(model.getAddressBook(), filePath);
         } catch (IOException ex) {

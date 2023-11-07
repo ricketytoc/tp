@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Files;
@@ -30,18 +31,77 @@ class ExportCommandTest {
         commandHistory = new CommandHistory();
     }
 
-    @Test
-    public void execute_validPath() throws Exception {
-        // Export to location
-        Path validPath = temporaryFolder.resolve("test.json");
-        ExportCommand exportCommand = new ExportCommand(validPath);
+    private void exportToPath(Path path) throws Exception {
+        ExportCommand exportCommand = new ExportCommand(path);
         exportCommand.execute(model, commandHistory);
+    }
+
+    private void deleteFile(Path path) throws Exception {
+        Files.delete(path);
+    }
+
+    /**
+     * Used to test if the data file can be exported to the specified file path.
+     * Performs three actions, exporting, asserting, and deleting the test file.
+     * @param path File path where the data file will be written to
+     */
+    private void testExport(Path path) throws Exception {
+        // Export to location
+        exportToPath(path);
 
         // Check if file was exported to location
-        assertTrue(Files.exists(validPath));
+        assertTrue(Files.exists(path));
 
         // Clear test file
-        Files.delete(validPath);
+        deleteFile(path);
+    }
+
+    @Test
+    public void execute_validPath() throws Exception {
+        // Test writing to a temporary directory
+        Path validPath = temporaryFolder.resolve("test.json");
+        testExport(validPath);
+
+    }
+
+    @Test
+    public void execute_invalidPath_throwsException() throws Exception {
+        // Root folder with forward slash
+        Path invalidPath = Path.of("/");
+        ExportCommand exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_MISSING_FILE_NAME);
+
+        // Root folder with backward slash
+        invalidPath = Path.of("\\");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_MISSING_FILE_NAME);
+
+        // Nested folder (truncated slash at the end)
+        invalidPath = Path.of("/a/b/c/d/");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_TYPE);
+
+        // Missing data type
+        invalidPath = Path.of("/cs2103-employee-manager-tmp");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_TYPE);
+
+        // Missing data type
+        // Note: the last '/' will be truncated from the path
+        invalidPath = Path.of("/cs2103-employee-manager-tmp/");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_TYPE);
+
+        // Nested folder
+        invalidPath = Path.of("/a/b");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_TYPE);
+
+        // Nested folder
+        invalidPath = Path.of("\\a\\b\\c");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_TYPE);
+
     }
 
     @Test
