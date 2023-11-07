@@ -21,6 +21,7 @@ public class ImportCommand extends Command {
             + "might be corrupted.";
     public static final String MESSAGE_FILE_MISSING = "The specified file does not exist";
     public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
+    public static final String MESSAGE_MISSING_FILE_NAME = "The specified file path does not contain a file name";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports the data file from the specified location "
             + "into the application. "
             + "\n"
@@ -39,7 +40,14 @@ public class ImportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (!filePath.getFileName().toString().endsWith(".json")) {
+        Path fileNamePath = filePath.getFileName();
+        // Check for missing file name
+        if (fileNamePath == null) {
+            throw new CommandException(MESSAGE_MISSING_FILE_NAME);
+        }
+
+        // Check for incorrect file extension
+        if (!fileNamePath.toString().endsWith(".json")) {
             throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
         }
 

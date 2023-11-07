@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import seedu.address.logic.CommandHistory;
@@ -17,6 +19,9 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Data successfully exported";
     public static final String MESSAGE_FAILURE = "Data could not be exported";
     public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
+    public static final String MESSAGE_ACCESS_DENIED = "The data file could not be written to the specified file path. "
+            + "Please try another file path.";
+    public static final String MESSAGE_MISSING_FILE_NAME = "The specified file path does not contain a file name";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the data file to the specified location. "
             + "\n"
             + "Parameters: "
@@ -34,7 +39,14 @@ public class ExportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        if (!filePath.getFileName().toString().endsWith(".json")) {
+        Path fileNamePath = filePath.getFileName();
+        // Check for missing file name
+        if (fileNamePath == null || Files.isDirectory(filePath)) {
+            throw new CommandException(MESSAGE_MISSING_FILE_NAME);
+        }
+
+        // Check for incorrect file extension
+        if (!fileNamePath.toString().endsWith(".json")) {
             throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
         }
 
