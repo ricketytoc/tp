@@ -60,7 +60,7 @@ class GeneralPredicateTest {
         predicateList.add(new EmailContainsKeywordsPredicate(Collections.singletonList("aliceyeoh@example.com")));
         predicateList.add(new DepartmentContainsKeywordsPredicate(Collections.singletonList("Marketing")));
         predicateList.add(new RoleContainsKeywordsPredicate(Collections.singletonList("Manager")));
-        predicateList.add(new SalaryWithinRangePredicate(1000, 5000));
+        predicateList.add(new SalaryWithinRangePredicate(100000, 500000));
         GeneralPredicate generalPredicate =
                 new GeneralPredicate(predicateList);
         assertTrue(generalPredicate.test(new PersonBuilder().withId("A0001").withName("Alice")
@@ -88,7 +88,7 @@ class GeneralPredicateTest {
         predicateList.add(new EmailContainsKeywordsPredicate(Collections.singletonList("aliceyeoh@example.com")));
         predicateList.add(new DepartmentContainsKeywordsPredicate(Collections.singletonList("Marketing")));
         predicateList.add(new RoleContainsKeywordsPredicate(Collections.singletonList("Manager")));
-        predicateList.add(new SalaryWithinRangePredicate(1000, 5000));
+        predicateList.add(new SalaryWithinRangePredicate(100000, 500000));
         predicate = new GeneralPredicate(predicateList);
         assertFalse(predicate.test(new PersonBuilder().withId("A0001").withName("Alice").withPhone("90018989")
                 .withEmail("bernice@email.com").withDepartment("Marketing").withRole("Manager").withSalary("4000")

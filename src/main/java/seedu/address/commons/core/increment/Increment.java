@@ -3,7 +3,7 @@ package seedu.address.commons.core.increment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryParserUtil;
 
 /**
  * Represents an increment.
@@ -22,7 +22,7 @@ public class Increment {
     public Increment(String increment) {
         requireNonNull(increment);
         checkArgument(isValidIncrement(increment), MESSAGE_CONSTRAINTS);
-        this.increment = Salary.convertStringToLong(increment);
+        this.increment = SalaryParserUtil.parseStringToLong(increment);
     }
 
     /**
@@ -41,7 +41,7 @@ public class Increment {
 
     @Override
     public String toString() {
-        return Salary.convertLongSalaryToString(increment);
+        return SalaryParserUtil.convertLongSalaryToString(increment);
     }
 
     @Override

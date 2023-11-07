@@ -13,7 +13,8 @@ import seedu.address.commons.core.increment.Increment;
 public class Salary implements Comparable<seedu.address.model.person.Salary> {
     public static final int MAXIMUM_SALARY = 1000000000;
     public static final int NUM_OF_DECIMAL_PLACES = 2;
-    public static final long MAXIMUM_SALARY_LONG = addZerosToBack(MAXIMUM_SALARY, NUM_OF_DECIMAL_PLACES);
+    public static final long MAXIMUM_SALARY_LONG =
+            SalaryParserUtil.addZerosToBack(MAXIMUM_SALARY, NUM_OF_DECIMAL_PLACES);
     public static final String MESSAGE_CONSTRAINTS = String.format(
             "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %d",
             MAXIMUM_SALARY);
@@ -33,7 +34,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
     public Salary(String salary) {
         requireNonNull(salary);
         checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
-        value = convertStringToLong(salary);
+        value = SalaryParserUtil.parseStringToLong(salary);
     }
 
     /**
@@ -50,7 +51,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      * Returns true if a given string is a valid salary.
      */
     public static boolean isValidSalary(String test) {
-        return test.matches(VALIDATION_REGEX) && isValidSalary(convertStringToLong(test));
+        return test.matches(VALIDATION_REGEX) && isValidSalary(SalaryParserUtil.parseStringToLong(test));
     }
 
     /**
@@ -79,80 +80,15 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
     }
 
     /**
-     * Returns the salary value converted from a long to a string with 2 decimals.
-     */
-    public static String convertLongSalaryToString(long value) {
-        StringBuilder stringBuilder = new StringBuilder(Long.toString(value));
-
-        // ensure that string has at least 3 digits to insert the decimal point properly
-        if (stringBuilder.charAt(0) == '-') {
-            addZerosToFront(stringBuilder, 1);
-        } else {
-            addZerosToFront(stringBuilder, 0);
-        }
-
-        int decimalPlace = stringBuilder.length() - NUM_OF_DECIMAL_PLACES;
-        stringBuilder.insert(decimalPlace, ".");
-        return stringBuilder.toString();
-    }
-
-    /**
-     * Adds zeros to the front of the {@code stringBuilder} from index {@code start} until the string has at least
-     * ({@code NUM_OF_DECIMAL_PLACES} + 1) digits.
-     */
-    private static void addZerosToFront(StringBuilder stringBuilder, int start) {
-        int minimumNumOfDigits = NUM_OF_DECIMAL_PLACES + 1;
-        int currNumOfDigits = stringBuilder.length() - start;
-        int numOfZerosRequired = minimumNumOfDigits - currNumOfDigits;
-        while (numOfZerosRequired > 0) {
-            stringBuilder.insert(start, "0");
-            numOfZerosRequired -= 1;
-        }
-    }
-
-    /**
-     * Returns a long that is parsed from {@code salary} by ensuring that there are 2 decimals
-     * and removing the decimal point.
-     */
-    public static long convertStringToLong(String salary) {
-        requireNonNull(salary);
-
-        int indexOfDecimal = salary.indexOf(".");
-        int numOfDecimals;
-        if (indexOfDecimal == -1) {
-            numOfDecimals = 0;
-        } else {
-            numOfDecimals = salary.length() - 1 - indexOfDecimal;
-        }
-        int numOfZerosToAdd = NUM_OF_DECIMAL_PLACES - numOfDecimals;
-
-        String salaryWithoutDecimalPoint = salary.replace(".", "");
-        Long result = addZerosToBack(Long.parseLong(salaryWithoutDecimalPoint), numOfZerosToAdd);
-        return result;
-    }
-
-    /**
-     * Add {@code count} number of zeros to the back of {@code salary}.
-     */
-    private static long addZerosToBack(long salary, int count) {
-        assert(count >= 0);
-        while (count > 0) {
-            salary *= 10;
-            count -= 1;
-        }
-        return salary;
-    }
-
-    /**
      * Returns the string representation of the salary value.
      */
     public String getValue() {
-        return convertLongSalaryToString(value);
+        return SalaryParserUtil.convertLongSalaryToString(value);
     }
 
     @Override
     public String toString() {
-        return convertLongSalaryToString(value);
+        return SalaryParserUtil.convertLongSalaryToString(value);
     }
 
     @Override
