@@ -30,7 +30,8 @@ public class SalaryParserUtil {
      * Adds zeros to the front of the {@code stringBuilder} from index {@code start} until the string has at least
      * ({@code Salary.NUM_OF_DECIMAL_PLACES} + 1) digits.
      */
-    public static void addZerosToFront(StringBuilder stringBuilder, int start) {
+    private static void addZerosToFront(StringBuilder stringBuilder, int start) {
+        assert(start == 0 || start == 1);
         int minimumNumOfDigits = Salary.NUM_OF_DECIMAL_PLACES + 1;
         int currNumOfDigits = stringBuilder.length() - start;
         int numOfZerosRequired = minimumNumOfDigits - currNumOfDigits;
@@ -41,22 +42,23 @@ public class SalaryParserUtil {
     }
 
     /**
-     * Returns a long that is parsed from {@code salary} by ensuring that there
+     * Returns a long that is parsed from {@code value} by ensuring that there
      * are {@code Salary.NUM_OF_DECIMAL_PLACES} decimals and removing the decimal point.
      */
-    public static long parseStringToLong(String salary) {
-        requireNonNull(salary);
+    public static long parseStringToLong(String value) {
+        requireNonNull(value);
 
-        int indexOfDecimal = salary.indexOf(".");
+        int indexOfDecimal = value.indexOf(".");
         int numOfDecimals;
         if (indexOfDecimal == -1) {
             numOfDecimals = 0;
         } else {
-            numOfDecimals = salary.length() - 1 - indexOfDecimal;
+            numOfDecimals = value.length() - 1 - indexOfDecimal;
         }
         int numOfZerosToAdd = Salary.NUM_OF_DECIMAL_PLACES - numOfDecimals;
+        assert(numOfZerosToAdd >= 0);
 
-        String salaryWithoutDecimalPoint = salary.replace(".", "");
+        String salaryWithoutDecimalPoint = value.replace(".", "");
         Long result = addZerosToBack(Long.parseLong(salaryWithoutDecimalPoint), numOfZerosToAdd);
         return result;
     }
@@ -65,7 +67,6 @@ public class SalaryParserUtil {
      * Add {@code count} number of zeros to the back of {@code salary}.
      */
     public static long addZerosToBack(long salary, int count) {
-        assert(count >= 0);
         while (count > 0) {
             salary *= 10;
             count -= 1;
