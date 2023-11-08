@@ -50,5 +50,5 @@ Person *--> Salary
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered and sorted" Person
 @enduml
