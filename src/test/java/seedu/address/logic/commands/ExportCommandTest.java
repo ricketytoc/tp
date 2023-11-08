@@ -76,6 +76,14 @@ class ExportCommandTest {
         exportCommand = new ExportCommand(invalidPath);
         assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
 
+        invalidPath = Path.of("C:");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        invalidPath = Path.of("/usr");
+        exportCommand = new ExportCommand(invalidPath);
+        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
+
         // Nested folder (truncated slash at the end)
         invalidPath = Path.of("/a/b/c/d/");
         exportCommand = new ExportCommand(invalidPath);
@@ -101,7 +109,6 @@ class ExportCommandTest {
         invalidPath = Path.of("\\a\\b\\c");
         exportCommand = new ExportCommand(invalidPath);
         assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
     }
 
     @Test

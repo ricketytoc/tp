@@ -91,6 +91,14 @@ class ImportCommandTest {
         importCommand = new ImportCommand(invalidPath);
         assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
 
+        invalidPath = Path.of("C:");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        invalidPath = Path.of("/usr");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
         // Nested folder (truncated slash at the end)
         invalidPath = Path.of("/a/b/c/d/");
         importCommand = new ImportCommand(invalidPath);
