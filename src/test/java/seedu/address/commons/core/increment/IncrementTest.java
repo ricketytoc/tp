@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Salary;
+
 public class IncrementTest {
 
     @Test
@@ -18,6 +20,15 @@ public class IncrementTest {
     public void constructor_invalidIncrement_throwsIllegalArgumentException() {
         String invalidIncrement = "";
         assertThrows(IllegalArgumentException.class, () -> new Increment(invalidIncrement));
+    }
+
+    @Test
+    public void constructor_incrementExceedsMaximumLong() {
+        Increment increment = new Increment("10000000000000000000");
+        long expectedLongValue = Salary.MAXIMUM_SALARY_LONG + 1;
+        String expectedString = "10000000000000000000.00";
+        assertEquals(expectedLongValue, increment.getLongValue());
+        assertEquals(expectedString, increment.toString());
     }
 
     @Test

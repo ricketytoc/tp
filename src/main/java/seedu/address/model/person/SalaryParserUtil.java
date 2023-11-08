@@ -21,8 +21,8 @@ public class SalaryParserUtil {
             addZerosToFront(stringBuilder, 0);
         }
 
-        int decimalPlace = stringBuilder.length() - Salary.NUM_OF_DECIMAL_PLACES;
-        stringBuilder.insert(decimalPlace, ".");
+        int decimalPlaceIndex = stringBuilder.length() - Salary.NUM_OF_DECIMAL_PLACES;
+        stringBuilder.insert(decimalPlaceIndex, ".");
         return stringBuilder.toString();
     }
 
@@ -48,6 +48,19 @@ public class SalaryParserUtil {
     public static long parseStringToLong(String value) {
         requireNonNull(value);
 
+        int numOfZerosToAdd = getNumOfZerosToAdd(value);
+        assert(numOfZerosToAdd >= 0);
+
+        String salaryWithoutDecimalPoint = value.replace(".", "");
+        Long result = addZerosToBack(Long.parseLong(salaryWithoutDecimalPoint), numOfZerosToAdd);
+        return result;
+    }
+
+    /**
+     * Returns number of zeros required to add to the back of {@code value}
+     * to get {@code Salary.NUM_OF_DECIMAL_PLACES} of decimals.
+     */
+    private static int getNumOfZerosToAdd(String value) {
         int indexOfDecimal = value.indexOf(".");
         int numOfDecimals;
         if (indexOfDecimal == -1) {
@@ -56,11 +69,7 @@ public class SalaryParserUtil {
             numOfDecimals = value.length() - 1 - indexOfDecimal;
         }
         int numOfZerosToAdd = Salary.NUM_OF_DECIMAL_PLACES - numOfDecimals;
-        assert(numOfZerosToAdd >= 0);
-
-        String salaryWithoutDecimalPoint = value.replace(".", "");
-        Long result = addZerosToBack(Long.parseLong(salaryWithoutDecimalPoint), numOfZerosToAdd);
-        return result;
+        return numOfZerosToAdd;
     }
 
     /**
@@ -72,5 +81,28 @@ public class SalaryParserUtil {
             count -= 1;
         }
         return salary;
+    }
+
+    /**
+     * Returns a string that has {@code Salary.NUM_OF_DECIMAL_PLACES} of decimals
+     * from {@code value} by adding decimal point and zeros to the back of {@code value}.
+     */
+    public static String getStringWithDecimals(String value) {
+        int numOfZerosToAdd = getNumOfZerosToAdd(value);
+        assert(numOfZerosToAdd >= 0);
+
+        StringBuilder stringBuilder = new StringBuilder(value);
+        if (numOfZerosToAdd == Salary.NUM_OF_DECIMAL_PLACES
+                && stringBuilder.charAt(stringBuilder.length() - 1) != '.') {
+            // no decimal point
+            stringBuilder.append('.');
+        }
+
+        while (numOfZerosToAdd > 0) {
+            stringBuilder.append('0');
+            numOfZerosToAdd -= 1;
+        }
+
+        return stringBuilder.toString();
     }
 }

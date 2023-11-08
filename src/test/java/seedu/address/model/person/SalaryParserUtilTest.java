@@ -92,4 +92,24 @@ public class SalaryParserUtilTest {
         expectedSalary = 5000000;
         assertEquals(expectedSalary, SalaryParserUtil.addZerosToBack(salary, count));
     }
+
+    @Test
+    public void getStringWithDecimals() {
+        // no decimal point
+        String value = "5000";
+        String expected = "5000.00";
+        assertEquals(expected, SalaryParserUtil.getStringWithDecimals(value));
+
+        // only decimal point
+        value = "5000.";
+        assertEquals(expected, SalaryParserUtil.getStringWithDecimals(value));
+
+        // 1 decimal
+        value = "5000.0";
+        assertEquals(expected, SalaryParserUtil.getStringWithDecimals(value));
+
+        // 2 decimals
+        value = "5000.00";
+        assertEquals(expected, SalaryParserUtil.getStringWithDecimals(value));
+    }
 }
