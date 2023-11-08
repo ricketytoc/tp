@@ -17,10 +17,10 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_SUCCESS = "Data successfully exported";
     public static final String MESSAGE_FAILURE = "Data could not be exported";
-    public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
-    public static final String MESSAGE_ACCESS_DENIED = "The data file could not be written to the specified file path. "
-            + "Please try another file path.";
-    public static final String MESSAGE_MISSING_FILE_NAME = "The specified file path does not contain a file name";
+    //public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
+    //public static final String MESSAGE_MISSING_FILE_NAME = "The specified file path does not contain a file name";
+    public static final String MESSAGE_INVALID_FILE_PATH = "The file path must contain a file name of .json type. "
+            + "E.g. data.json";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the data file to the specified location. "
             + "\n"
             + "Parameters: "
@@ -39,14 +39,14 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         Path fileNamePath = filePath.getFileName();
-        // Check for missing file name
+        // Check for missing file name, or if the file path is a directory
         if (fileNamePath == null || Files.isDirectory(filePath)) {
-            throw new CommandException(MESSAGE_MISSING_FILE_NAME);
+            throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
         // Check for incorrect file extension
         if (!fileNamePath.toString().endsWith(".json")) {
-            throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
+            throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
         // Attempt to save address book into disk

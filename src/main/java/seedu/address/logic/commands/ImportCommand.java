@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -20,8 +21,8 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_FILE_ERROR = "An error occurred during loading of data. The file "
             + "might be corrupted.";
     public static final String MESSAGE_FILE_MISSING = "The specified file does not exist";
-    public static final String MESSAGE_INVALID_FILE_TYPE = "File should be of .json type. E.g. data.json";
-    public static final String MESSAGE_MISSING_FILE_NAME = "The specified file path does not contain a file name";
+    public static final String MESSAGE_INVALID_FILE_PATH = "The file path must contain a file name of .json type. "
+            + "E.g. data.json";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports the data file from the specified location "
             + "into the application. "
             + "\n"
@@ -41,14 +42,14 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         Path fileNamePath = filePath.getFileName();
-        // Check for missing file name
-        if (fileNamePath == null) {
-            throw new CommandException(MESSAGE_MISSING_FILE_NAME);
+        // Check for missing file name, or if the file path is a directory
+        if (fileNamePath == null || Files.isDirectory(filePath)) {
+            throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
         // Check for incorrect file extension
         if (!fileNamePath.toString().endsWith(".json")) {
-            throw new CommandException(MESSAGE_INVALID_FILE_TYPE);
+            throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
         // Attempt to read address book from disk
