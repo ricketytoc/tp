@@ -805,7 +805,7 @@ testers are expected to do more *exploratory* testing.
 1. Exporting the data file.
 
     1. Test case: `export fy2324.json`<br>
-       Prerequisite: The application has write access to the directory where EmployeeManager is.
+       Prerequisite: The application has write access to the directory where EmployeeManager is.<br>
        Expected: The data file will be written to the directory where EmployeeManager is as `fy2324.json`.
 
     1. Test case: `export fy2324`<br>
