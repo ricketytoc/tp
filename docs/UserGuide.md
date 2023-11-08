@@ -403,7 +403,8 @@ different depending on your operating system._
 ### Viewing command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
-If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
+If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed. 
+Do note that `history` will only show you the executed commands for this session - it resets each time you close and relaunch EmployeeManager.
 
 Format: `history N`
 * N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
@@ -428,8 +429,7 @@ EmployeeManager data are saved in the hard disk automatically after any command 
 ### Editing the data file
 
 EmployeeManager automatically saves your data as a JSON file `[JAR file location]/data/employeemanager.json`. 
-For advanced users, you have the option to directly modify this data file to update records. After editing, simply `import` the
-file to view your changes within EmployeeManager.
+For advanced users, you have the option to directly modify this data file to update records. After editing, simply restart Employeemanager to view the update changes.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. 
