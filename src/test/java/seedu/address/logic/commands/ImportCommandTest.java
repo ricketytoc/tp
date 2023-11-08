@@ -52,7 +52,8 @@ class ImportCommandTest {
     }
 
     @Test
-    public void execute_missingFile_throwsCommandException() throws Exception {
+    public void execute_missingFile_throwsCommandException() {
+        assertTrue(Files.notExists(temporaryFolder.resolve("missing.json")));
         Path filePath = temporaryFolder.resolve("missing.json");
 
         // Attempt to import into app

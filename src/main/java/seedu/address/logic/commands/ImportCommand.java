@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -14,7 +13,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 /**
  * Imports a data file from the specified path.
  */
-public class ImportCommand extends Command {
+public class ImportCommand extends FileCommand {
 
     public static final String COMMAND_WORD = "import";
     public static final String MESSAGE_SUCCESS = "Data successfully imported";
@@ -41,14 +40,7 @@ public class ImportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        Path fileNamePath = filePath.getFileName();
-        // Check for missing file name, or if the file path is a directory
-        if (fileNamePath == null || Files.isDirectory(filePath)) {
-            throw new CommandException(MESSAGE_INVALID_FILE_PATH);
-        }
-
-        // Check for incorrect file extension
-        if (!fileNamePath.toString().endsWith(".json")) {
+        if (!isValidDataFilePath(filePath)) {
             throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
