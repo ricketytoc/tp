@@ -122,7 +122,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -137,7 +137,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -246,6 +246,8 @@ diagram below illustrates how the comparator is obtained and passed to the Model
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
   
 ### Find Feature
@@ -448,7 +450,7 @@ spent on data entry tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                                                                                              | So that                                                                                     |
+| Priority | As a …​                             | I want to …​                                                                                              | So that ...                                                                                 |
 |----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `*`      | potential user exploring the app    | view the app populated with sample data                                                                   | I can easily see how the app will look when it is in use                                    |
 | `* *`    | user paranoid about losing progress | have the data automatically saved                                                                         | I will not lose any progress when the application shuts down unexpectedly                   |
@@ -645,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  **Storage Capacity**: Should be able to store up to `100` persons without a noticeable sluggishness in performance for typical usage.
+2.  **Storage Capacity**: Should be able to store up to `200` persons without a noticeable sluggishness in performance for typical usage.
 3.  **UI Responsiveness**: The UI should respond to user interaction. 
 4.  **Error Handling**: Should gracefully handle input errors without system crash and data loss.
 5.  **Code Documentation**: Code should be well-documented to facilitate maintenance and updates.
