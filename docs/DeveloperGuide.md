@@ -122,15 +122,9 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered and sorted_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -596,6 +590,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. EmployeeManager displays an empty list.
 1. Use case ends.
 
+**Use case: UC8 - Exporting the data file**
+
+**MSS**
+
+1. User requests to export the data file to a specified file path.
+1. EmployeeManager exports the data file to the specified file path.
+1. EmployeeManager displays a success message.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid file path.
+    * 1a1. EmployeeManager informs user that the file path is invalid.
+    * 1a2. User enters a new file path.
+    * Steps 1a1-1a2 are repeated until the file path is valid.
+    * Use case resumes from step 2.
+
+**Use case: UC9 - Importing the data file**
+
+**MSS**
+
+1. User requests to import the data file from a specified file path.
+1. EmployeeManager imports the data file from the specified file path.
+1. EmployeeManager shows the updated list of employees imported from the data file.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid file path.
+    * 1a1. EmployeeManager informs user that the file path is invalid.
+    * 1a2. User enters a new file path.
+    * Steps 1a1-1a2 are repeated the file path is valid.
+    * Use case resumes from step 2.
+* 1b. The user enters a file path where the file doesn't exist.
+    * 1b1. EmployeeManager informs user that the file does not exist at the file path.
+    * 1b2. User enters a new file path.
+    * Steps 1a1-1a2 are repeated until the file path has an existing file.
+    * Use case resumes from step 2.
+* 1c. The user enters a file path where the data file is corrupted.
+    * 1c1. EmployeeManager informs user that the data file is corrupted.
+    * 1c2. User enters a new file path.
+    * Steps 1c1-1c2 are repeated until the file path has a valid data file.
+    * Use case resumes from step 2.
+
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -761,3 +799,37 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `history 0`<br>
        Expected: Error details shown in the status message.
+
+### Exporting data file
+
+1. Exporting the data file.
+
+    1. Test case: `export fy2324.json`<br>
+       Prerequisite: The application has write access to the directory where EmployeeManager is.<br>
+       Expected: The data file will be written to the directory where EmployeeManager is as `fy2324.json`.
+
+    1. Test case: `export fy2324`<br>
+       Expected: The file name does not have the .json file extension. Error details shown in the status message.
+
+   1. Test case: `export /`<br>
+      Expected: The file path is invalid as it is a directory. Error details shown in the status message.
+
+
+### Importing data file
+
+1. Importing the data file.
+
+    1. Test case: `export fy2324.json`, followed by `clear`, then `import fy2324.json`<br>
+       Prerequisites: The application has read access to the specified file path. The file `fy2324.json` must exist
+       at the specified file path - which will be the directory where EmployeeManager is in this case.<br>
+       Expected: The data file `fy2324.json` will be imported into the application and overwrite existing data.
+
+    1. Test case: `import fy9999.json`<br>
+       Prerequisites: The file `fy9999.json` does not exist in the directory where EmployeeManager is.<br>
+       Expected: Error details shown in the status message.
+
+   1. Test case: `export fy2324.json`, followed by removing some of the brackets in the exported `fy2324.json` file 
+      using any text editor, followed by `import fy2324.json`.<br>
+      Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
+      data file).<br>
+      Expected: Error details shown in the status message.

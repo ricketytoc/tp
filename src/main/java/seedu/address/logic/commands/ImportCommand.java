@@ -13,13 +13,15 @@ import seedu.address.storage.JsonAddressBookStorage;
 /**
  * Imports a data file from the specified path.
  */
-public class ImportCommand extends Command {
+public class ImportCommand extends FileCommand {
 
     public static final String COMMAND_WORD = "import";
     public static final String MESSAGE_SUCCESS = "Data successfully imported";
     public static final String MESSAGE_FILE_ERROR = "An error occurred during loading of data. The file "
             + "might be corrupted.";
     public static final String MESSAGE_FILE_MISSING = "The specified file does not exist";
+    public static final String MESSAGE_INVALID_FILE_PATH = "The file path must contain a file name of .json type. "
+            + "E.g. data.json";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports the data file from the specified location "
             + "into the application. "
             + "\n"
@@ -38,6 +40,11 @@ public class ImportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        if (!isValidDataFilePath(filePath)) {
+            throw new CommandException(MESSAGE_INVALID_FILE_PATH);
+        }
+
+        // Attempt to read address book from disk
         try {
             Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(filePath).readAddressBook(filePath);
             if (addressBook.isPresent()) {

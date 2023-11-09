@@ -37,8 +37,8 @@ If you are an **experienced user**:
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed on your Computer.
-   1. Open the **terminal** on your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
+   1. Open the **terminal** on your computer.
       1. **Windows**: Open Windows Search and search for "terminal".
       1. **Mac**: Open Spotlight Search and search for "terminal".
       1. **Linux**: Press `Ctrl + Alt + T`.
@@ -137,10 +137,9 @@ The constraint for the attribute is also listed in the table.
 
 Shows a message explaining how to use the commands and where to look for more detailed help.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
+![help message](images/helpMessage.png)
 
 ### Adding an employee: `add`
 
@@ -278,12 +277,14 @@ Examples:
 ### Sorting displayed employees : `sort`
 
 Sorts the displayed list based on the specified employee's attribute in _ascending_ order.
+EmployeeManager will automatically re-sort the displayed list based on the last specified attribute after any command
+that updates the data. This will ensure that the list remains sorted even after modifications.
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
-* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix
+* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
 * Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
 and "100" comes before "200".
 
@@ -298,15 +299,16 @@ Examples:
 
 ### Incrementing multiple employees' salaries: `increment`
 
-  Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
+Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
 
-  Format: `increment INCREMENT`
+Format: `increment INCREMENT`
 * Increments the salaries of all employees in the displayed list by `INCREMENT`.
 * `INCREMENT` can be positive or negative.
 * `INCREMENT` is invalid if `INCREMENT` causes the salary of any employee in the displayed list to fall below 0 or exceed the maximum salary.
+Should this happen, an error message identifying the first employee whose adjusted salary falls outside the allowed range will be shown.
 * `INCREMENT` can have at most 2 decimals.
 
-  Examples:
+Examples:
 * `increment 1000` increments the salaries of all employees in the displayed list by `1000`.
 * `increment -100.65` decrements the salaries of all employees in the displayed list by `100.65`.
 
@@ -343,7 +345,7 @@ Format: `clear`
 
 Imports an EmployeeManager data file into the application.
 
-* The data file must be of '.json' file type.
+* The data file must be of '.json' file type. Otherwise, an error will be thrown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
 
@@ -362,7 +364,7 @@ Alternatively, you may use the GUI option to import the data file.
 1. Click File > Import in the top left corner of the application.
 ![Ui](images/ug-import-gui.png)
 2. The file explorer will open and prompt you to select the data file. _The file explorer will look
-look different depending on your operating system._
+different depending on your operating system._
 ![Ui](images/ug-import-explorer.png)
 3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
 
@@ -373,6 +375,7 @@ look different depending on your operating system._
 
 Exports the data file in EmployeeManager to the specified path.
 
+* The data file must be of '.json' file type. Otherwise, an error will be thrown.
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Format: `export FILE_PATH`
@@ -400,7 +403,8 @@ different depending on your operating system._
 ### Viewing command history : `history`
 
 Displays up to the last `N` valid user commands that have been executed, starting from the previous command. 
-If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed.
+If the number of valid user commands is less than `N`, it shows all valid user commands that have been executed. 
+Do note that `history` will only show you the executed commands for this session - it resets each time you close and relaunch EmployeeManager.
 
 Format: `history N`
 * N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
@@ -424,28 +428,23 @@ EmployeeManager data are saved in the hard disk automatically after any command 
 
 ### Editing the data file
 
-EmployeeManager data are saved automatically as a JSON file `[JAR file location]/data/employeemanager.json`. Advanced users are welcome to update data directly by editing that data file.
+EmployeeManager automatically saves your data as a JSON file `[JAR file location]/data/employeemanager.json`. 
+For advanced users, you have the option to directly modify this data file to update records. After editing, simply restart Employeemanager to view the update changes.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+<div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
+If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. 
+To safeguard against potential data loss, we recommend backing up the original data file before directly editing it. 
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q1**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EmployeeManager home folder.
+**Q1**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and replace the default data file it creates with the data file of your previous EmployeeManager.
 
 **Q2**: Are the employees listed in the order of id or name?<br>
 **A**: No, the employees are not listed in any explicit order. Newly added employees will be placed at the end of the list.
-
-**Q3**: Can I simply update certain details of an employee without deleting the old information?<br>
-**A**: You can only delete and add the updated employee information again so far, the new `update` feature is coming soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -479,8 +478,9 @@ _Details coming soon ..._
 
 ## Glossary Table
 
-| Term          | Description                                                                                                                                                                                                                                         |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CLI**       | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                                                                                                         |
-| **GUI**       | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system.                                                                                       |
-
+| Term                  | Description                                                                                                                                                   |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**               | Stands for Command Line Interface and it is a means of interacting with a computer program by inputting lines of text called command-lines.                   |
+| **GUI**               | Stands for Graphical User Interface and it uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. |
+| **File Path**         | A file path is the location of a file or folder in a computer's file system. It specifies where a file is located on the computer.                            |
+| **Working Directory** | The working directory is the folder in which the user is currently operating in the command line.                                                             |

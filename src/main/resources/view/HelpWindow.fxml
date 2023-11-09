@@ -21,11 +21,11 @@
             <stylesheets>
                 <URL value="@HelpWindow.css" />
             </stylesheets>
-            <VBox fx:id="helpMessageContainer" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
+            <VBox fx:id="helpMessageContainer" prefHeight="600.0" style="-fx-background-color: #FFFFFF;">
                 <children>
                     <ScrollPane fitToWidth="true" focusTraversable="false" pannable="true" VBox.vgrow="ALWAYS">
                         <content>
-                            <VBox prefHeight="807.0" prefWidth="749.0">
+                            <VBox prefHeight="807.0">
                                 <Label fx:id="commandSummary" focusTraversable="false" text="Label" wrapText="true" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font size="13.0" />
@@ -37,7 +37,7 @@
                             </VBox>
                         </content>
                     </ScrollPane>
-                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #c5d4eb;">
+                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-background-color: #c5d4eb;" VBox.vgrow="ALWAYS">
                         <children>
                             <Label fx:id="helpMessage" alignment="BOTTOM_LEFT" prefHeight="19.0" prefWidth="782.0" text="Label" HBox.hgrow="ALWAYS">
                                 <HBox.margin>
@@ -50,7 +50,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
                             </Label>
-                            <Button fx:id="copyButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#copyUrl" prefHeight="29.0" prefWidth="336.0" text="Copy URL" textFill="WHITE" HBox.hgrow="ALWAYS">
+                            <Button fx:id="copyButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#copyUrl" prefHeight="29.0" text="Copy URL" textFill="WHITE" HBox.hgrow="ALWAYS">
                                 <font>
                                     <Font size="13.0" />
                                 </font>
