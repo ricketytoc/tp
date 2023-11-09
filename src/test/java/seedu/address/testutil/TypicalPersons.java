@@ -125,7 +125,7 @@ public class TypicalPersons {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
             Person editedPerson = new PersonBuilder(person)
-                    .withSalary(person.getSalary().getIncrementedSalary(increment).getValueAsString()).build();
+                    .withSalary(person.getSalary().getIncrementedSalary(increment).getValue()).build();
             ab.addPerson(editedPerson);
         }
         return ab;

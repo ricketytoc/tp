@@ -27,6 +27,7 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryParserUtil;
 import seedu.address.model.person.SalaryWithinRangePredicate;
 
 
@@ -294,8 +295,8 @@ public class ParserUtil {
         if (!isValidFindSalaryArgs(trimmedArgs)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        double lowerBound = findLowerBound(trimmedArgs);
-        double upperBound = findUpperBound(trimmedArgs);
+        long lowerBound = findLowerBound(trimmedArgs);
+        long upperBound = findUpperBound(trimmedArgs);
         return new SalaryWithinRangePredicate(lowerBound, upperBound);
     }
 
@@ -324,20 +325,22 @@ public class ParserUtil {
         }
         String upperBound = salaryArgs.split(" - ", 2)[1];
         String lowerBound = salaryArgs.split(" - ", 2)[0];
-        double upperBoundDouble = Double.parseDouble(upperBound);
-        double lowerBoundDouble = Double.parseDouble(lowerBound);
-        if (upperBoundDouble > Salary.MAXIMUM_SALARY || lowerBoundDouble > upperBoundDouble) {
+        long upperBoundLong = SalaryParserUtil.parseStringToLong(upperBound);
+        long lowerBoundLong = SalaryParserUtil.parseStringToLong(lowerBound);
+        if (upperBoundLong > Salary.MAXIMUM_SALARY_LONG || lowerBoundLong > upperBoundLong) {
             return false;
         }
         return true;
     }
 
-    private static double findLowerBound(String salaryArgs) {
-        return Double.parseDouble(salaryArgs.split(" - ", 2)[0]);
+    private static long findLowerBound(String salaryArgs) {
+        String lowerBoundArg = salaryArgs.split(" - ", 2)[0];
+        return SalaryParserUtil.parseStringToLong(lowerBoundArg);
     }
 
-    private static double findUpperBound(String salaryArgs) {
-        return Double.parseDouble(salaryArgs.split(" - ", 2)[1]);
+    private static long findUpperBound(String salaryArgs) {
+        String upperBoundArg = salaryArgs.split(" - ", 2)[1];
+        return SalaryParserUtil.parseStringToLong(upperBoundArg);
     }
 
     private static void checkTrimmedArgsNotEmpty(String trimmedArgs) throws ParseException {

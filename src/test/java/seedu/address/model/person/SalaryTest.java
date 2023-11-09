@@ -33,20 +33,30 @@ public class SalaryTest {
         assertFalse(Salary.isValidSalary("^")); // only numbers
         assertFalse(Salary.isValidSalary("-1000")); // only non-negative numbers
         assertFalse(Salary.isValidSalary("1000.999")); // contains more than 2 decimals
+        assertFalse(Salary.isValidSalary(Integer.toString(Salary.MAXIMUM_SALARY + 1))); // too large salary
 
         // valid salary
+        assertTrue(Salary.isValidSalary("0")); // boundary value: 0
         assertTrue(Salary.isValidSalary("1000")); // non-negative numbers only
-        assertTrue(Salary.isValidSalary("12")); // numbers only
+        assertTrue(Salary.isValidSalary("12.99")); // non-negative numbers with decimal
     }
 
     @Test
-    public void isValidSalary_doubleSalary() {
+    public void isValidSalary_longSalary() {
         // invalid salary
-        assertFalse(Salary.isValidSalary(-1000)); // only non-negative numbers
-        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY + Salary.MAXIMUM_SALARY)); // exceeds maximum salary
+        // only non-negative numbers
+        assertFalse(Salary.isValidSalary(-1000));
+        // exceeds maximum salary
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY_LONG + Salary.MAXIMUM_SALARY_LONG));
+        // boundary value: maximum salary + 1
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY_LONG + 1));
+        // boundary value: -1
+        assertFalse(Salary.isValidSalary(-1));
 
         // valid salary
         assertTrue(Salary.isValidSalary(1000)); // within range
+        assertTrue(Salary.isValidSalary(Salary.MAXIMUM_SALARY_LONG)); // boundary value: maximum salary
+        assertTrue(Salary.isValidSalary(0)); // boundary value: 0
     }
 
     @Test
@@ -65,25 +75,30 @@ public class SalaryTest {
     public void isValidIncrement() {
         Salary salary = new Salary("1000");
 
-        // positive increment -> returns true
-        assertTrue(salary.isValidIncrement(new Increment("1000")));
-
         // negative increment for sufficient salary -> returns true
         assertTrue(salary.isValidIncrement(new Increment("-500")));
+
+        // negative increment for sufficient salary - boundary value: resultant salary is zero -> returns true
+        assertTrue(salary.isValidIncrement(new Increment("-1000")));
 
         // negative increment for insufficient salary -> returns false
         assertFalse(salary.isValidIncrement(new Increment("-2000")));
 
-        // too big positive increment -> returns false
-        assertFalse(salary.isValidIncrement(new Increment(String.format("%.2f", Salary.MAXIMUM_SALARY))));
-    }
+        // negative increment for insufficient salary - boundary value: resultant salary is -0.01 -> returns false
+        assertFalse(salary.isValidIncrement(new Increment("-1000.01")));
 
-    @Test
-    public void getValueAsString() {
-        double value = 1000;
-        Salary salary = new Salary(value);
-        String expectedString = String.format("%.2f", value);
-        assertEquals(expectedString, salary.getValueAsString());
+        // positive increment that does not cause salary to exceed maximum salary -> returns true
+        assertTrue(salary.isValidIncrement(new Increment("1000")));
+
+        // too big positive increment -> returns false
+        assertFalse(salary.isValidIncrement(new Increment(Integer.toString(Salary.MAXIMUM_SALARY))));
+
+        // positive increment - boundary value: causes salary to reach maximum salary -> returns true
+        Salary zeroSalary = new Salary("0");
+        assertTrue(zeroSalary.isValidIncrement(new Increment(Integer.toString(Salary.MAXIMUM_SALARY))));
+
+        // too big positive increment - boundary value: causes salary to exceed maximum salary by 0.01 -> returns false
+        assertFalse(zeroSalary.isValidIncrement(new Increment(Salary.MAXIMUM_SALARY + "0.01")));
     }
 
     @Test

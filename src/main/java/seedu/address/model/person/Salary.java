@@ -11,9 +11,12 @@ import seedu.address.commons.core.increment.Increment;
  */
 
 public class Salary implements Comparable<seedu.address.model.person.Salary> {
-    public static final double MAXIMUM_SALARY = 1000000000;
+    public static final int MAXIMUM_SALARY = 1000000000;
+    public static final int NUM_OF_DECIMAL_PLACES = 2;
+    public static final long MAXIMUM_SALARY_LONG =
+            SalaryParserUtil.addZerosToBack(MAXIMUM_SALARY, NUM_OF_DECIMAL_PLACES);
     public static final String MESSAGE_CONSTRAINTS = String.format(
-            "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %.2f",
+            "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %d.00",
             MAXIMUM_SALARY);
 
     /*
@@ -21,7 +24,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^?[0-9]+(\\.[0-9]{1,2})?$";
-    public final double value;
+    public final long value;
 
     /**
      * Constructs a {@code Salary}.
@@ -31,7 +34,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
     public Salary(String salary) {
         requireNonNull(salary);
         checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
-        value = Double.parseDouble(salary);
+        value = SalaryParserUtil.parseStringToLong(salary);
     }
 
     /**
@@ -39,7 +42,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      *
      * @param salary A valid salary.
      */
-    public Salary(double salary) {
+    public Salary(long salary) {
         checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
         value = salary;
     }
@@ -48,14 +51,17 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      * Returns true if a given string is a valid salary.
      */
     public static boolean isValidSalary(String test) {
-        return test.matches(VALIDATION_REGEX) && isValidSalary(Double.parseDouble(test));
+        int maxLengthOfStringWithoutDecimals = Integer.toString(MAXIMUM_SALARY).length();
+        return test.matches(VALIDATION_REGEX)
+                && test.split("\\.")[0].length() <= maxLengthOfStringWithoutDecimals
+                && isValidSalary(SalaryParserUtil.parseStringToLong(test));
     }
 
     /**
      * Returns true if a given double is a valid salary.
      */
-    public static boolean isValidSalary(double test) {
-        return test <= MAXIMUM_SALARY && test >= 0;
+    public static boolean isValidSalary(long test) {
+        return test <= MAXIMUM_SALARY_LONG && test >= 0;
     }
 
     /**
@@ -63,7 +69,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      */
     public Salary getIncrementedSalary(Increment increment) {
         requireNonNull(increment);
-        double updatedSalary = value + increment.getValue();
+        long updatedSalary = value + increment.getLongValue();
         return new Salary(updatedSalary);
     }
 
@@ -72,20 +78,20 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      * An {@code increment} is valid if the resulting salary after the increment is valid.
      */
     public boolean isValidIncrement(Increment increment) {
-        double resultantSalary = value + increment.getValue();
+        long resultantSalary = value + increment.getLongValue();
         return isValidSalary(resultantSalary);
     }
 
     /**
-     * Returns the salary value as a string.
+     * Returns the string representation of the salary value.
      */
-    public String getValueAsString() {
-        return String.format("%.2f", value);
+    public String getValue() {
+        return SalaryParserUtil.convertLongSalaryToString(value);
     }
 
     @Override
     public String toString() {
-        return String.format("%.2f", value);
+        return SalaryParserUtil.convertLongSalaryToString(value);
     }
 
     @Override

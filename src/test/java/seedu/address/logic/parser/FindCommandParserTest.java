@@ -152,7 +152,7 @@ public class FindCommandParserTest {
 
         // Salary attribute - no leading and trailing whitespaces
         predicateList.clear();
-        predicateList.add(new SalaryWithinRangePredicate(1000, 5000));
+        predicateList.add(new SalaryWithinRangePredicate(100000, 500000));
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
@@ -174,7 +174,7 @@ public class FindCommandParserTest {
         predicateList.add(new RoleContainsKeywordsPredicate(Arrays.asList("Manager", "Intern")));
         predicateList.add(new DepartmentContainsKeywordsPredicate(Arrays.asList("Finance", "Marketing")));
         predicateList.add(new EmailContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        predicateList.add(new SalaryWithinRangePredicate(1000, 5000));
+        predicateList.add(new SalaryWithinRangePredicate(100000, 500000));
         predicateList.add(new PhoneContainsKeywordsPredicate("9001"));
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));

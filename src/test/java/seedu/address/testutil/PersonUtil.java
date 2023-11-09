@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_DEPARTMENT + person.getDepartment().value + " ");
         sb.append(PREFIX_ROLE + person.getRole().value + " ");
-        sb.append(PREFIX_SALARY + person.getSalary().getValueAsString() + " ");
+        sb.append(PREFIX_SALARY + person.getSalary().getValue() + " ");
         return sb.toString();
     }
 
@@ -51,7 +51,7 @@ public class PersonUtil {
         descriptor.getDepartment().ifPresent(department -> sb.append(PREFIX_DEPARTMENT).append(department.value)
                 .append(" "));
         descriptor.getRole().ifPresent(role -> sb.append(PREFIX_ROLE).append(role.value).append(" "));
-        descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.value).append(" "));
+        descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.getValue()).append(" "));
         return sb.toString();
     }
 }
