@@ -51,7 +51,10 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
      * Returns true if a given string is a valid salary.
      */
     public static boolean isValidSalary(String test) {
-        return test.matches(VALIDATION_REGEX) && isValidSalary(SalaryParserUtil.parseStringToLong(test));
+        int maxLengthOfStringWithoutDecimals = Integer.toString(MAXIMUM_SALARY).length();
+        return test.matches(VALIDATION_REGEX)
+                && test.split("\\.")[0].length() <= maxLengthOfStringWithoutDecimals
+                && isValidSalary(SalaryParserUtil.parseStringToLong(test));
     }
 
     /**
