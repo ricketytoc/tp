@@ -69,7 +69,7 @@ public class IncrementCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person person = model.getSortedFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(person)
-                .withSalary(person.getSalary().getIncrementedSalary(INCREMENT_OBJ_POS).getValueAsString()).build();
+                .withSalary(person.getSalary().getIncrementedSalary(INCREMENT_OBJ_POS).toString()).build();
         expectedModel.setPerson(person, editedPerson);
         expectedModel.commitAddressBook();
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);

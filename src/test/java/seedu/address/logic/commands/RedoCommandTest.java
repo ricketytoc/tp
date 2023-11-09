@@ -17,6 +17,7 @@ public class RedoCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    // Solution below inspired by https://github.com/se-edu/addressbook-level4
     @BeforeEach
     public void setUp() {
         deleteFirstPerson(model);

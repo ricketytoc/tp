@@ -11,10 +11,10 @@ import seedu.address.testutil.PersonBuilder;
 class SalaryWithinRangePredicateTest {
     @Test
     public void equals() {
-        int firstRangeLowerBound = 1000;
-        int firstRangeUpperBound = 5000;
-        int secondRangeLowerBound = 2000;
-        int secondRangeUpperBound = 6000;
+        long firstRangeLowerBound = 100000;
+        long firstRangeUpperBound = 500000;
+        long secondRangeLowerBound = 200000;
+        long secondRangeUpperBound = 600000;
 
         SalaryWithinRangePredicate firstPredicate =
                 new SalaryWithinRangePredicate(firstRangeLowerBound, firstRangeUpperBound);
@@ -42,29 +42,29 @@ class SalaryWithinRangePredicateTest {
     @Test
     public void test_salaryWithinRange_returnsTrue() {
         // Salary between the range
-        SalaryWithinRangePredicate predicate = new SalaryWithinRangePredicate(1000, 5000);
+        SalaryWithinRangePredicate predicate = new SalaryWithinRangePredicate(100000, 500000);
         assertTrue(predicate.test(new PersonBuilder().withSalary("4000").build()));
 
         // Salary at the lower end of the range
-        predicate = new SalaryWithinRangePredicate(1000, 5000);
+        predicate = new SalaryWithinRangePredicate(100000, 500000);
         assertTrue(predicate.test(new PersonBuilder().withSalary("1000").build()));
 
         // Salary at the upper end of the range
-        predicate = new SalaryWithinRangePredicate(1000, 5000);
+        predicate = new SalaryWithinRangePredicate(100000, 500000);
         assertTrue(predicate.test(new PersonBuilder().withSalary("5000").build()));
     }
 
     @Test
     public void test_salaryNotWithinRange_returnsFalse() {
         // salary is outside of range
-        SalaryWithinRangePredicate predicate = new SalaryWithinRangePredicate(1000, 5000);
+        SalaryWithinRangePredicate predicate = new SalaryWithinRangePredicate(100000, 500000);
         assertFalse(predicate.test(new PersonBuilder().withSalary("7000").build()));
     }
 
     @Test
     public void toStringMethod() {
-        double keywordLowerBound = 1000.0;
-        double keywordUpperBound = 5000.0;
+        long keywordLowerBound = 100000;
+        long keywordUpperBound = 500000;
         SalaryWithinRangePredicate predicate = new SalaryWithinRangePredicate(keywordLowerBound, keywordUpperBound);
 
         String expected = SalaryWithinRangePredicate.class.getCanonicalName() + "{lowerBound=" + keywordLowerBound
