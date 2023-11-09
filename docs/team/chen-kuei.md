@@ -5,18 +5,24 @@ title: Chen Kuei's Project Portfolio Page
 
 ### Project: EmployeeManager
 
+EmployeeManager is a desktop application for Human Resource staffs to manage the information
+of around 50 - 200 employees within the organization.
+
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=chen-kuei&breakdown=true)
 
 * **Enhancements implemented**:
-    * To be added soon
+    * Remove `Tag` attribute
+    * Change unique field from `Name` to `ID`
+    * Improve UI design 
 
 * **Documentation**:
     * User Guide:
-        * To be added soon
+        * FAQ
+        * Command Summary
     * Developer Guide:
-        * To be added soon
+        * Edit feature
 
 * **Contributions to team-based tasks**:
     * To be added soon
