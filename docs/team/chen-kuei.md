@@ -13,7 +13,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=chen-kuei&breakdown=true)
 
 * **Enhancements implemented**:
-    * To be added soon
+    * Remove `Tag` attribute
+    * Change unique field from `Name` to `ID`
+    * Improve UI design 
 
 * **Documentation**:
     * User Guide:
