@@ -11,34 +11,16 @@ public class SalaryParserUtil {
      * Returns the salary value converted from a long to a string with 2 decimals.
      */
     public static String convertLongSalaryToString(long value) {
-        StringBuilder stringBuilder = new StringBuilder(Long.toString(value));
-
         // ensure that string has at least (Salary.NUM_OF_DECIMAL_PLACES + 1) digits
         // to insert the decimal point properly
-        if (stringBuilder.charAt(0) == '-') {
-            addZerosToFront(stringBuilder, 1);
-        } else {
-            addZerosToFront(stringBuilder, 0);
-        }
+        int minLengthOfString = value < 0 ? Salary.NUM_OF_DECIMAL_PLACES + 2 : Salary.NUM_OF_DECIMAL_PLACES + 1;
+        String formatter = "%0" + minLengthOfString + "d";
+        String valueString = String.format(formatter, value);
 
+        StringBuilder stringBuilder = new StringBuilder(valueString);
         int decimalPlaceIndex = stringBuilder.length() - Salary.NUM_OF_DECIMAL_PLACES;
         stringBuilder.insert(decimalPlaceIndex, ".");
         return stringBuilder.toString();
-    }
-
-    /**
-     * Adds zeros to the front of the {@code stringBuilder} from index {@code start} until the string has at least
-     * ({@code Salary.NUM_OF_DECIMAL_PLACES} + 1) digits.
-     */
-    private static void addZerosToFront(StringBuilder stringBuilder, int start) {
-        assert(start == 0 || start == 1);
-        int minimumNumOfDigits = Salary.NUM_OF_DECIMAL_PLACES + 1;
-        int currNumOfDigits = stringBuilder.length() - start;
-        int numOfZerosRequired = minimumNumOfDigits - currNumOfDigits;
-        while (numOfZerosRequired > 0) {
-            stringBuilder.insert(start, "0");
-            numOfZerosRequired -= 1;
-        }
     }
 
     /**

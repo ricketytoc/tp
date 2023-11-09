@@ -16,7 +16,7 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
     public static final long MAXIMUM_SALARY_LONG =
             SalaryParserUtil.addZerosToBack(MAXIMUM_SALARY, NUM_OF_DECIMAL_PLACES);
     public static final String MESSAGE_CONSTRAINTS = String.format(
-            "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %d",
+            "Salary should only contain numbers, be non-negative, contain at most 2 decimals, and be at most %d.00",
             MAXIMUM_SALARY);
 
     /*
