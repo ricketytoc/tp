@@ -18,7 +18,12 @@ Given below are my contributions to the project.
   * Incorporating artifact building in the project workflow
 
 * **Enhancements to existing features**:
-  * `to be added soon`
+  * Added `Id` as a field to the `Person` class
+  * Added `sort` command to allowing sorting by any field
+  * Added `import` command to allow importing of data file
+  * Added `export` command to allow exporting of data file
+  * Extended `Model` to support filtered and sorted person list for `find` and `sort` commands
+  * Modified `FindCommand` to support searching by attributes
 * **Documentation**:
   * User Guide:
     * `sort` command
@@ -27,6 +32,8 @@ Given below are my contributions to the project.
     * Prefix Summary
   * Developer Guide:
     * Sort feature
+    * Use cases for `import` and `export`
+    * Instructions for manual testing for `import` and `export`
 
 * **Community**:
   * `to be added soon`
