@@ -42,7 +42,10 @@ public class ParserUtilTest {
     private static final String VALID_SALARY = "5000";
     private static final String VALID_INCREMENT = "1000";
     private static final String VALID_HISTORY = "5";
+
     private static final String VALID_PATH = "./data/persons.json";
+    private static final String INVALID_PATH = "./data/per" + '\0' + "sons.json";
+    private static final String INVALID_WINDOWS_PATH = "./data/per*sons.json";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -73,13 +76,18 @@ public class ParserUtilTest {
     }
 
     @Test
-    @EnabledOnOs({OS.WINDOWS})
-    public void parsePath_invalidPathWindows_throwsParseException() {
-        String invalidPath = "./data/per*sons.json";
-        assertThrows(ParseException.class, () -> ParserUtil.parsePath(invalidPath));
+    public void parsePath_invalidPath_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(INVALID_PATH));
     }
 
-    // Linux & Mac has almost no restrictions, so no invalid tests are created
+    @Test
+    @EnabledOnOs({OS.WINDOWS})
+    public void parsePath_invalidPathWindows_throwsParseException() {
+        // '*' is not allowed in file path for Windows, but allowed in Linux and Mac
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(INVALID_WINDOWS_PATH));
+    }
+
+    // Linux & Mac has almost no restrictions, so no other invalid tests are created
 
     @Test
     public void parseId_null_throwsNullPointerException() {

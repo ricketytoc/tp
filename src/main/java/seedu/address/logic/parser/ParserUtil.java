@@ -53,14 +53,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String filePath} into a {@code Path}.
+     * Parses a {@code String path} into a {@code Path}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code filePath} is invalid.
+     * @throws ParseException if the given {@code path} is invalid.
      */
-    public static Path parsePath(String filePath) throws ParseException {
-        requireNonNull(filePath);
-        String trimmedPath = filePath.trim();
+    public static Path parsePath(String path) throws ParseException {
+        requireNonNull(path);
+        String trimmedPath = path.trim();
         if (trimmedPath.isBlank()) {
             throw new ParseException(MESSAGE_EMPTY_PATH);
         }

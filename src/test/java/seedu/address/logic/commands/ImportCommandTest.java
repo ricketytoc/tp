@@ -52,7 +52,8 @@ class ImportCommandTest {
     }
 
     @Test
-    public void execute_missingFile_throwsCommandException() throws Exception {
+    public void execute_missingFile_throwsCommandException() {
+        assertTrue(Files.notExists(temporaryFolder.resolve("missing.json")));
         Path filePath = temporaryFolder.resolve("missing.json");
 
         // Attempt to import into app
@@ -77,6 +78,53 @@ class ImportCommandTest {
         // Attempt to import into app
         ImportCommand importCommand = new ImportCommand(filePath);
         assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_FILE_ERROR);
+    }
+
+    @Test
+    public void execute_invalidPath_throwsException() throws Exception {
+        // Root folder with forward slash
+        Path invalidPath = Path.of("/");
+        ImportCommand importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        // Root folder with backward slash
+        invalidPath = Path.of("\\");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        invalidPath = Path.of("C:");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        invalidPath = Path.of("/usr");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        // Nested folder (truncated slash at the end)
+        invalidPath = Path.of("/a/b/c/d/");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        // Missing data type
+        invalidPath = Path.of("/cs2103-employee-manager-tmp");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        // Missing data type
+        // Note: the last '/' will be truncated from the path
+        invalidPath = Path.of("/cs2103-employee-manager-tmp/");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        // Nested folder
+        invalidPath = Path.of("/a/b");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
+
+        // Nested folder
+        invalidPath = Path.of("\\a\\b\\c");
+        importCommand = new ImportCommand(invalidPath);
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_PATH);
     }
 
     @Test
