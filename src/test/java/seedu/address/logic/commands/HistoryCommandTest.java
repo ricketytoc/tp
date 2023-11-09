@@ -27,16 +27,16 @@ public class HistoryCommandTest {
 
     @Test
     public void execute_validNumberOfUserCommands() {
-        String expectedMessage1 = "Displayed up to the last 2 valid user commands. "
-                + "If fewer than 2 commands are available, all are shown." + "\n"
+        String expectedMessage1 = "Displayed up to the last 2 valid user command(s). "
+                + "If fewer than 2 command(s) are available, all are shown." + "\n"
                 + "clear" + "\n"
                 + "list";
         commandHistory.add("list");
         commandHistory.add("clear");
         HistoryCommand historyCommand = new HistoryCommand(2);
         assertCommandSuccess(historyCommand, commandHistory, expectedMessage1);
-        String expectedMessage2 = "Displayed up to the last 2 valid user commands. "
-                + "If fewer than 2 commands are available, all are shown." + "\n"
+        String expectedMessage2 = "Displayed up to the last 2 valid user command(s). "
+                + "If fewer than 2 command(s) are available, all are shown." + "\n"
                 + VALID_ADD_COMMAND + "\n"
                 + "clear";
         commandHistory.add(VALID_ADD_COMMAND);
@@ -45,8 +45,8 @@ public class HistoryCommandTest {
 
     @Test
     public void execute_moreCommandsThanHistory() {
-        String expectedMessage = "Displayed up to the last 5 valid user commands. "
-                + "If fewer than 5 commands are available, all are shown."
+        String expectedMessage = "Displayed up to the last 5 valid user command(s). "
+                + "If fewer than 5 command(s) are available, all are shown."
                 + "\nlist"
                 + "\n" + VALID_ADD_COMMAND;
         commandHistory.add(VALID_ADD_COMMAND);
