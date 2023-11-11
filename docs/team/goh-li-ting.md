@@ -8,7 +8,6 @@ title: Goh Li Ting's Project Portfolio Page
 EmployeeManager is a desktop application used by Human Resource (HR) staff in a small or medium-sized company (of 50 - 200 employees).
 EmployeeManager has HR management features to provide HR staff a convenient way to access and update employee details.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -23,7 +22,10 @@ Given below are my contributions to the project.
     The implementation was challenging due to the limitations of Java's `long` and `double` data types.
     The `double` data type could not handle proper addition of the salary and the increment due to precision issues while
     the `long` data type has a maximum value that could not handle users' large inputs.
-  * _Coming soon_
+  * **Enhancements to existing features**:
+    * Added `role` as a field to the `Person` class.
+    * Modified `salary` field to hold a `long` instead of a `string` and implemented necessary parser functions.
+    * Added test cases for `undo` and `redo` commands.
 
 * **Documentation**:
   * User Guide:
@@ -38,10 +40,18 @@ Given below are my contributions to the project.
     * Added manual test cases for `increment`, `undo` and `redo`
 
 * **Contributions to team-based tasks**:
-  * To be added soon
+  * Created and closed issues
+  * Wrote introduction and command line interface section for user guide
+  * Updated `index.md` [#73](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/73)
 
 * **Review/mentoring contributions**:
-  * To be added soon
+  * 14 pull requests reviewed (with non-trivial comments):
+    e.g. [#115](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/115),
+    [#133](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/133),
+    [#196](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/196)
 
 * **Contributions beyond the project team**:
-  * To be added soon
+  * Reported bugs and suggestions for other team:
+    e.g. [#193](https://github.com/AY2324S1-CS2103T-T17-4/tp/issues/193),
+    [#196](https://github.com/AY2324S1-CS2103T-T17-4/tp/issues/196),
+    [#202](https://github.com/AY2324S1-CS2103T-T17-4/tp/issues/202)
