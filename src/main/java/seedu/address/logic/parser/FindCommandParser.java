@@ -90,7 +90,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     .parsePhoneKeyword(trimmedArgs);
             predicateList.add(phoneContainsKeywordsPredicate);
         }
-        assert !predicateList.isEmpty() : "predicate list is empty, please enter find command with valid prefix";
+        assert !predicateList.isEmpty();
         GeneralPredicate generalPredicate = new GeneralPredicate(predicateList);
         return new FindCommand(generalPredicate);
     }

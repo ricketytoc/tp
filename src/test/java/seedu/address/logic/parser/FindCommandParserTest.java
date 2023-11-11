@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -37,7 +38,58 @@ public class FindCommandParserTest {
         assertParseFailure(parser,
                 "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_noPrefix_throwsParseException() {
+        assertParseFailure(parser,
+                " alex",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_duplicatePrefix_throwsParseException() {
+        // duplicate name prefix
+        assertParseFailure(parser,
+                " " + PREFIX_NAME + "alex " + PREFIX_NAME + "bernice ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_NAME);
+
+        //duplicate ID prefix
+        assertParseFailure(parser,
+                " " + PREFIX_ID + "A001 " + PREFIX_ID + "A002 ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_ID);
+
+        // duplicate department prefix
+        assertParseFailure(parser,
+                " " + PREFIX_DEPARTMENT + "finance " + PREFIX_DEPARTMENT + "marketing ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_DEPARTMENT);
+
+        // duplicate role prefix
+        assertParseFailure(parser,
+                " " + PREFIX_ROLE + "Manager " + PREFIX_ROLE + "Supervisor ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_ROLE);
+
+        // duplicate email prefix
+        assertParseFailure(parser,
+                " " + PREFIX_EMAIL + "alexyeoh@example.com " + PREFIX_EMAIL + "bernicetan@example.com ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_EMAIL);
+
+        // duplicate salary prefix
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "3000 - 4000 " + PREFIX_SALARY + "4000 - 5000 ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_SALARY);
+
+        // duplicate phone prefix
+        assertParseFailure(parser,
+                " " + PREFIX_PHONE + "A001 " + PREFIX_PHONE + "A002 ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_PHONE);
+    }
+
+
 
     @Test
     public void parse_emptyPrefix_throwsParseException() {
@@ -71,7 +123,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_invalidInput_throwsParseException() {
+    public void parse_invalidPrefixParameters_throwsParseException() {
         // Invalid Salary input : no numbers
         assertParseFailure(parser,
                 " " + PREFIX_SALARY + "abc - wxy",
