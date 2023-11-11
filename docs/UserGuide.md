@@ -47,7 +47,6 @@ If you are an **experienced user**:
       <img src="images/JavaVersion.png" width="600" />
    1. Check that your version starts with `11` or higher.
    1. If you do not have Java `11` or above installed, you can download Java `11` [here](https://www.oracle.com/java/technologies/downloads/#java11).
-   <p>&nbsp;</p>
 
 1. Download the latest `EmployeeManager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
