@@ -843,3 +843,58 @@ testers are expected to do more *exploratory* testing.
       Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
       data file).<br>
       Expected: Error details shown in the status message.
+
+## **Appendix: Planned Enhancements**
+
+### Export command FILENAME should be a non-empty String
+
+The current implementation of `export` command allows the use of an empty string as the FILENAME, allowing commands like `export .json` to execute successfully.
+While this behaviour is technically allowed on windows, it has led to inconsistencies on other operating systems, 
+where no file is created despite the command executing successfully. To address this, we plan to make the validation checks stricter for the 
+FILENAME in the `export` command. This enhancement will prevent the use of empty strings in FILENAME, 
+thereby reducing the chances of bugs and ensuring a more consistent experience across different operating systems.
+
+### Allow the use of s/o in name field
+
+The current implementation of EmployeeManager designates `s/` as a prefix for salary. As a result, when the name field includes `s/o`, it triggers 
+several errors such as those related to multiple prefixes or salary constraints. 
+
+![PlannedEnhancementSOError](images/PlannedEnhancementSOError.png)
+
+We plan to add an escape character, such as a backslash, "\", This will allow more flexibility for name entries. For example, with this enhancement, a command like `edit 1 n/John \s/o dep` would be valid,
+changing the name of the person at index one to `John s/o dep`. The `s/o` will be recognised as part of a name rather than a salary prefix.
+
+### Change all mentions of addressbook to employeemanager
+
+Our project is a brownfield project adapted from AB3, it contains several references to addressbook such as the `AddressBookParser` and `AddressBook`. 
+While our primary focus has been on enhancing and improving the functionality of the software to cater to our target audience, we recognise the 
+need to have consistent naming conventions for clarity. Therefore, we plan to update all mentions of `addressbook` to `employeemanager`.
+
+### Stringent email validation
+
+The current implementation of EmployeeManager allows invalid emails such as `abc@gmail`, which fall short of the standard email address formats. 
+We understand the importance of data validation to our target audience, hence we plan add more stringent email validation that checks for proper
+`username@domainname.extension` formatting.
+
+### Improve clarity of success message for `undo` commands
+
+The current implementation of the `undo` command only shows that the command has been undone successfully, it does not specify what command has been undone. 
+
+![PlannedEnhancementUndoSuccessMessage](images/PlannedEnhancementUndoSuccessMessage.png)
+
+To enhance user experience and provide detailed feedback to the user, we plan to include the specific command that was undone.
+
+### Improve clarity of success message for `redo` commands
+
+The current implementation of the `redo` command only shows that the command has been redone successfully, it does not specify what command has been redone.
+
+![PlannedEnhancementRedoSuccessMessage](images/PlannedEnhancementRedoSuccessMessage.png)
+
+To enhance user experience and provide detailed feedback to the user, we plan to include the specific command that was redone.
+
+### Enhance validation for `sort` command
+
+The current implementation of the `sort` command allows users to input additional values after the sorting prefix, although they will be ignored. 
+For example commands like `sort n/abc` and `sort n/s/` are both valid sort commands that will sort by name. 
+We plan to enhance validation such that an error message will be shown if extra values are input after the sorting prefix.
+The proposed error message, `The sort command prefixes should not be used with values`, will guide the user towards the correct usage of the `sort` command.
