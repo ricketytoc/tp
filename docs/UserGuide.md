@@ -366,8 +366,8 @@ Examples:
 
 #### GUI option
 Alternatively, you may use the GUI option to import the data file. 
-1. Click File > Import in the top left corner of the application.
-<img src="images/ug-import-gui.png" width="200" />
+1. Click File > Import in the top left corner of the application.<br>
+<img src="images/ug-import-gui.png" width="225" />
 
 1. The file explorer will open and prompt you to select the data file. _The file explorer will look
 different depending on your operating system._
@@ -396,8 +396,8 @@ The export command will **overwrite** any file with the same name in the specifi
 
 #### GUI option
 Alternatively, you may use the GUI option to export the data file.
-1. Click File > Export in the top left corner of the application.
-<img src="images/ug-export-gui.png" width="200" />
+1. Click File > Export in the top left corner of the application.<br>
+<img src="images/ug-export-gui.png" width="225" />
 
 1. The file explorer will open and prompt you to save the data file. _The file explorer will look
 different depending on your operating system._
