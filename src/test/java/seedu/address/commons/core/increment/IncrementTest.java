@@ -99,7 +99,7 @@ public class IncrementTest {
 
         // different stored strings -> return false
         increment = new Increment(Long.toString(Salary.MAXIMUM_SALARY_LONG + 1));
-        Increment otherIncrement = new Increment(Long.toString(Salary.MAXIMUM_SALARY_LONG + 2));
+        Increment otherIncrement = new Increment(Long.MAX_VALUE + "0");
         assertFalse(increment.equals(otherIncrement));
     }
 }
