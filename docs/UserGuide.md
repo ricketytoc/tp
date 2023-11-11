@@ -147,9 +147,11 @@ Adds an employee to EmployeeManager.
 
 Format: `add i/ID n/NAME p/PHONE e/EMAIL d/DEPARTMENT r/ROLE s/SALARY`
 
+* If there already exists an employee with a certain ID in EmployeeManager, adding another employee with the same ID will not be allowed. 
+
 Examples:
 * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
-* `add i/A00002 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200.11` Adds an employee `Betsy Crowe` into the list.
+* Adding John Doe into EmployeeManager followed by executing `add i/A00001 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200.11` will **not** add Betsy into the list.
 
 ### Listing all employees : `list`
 
@@ -186,7 +188,7 @@ Examples:
 
 #### Finding an employee by name: `find n/`
 
-Find employees whose name matches at least one of the keywords in full.
+Find employees whose name **matches** at least one of the keywords in full.
 
 Format: `find n/KEYWORD [OTHER KEYWORD]`
 
@@ -200,7 +202,7 @@ Examples:
 
 #### Finding an employee by department: `find d/`
 
-Find employees whose department matches at least one of the keywords in full.
+Find employees whose department **matches** at least one of the keywords in full.
 
 Format: `find d/KEYWORD [OTHER KEYWORD]`
 
@@ -208,7 +210,7 @@ Format: `find d/KEYWORD [OTHER KEYWORD]`
 
 #### Finding an employee by role: `find r/`
 
-Find employees whose role matches at least one of the keywords in full.
+Find employees whose role **matches** at least one of the keywords in full.
 
 Format: `find r/KEYWORD [OTHER KEYWORD]`
 
@@ -216,7 +218,7 @@ Format: `find r/KEYWORD [OTHER KEYWORD]`
 
 #### Finding an employee by email: `find e/`
 
-Find employees whose email contains at least one of the keywords.
+Find employees whose email **contains** at least one of the keywords.
 
 Format: `find e/KEYWORD [OTHER KEYWORD]`
 
@@ -229,7 +231,7 @@ Examples:
 
 #### Finding an employee by ID: `find i/`
 
-Finds employees whose ID contains the keyword.
+Finds employees whose ID **contains** the keyword.
 
 Format: `find i/KEYWORD`
 
@@ -240,7 +242,7 @@ Examples:
 
 #### Finding an employee by phone number: `find p/`
 
-Find employees whose phone number contains the keyword.
+Find employees whose phone number **contains** the keyword.
 
 Format: `find p/KEYWORD`
 
@@ -248,13 +250,13 @@ Format: `find p/KEYWORD`
 
 #### Finding an employee by salary: `find s/`
 
-Finds employees whose salaries fall within the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
+Finds employees whose salaries **fall within** the range of LOWERBOUND to UPPERBOUND inclusive of LOWERBOUND and UPPERBOUND.
 
 Format: `find s/LOWERBOUND - UPPERBOUND`
 
 * The LOWERBOUND **cannot be larger than** the UPPERBOUND.
 * There must be a **spacing before and after the dash**
-* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1 000 000 000**.
+* LOWERBOUND and UPPERBOUND must be **non-negative integers** and **cannot be larger than 1000000000**.
 
 Examples:
 * `find s/1000 - 5000` returns employees with salaries `1000.00`, `4321.10`, `5000.00`.
@@ -284,9 +286,11 @@ Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * The prefix specifies the attribute to be sorted with.
 * Exactly one of the prefix must be specified.
+* Extraneous parameters entered after the prefix will be ignored. 
 * Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
 * Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
 and "100" comes before "200".
+* Keep in mind that for lexicographical order, upper case letters come before lower case letters. For example, `Z` comes before `a`.
 
 Examples:
 * `sort i/` sorts the list by ID.
@@ -296,6 +300,7 @@ Examples:
 * `sort r/` sorts the list by role.
 * `sort n/` sorts the list by name.
 * `sort p/` sorts the list by phone.
+* `sort p/9001` sorts the list by phone.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -362,9 +367,11 @@ Examples:
 #### GUI Option
 Alternatively, you may use the GUI option to import the data file. 
 1. Click File > Import in the top left corner of the application.
+
 ![Ui](images/ug-import-gui.png)
 2. The file explorer will open and prompt you to select the data file. _The file explorer will look
 different depending on your operating system._
+
 ![Ui](images/ug-import-explorer.png)
 3. After selecting your data file, EmployeeManager will attempt to load the data into the application.
 
@@ -390,9 +397,13 @@ The export command will **overwrite** any file in the specified location.
 #### GUI Option
 Alternatively, you may use the GUI option to export the data file.
 1. Click File > Export in the top left corner of the application.
+
+
    ![Ui](images/ug-export-gui.png)
 2. The file explorer will open and prompt you to save the data file. _The file explorer will look
 different depending on your operating system._
+
+
    ![Ui](images/ug-export-explorer.png)
 3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
 
