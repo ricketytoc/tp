@@ -96,5 +96,10 @@ public class IncrementTest {
 
         // different values -> returns false
         assertFalse(increment.equals(new Increment("10")));
+
+        // different stored strings -> return false
+        increment = new Increment(Long.toString(Salary.MAXIMUM_SALARY_LONG + 1));
+        Increment otherIncrement = new Increment(Long.toString(Salary.MAXIMUM_SALARY_LONG + 2));
+        assertFalse(increment.equals(otherIncrement));
     }
 }

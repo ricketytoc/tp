@@ -48,6 +48,13 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
     }
 
     /**
+     * Returns true if a given {@code test} is a valid salary.
+     */
+    public static boolean isValidSalary(long test) {
+        return test <= MAXIMUM_SALARY_LONG && test >= 0;
+    }
+
+    /**
      * Returns true if a given string is a valid salary.
      */
     public static boolean isValidSalary(String test) {
@@ -60,13 +67,6 @@ public class Salary implements Comparable<seedu.address.model.person.Salary> {
         int maxLengthWithoutDecimals = Integer.toString(MAXIMUM_SALARY).length();
         int lengthWithoutDecimals = test.split("\\.")[0].length();
         return lengthWithoutDecimals <= maxLengthWithoutDecimals;
-    }
-
-    /**
-     * Returns true if a given {@code test} is a valid salary.
-     */
-    public static boolean isValidSalary(long test) {
-        return test <= MAXIMUM_SALARY_LONG && test >= 0;
     }
 
     /**
