@@ -242,7 +242,7 @@ The command only allows for the sorting to be performed on one of the Person's a
 extract the attribute, and create a `SortCommand` using the corresponding comparator for that attribute. The sequence 
 diagram below illustrates how the comparator is obtained and passed to the Model to be executed.
 
-<img src="images/SortSequenceDiagram.png" width="574" />
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
