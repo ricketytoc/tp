@@ -417,6 +417,44 @@ delete each person from the filtered list using `Model#deletePerson` until the l
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 
+### Export/Import Feature
+
+The `export` feature allows the data file to be saved as a `.json` file on the disk. The `import` feature allows a
+data file to be imported from the disk, replacing the current data in the application.
+
+#### Implementation
+
+The import and export commands both uses `JsonAddressBookStorage` to facilitate writing and reading of data files.
+
+The import function calls `JsonAddressBookStorage#readAddressBook` which will read the file in the specified file path
+and attempt to parse the JSON data into a `ReadOnlyAddressBook`. The function also checks if the data file is invalid,
+such as if it contains illegal value, or if no file is found at the file path.
+
+The export function calls `JsonAddressBookStorage#saveAddressBook` which will serialize a `ReadOnlyAddressBook` and
+write it to the file path on the disk.
+
+A GUI option for importing and exporting was also implemented to allow users who are unfamiliar with file paths to use
+the feature as well.
+
+Another implementation detail is creating an abstract class `FileCommand` which inherits `Command`. Both `ImportCommand`
+and `ExportCommand` inherits `FileCommand`. The reason for creating the `FileCommand` class is to reduce code 
+duplication as both commands share the same logic for checking the validity of the `Path` received.
+
+![FileCommandClassDiagram](images/FileCommandClassDiagram.png)
+
+#### Design considerations
+
+**Aspect: Format of the export & import command:**
+
+* **Alternative 1 (current choice):** `export FILE_PATH`, `import FILE_PATH`.
+    * Pros: Provides flexibility in where the file can be exported to and imported from.
+    * Cons: Not all users might be familiar with specifying file paths. However, it can be mitigated
+      with a GUI option to select the file path.
+
+* **Alternative 2:** `export FILE_NAME`, `import FILE_NAME`.
+    * Pros: Simple to use, only have to specify file name and not be concerned with file path.
+    * Cons: Troublesome, the files must be exported and imported from the same directory as the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
