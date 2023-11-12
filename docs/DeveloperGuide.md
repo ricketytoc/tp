@@ -671,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The user enters a file path where the file doesn't exist.
     * 1b1. EmployeeManager informs user that the file does not exist at the file path.
     * 1b2. User enters a new file path.
-    * Steps 1a1-1a2 are repeated until the file path has an existing file.
+    * Steps 1b1-1b2 are repeated until the file path has an existing file.
     * Use case resumes from step 2.
 * 1c. The user enters a file path where the data file is corrupted.
     * 1c1. EmployeeManager informs user that the data file is corrupted.
