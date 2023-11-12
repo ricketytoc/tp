@@ -331,8 +331,7 @@ public class ParserUtil {
         String lowerBound = salaryRange.split(" - ", 2)[0];
         long upperBoundLong = SalaryParserUtil.parseStringToLong(upperBound);
         long lowerBoundLong = SalaryParserUtil.parseStringToLong(lowerBound);
-        if (upperBoundLong > Salary.MAXIMUM_SALARY_LONG || lowerBoundLong > Salary.MAXIMUM_SALARY_LONG
-                || lowerBoundLong > upperBoundLong) {
+        if (upperBoundLong > Salary.MAXIMUM_SALARY_LONG || lowerBoundLong > upperBoundLong) {
             return false;
         }
         return true;
