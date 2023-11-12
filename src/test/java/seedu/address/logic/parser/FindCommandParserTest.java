@@ -27,6 +27,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
+import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryWithinRangePredicate;
 
 public class FindCommandParserTest {
@@ -150,13 +151,15 @@ public class FindCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Salary input : upperBound is bigger than max salary
+        int maxSalaryPlusOne = Salary.MAXIMUM_SALARY + 1;
         assertParseFailure(parser,
-                " " + PREFIX_SALARY + "5000 - 1000000001",
+                " " + PREFIX_SALARY + "5000 - " + maxSalaryPlusOne,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // Invalid Salary input : upperBound is bigger than value that can be stored in Double
+        // Invalid Salary input : upperBound is a lot bigger than max salary
+        int maxSalaryPlusPLus = Salary.MAXIMUM_SALARY + 10000000;
         assertParseFailure(parser,
-                " " + PREFIX_SALARY + "5000 - 1000000000000000000",
+                " " + PREFIX_SALARY + "5000 - " + maxSalaryPlusPLus,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Find Command args : ID argument contains "/"
@@ -208,6 +211,28 @@ public class FindCommandParserTest {
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
+
+        // Salary attribute - Boundary Value Analysis: lower bound and upper bound are both max salary
+        predicateList.clear();
+        predicateList.add(new SalaryWithinRangePredicate(Salary.MAXIMUM_SALARY_LONG, Salary.MAXIMUM_SALARY_LONG));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + Salary.MAXIMUM_SALARY + " - " + Salary.MAXIMUM_SALARY,
+                expectedFindCommand);
+
+        // Salary attribute - Boundary Value Analysis: lower and upper bound are both zero
+        predicateList.clear();
+        predicateList.add(new SalaryWithinRangePredicate(0, 0));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + "0 - 0", expectedFindCommand);
+
+        // Salary attribute - Boundary Value Analysis: lower bound is zero and upper bound is max salary
+        predicateList.clear();
+        predicateList.add(new SalaryWithinRangePredicate(0, Salary.MAXIMUM_SALARY_LONG));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + "0 - " + Salary.MAXIMUM_SALARY, expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
         predicateList.clear();
