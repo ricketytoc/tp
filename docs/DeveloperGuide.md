@@ -9,7 +9,15 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
+
+* Some code inspired by https://github.com/se-edu/addressbook-level4 by CS2103T Teaching Team
+
+* Copyright by Susumu Yoshida - http://www.mcdodesign.com/
+  * address_book_32.png
+
+* Copyright by Jan Jan Kovařík - http://glyphicons.com/
+  * calendar.png
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -36,7 +44,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -68,7 +76,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -85,7 +93,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -102,7 +110,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person and to commit the current state of the addressbook to be used for `undo` and `redo` commands).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -114,7 +122,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -129,7 +137,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -238,6 +246,8 @@ diagram below illustrates how the comparator is obtained and passed to the Model
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
   
 ### Find Feature
@@ -407,6 +417,44 @@ delete each person from the filtered list using `Model#deletePerson` until the l
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 
+### Export/Import Feature
+
+The `export` feature allows the data file to be saved as a `.json` file on the disk. The `import` feature allows a
+data file to be imported from the disk, replacing the current data in the application.
+
+#### Implementation
+
+The import and export commands both use `JsonAddressBookStorage` to facilitate writing and reading of data files.
+
+The import function calls `JsonAddressBookStorage#readAddressBook` which will read the file in the specified file path
+and attempt to parse the JSON data into a `ReadOnlyAddressBook`. The function also checks if the data file is invalid,
+such as if it contains illegal value, or if no file is found at the file path.
+
+The export function calls `JsonAddressBookStorage#saveAddressBook` which will serialize a `ReadOnlyAddressBook` and
+write it to the file path on the disk.
+
+A GUI option for importing and exporting was also implemented to allow users who are unfamiliar with file paths to use
+the feature as well.
+
+Another implementation detail is creating an abstract class `FileCommand` which inherits `Command`. Both `ImportCommand`
+and `ExportCommand` inherit `FileCommand`. The reason for creating the `FileCommand` class is to reduce code 
+duplication as both commands share the same logic for checking the validity of the `Path` received.
+
+![FileCommandClassDiagram](images/FileCommandClassDiagram.png)
+
+#### Design considerations
+
+**Aspect: Format of the export & import command:**
+
+* **Alternative 1 (current choice):** `export FILE_PATH`, `import FILE_PATH`.
+    * Pros: Provides flexibility in where the file can be exported to and imported from.
+    * Cons: Not all users might be familiar with specifying file paths. However, it can be mitigated
+      with a GUI option to select the file path.
+
+* **Alternative 2:** `export FILE_NAME`, `import FILE_NAME`.
+    * Pros: Simple to use, only have to specify file name and not be concerned with file path.
+    * Cons: Troublesome, the files must be exported and imported from the same directory as the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -440,7 +488,7 @@ spent on data entry tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                                                                                              | So that                                                                                     |
+| Priority | As a …​                             | I want to …​                                                                                              | So that ...                                                                                 |
 |----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `*`      | potential user exploring the app    | view the app populated with sample data                                                                   | I can easily see how the app will look when it is in use                                    |
 | `* *`    | user paranoid about losing progress | have the data automatically saved                                                                         | I will not lose any progress when the application shuts down unexpectedly                   |
@@ -479,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all employees.
+1. User requests to view all employees.
 1. EmployeeManager shows a list of employees.
 1. Use case ends.
 
@@ -509,25 +557,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. EmployeeManager detects a duplicate employee.
   * 1c1. EmployeeManager informs user that the employee already exists.
   * Use case ends.
-* 1d. EmployeeManager detects that there are no employee IDs available.
-  * 1d1. EmployeeManager informs user that there are no employee IDs available.
-  * Use case ends.
 
 **Use case: UC3 - Delete an employee**
 
 **MSS**
 
-1. User requests to delete an employee with an employee ID.
+1. User requests to delete an employee with an index.
 1. EmployeeManager deletes the employee.
 1. EmployeeManager shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
 
-* 1a. The given employee ID is invalid.
-  * 1a1. EmployeeManager informs user that the employee ID is invalid.
-  * 1a2. User enters new employee ID.
-  * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
+* 1a. The given index is invalid.
+  * 1a1. EmployeeManager informs user that the given index is invalid.
+  * 1a2. User enters new index.
+  * Steps 1a1-1a2 are repeated until the index entered is valid.
   * Use case resumes from step 2.
 
 **Use case: UC4 - Find an employee**
@@ -637,7 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  **Storage Capacity**: Should be able to store up to `100` persons without a noticeable sluggishness in performance for typical usage.
+2.  **Storage Capacity**: Should be able to store up to `200` persons without a noticeable sluggishness in performance for typical usage.
 3.  **UI Responsiveness**: The UI should respond to user interaction. 
 4.  **Error Handling**: Should gracefully handle input errors without system crash and data loss.
 5.  **Code Documentation**: Code should be well-documented to facilitate maintenance and updates.
@@ -833,3 +878,58 @@ testers are expected to do more *exploratory* testing.
       Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
       data file).<br>
       Expected: Error details shown in the status message.
+
+## **Appendix: Planned Enhancements**
+
+### Export command FILENAME should be a non-empty String
+
+The current implementation of `export` command allows the use of an empty string as the FILENAME, allowing commands like `export .json` to execute successfully.
+While this behaviour is technically allowed on windows, it has led to inconsistencies on other operating systems, 
+where no file is created despite the command executing successfully. To address this, we plan to make the validation checks stricter for the 
+FILENAME in the `export` command. This enhancement will prevent the use of empty strings in FILENAME, 
+thereby reducing the chances of bugs and ensuring a more consistent experience across different operating systems.
+
+### Allow the use of s/o in name field
+
+The current implementation of EmployeeManager designates `s/` as a prefix for salary. As a result, when the name field includes `s/o`, it triggers 
+several errors such as those related to multiple prefixes or salary constraints. 
+
+![PlannedEnhancementSOError](images/PlannedEnhancementSOError.png)
+
+We plan to add an escape character, such as a backslash, "\", This will allow more flexibility for name entries. For example, with this enhancement, a command like `edit 1 n/John \s/o dep` would be valid,
+changing the name of the person at index one to `John s/o dep`. The `s/o` will be recognised as part of a name rather than a salary prefix.
+
+### Change all mentions of addressbook to employeemanager
+
+Our project is a brownfield project adapted from AB3, it contains several references to addressbook such as the `AddressBookParser` and `AddressBook`. 
+While our primary focus has been on enhancing and improving the functionality of the software to cater to our target audience, we recognise the 
+need to have consistent naming conventions for clarity. Therefore, we plan to update all mentions of `addressbook` to `employeemanager`.
+
+### Stringent email validation
+
+The current implementation of EmployeeManager allows invalid emails such as `abc@gmail`, which fall short of the standard email address formats. 
+We understand the importance of data validation to our target audience, hence we plan add more stringent email validation that checks for proper
+`username@domainname.extension` formatting.
+
+### Improve clarity of success message for `undo` commands
+
+The current implementation of the `undo` command only shows that the command has been undone successfully, it does not specify what command has been undone. 
+
+![PlannedEnhancementUndoSuccessMessage](images/PlannedEnhancementUndoSuccessMessage.png)
+
+To enhance user experience and provide detailed feedback to the user, we plan to include the specific command that was undone.
+
+### Improve clarity of success message for `redo` commands
+
+The current implementation of the `redo` command only shows that the command has been redone successfully, it does not specify what command has been redone.
+
+![PlannedEnhancementRedoSuccessMessage](images/PlannedEnhancementRedoSuccessMessage.png)
+
+To enhance user experience and provide detailed feedback to the user, we plan to include the specific command that was redone.
+
+### Enhance validation for `sort` command
+
+The current implementation of the `sort` command allows users to input additional values after the sorting prefix, although they will be ignored. 
+For example commands like `sort n/abc` and `sort n/s/` are both valid sort commands that will sort by name. 
+We plan to enhance validation such that an error message will be shown if extra values are input after the sorting prefix.
+The proposed error message, `The sort command prefixes should not be used with values`, will guide the user towards the correct usage of the `sort` command.

@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -29,12 +31,17 @@ public class ExportCommand extends FileCommand {
 
     private final Path filePath;
 
+    /**
+     * Creates an ExportCommand to export the data file to the specified {@code Path}
+     */
     public ExportCommand(Path filePath) {
+        requireNonNull(filePath);
         this.filePath = filePath;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
         if (!isValidDataFilePath(filePath)) {
             throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }

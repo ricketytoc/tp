@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -34,12 +36,17 @@ public class ImportCommand extends FileCommand {
 
     private final Path filePath;
 
+    /**
+     * Creates an ImportCommand to import a data file from the specified {@code Path}
+     */
     public ImportCommand(Path filePath) {
+        requireNonNull(filePath);
         this.filePath = filePath;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
         if (!isValidDataFilePath(filePath)) {
             throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
