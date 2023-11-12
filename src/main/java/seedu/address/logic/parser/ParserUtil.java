@@ -179,21 +179,6 @@ public class ParserUtil {
     }
 
     /**
-     * Checks a {@code String findArgs} is valid.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code findArgs} is invalid.
-     */
-    public static void checkFindArgs(String findArgs) throws ParseException {
-        requireNonNull(findArgs);
-        String trimmedFindArgs = findArgs.trim();
-        if (trimmedFindArgs.contains("/")) {
-            throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
-        }
-        checkTrimmedArgsNotEmpty(trimmedFindArgs);
-    }
-
-    /**
      * Parses {@code String increment} into a {@code Increment}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -226,111 +211,103 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code IdContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * Parses {@code String idKeyword} into an {@code IdContainsKeywordsPredicate}. Leading and trailing whitespaces
      * will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     * @param idKeyword keyword used to find employees with ID that contains keyword.
+     * @throws ParseException if idKeyword is empty or if it contains '/' char.
      */
-    public static IdContainsKeywordsPredicate parseIdKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        return new IdContainsKeywordsPredicate(trimmedArgs);
+    public static IdContainsKeywordsPredicate parseIdKeyword(String idKeyword) throws ParseException {
+        String trimmedIdKeyword = idKeyword.trim();
+
+        checkTrimmedArgs(trimmedIdKeyword);
+        return new IdContainsKeywordsPredicate(trimmedIdKeyword);
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code NameContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * Parses {@code String nameKeywords} into a {@code NameContainsKeywordsPredicate}. Leading and trailing whitespaces
      * will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     * @param nameKeywords keywords used to find employees with matching names.
+     * @throws ParseException if nameKeywords is empty or if it contains '/' char.
      */
-    public static NameContainsKeywordsPredicate parseNameKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-        return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+    public static NameContainsKeywordsPredicate parseNameKeyword(String nameKeywords) throws ParseException {
+        String trimmedNameKeywords = nameKeywords.trim();
+
+        checkTrimmedArgs(trimmedNameKeywords);
+        String[] nameKeywordsArray = trimmedNameKeywords.split("\\s+");
+        return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywordsArray));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code RoleContainsKeywordsPredicate}. Leading and trailing whitespaces
+     * Parses {@code String roleKeywords} into a {@code RoleContainsKeywordsPredicate}. Leading and trailing whitespaces
      * will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     * @param roleKeywords keywords used to find employees with matching roles.
+     * @throws ParseException if roleKeywords is empty or if it contains '/' char.
      */
-    public static RoleContainsKeywordsPredicate parseRoleKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        String[] roleKeywords = trimmedArgs.split("\\s+");
-        return new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords));
+    public static RoleContainsKeywordsPredicate parseRoleKeyword(String roleKeywords) throws ParseException {
+        String trimmedRoleKeywords = roleKeywords.trim();
+
+        checkTrimmedArgs(trimmedRoleKeywords);
+        String[] roleKeywordsArray = trimmedRoleKeywords.split("\\s+");
+        return new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywordsArray));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code DepartmentContainsKeywordsPredicate}. Leading and trailing
+     * Parses {@code String departmentKeywords} into a {@code DepartmentContainsKeywordsPredicate}. Leading and trailing
      * whitespaces will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     * @param departmentKeywords keywords used to find employees with matching departments.
+     * @throws ParseException if departmentKeywords is empty or if it contains '/' char.
      */
-    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        String[] departmentKeywords = trimmedArgs.split("\\s+");
-        return new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywords));
+    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String departmentKeywords) throws ParseException {
+        String trimmedDepartmentKeywords = departmentKeywords.trim();
+
+        checkTrimmedArgs(trimmedDepartmentKeywords);
+        String[] departmentKeywordsArray = trimmedDepartmentKeywords.split("\\s+");
+        return new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywordsArray));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code EmailContainsKeywordsPredicate}. Leading and trailing
+     * Parses {@code String emailKeywords} into a {@code EmailContainsKeywordsPredicate}. Leading and trailing
      * whitespaces will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     * @param emailKeywords keywords that are used to find employees whose emails contains at least one keyword.
+     * @throws ParseException if emailKeywords is empty or if it contains '/' char.
      */
-    public static EmailContainsKeywordsPredicate parseEmailKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        String[] emailKeywords = trimmedArgs.split("\\s+");
-        return new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords));
+    public static EmailContainsKeywordsPredicate parseEmailKeyword(String emailKeywords) throws ParseException {
+        String trimmedEmailKeywords = emailKeywords.trim();
+
+        checkTrimmedArgs(trimmedEmailKeywords);
+        String[] emailKeywordsArray = trimmedEmailKeywords.split("\\s+");
+        return new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywordsArray));
     }
 
     /**
-     * Parses {@code String trimmedArgs} into an {@code SalaryWithinRangePredicate}. Leading and trailing whitespaces
-     * will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
+     * Parses {@code String phoneKeyword} into a {@code PhoneContainsKeywordsPredicate}. Leading and trailing
+     * whitespaces will be trimmed.
+     * @param phoneKeyword keyword that is used to find employees with phone numbers that contain the keyword.
+     * @throws ParseException if phoneKeyword is empty or if it contains '/' char.
      */
-    public static SalaryWithinRangePredicate parseSalaryKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        if (!isValidFindSalaryArgs(trimmedArgs)) {
+    public static PhoneContainsKeywordsPredicate parsePhoneKeyword(String phoneKeyword) throws ParseException {
+        String trimmedPhoneKeyword = phoneKeyword.trim();
+
+        checkTrimmedArgs(trimmedPhoneKeyword);
+        return new PhoneContainsKeywordsPredicate(trimmedPhoneKeyword);
+    }
+
+    /**
+     * Parses {@code String salaryKeyRange} into a {@code SalaryWithinRangePredicate}. Leading and trailing whitespaces
+     * will be trimmed.
+     * @param salaryKeyRange key range that is used to find employees whose salaries lies within the range.
+     * @throws ParseException if salaryKeyRange is empty or if it contains '/' char or if it's not a valid salary range.
+     */
+    public static SalaryWithinRangePredicate parseSalaryKeyword(String salaryKeyRange) throws ParseException {
+        String trimmedSalaryKeyRange = salaryKeyRange.trim();
+
+        checkTrimmedArgs(trimmedSalaryKeyRange);
+        if (!isValidFindSalaryRange(trimmedSalaryKeyRange)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        long lowerBound = findLowerBound(trimmedArgs);
-        long upperBound = findUpperBound(trimmedArgs);
+        long lowerBound = findLowerBound(trimmedSalaryKeyRange);
+        long upperBound = findUpperBound(trimmedSalaryKeyRange);
         return new SalaryWithinRangePredicate(lowerBound, upperBound);
-    }
-
-    /**
-     * Parses {@code String trimmedArgs} into an {@code PhoneContainsKeywordsPredicate}. Leading and trailing
-     * whitespaces will be trimmed.
-     * @param trimmedArgs keyword that is entered by the user.
-     * @throws ParseException if trimmedArgs is empty or if it contains '/' char.
-     */
-    public static PhoneContainsKeywordsPredicate parsePhoneKeyword(String trimmedArgs) throws ParseException {
-        checkFindArgs(trimmedArgs);
-        return new PhoneContainsKeywordsPredicate(trimmedArgs);
-    }
-
-    /**
-     * Checks whether salary arguments are valid. If the argument is not in the format of "400 - 5000" for example,
-     * it will return false. If the user enters a number greater than can be assigned to a long or if user inputs number
-     * greater than the maximum allowed salary, it will also return false.
-     * @param salaryArgs user input for find command with PREFIX_SALARY.
-     * @return true if argument is valid and false otherwise.
-     */
-    private static boolean isValidFindSalaryArgs(String salaryArgs) {
-        String validationRegex = "^\\d+\\s-\\s\\d+$";
-        if (!salaryArgs.matches(validationRegex)) {
-            return false;
-        }
-        String upperBound = salaryArgs.split(" - ", 2)[1];
-        String lowerBound = salaryArgs.split(" - ", 2)[0];
-        long upperBoundLong = SalaryParserUtil.parseStringToLong(upperBound);
-        long lowerBoundLong = SalaryParserUtil.parseStringToLong(lowerBound);
-        if (upperBoundLong > Salary.MAXIMUM_SALARY_LONG || lowerBoundLong > upperBoundLong) {
-            return false;
-        }
-        return true;
     }
 
     private static long findLowerBound(String salaryArgs) {
@@ -343,10 +320,45 @@ public class ParserUtil {
         return SalaryParserUtil.parseStringToLong(upperBoundArg);
     }
 
-    private static void checkTrimmedArgsNotEmpty(String trimmedArgs) throws ParseException {
+    /**
+     * Checks whether {@code String salaryRange} is valid. Lower bound and upper bound must be non-negative integers.
+     * If it is not in the format of [lower bound] - [upper bound] it will return false. If either the lower bound or
+     * the upper bound is greater than the maximum allowed salary, it will also return false. If the lower bound is
+     * greater than the upper bound it will also return false.
+     * @param salaryRange key range that is used to find employees whose salary lies within the range.
+     * @return true if {@code String salaryRange} is valid and false otherwise.
+     */
+    private static boolean isValidFindSalaryRange(String salaryRange) {
+        String validationRegex = "^\\d+\\s-\\s\\d+$";
+        if (!salaryRange.matches(validationRegex)) {
+            return false;
+        }
+        String upperBound = salaryRange.split(" - ", 2)[1];
+        String lowerBound = salaryRange.split(" - ", 2)[0];
+        long upperBoundLong = SalaryParserUtil.parseStringToLong(upperBound);
+        long lowerBoundLong = SalaryParserUtil.parseStringToLong(lowerBound);
+        if (upperBoundLong > Salary.MAXIMUM_SALARY_LONG || lowerBoundLong > Salary.MAXIMUM_SALARY
+                || lowerBoundLong > upperBoundLong) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks that {@code String trimmedArgs} is not empty and does not contain '/' character.
+     * @throws ParseException if the given {@code trimmedArgs} is invalid.
+     */
+    private static void checkTrimmedArgs(String trimmedArgs) throws ParseException {
+        requireNonNull(trimmedArgs);
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        // Prefix arguments should not contain '/' as it is reserved for use after a Prefix.
+        if (trimmedArgs.contains("/")) {
+            throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
         }
     }
 
