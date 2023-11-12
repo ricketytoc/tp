@@ -217,9 +217,8 @@ public class ParserUtil {
      * @throws ParseException if idKeyword is empty or if it contains '/' char.
      */
     public static IdContainsKeywordsPredicate parseIdKeyword(String idKeyword) throws ParseException {
+        checkKeywordsAreValid(idKeyword);
         String trimmedIdKeyword = idKeyword.trim();
-
-        checkTrimmedArgs(trimmedIdKeyword);
         return new IdContainsKeywordsPredicate(trimmedIdKeyword);
     }
 
@@ -230,9 +229,8 @@ public class ParserUtil {
      * @throws ParseException if nameKeywords is empty or if it contains '/' char.
      */
     public static NameContainsKeywordsPredicate parseNameKeyword(String nameKeywords) throws ParseException {
+        checkKeywordsAreValid(nameKeywords);
         String trimmedNameKeywords = nameKeywords.trim();
-
-        checkTrimmedArgs(trimmedNameKeywords);
         String[] nameKeywordsArray = trimmedNameKeywords.split("\\s+");
         return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywordsArray));
     }
@@ -244,9 +242,8 @@ public class ParserUtil {
      * @throws ParseException if roleKeywords is empty or if it contains '/' char.
      */
     public static RoleContainsKeywordsPredicate parseRoleKeyword(String roleKeywords) throws ParseException {
+        checkKeywordsAreValid(roleKeywords);
         String trimmedRoleKeywords = roleKeywords.trim();
-
-        checkTrimmedArgs(trimmedRoleKeywords);
         String[] roleKeywordsArray = trimmedRoleKeywords.split("\\s+");
         return new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywordsArray));
     }
@@ -259,9 +256,8 @@ public class ParserUtil {
      */
     public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String departmentKeywords)
             throws ParseException {
+        checkKeywordsAreValid(departmentKeywords);
         String trimmedDepartmentKeywords = departmentKeywords.trim();
-
-        checkTrimmedArgs(trimmedDepartmentKeywords);
         String[] departmentKeywordsArray = trimmedDepartmentKeywords.split("\\s+");
         return new DepartmentContainsKeywordsPredicate(Arrays.asList(departmentKeywordsArray));
     }
@@ -273,9 +269,8 @@ public class ParserUtil {
      * @throws ParseException if emailKeywords is empty or if it contains '/' char.
      */
     public static EmailContainsKeywordsPredicate parseEmailKeyword(String emailKeywords) throws ParseException {
+        checkKeywordsAreValid(emailKeywords);
         String trimmedEmailKeywords = emailKeywords.trim();
-
-        checkTrimmedArgs(trimmedEmailKeywords);
         String[] emailKeywordsArray = trimmedEmailKeywords.split("\\s+");
         return new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywordsArray));
     }
@@ -287,9 +282,8 @@ public class ParserUtil {
      * @throws ParseException if phoneKeyword is empty or if it contains '/' char.
      */
     public static PhoneContainsKeywordsPredicate parsePhoneKeyword(String phoneKeyword) throws ParseException {
+        checkKeywordsAreValid(phoneKeyword);
         String trimmedPhoneKeyword = phoneKeyword.trim();
-
-        checkTrimmedArgs(trimmedPhoneKeyword);
         return new PhoneContainsKeywordsPredicate(trimmedPhoneKeyword);
     }
 
@@ -300,9 +294,8 @@ public class ParserUtil {
      * @throws ParseException if salaryKeyRange is empty or if it contains '/' char or if it's not a valid salary range.
      */
     public static SalaryWithinRangePredicate parseSalaryKeyword(String salaryKeyRange) throws ParseException {
+        checkKeywordsAreValid(salaryKeyRange);
         String trimmedSalaryKeyRange = salaryKeyRange.trim();
-
-        checkTrimmedArgs(trimmedSalaryKeyRange);
         if (!isValidFindSalaryRange(trimmedSalaryKeyRange)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -346,19 +339,21 @@ public class ParserUtil {
     }
 
     /**
-     * Checks that {@code String trimmedArgs} is not empty and does not contain '/' character.
-     * @throws ParseException if the given {@code trimmedArgs} is invalid.
+     * Checks that after trimming, {@code String keywords} is not empty and does not contain '/' character.
+     * @throws ParseException if the given {@code keywords} is invalid.
      */
-    private static void checkTrimmedArgs(String trimmedArgs) throws ParseException {
-        requireNonNull(trimmedArgs);
+    private static void checkKeywordsAreValid(String keywords) throws ParseException {
+        requireNonNull(keywords);
 
-        if (trimmedArgs.isEmpty()) {
+        String trimmedKeywords = keywords.trim();
+
+        if (trimmedKeywords.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Prefix arguments should not contain '/' as it is reserved for use after a Prefix.
-        if (trimmedArgs.contains("/")) {
+        // Trimmed keywords should not contain '/' as it is reserved for use after a Prefix.
+        if (trimmedKeywords.contains("/")) {
             throw new ParseException(FindCommand.INVALID_FIND_ARGS_MESSAGE);
         }
     }
