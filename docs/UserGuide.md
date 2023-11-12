@@ -365,7 +365,7 @@ data, it is recommended to use the `export` command to save a copy of the curren
 </div>
 
 
-#### GUI Option
+#### GUI option
 Alternatively, you may use the GUI option to import the data file if you are unfamiliar with file paths.
 1. Click File > Import in the top left corner of the application.<br>
    <img src="images/ug-import-gui.png" width="243" />
@@ -397,7 +397,7 @@ Examples:
 The export command will **overwrite** any file with the same name in the specified location.
 </div>
 
-#### GUI Option
+#### GUI option
 Alternatively, you may use the GUI option to export the data file if you are unfamiliar with file paths.
 1. Click File > Export in the top left corner of the application.<br>
    <img src="images/ug-export-gui.png" />

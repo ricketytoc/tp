@@ -7,7 +7,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
-participant ":EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -55,26 +54,7 @@ activate Model
 Model --> EditCommand : personToEdit
 deactivate Model
 
-create EditPersonDescriptor
-EditCommand -> EditPersonDescriptor
-activate EditPersonDescriptor
-
-EditPersonDescriptor --> EditCommand
-deactivate EditPersonDescriptor
-
-EditCommand -> EditPersonDescriptor :
-activate EditPersonDescriptor
-
-EditPersonDescriptor -> EditPersonDescriptor : setPhone()
-activate EditPersonDescriptor
-
-EditPersonDescriptor --> EditPersonDescriptor :
-deactivate EditPersonDescriptor
-
-EditPersonDescriptor --> EditCommand : editPersonDescriptor
-deactivate EditPersonDescriptor
-
-EditCommand -> EditCommand : createEditedPerson(personToEdit, editPersonDescriptor)
+EditCommand -> EditCommand : createEditedPerson
 activate EditCommand
 
 EditCommand --> EditCommand : editedPerson

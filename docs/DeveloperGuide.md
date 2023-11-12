@@ -284,7 +284,7 @@ three classes, `EditCommand`, `EditCommandParser` and `Model`.
 
 Given below is an example usage scenario of edit command. 
 
-Step 1: The user enters `edit 2 p/12345678` to update the phone number of the second employee in the list.<br>
+Step 1: The user enters `edit 2 p/12345678` to update the phone number of the second employee in the list. 
 `EditCommandParser` parses the user command and creates a `EditCommand`.
 
 Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update the information of the chosen employee.
@@ -575,7 +575,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the index entered is valid.
   * Use case resumes from step 2.
 
-**Use case: UC4 - Find an employee**
+**Use case: UC4 - Edit an employee**
+
+**MSS**
+
+1. User requests to edit an employee with index and new details.
+2. EmployeeManager edits the employee.
+3. EmployeeManager shows an updated list of employees.
+4. Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EmployeeManager informs user that the given index is invalid.
+    * 1a2. User enters new index.
+    * Steps 1a1-1a2 are repeated until the index entered is valid.
+    * Use case resumes from step 2.
+* 1b. EmployeeManager detects invalid information.
+    * 1b1. EmployeeManager informs user that some information is invalid.
+    * 1b2. EmployeeManager requests user to enter details of the employee.
+    * 1b3. User enters the requested details.
+    * Steps 1b1 - 1b3 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1c. EmployeeManager detects a duplicate ID.
+    * 1c1. EmployeeManager informs user that the employee already exists.
+    * Use case ends.
+
+**Use case: UC5 - Find an employee**
 
 **MSS**
 
@@ -592,7 +618,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the input is valid.
     * Use case resumes from step2.
 
-**Use case: UC5 - Bulk increment salaries**
+**Use case: UC6 - Bulk increment salaries**
 
 **MSS**
 
@@ -609,7 +635,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
 
-**Use case: UC6 - View Command History**
+**Use case: UC7 - View Command History**
 
 **MSS**
 
@@ -626,7 +652,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the number entered is valid.
     * Use case resumes from step 2.
 
-**Use case: UC7 - Clear the displayed list**
+**Use case: UC8 - Clear the displayed list**
 
 **MSS**
 
@@ -635,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. EmployeeManager displays an empty list.
 1. Use case ends.
 
-**Use case: UC8 - Exporting the data file**
+**Use case: UC9 - Exporting the data file**
 
 **MSS**
 
@@ -652,7 +678,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the file path is valid.
     * Use case resumes from step 2.
 
-**Use case: UC9 - Importing the data file**
+**Use case: UC10 - Importing the data file**
 
 **MSS**
 
@@ -693,7 +719,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **UI**: User Interface, the graphical or textual interface through which a user interacts with a software application.
-
+* **Git Miletone**: A git milestone is a way to track progress on a group of issues or pull requests in a repository which can achieved within a specified amount of time by setting a start and due date.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
