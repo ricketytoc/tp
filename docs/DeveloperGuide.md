@@ -437,7 +437,7 @@ A GUI option for importing and exporting was also implemented to allow users who
 the feature as well.
 
 Another implementation detail is creating an abstract class `FileCommand` which inherits `Command`. Both `ImportCommand`
-and `ExportCommand` inherits `FileCommand`. The reason for creating the `FileCommand` class is to reduce code 
+and `ExportCommand` inherit `FileCommand`. The reason for creating the `FileCommand` class is to reduce code 
 duplication as both commands share the same logic for checking the validity of the `Path` received.
 
 ![FileCommandClassDiagram](images/FileCommandClassDiagram.png)
