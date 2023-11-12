@@ -257,7 +257,8 @@ public class ParserUtil {
      * @param departmentKeywords keywords used to find employees with matching departments.
      * @throws ParseException if departmentKeywords is empty or if it contains '/' char.
      */
-    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String departmentKeywords) throws ParseException {
+    public static DepartmentContainsKeywordsPredicate parseDepartmentKeyword(String departmentKeywords)
+            throws ParseException {
         String trimmedDepartmentKeywords = departmentKeywords.trim();
 
         checkTrimmedArgs(trimmedDepartmentKeywords);
