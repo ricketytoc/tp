@@ -424,7 +424,7 @@ data file to be imported from the disk, replacing the current data in the applic
 
 #### Implementation
 
-The import and export commands both uses `JsonAddressBookStorage` to facilitate writing and reading of data files.
+The import and export commands both use `JsonAddressBookStorage` to facilitate writing and reading of data files.
 
 The import function calls `JsonAddressBookStorage#readAddressBook` which will read the file in the specified file path
 and attempt to parse the JSON data into a `ReadOnlyAddressBook`. The function also checks if the data file is invalid,
