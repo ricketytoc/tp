@@ -417,6 +417,44 @@ delete each person from the filtered list using `Model#deletePerson` until the l
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 
+### Export/Import Feature
+
+The `export` feature allows the data file to be saved as a `.json` file on the disk. The `import` feature allows a
+data file to be imported from the disk, replacing the current data in the application.
+
+#### Implementation
+
+The import and export commands both use `JsonAddressBookStorage` to facilitate writing and reading of data files.
+
+The import function calls `JsonAddressBookStorage#readAddressBook` which will read the file in the specified file path
+and attempt to parse the JSON data into a `ReadOnlyAddressBook`. The function also checks if the data file is invalid,
+such as if it contains illegal value, or if no file is found at the file path.
+
+The export function calls `JsonAddressBookStorage#saveAddressBook` which will serialize a `ReadOnlyAddressBook` and
+write it to the file path on the disk.
+
+A GUI option for importing and exporting was also implemented to allow users who are unfamiliar with file paths to use
+the feature as well.
+
+Another implementation detail is creating an abstract class `FileCommand` which inherits `Command`. Both `ImportCommand`
+and `ExportCommand` inherit `FileCommand`. The reason for creating the `FileCommand` class is to reduce code 
+duplication as both commands share the same logic for checking the validity of the `Path` received.
+
+![FileCommandClassDiagram](images/FileCommandClassDiagram.png)
+
+#### Design considerations
+
+**Aspect: Format of the export & import command:**
+
+* **Alternative 1 (current choice):** `export FILE_PATH`, `import FILE_PATH`.
+    * Pros: Provides flexibility in where the file can be exported to and imported from.
+    * Cons: Not all users might be familiar with specifying file paths. However, it can be mitigated
+      with a GUI option to select the file path.
+
+* **Alternative 2:** `export FILE_NAME`, `import FILE_NAME`.
+    * Pros: Simple to use, only have to specify file name and not be concerned with file path.
+    * Cons: Troublesome, the files must be exported and imported from the same directory as the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -489,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all employees.
+1. User requests to view all employees.
 1. EmployeeManager shows a list of employees.
 1. Use case ends.
 
@@ -519,25 +557,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. EmployeeManager detects a duplicate employee.
   * 1c1. EmployeeManager informs user that the employee already exists.
   * Use case ends.
-* 1d. EmployeeManager detects that there are no employee IDs available.
-  * 1d1. EmployeeManager informs user that there are no employee IDs available.
-  * Use case ends.
 
 **Use case: UC3 - Delete an employee**
 
 **MSS**
 
-1. User requests to delete an employee with an employee ID.
+1. User requests to delete an employee with an index.
 1. EmployeeManager deletes the employee.
 1. EmployeeManager shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
 
-* 1a. The given employee ID is invalid.
-  * 1a1. EmployeeManager informs user that the employee ID is invalid.
-  * 1a2. User enters new employee ID.
-  * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
+* 1a. The given index is invalid.
+  * 1a1. EmployeeManager informs user that the given index is invalid.
+  * 1a2. User enters new index.
+  * Steps 1a1-1a2 are repeated until the index entered is valid.
   * Use case resumes from step 2.
 
 **Use case: UC4 - Find an employee**
