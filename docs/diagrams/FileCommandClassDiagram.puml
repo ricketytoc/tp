@@ -11,9 +11,9 @@ Class "{abstract}\nCommand" as Command
 Class ImportCommand
 Class ExportCommand
 
-Command --|> FileCommand
+FileCommand --|> Command
 
-FileCommand --|> ImportCommand
-FileCommand --|> ExportCommand
+ImportCommand --|> FileCommand
+ExportCommand --|> FileCommand
 
 @enduml
