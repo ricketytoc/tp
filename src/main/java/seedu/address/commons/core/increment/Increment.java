@@ -13,6 +13,7 @@ public class Increment {
     public static final String MESSAGE_CONSTRAINTS = "Increment should only contain numbers and an optional "
             + "negative sign in front of the numbers and have at most 2 decimals";
     public static final String VALIDATION_REGEX = "^-?[0-9]+(\\.[0-9]{1,2})?$";
+
     private long increment;
     private String incrementString;
 
@@ -43,7 +44,7 @@ public class Increment {
     }
 
     /**
-     * Returns the value of the increment.
+     * Returns the long value of the increment.
      */
     public long getLongValue() {
         return increment;
@@ -66,6 +67,7 @@ public class Increment {
         }
 
         Increment otherIncrement = (Increment) other;
-        return increment == otherIncrement.increment;
+        return increment == otherIncrement.increment
+                && incrementString.equals(otherIncrement.incrementString);
     }
 }
