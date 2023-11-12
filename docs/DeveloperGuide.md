@@ -436,7 +436,7 @@ delete each person from the filtered list using `Model#deletePerson` until the l
 **Target user profile**:
 
 * has a need to manage a significant number of employees
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -444,7 +444,7 @@ delete each person from the filtered list using `Model#deletePerson` until the l
 **Value proposition**: The application streamlines the process of handling 
 large-scale employee data. With rapid typing capabilities, users
 can efficiently input and update employee details, reducing time
-spent on data entry tasks.
+spent on data management tasks.
 
 ### User stories
 
@@ -537,20 +537,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 1a1-1a2 are repeated until the index entered is valid.
   * Use case resumes from step 2.
 
-**Use case: UC4 - Find an employee**
+**Use case: UC4 - Find employees from a department**
 
 **MSS**
 
-1. User requests to find an employee with name and surname
-2. EmployeeManager finds all employees whose names contain either the full name or surname keyword 
+1. User requests to find employees in a department.
+2. EmployeeManager finds all employees who are in the department.
 3. EmployeeManager updates the displayed list with the found employees.
-3. Use case ends.
+4. Use case ends.
 
 **Extensions**
 
-* 1a. The user did not use a valid predefined prefix to search for employee by name
+* 1a. The user input is invalid.
     * 1a1. EmployeeManager informs user that the input is invalid.
-    * 1a2. User enters new input and new prefix.
+    * 1a2. User enters new input.
     * Steps 1a1-1a2 are repeated until the input is valid.
     * Use case resumes from step2.
 
@@ -644,7 +644,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  **Storage Capacity**: Should be able to store up to `200` persons without a noticeable sluggishness in performance for typical usage.
+2.  **Performance**: Should be able to store up to `200` persons without a noticeable sluggishness in performance for typical usage.
 3.  **UI Responsiveness**: The UI should respond to user interaction. 
 4.  **Error Handling**: Should gracefully handle input errors without system crash and data loss.
 5.  **Code Documentation**: Code should be well-documented to facilitate maintenance and updates.
@@ -786,13 +786,13 @@ testers are expected to do more *exploratory* testing.
    and one with the role `Manager` to effectively test whether the find command works for each field.
 
     1. Test case: `find n/John`<br>
-       Expected: Finds all employees whose names include the word `John`.
+       Expected: Finds all employees whose names contains the word `John`.
 
     1. Test case: `find d/Finance`<br>
-       Expected: Finds all employees whose department include the word `Finance`.
+       Expected: Finds all employees whose department name contains the word `Finance`.
 
     1. Test case: `find r/Manager`<br>
-      Expected: Finds all employees whose role include the word `Manager`.
+      Expected: Finds all employees whose role contains the word `Manager`.
 
     1. Test case: `find`<br>
       Expected: The displayed list is not filtered. Error details shown in the status message.
