@@ -5,8 +5,8 @@ title: Chen Kuei's Project Portfolio Page
 
 ### Project: EmployeeManager
 
-EmployeeManager is a desktop application for Human Resource staffs to manage the information
-of around 50 - 200 employees within the organization.
+EmployeeManager is a desktop application for Human Resource(HR) staffs to manage the information
+of around 50 - 200 employees within a medium-sized organization.
 
 Given below are my contributions to the project.
 
@@ -19,12 +19,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * FAQ
+        * FAQ([#67](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/67))
         * Command Summary([#143](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/143))
     * Developer Guide:
         * `Edit` feature([#144](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/144))
 
-* **Community**:
+* **Contributions to team-based tasks**:
     * PRs reviewed with non-trivial review comments([#141](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/141))
-    * Approved PRs and solved merge conflicts
+    * Approved PRs and solved merge conflicts([#156](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/156))
     * Reported bugs and suggestions for other classmates
