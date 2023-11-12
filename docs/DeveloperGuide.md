@@ -262,7 +262,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 Step 1. The user executes `find n/alex bernice` to find all employees that either contain the full word `alex` or `bernice` in their name. 
 `FindCommandParser` parses the user input and creates a `FindCommand`.
 
-Step2. Then `FindCommand` is executed, and it will call `Model#updateFilteredPersonList()` to update the filtered list in the model to only include
+Step 2. Then `FindCommand` is executed, and it will call `Model#updateFilteredPersonList()` to update the filtered list in the model to only include
 employees whose names contain either the full word `alex` or `bernice`.
 
 The following sequence diagram illustrates how the find feature works:
