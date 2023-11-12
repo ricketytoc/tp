@@ -48,7 +48,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Stores all the predicates that were parsed from the prefix keywords into an ArrayList.
+        /*
+        Stores all the predicates that will be created from parsing the prefix keywords into predicateList that will
+        be used to create a GeneralPredicate which in turn is used to create the FindCommand.
+         */
         ArrayList<Predicate<Person>> predicateList = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
