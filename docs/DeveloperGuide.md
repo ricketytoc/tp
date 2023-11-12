@@ -489,7 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all employees.
+1. User requests to view all employees.
 1. EmployeeManager shows a list of employees.
 1. Use case ends.
 
@@ -519,25 +519,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. EmployeeManager detects a duplicate employee.
   * 1c1. EmployeeManager informs user that the employee already exists.
   * Use case ends.
-* 1d. EmployeeManager detects that there are no employee IDs available.
-  * 1d1. EmployeeManager informs user that there are no employee IDs available.
-  * Use case ends.
 
 **Use case: UC3 - Delete an employee**
 
 **MSS**
 
-1. User requests to delete an employee with an employee ID.
+1. User requests to delete an employee with an index.
 1. EmployeeManager deletes the employee.
 1. EmployeeManager shows an updated list of employees.
 1. Use case ends.
 
 **Extensions**
 
-* 1a. The given employee ID is invalid.
-  * 1a1. EmployeeManager informs user that the employee ID is invalid.
-  * 1a2. User enters new employee ID.
-  * Steps 1a1-1a2 are repeated until the employee ID entered is valid.
+* 1a. The given index is invalid.
+  * 1a1. EmployeeManager informs user that the given index is invalid.
+  * 1a2. User enters new index.
+  * Steps 1a1-1a2 are repeated until the index entered is valid.
   * Use case resumes from step 2.
 
 **Use case: UC4 - Find an employee**
