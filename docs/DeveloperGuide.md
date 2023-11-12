@@ -426,11 +426,11 @@ data file to be imported from the disk, replacing the current data in the applic
 
 The import and export commands both use `JsonAddressBookStorage` to facilitate writing and reading of data files.
 
-The import function calls `JsonAddressBookStorage#readAddressBook` which will read the file in the specified file path
+The import command calls `JsonAddressBookStorage#readAddressBook` which will read the file in the specified file path
 and attempt to parse the JSON data into a `ReadOnlyAddressBook`. The function also checks if the data file is invalid,
 such as if it contains illegal value, or if no file is found at the file path.
 
-The export function calls `JsonAddressBookStorage#saveAddressBook` which will serialize a `ReadOnlyAddressBook` and
+The export command calls `JsonAddressBookStorage#saveAddressBook` which will serialize a `ReadOnlyAddressBook` and
 write it to the file path on the disk.
 
 A GUI option for importing and exporting was also implemented to allow users who are unfamiliar with file paths to use
@@ -504,10 +504,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | HR staff member                     | search for employees using multiple attributes (e.g. department, salary, etc.)                            | I can narrow down my search to a target group of employees                                  |
 | `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                                            | I can easily fetch employees that I have analyzed recently and make my work more convenient |
 | `*`      | HR staff member                     | generate reports on employees' performance                                                                | I can provide the upper management better insights into their employees                     |
-| `* *`    | expert user                         | combine functions together                                                                                | I can save time on commonly performed tasks that requires more than one function            |
 | `* *`    | expert user                         | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                                 |
 | `* * *`  | HR staff member                     | order my search results by various attributes (e.g. name, department, etc.)                               | I can view a list of employees in my desired manner                                         |
-| `* * *`  | long-time user                      | remove unused employee data                                                                               | I am not distracted by irrelevant data                                                      |
 | `* *`    | HR staff member                     | view the history of changes, including who made the change and when the change was made                   | I can use them for auditing purposes                                                        |
 | `* *`    | HR staff member                     | add notes to employees' details                                                                           | I can document important information and interactions                                       |
 | `*`      | advanced user                       | edit the saved data files manually without using the application                                          | I can update and organise new information more conveniently                                 |
@@ -635,49 +633,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. EmployeeManager displays an empty list.
 1. Use case ends.
 
-**Use case: UC8 - Exporting the data file**
+**Use case: UC8 - Export data file**
 
 **MSS**
 
 1. User requests to export the data file to a specified file path.
-1. EmployeeManager exports the data file to the specified file path.
+1. EmployeeManager saves the data file to the specified file path.
 1. EmployeeManager displays a success message.
 1. Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-    * 1a1. EmployeeManager informs user that the file path is invalid.
-    * 1a2. User enters a new file path.
-    * Steps 1a1-1a2 are repeated until the file path is valid.
-    * Use case resumes from step 2.
+    * 1a1. EmployeeManager shows an error message.
+    * Use case ends.
 
-**Use case: UC9 - Importing the data file**
+**Use case: UC9 - Import data file**
 
 **MSS**
 
 1. User requests to import the data file from a specified file path.
-1. EmployeeManager imports the data file from the specified file path.
+1. EmployeeManager reads the data file from the specified file path.
 1. EmployeeManager shows the updated list of employees imported from the data file.
 1. Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-    * 1a1. EmployeeManager informs user that the file path is invalid.
-    * 1a2. User enters a new file path.
-    * Steps 1a1-1a2 are repeated the file path is valid.
-    * Use case resumes from step 2.
+    * 1a1. EmployeeManager shows an error message.
+    * Use case ends.
 * 1b. The user enters a file path where the file doesn't exist.
-    * 1b1. EmployeeManager informs user that the file does not exist at the file path.
-    * 1b2. User enters a new file path.
-    * Steps 1b1-1b2 are repeated until the file path has an existing file.
-    * Use case resumes from step 2.
+    * 1b1. EmployeeManager shows an error message.
+    * Use case ends.
 * 1c. The user enters a file path where the data file is corrupted.
-    * 1c1. EmployeeManager informs user that the data file is corrupted.
-    * 1c2. User enters a new file path.
-    * Steps 1c1-1c2 are repeated until the file path has a valid data file.
-    * Use case resumes from step 2.
+    * 1c1. EmployeeManager shows an error message.
+    * Use case ends.
 
 ### Non-Functional Requirements
 
@@ -721,163 +711,131 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 ### Adding an employee
+1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
+    Expected: An employee with the correct details is added to the end of the list.
 
-1. Adding an employee to the displayed list
-
-    1. Test case: `add i/A00001 n/John Doe p/98765432 e/johnd@example.com d/Finance r/Manager s/5000`<br>
-       Expected: An employee with the correct details is added to the end of the list.
-
-    1. Test case: `add`<br>
-       Expected: No employee is added. Error details shown in the status message.
+1. Test case: `add`<br>
+   Expected: No employee is added. Error details shown in the status message.
 
 
 ### Deleting an employee
+1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
-1. Deleting an employee from the displayed list
+1. Test case: `delete 1`<br>
+   Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message.
 
-   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+1. Test case: `delete 0`<br>
+   Expected: No employee is deleted. Error details shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message.
-
-   1. Test case: `delete 0`<br>
-      Expected: No employee is deleted. Error details shown in the status message.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
 ### Incrementing salaries of multiple employees
+1. Test case: `increment 1000`<br>
+    Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
+    Expected: Salaries of all employees in the list increased by 1000.
 
-1. Incrementing salaries of all employees in the displayed list of employees.
-
-    1. Test case: `increment 1000`<br>
-       Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
-       Expected: Salaries of all employees in the list increased by 1000.
-
-    1. Test case: `increment -10000` <br>
-       Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
-       Expected: No change in salaries of all employees. Error details shown in the status message.
+1. Test case: `increment -10000` <br>
+   Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
+   Expected: No change in salaries of all employees. Error details shown in the status message.
 
 ### Undoing a modification
+1. Test case: `delete 1` followed by `undo`<br>
+   Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+   Expected: The list is reverted to the list of employees before `delete 1` was executed.
 
-1. Undo the previous command that caused a modification in employee data.
-
-    1. Test case: `delete 1` followed by `undo`<br>
-       Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
-       Expected: The list is reverted to the list of employees before `delete 1` was executed.
-
-    1. Test case: `undo`<br>
-       Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
-       Expected: No change in displayed list and employee data. Error details shown in the status message.
-        1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
+1. Test case: `undo`<br>
+   Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
+   Expected: No change in displayed list and employee data. Error details shown in the status message.
+    1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
 
 ### Redoing the previous undone command
+1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
+    Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
+    Expected: The list is reverted to the list of employees after `delete 1` was executed.
 
-1. Redo the previous undone command caused by `undo`.
-
-    1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
-       Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
-       Expected: The list is reverted to the list of employees after `delete 1` was executed.
-
-    1. Test case: `redo`<br>
-       Prerequisite: No commands have been undone.<br>
-       Expected: No change in displayed list and employee data. Error details shown in the status message.
+1. Test case: `redo`<br>
+   Prerequisite: No commands have been undone.<br>
+   Expected: No change in displayed list and employee data. Error details shown in the status message.
 
 ### Editing an employee
+1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
 
-1. Editing an employee in the displayed list of employees.
+1. Test case: `edit 1 n/John Tan`<br>
+   Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
 
-    1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
+1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
+   Expected: Similar to previous, the respective fields gets edited.
 
-    1. Test case: `edit 1 n/John Tan`<br>
-       Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
+1. Test case: `edit 0`<br>
+   Expected: No employee is edited. Error details shown in the status message.
 
-    1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
-       Expected: Similar to previous, the respective fields gets edited.
-
-    1. Test case: `edit 0`<br>
-       Expected: No employee is edited. Error details shown in the status message.
-
-    1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.       
+1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.       
 
 ### Sorting the list
+1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
-1. Sorting the displayed list of employees.
+1. Test case: `sort n/`<br>
+   Expected: Displayed list is sorted by alphabetical order of the name field.
 
-    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+1. Other correct sort commands to try: `sort d/`, `sort r/` and `sort e/`<br>
+   Expected: Similar to previous, the respective fields gets sorted based on lexicographical order.
 
-    1. Test case: `sort n/`<br>
-       Expected: Displayed list is sorted by alphabetical order of the name field.
-
-    1. Other correct sort commands to try: `sort d/`, `sort r/` and `sort e/`<br>
-       Expected: Similar to previous, the respective fields gets sorted based on lexicographical order.
-
-    1. Test case: `sort`<br>
-       Expected: Displayed list is not sorted. Error details shown in the status message.
+1. Test case: `sort`<br>
+   Expected: Displayed list is not sorted. Error details shown in the status message.
 
 ### Finding an employee
-
-1. Finds an employee by the given field.
-
-    1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
+1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
    and one with the role `Manager` to effectively test whether the find command works for each field.
 
-    1. Test case: `find n/John`<br>
-       Expected: Finds all employees whose names include the word `John`.
+1. Test case: `find n/John`<br>
+   Expected: Finds all employees whose names include the word `John`.
 
-    1. Test case: `find d/Finance`<br>
-       Expected: Finds all employees whose department include the word `Finance`.
+1. Test case: `find d/Finance`<br>
+   Expected: Finds all employees whose department include the word `Finance`.
 
-    1. Test case: `find r/Manager`<br>
-      Expected: Finds all employees whose role include the word `Manager`.
+1. Test case: `find r/Manager`<br>
+  Expected: Finds all employees whose role include the word `Manager`.
 
-    1. Test case: `find`<br>
-      Expected: The displayed list is not filtered. Error details shown in the status message.
+1. Test case: `find`<br>
+  Expected: The displayed list is not filtered. Error details shown in the status message.
 
 ### Viewing command history
 
-1. Viewing the command history.
+1. Test case: `delete 1` followed by `history 1`<br>
+    Expected: The previous command `delete 1` is shown in the status message.
 
-    1. Test case: `delete 1` followed by `history 1`<br>
-       Expected: The previous command `delete 1` is shown in the status message.
-
-    1. Test case: `history 0`<br>
-       Expected: Error details shown in the status message.
+1. Test case: `history 0`<br>
+   Expected: Error details shown in the status message.
 
 ### Exporting data file
+1. Test case: `export fy2324.json`<br>
+    Prerequisite: The application has write access to the directory where EmployeeManager is.<br>
+    Expected: The data file will be written to the directory where EmployeeManager is as `fy2324.json`.
 
-1. Exporting the data file.
+1. Test case: `export fy2324`<br>
+   Expected: The file name does not have the .json file extension. Error details shown in the status message.
 
-    1. Test case: `export fy2324.json`<br>
-       Prerequisite: The application has write access to the directory where EmployeeManager is.<br>
-       Expected: The data file will be written to the directory where EmployeeManager is as `fy2324.json`.
-
-    1. Test case: `export fy2324`<br>
-       Expected: The file name does not have the .json file extension. Error details shown in the status message.
-
-   1. Test case: `export /`<br>
-      Expected: The file path is invalid as it is a directory. Error details shown in the status message.
+1. Test case: `export /`<br>
+   Expected: The file path is invalid as it is a directory. Error details shown in the status message.
 
 
 ### Importing data file
+1. Test case: `export fy2324.json`, followed by `clear`, then `import fy2324.json`<br>
+    Prerequisites: The application has read access to the specified file path. The file `fy2324.json` must exist
+    at the specified file path - which will be the directory where EmployeeManager is in this case.<br>
+    Expected: The data file `fy2324.json` will be imported into the application and overwrite existing data.
 
-1. Importing the data file.
+1. Test case: `import fy9999.json`<br>
+   Prerequisites: The file `fy9999.json` does not exist in the directory where EmployeeManager is.<br>
+   Expected: Error details shown in the status message.
 
-    1. Test case: `export fy2324.json`, followed by `clear`, then `import fy2324.json`<br>
-       Prerequisites: The application has read access to the specified file path. The file `fy2324.json` must exist
-       at the specified file path - which will be the directory where EmployeeManager is in this case.<br>
-       Expected: The data file `fy2324.json` will be imported into the application and overwrite existing data.
-
-    1. Test case: `import fy9999.json`<br>
-       Prerequisites: The file `fy9999.json` does not exist in the directory where EmployeeManager is.<br>
-       Expected: Error details shown in the status message.
-
-   1. Test case: `export fy2324.json`, followed by removing some of the brackets in the exported `fy2324.json` file 
-      using any text editor, followed by `import fy2324.json`.<br>
-      Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
-      data file).<br>
-      Expected: Error details shown in the status message.
+1. Test case: `export fy2324.json`, followed by removing some of the brackets in the exported `fy2324.json` file 
+   using any text editor, followed by `import fy2324.json`.<br>
+   Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
+   data file).<br>
+   Expected: Error details shown in the status message.
 
 ## **Appendix: Planned Enhancements**
 

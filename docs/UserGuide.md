@@ -97,9 +97,12 @@ If you are an **experienced user**:
 
 The prefixes are commonly used in commands such as `add`, `edit`, `find`, `sort` etc.
 The table below provides a summary on the corresponding prefix for each employee's attribute.
-The constraint for the attribute is also listed in the table.
 
-| Prefix | Attribute   | Constraint                                                   |
+The constraint for the attributes are also listed in the table. The constraint only applies
+to the `add` and `edit` commands where the attribute must fit the constraint for the command
+to succeed.
+
+| Prefix | Attribute   | Constraint (only applies to `add` & `edit` commands)         |
 |--------|-------------|--------------------------------------------------------------|
 | `d/`   | Department  | Alphanumeric characters and whitespaces only                 |
 | `e/`   | Email       | Valid email address format                                   |
@@ -167,6 +170,7 @@ Edits an existing employee in EmployeeManager.
 Format: `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
+* If there already exists an employee with a certain ID in EmployeeManager, editing another employee to the same ID will not be allowed.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -287,7 +291,9 @@ Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * **Exactly one of the prefix must be specified.**
 * The prefix specifies the attribute to be sorted with. Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
-* Extraneous parameters entered after the prefix will be ignored. E.g. `sort s/123` will sort by salary, the `123` will be ignored.
+* Extraneous parameters entered after the prefix will be ignored. 
+  * E.g. `sort s/123` will sort by salary, the value `123` will be ignored. 
+  * E.g. `sort s/p/`, `p/` is treated as a value and not a prefix. Since the value `p/` is ignored, the command will sort by salary.
 * Attributes are sorted by _lexicographical order_. For example, "Alice" comes before "Bob", 
 and "100" comes before "200". Keep in mind upper case letters come before lower case letters. For example, `Z` comes before `a`.
 
@@ -300,7 +306,7 @@ Examples:
 * `sort n/` sorts the list by **name**.
 * `sort p/` sorts the list by **phone**.
 * `sort p/9001` sorts the list by phone. The parameter `9001` is ignored.
-* `sort p/s/` sorts the list by phone. The parameter `s/` is ignored.
+* `sort s/p/` sorts the list by salary. The parameter `p/` is ignored.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -352,7 +358,7 @@ Imports an EmployeeManager data file into the application.
 Format: `import FILE_PATH`
 
 * Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
-* The data file must be of `.json` file type. Otherwise, an error will be thrown.
+* The data file must be of `.json` file type. Otherwise, an error will be shown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
 
@@ -387,7 +393,7 @@ Exports the data file in EmployeeManager to the specified path.
 Format: `export FILE_PATH`
 
 * Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
-* The data file must be of `.json` file type. Otherwise, an error will be thrown.
+* The data file must be of `.json` file type. Otherwise, an error will be shown.
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Examples:
