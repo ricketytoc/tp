@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
 /**
@@ -13,9 +14,10 @@ public class HelpCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
+    public static final String MESSAGE_SUMMARY = "Help: " + COMMAND_WORD + "\n";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory history) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

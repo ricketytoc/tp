@@ -14,9 +14,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/goh-li-ting.png" width="200px">
 
 [[github](https://github.com/Goh-Li-Ting)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/goh-li-ting.md)]
 
-* Role: Project Advisor
+* Role: Documentation
+* Responsibilities: UI
 
 ### Leong Yuan Kun
 
@@ -25,34 +26,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/aexolate)]
 [[portfolio](team/aexolate.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration
+* Responsibilities: Storage
 
 ### Huang Wei'En
 
 <img src="images/weiennn.png" width="200px">
 
-[[github](https://github.com/Weiennn)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Weiennn)] [[portfolio](team/weiennn.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: Commands
 
 ### Richard Hew
 
 <img src="images/ricketytoc.png" width="200px">
 
-[[github](http://github.com/ricketytoc)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ricketytoc)]
+[[portfolio](team/ricketytoc.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Deliverables and Deadlines
+* Responsibilities: Model
 
 ### Chen Kuei
 
 <img src="images/chen-kuei.png" width="200px">
 
 [[github](https://github.com/Chen-Kuei)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chen-kuei.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Parser

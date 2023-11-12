@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -9,11 +10,14 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -110,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getSortedFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -146,6 +150,49 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    @FXML
+    public void handleImport() {
+        handleFileOperation("Choose Import File", ImportCommand.COMMAND_WORD, true);
+    }
+
+    @FXML
+    public void handleExport() {
+        handleFileOperation("Choose Export Location", ExportCommand.COMMAND_WORD, false);
+    }
+
+    private void handleFileOperation(String title, String commandWord, boolean isImport) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(title);
+        FileChooser.ExtensionFilter extFilter = getJsonExtensionFilter();
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setSelectedExtensionFilter(extFilter);
+
+        fileChooser.setInitialFileName("data.json");
+
+        File selectedFile;
+        if (isImport) {
+            selectedFile = fileChooser.showOpenDialog(primaryStage);
+        } else {
+            selectedFile = fileChooser.showSaveDialog(primaryStage);
+        }
+
+        if (selectedFile == null) {
+            return;
+        }
+
+        try {
+            String commandString = commandWord + " " + selectedFile.toPath();
+            executeCommand(commandString);
+        } catch (CommandException | ParseException e) {
+            // Exceptions are already handled in executeCommand
+        }
+    }
+
+    private FileChooser.ExtensionFilter getJsonExtensionFilter() {
+        return new FileChooser.ExtensionFilter("Json files (*.json)", "*.json");
+    }
+
 
     void show() {
         primaryStage.show();
