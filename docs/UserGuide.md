@@ -10,7 +10,7 @@ EmployeeManager is a **desktop application** for **Human Resources (HR) staff** 
 
 Here’s an **overview** of EmployeeManager’s features:
 * Consolidate and manage employee details in a single application 
-* Conveniently view, add, or delete employee details
+* Find and sort employees by various attributes
 * Easily increment salary or delete many employees at once
 
 EmployeeManager is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
@@ -39,18 +39,19 @@ If you are an **experienced user**:
 
 1. Ensure you have Java `11` or above installed on your computer.
    1. Open the **terminal** on your computer.
-      1. **Windows**: Open Windows Search and search for "terminal".
-      1. **Mac**: Open Spotlight Search and search for "terminal".
-      1. **Linux**: Press `Ctrl + Alt + T`.
+      * **Windows**: Open Windows Search and search for "terminal".
+      * **Mac**: Open Spotlight Search and search for "terminal".
+      * **Linux**: Press `Ctrl + Alt + T`.
    1. Type `java --version` into the terminal.
    1. If you have java installed, it should look similar to this: <br>
       <img src="images/JavaVersion.png" width="600" />
    1. Check that your version starts with `11` or higher.
    1. If you do not have Java `11` or above installed, you can download Java `11` [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
-1. Download the latest `employeemanager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
+1. Download the latest `EmployeeManager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
+   Files required to run EmployeeManager will be created in the _home folder_.
 
 1. Open a command terminal, type the `cd FOLDER` command, substituting `FOLDER` with the folder path of the folder you put the jar file in.<br>
    _The `cd` command changes the working directory of the terminal, allowing EmployeeManager to be launched in the next step._
@@ -59,7 +60,7 @@ If you are an **experienced user**:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press _Enter_ to execute it. e.g. typing `help` and pressing _Enter_ will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all employees.
@@ -81,21 +82,21 @@ If you are an **experienced user**:
 1. Click on the command box.
 
 1. Type the command word.
-   1. Example: `add` is the command word for adding an employee.
+   * Example: `add` is the command word for adding an employee.
 
 1. Follow the command format of the command and type the prefixes and/or fields required.
-   1. Refer to the [Features](#features) for the details on the command format for each command.
-   1. Example: `i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000`.
+   * Refer to the [Features](#features) for the details on the command format for each command. 
+   * Example: `i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000`.
 
 1. Press enter to execute the command.
-   1. `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
+   * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Prefix Summary
+## Prefix summary
 
 The prefixes are commonly used in commands such as `add`, `edit`, `find`, `sort` etc.
-The table below provides a summary on the corresponding prefix for each Employee's attribute.
+The table below provides a summary on the corresponding prefix for each employee's attribute.
 The constraint for the attribute is also listed in the table.
 
 | Prefix | Attribute   | Constraint                                                   |
@@ -184,7 +185,7 @@ Format: `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OT
 * Finds employees whose attributes satisfy all the search parameters.
 
 Examples:
-* `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, name contains the word `alex` and phone number contains `9001`.
+* `find i/A00 n/alex p/9001` returns employees whose ID contains `A00`, name matches the word `alex` and phone number contains `9001`.
 
 #### Finding an employee by name: `find n/`
 
@@ -306,7 +307,6 @@ Examples:
 Increments the salaries of all employees in the displayed list in EmployeeManager by the given increment.
 
 Format: `increment INCREMENT`
-* Increments the salaries of all employees in the displayed list by `INCREMENT`.
 * `INCREMENT` can be positive or negative.
 * `INCREMENT` is invalid if `INCREMENT` causes the salary of any employee in the displayed list to fall below 0 or exceed the maximum salary.
 Should this happen, an error message identifying the first employee whose adjusted salary falls outside the allowed range will be shown.
@@ -367,15 +367,13 @@ data, it is recommended to use the `export` command to save a copy of the curren
 
 #### GUI Option
 Alternatively, you may use the GUI option to import the data file if you are unfamiliar with file paths.
-1. Click File > Import in the top left corner of the application.
-
-   </br><img src="images/ug-import-gui.png" width="243" />
+1. Click File > Import in the top left corner of the application.<br>
+   <img src="images/ug-import-gui.png" width="243" />
 
 
 2. The file explorer will open and prompt you to select the data file.
-Only `.json` files can be selected as that is the expected format of the data file. _The file explorer will look different depending on your operating system._
-
-   </br><img src="images/ug-import-explorer.png" width="650" />
+Only `.json` files can be selected as that is the expected format of the data file. _The file explorer will look different depending on your operating system._<br>
+   <img src="images/ug-import-explorer.png" width="650" />
 
 
 3. After opening your data file, EmployeeManager will attempt to load the data into the application.
@@ -396,20 +394,18 @@ Examples:
 * `export ./data.json` will create the data file under the specified path.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
-The export command will **overwrite** any file in the specified location.
+The export command will **overwrite** any file with the same name in the specified location.
 </div>
 
 #### GUI Option
 Alternatively, you may use the GUI option to export the data file if you are unfamiliar with file paths.
-1. Click File > Export in the top left corner of the application.
-
-   </br><img src="images/ug-export-gui.png" />
+1. Click File > Export in the top left corner of the application.<br>
+   <img src="images/ug-export-gui.png" />
 
 
 2. The file explorer will open and prompt you to save the data file. _The file explorer will look
-different depending on your operating system._
-
-   </br><img src="images/ug-export-explorer.png" />
+different depending on your operating system._<br>
+   <img src="images/ug-export-explorer.png" />
 
 
 3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
@@ -497,11 +493,11 @@ To safeguard against potential data loss, we recommend backing up the original d
 | **Delete**    | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                 |
 | **Edit**      | `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`<br> e.g., `edit 1 p/91234567 e/johndoe@example.com`, `edit 2 n/Betsy Crower`                                                                                    |
 | **Exit**      | `exit`                                                                                                                                                                                                                                              |
-| **Export**    | `export FILE_PATH`<br> e.g., `export C:\Users\user\Downloads\EmployeeList.csv`                                                                                                                                                                      |
+| **Export**    | `export FILE_PATH`<br> e.g., `export C:\Users\user\Downloads\EmployeeList.json`                                                                                                                                                                     |
 | **Find**      | `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`<br> e.g., `find n/John`, `find i/A00 p/9001`, `find r/executive manager` |
 | **History**   | `history N`<br> e.g., `history 2`                                                                                                                                                                                                                   |
 | **Increment** | `increment INCREMENT`<br> e.g., `increment 1000`, `increment -100.65`                                                                                                                                                                               |
-| **Import**    | `import FILE_PATH`<br> e.g., `import C:\Users\user\Downloads\EmployeeList.csv`                                                                                                                                                                      |
+| **Import**    | `import FILE_PATH`<br> e.g., `import C:\Users\user\Downloads\EmployeeList.json`                                                                                                                                                                     |
 | **List**      | `list`                                                                                                                                                                                                                                              |
 | **Redo**      | `redo`                                                                                                                                                                                                                                              |
 | **Sort**      | `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`<br> e.g., `sort i/`, `sort n/`, `sort p/`                                                                                                                                                                 |
@@ -510,7 +506,7 @@ To safeguard against potential data loss, we recommend backing up the original d
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary Table
+## Glossary table
 
 | Term                  | Description                                                                                                                                                   |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -70,9 +70,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             predicateList.add(roleContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
-            String departmentkeyword = argMultimap.getValue(PREFIX_DEPARTMENT).get();
+            String departmentKeyword = argMultimap.getValue(PREFIX_DEPARTMENT).get();
             DepartmentContainsKeywordsPredicate departmentContainsKeywordsPredicate = ParserUtil
-                    .parseDepartmentKeyword(departmentkeyword);
+                    .parseDepartmentKeyword(departmentKeyword);
             predicateList.add(departmentContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
