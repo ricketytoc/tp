@@ -33,12 +33,14 @@ public class SalaryTest {
         assertFalse(Salary.isValidSalary("^")); // only numbers
         assertFalse(Salary.isValidSalary("-1000")); // only non-negative numbers
         assertFalse(Salary.isValidSalary("1000.999")); // contains more than 2 decimals
-        assertFalse(Salary.isValidSalary(Integer.toString(Salary.MAXIMUM_SALARY + 1))); // too large salary
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY + "0")); // too long string
+        assertFalse(Salary.isValidSalary(Salary.MAXIMUM_SALARY + "0.01")); // boundary value: slightly larger string
 
         // valid salary
         assertTrue(Salary.isValidSalary("0")); // boundary value: 0
         assertTrue(Salary.isValidSalary("1000")); // non-negative numbers only
         assertTrue(Salary.isValidSalary("12.99")); // non-negative numbers with decimal
+        assertTrue(Salary.isValidSalary(Integer.toString(Salary.MAXIMUM_SALARY))); // boundary value: maximum salary
     }
 
     @Test

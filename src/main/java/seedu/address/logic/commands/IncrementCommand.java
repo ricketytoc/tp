@@ -35,15 +35,14 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_INVALID_INCREMENT = "Increment causes salary of {%1$s} to fall below 0 "
             + "or exceed the maximum salary of %2$d.00";
+
     public static final String MESSAGE_SUMMARY = "Increment: " + COMMAND_WORD + " INCREMENT" + "\n"
             + "Example: " + COMMAND_WORD + " 100" + "\n";
 
     private final Increment increment;
 
     /**
-     * Constructs a {@code IncrementCommand}
-     *
-     * @param increment A {@code Increment}.
+     * Constructs a {@code IncrementCommand} using the given {@code increment}.
      */
     public IncrementCommand(Increment increment) {
         this.increment = increment;
@@ -54,20 +53,25 @@ public class IncrementCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getSortedFilteredPersonList();
         checkValidIncrement(lastShownList);
-
-        List<Person> listCopy = new ArrayList<>(lastShownList);
-        for (Person personToEdit : listCopy) {
-            Person editedPerson = incrementPersonSalary(personToEdit);
-            model.setPerson(personToEdit, editedPerson);
-        }
+        incrementSalaries(model, lastShownList);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_INCREMENT_SUCCESS, listCopy.size(), increment.toString()));
+        return new CommandResult(String.format(MESSAGE_INCREMENT_SUCCESS, lastShownList.size(), increment.toString()));
     }
 
     /**
-     * Checks if the persons in the given {@code personList} all have a salary that is greater than or equal to
-     * the {@code increment}.
-     * @throws CommandException If at least one of the persons have a salary that is less than the {@code increment}.
+     * Increments the salaries of all persons in {@code lastShownList} by {@code increment}.
+     */
+    private void incrementSalaries(Model model, List<Person> lastShownList) {
+        List<Person> listCopy = new ArrayList<>(lastShownList);
+        for (Person personToEdit : listCopy) {
+            Person editedPerson = getPersonWithIncrementedSalary(personToEdit);
+            model.setPerson(personToEdit, editedPerson);
+        }
+    }
+
+    /**
+     * Checks if all persons in the given {@code personList} have salaries that are valid after incrementing.
+     * @throws CommandException If at least one person have a salary that is invalid after incrementing.
      */
     private void checkValidIncrement(List<Person> personList) throws CommandException {
         requireNonNull(personList);
@@ -82,7 +86,7 @@ public class IncrementCommand extends Command {
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit} and with the incremented salary.
      */
-    private Person incrementPersonSalary(Person personToEdit) {
+    private Person getPersonWithIncrementedSalary(Person personToEdit) {
         assert personToEdit != null;
 
         Id id = personToEdit.getId();

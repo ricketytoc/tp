@@ -27,7 +27,7 @@ IncrementCommand --> IncrementCommand
 deactivate IncrementCommand
 
 loop for each person in lastShownList
-    IncrementCommand -> IncrementCommand : incrementPersonSalary(personToEdit)
+    IncrementCommand -> IncrementCommand : getPersonWithIncrementedSalary(personToEdit)
     activate IncrementCommand
 
     IncrementCommand --> IncrementCommand : editedPerson

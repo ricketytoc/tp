@@ -41,7 +41,11 @@ public class SortCommand extends Command {
 
     private final Comparator<Person> comparator;
 
+    /**
+     * Creates a SortCommand to sort the displayed person list
+     */
     public SortCommand(Comparator<Person> comparator) {
+        requireNonNull(comparator);
         this.comparator = comparator;
     }
 
