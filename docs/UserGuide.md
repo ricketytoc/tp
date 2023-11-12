@@ -51,7 +51,7 @@ If you are an **experienced user**:
 1. Download the latest `EmployeeManager.jar` from [here](https://github.com/AY2324S1-CS2103T-T14-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EmployeeManager.
-   * Files required to run EmployeeManager will be created in the _home folder_.
+   Files required to run EmployeeManager will be created in the _home folder_.
 
 1. Open a command terminal, type the `cd FOLDER` command, substituting `FOLDER` with the folder path of the folder you put the jar file in.<br>
    _The `cd` command changes the working directory of the terminal, allowing EmployeeManager to be launched in the next step._
@@ -285,23 +285,22 @@ that updates the data. This will ensure that the list remains sorted even after 
 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
-* The prefix specifies the attribute to be sorted with.
-* Exactly one of the prefix must be specified.
-* Extraneous parameters entered after the prefix will be ignored. 
-* Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
-* Attributes are sorted by lexicographical order. For example, "Alice" comes before "Bob", 
-and "100" comes before "200".
-* Keep in mind that for lexicographical order, upper case letters come before lower case letters. For example, `Z` comes before `a`.
+* **Exactly one of the prefix must be specified.**
+* The prefix specifies the attribute to be sorted with. Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
+* Extraneous parameters entered after the prefix will be ignored. E.g. `sort s/123` will sort by salary, the `123` will be ignored.
+* Attributes are sorted by _lexicographical order_. For example, "Alice" comes before "Bob", 
+and "100" comes before "200". Keep in mind upper case letters come before lower case letters. For example, `Z` comes before `a`.
 
 Examples:
-* `sort i/` sorts the list by ID.
-* `sort d/` sorts the list by department.
-* `sort e/` sorts the list by email.
-* `sort s/` sorts the list by salary.
-* `sort r/` sorts the list by role.
-* `sort n/` sorts the list by name.
-* `sort p/` sorts the list by phone.
-* `sort p/9001` sorts the list by phone.
+* `sort i/` sorts the list by **ID**.
+* `sort d/` sorts the list by **department**.
+* `sort e/` sorts the list by **email**.
+* `sort s/` sorts the list by **salary**.
+* `sort r/` sorts the list by **role**.
+* `sort n/` sorts the list by **name**.
+* `sort p/` sorts the list by **phone**.
+* `sort p/9001` sorts the list by phone. The parameter `9001` is ignored.
+* `sort p/s/` sorts the list by phone. The parameter `s/` is ignored.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -350,42 +349,48 @@ Format: `clear`
 
 Imports an EmployeeManager data file into the application.
 
-* The data file must be of `.json` file type. Otherwise, an error message will be shown.
+Format: `import FILE_PATH`
+
+* Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
+* The data file must be of `.json` file type. Otherwise, an error will be thrown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
+
+Examples:
+* `import ./persons.json` imports the "persons.json" data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
 data, it is recommended to use the `export` command to save a copy of the current data.
 </div>
 
-Format: `import FILE_PATH`
 
-Examples:
-* `import ./persons.json` imports the "persons.json" data file.
+#### GUI Option
+Alternatively, you may use the GUI option to import the data file if you are unfamiliar with file paths.
+1. Click File > Import in the top left corner of the application.
 
-#### GUI option
-Alternatively, you may use the GUI option to import the data file. 
-1. Click File > Import in the top left corner of the application.<br>
-<img src="images/ug-import-gui.png" width="225" />
+   </br><img src="images/ug-import-gui.png" width="243" />
 
-1. The file explorer will open and prompt you to select the data file. _The file explorer will look
-different depending on your operating system._
-![Ui](images/ug-import-explorer.png)
 
-1. After selecting your data file, EmployeeManager will attempt to load the data into the application.
+2. The file explorer will open and prompt you to select the data file.
+Only `.json` files can be selected as that is the expected format of the data file. _The file explorer will look different depending on your operating system._
 
-* The file explorer will only allow you to select `.json` files as that is the required format of the data file.
+   </br><img src="images/ug-import-explorer.png" width="650" />
+
+
+3. After opening your data file, EmployeeManager will attempt to load the data into the application.
+
 
 
 ### Exporting data : `export`
 
 Exports the data file in EmployeeManager to the specified path.
 
-* The data file must be of `.json` file type. Otherwise, an error message will be shown.
-* The file path must be valid, and the application must have permission to write to the directory.
-
 Format: `export FILE_PATH`
+
+* Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
+* The data file must be of `.json` file type. Otherwise, an error will be thrown.
+* The file path must be valid, and the application must have permission to write to the directory.
 
 Examples:
 * `export ./data.json` will create the data file under the specified path.
@@ -394,20 +399,23 @@ Examples:
 The export command will **overwrite** any file with the same name in the specified location.
 </div>
 
-#### GUI option
-Alternatively, you may use the GUI option to export the data file.
-1. Click File > Export in the top left corner of the application.<br>
-<img src="images/ug-export-gui.png" width="225" />
+#### GUI Option
+Alternatively, you may use the GUI option to export the data file if you are unfamiliar with file paths.
+1. Click File > Export in the top left corner of the application.
 
-1. The file explorer will open and prompt you to save the data file. _The file explorer will look
+   </br><img src="images/ug-export-gui.png" />
+
+
+2. The file explorer will open and prompt you to save the data file. _The file explorer will look
 different depending on your operating system._
-![Ui](images/ug-export-explorer.png)
 
-1. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
+   </br><img src="images/ug-export-explorer.png" />
 
-* The file explorer will save the file as a .json file format.
-* The data file can be given any _valid name_, e.g. `abc_pte_ltd.json` as shown in the image above.
-* Valid file name is dependent on the operating system.
+
+3. After selecting your save location, EmployeeManager will attempt to save the data into the specified location.
+   * The file explorer will save the file as a `.json` file format.
+   * The data file can be given any _valid name_, e.g. `abc_pte_ltd.json` as shown in the image above.
+   * Valid file name is dependent on the operating system.
 
 ### Viewing command history : `history`
 
@@ -431,6 +439,22 @@ Exits the program.
 
 Format: `exit`
 
+### Specifying file path
+Valid file paths used in the `export` and `import` command depends on the operating system (OS). Listed below are
+examples of different file path formats and their result.
+
+
+| Path                     | Description                                                                                                                                                |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `data.json`              | The file `data.json` in the same directory where `EmployeeManager.jar` is located in.                                                                      |
+| `/Documents/data.json`   | The slash `/` at the front represent an absolute file path from root of the **current drive**. E.g. It might point to `C:/Documents/data.json` in Windows. |
+| `Documents/data.json`    | With no slash `/` at the front, it is a relative path from the directory where `EmployeeManager.jar` is located in.                                        |
+
+* Valid files names can consist only of the extension e.g. `.json`. On most OS, the file will be treated as a hidden 
+file and only visible by changing settings. It is thus not recommended to export data file without a name.
+
+
+
 ### Saving the data
 
 EmployeeManager data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -444,6 +468,7 @@ For advanced users, you have the option to directly modify this data file to upd
 If your changes to the data file makes its format invalid, EmployeeManager will discard all data and start with an empty data file at the next run. 
 To safeguard against potential data loss, we recommend backing up the original data file before directly editing it. 
 </div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/goh-li-ting.md)]
 
 * Role: Documentation
-* Responsibilities: UI
+* Responsibilities: Parser
 
 ### Leong Yuan Kun
 
@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/chen-kuei.md)]
 
 * Role: Code Quality
-* Responsibilities: Parser
+* Responsibilities: Ui
