@@ -67,47 +67,8 @@ class ExportCommandTest {
     @Test
     public void execute_invalidPath_throwsException() throws Exception {
         // Root folder with forward slash
-        Path invalidPath = Path.of("/");
+        Path invalidPath = Path.of(FileCommandTest.INVALID_DATA_FILE_PATH);
         ExportCommand exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        // Root folder with backward slash
-        invalidPath = Path.of("\\");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        invalidPath = Path.of("C:");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        invalidPath = Path.of("/usr");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        // Nested folder (truncated slash at the end)
-        invalidPath = Path.of("/a/b/c/d/");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        // Missing data type
-        invalidPath = Path.of("/cs2103-employee-manager-tmp");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        // Missing data type
-        // Note: the last '/' will be truncated from the path
-        invalidPath = Path.of("/cs2103-employee-manager-tmp/");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        // Nested folder
-        invalidPath = Path.of("/a/b");
-        exportCommand = new ExportCommand(invalidPath);
-        assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
-
-        // Nested folder
-        invalidPath = Path.of("\\a\\b\\c");
-        exportCommand = new ExportCommand(invalidPath);
         assertCommandFailure(exportCommand, model, ExportCommand.MESSAGE_INVALID_FILE_PATH);
     }
 

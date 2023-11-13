@@ -34,26 +34,25 @@ public class ImportCommand extends FileCommand {
     public static final String MESSAGE_SUMMARY = "Import: " + COMMAND_WORD + " FILE_PATH" + "\n"
             + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json" + "\n";
 
-    private final Path filePath;
-
     /**
      * Creates an ImportCommand to import a data file from the specified {@code Path}
      */
     public ImportCommand(Path filePath) {
+        super(filePath);
         requireNonNull(filePath);
-        this.filePath = filePath;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        if (!isValidDataFilePath(filePath)) {
+        if (!isValidDataFilePath()) {
             throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
         // Attempt to read address book from disk
         try {
-            Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(filePath).readAddressBook(filePath);
+            Optional<ReadOnlyAddressBook> addressBook = new JsonAddressBookStorage(getFilePath())
+                    .readAddressBook(getFilePath());
             if (addressBook.isPresent()) {
                 model.setAddressBook(addressBook.get());
                 model.commitAddressBook();
@@ -78,6 +77,6 @@ public class ImportCommand extends FileCommand {
         }
 
         ImportCommand otherImportCommand = (ImportCommand) other;
-        return filePath.equals(otherImportCommand.filePath);
+        return getFilePath().equals(otherImportCommand.getFilePath());
     }
 }
