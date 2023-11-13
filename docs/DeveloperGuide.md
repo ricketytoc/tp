@@ -742,6 +742,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **UI**: User Interface, the graphical or textual interface through which a user interacts with a software application.
 * **Git Miletone**: A git milestone is a way to track progress on a group of issues or pull requests in a repository which can achieved within a specified amount of time by setting a start and due date.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
