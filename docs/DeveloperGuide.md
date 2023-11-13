@@ -654,7 +654,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
 
-**Use case: UC6 - View command history**
+**Use case: UC7 - View command history**
 
 **MSS**
 
