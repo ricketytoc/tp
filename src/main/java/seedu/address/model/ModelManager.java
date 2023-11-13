@@ -163,7 +163,10 @@ public class ModelManager implements Model {
     }
 
     //=========== Undo/Redo =================================================================================
-
+    // @@author ricketytoc-reused
+    // Reused from
+    // https://github.com/se-edu/addressbook-level4/blob/master/src/main/java/seedu/address/model/ModelManager.java
+    // with minor modifications
     @Override
     public boolean canUndoAddressBook() {
         return versionedAddressBook.canUndo();
@@ -189,5 +192,5 @@ public class ModelManager implements Model {
         versionedAddressBook.commit();
     }
 
-
+    // @@author
 }

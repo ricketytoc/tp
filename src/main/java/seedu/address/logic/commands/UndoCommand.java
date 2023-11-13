@@ -7,6 +7,10 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+// @@author ricketytoc-reused
+// Reused from
+// https://github.com/se-edu/addressbook-level4/blob/master/src/main/java/seedu/address/logic/commands/UndoCommand.java
+// with minor modifications
 /**
  * Reverts the {@code model}'s address book to its previous state.
  */
@@ -30,3 +34,4 @@ public class UndoCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
+// @@author

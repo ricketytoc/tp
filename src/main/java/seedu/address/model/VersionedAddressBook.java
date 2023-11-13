@@ -6,6 +6,10 @@ import java.util.List;
 import seedu.address.model.exceptions.NoRedoableStateException;
 import seedu.address.model.exceptions.NoUndoableStateException;
 
+// @@author ricketytoc-reused
+// Reused from
+// https://github.com/se-edu/addressbook-level4/blob/master/src/main/java/seedu/address/model/VersionedAddressBook.java
+// with minor modifications
 /**
  * {@code AddressBook} that keeps track of its own history.
  */
@@ -95,4 +99,5 @@ public class VersionedAddressBook extends AddressBook {
                 && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
     }
 }
+// @@author
 

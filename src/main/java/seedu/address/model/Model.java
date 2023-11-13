@@ -95,6 +95,10 @@ public interface Model {
      */
     void updateSortedPersonList(Comparator<Person> comparator);
 
+    // @@author ricketytoc-reused
+    // Reused from
+    // https://github.com/se-edu/addressbook-level4/blob/master/src/main/java/seedu/address/model/Model.java
+    // with minor modifications
     /**
      * Returns true if the model has previous address book states to restore.
      */
@@ -120,4 +124,5 @@ public interface Model {
      */
     void commitAddressBook();
 
+    // @@author
 }
