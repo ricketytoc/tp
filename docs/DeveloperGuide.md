@@ -964,3 +964,18 @@ The current implementation of the `sort` command allows users to input additiona
 For example commands like `sort n/abc` and `sort n/s/` are both valid sort commands that will sort by name. 
 We plan to enhance validation such that an error message will be shown if extra values are input after the sorting prefix.
 The proposed error message, `The sort command prefixes should not be used with values`, will guide the user towards the correct usage of the `sort` command.
+
+### 8. Enhance error message for `edit` command
+
+The current implementation of EmployeeManager checks for duplicate employees based on their `Id` field.
+Consequently, editing an employee's `Id` to a value that already exists will result in an error message `This person already exists in the address book.`.
+This might be unclear to the users as the error message is not specific in stating what causes the duplicate.
+We plan to enhance the error message to make it clearer. For example, by stating that 
+`This employee id is already in use and may result in a duplicate person.`.
+
+![PlannedEnhancementEditErrorMessage](images/PlannedEnhancementEditErrorMessage.png)
+
+### 9. Increase support for a broader range of display compatibility
+
+The current implementation of EmployeeManager is optimized for standard screen resolutions, specifically 1920x1080, and is best viewed at a screen scale of 100%.
+We plan to enhance EmployeeManager's display compatibility with a broader range of screen resolutions and scales, to suit all office needs.
