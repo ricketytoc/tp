@@ -8,7 +8,6 @@ title: Richard Hew's Project Portfolio Page
 EmployeeManager is a desktop application used by Human Resource (HR) staff in a small or medium-sized company (of 50 - 200 employees).
 EmployeeManager has HR management features to provide HR staff a convenient way to access and update employee details.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
