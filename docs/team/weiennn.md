@@ -36,7 +36,7 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Updated the links to our repo GitHub page. 
       * Added the Acknowledgements section.
-      * Updated the `logic` component class diagram and sequence diagram.
+      * Updated the `logic` component class diagram and the `logic` sequence diagram.
       * Added the `history` feature section and the `history` class diagram.
       * Updated the `clear` feature section and the `clear` command sequence diagram.
       * Added the `help` feature section.
