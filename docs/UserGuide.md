@@ -95,11 +95,11 @@ If you are an **experienced user**:
 
 ## Prefix summary
 
-The prefixes are commonly used in commands such as `add`, `edit`, `find`, `sort` etc.
+The prefixes are commonly used in commands such as `add`, `edit`, `find`, and `sort`.
 The table below provides a summary on the corresponding prefix for each employee's attribute.
 
-The constraint for the attributes are also listed in the table. The constraint only applies
-to the `add` and `edit` commands where the attribute must fit the constraint for the command
+The constraint for the attributes are listed in the table below. The constraint only applies
+to the `add` and `edit` commands where the attribute value must fit the constraint for the command
 to succeed.
 
 | Prefix | Attribute   | Constraint (only applies to `add` & `edit` commands)         |
@@ -111,8 +111,6 @@ to succeed.
 | `p/`   | Phone       | Numerical with at least 3 digits                             |
 | `r/`   | Role        | Alphanumeric characters and whitespaces only                 |
 | `s/`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
