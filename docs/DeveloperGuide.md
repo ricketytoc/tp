@@ -495,7 +495,7 @@ duplication as both commands share the same logic for checking the validity of t
 **Value proposition**: The application streamlines the process of handling 
 large-scale employee data. With rapid typing capabilities, users
 can efficiently input and update employee details, reducing time
-spent on data entry tasks.
+spent on data management tasks.
 
 ### User stories
 
@@ -910,9 +910,10 @@ To address this, we plan to make the validation checks stricter for the
 FILE_NAME in the `export` command. This enhancement will prevent the use of empty strings in FILE_NAME, 
 thereby reducing the chances of bugs and ensuring a more consistent experience across different operating systems.
 
-### 2. Allow the use of s/o in name field
+### 2. Allow the use of prefixes in name field
 
-The current implementation of EmployeeManager designates `s/` as a prefix for salary. As a result, when the name field includes `s/o`, it triggers 
+The current implementation of EmployeeManager triggers errors when prefixes are used in names.
+For example, `s/` is designated as a prefix for salary. As a result, when the name field includes `s/o`, it triggers 
 several errors such as those related to multiple prefixes or salary constraints. 
 
 ![PlannedEnhancementSOError](images/PlannedEnhancementSOError.png)
