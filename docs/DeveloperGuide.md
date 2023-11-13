@@ -14,10 +14,12 @@ title: Developer Guide
 * Some code inspired by [SE-EDU AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
 
 * Copyright by Susumu Yoshida - [Mcdodesign](http://www.mcdodesign.com/)
-  * address_book_32
+  * `address_book_32.png`
 
 * Copyright by Jan Jan Kovařík - [Glyphicons](http://glyphicons.com/)
-  * calendar
+  * `calendar.png`
+
+* Icons in our project are sourced from [Google fonts](https://fonts.google.com/icons)
 
 --------------------------------------------------------------------------------------------------------------------
 
