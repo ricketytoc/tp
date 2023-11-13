@@ -535,7 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new employee with employee details.
+1. User requests to add a new employee with the employee's details.
 1. EmployeeManager adds the employee.
 1. EmployeeManager shows an updated list of employees.
 1. Use case ends.
@@ -544,15 +544,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. EmployeeManager detects that not all required information is entered.
   * 1a1. EmployeeManager informs user that some information is missing.
-  * 1a2. EmployeeManager requests user to enter details of the employee.
-  * 1a3. User enters the requested details.
-  * Steps 1a1 - 1a3 are repeated until the data entered are correct.
+  * 1a2. User enters the employee's details.
+  * Steps 1a1 - 1a2 are repeated until the data entered is correct.
   * Use case resumes from step 2.
 * 1b. EmployeeManager detects invalid information.
   * 1b1. EmployeeManager informs user that some information is invalid.
-  * 1b2. EmployeeManager requests user to enter details of the employee.
-  * 1b3. User enters the requested details.
-  * Steps 1b1 - 1b3 are repeated until the data entered are correct.
+  * 1b2. User enters the employee's details.
+  * Steps 1b1 - 1b2 are repeated until the data entered is correct.
   * Use case resumes from step 2.
 * 1c. EmployeeManager detects a duplicate employee.
   * 1c1. EmployeeManager informs user that the employee already exists.
@@ -709,7 +707,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -748,19 +746,21 @@ testers are expected to do more *exploratory* testing.
 
 ### Incrementing salaries of multiple employees
 
-1. Incrementing salaries of all employees in the displayed list of employees.
+1. Incrementing salaries of all employees in the displayed list of employees
 
     1. Test case: `increment 1000`<br>
-       Prerequisite: Salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
+       Prerequisite: There are multiple employees in the displayed list and
+       the salaries of all employees do not exceed the maximum salary after increasing by 1000. <br>
        Expected: Salaries of all employees in the list increased by 1000.
 
     1. Test case: `increment -10000` <br>
-       Prerequisite: Salary of at least one employee in the displayed list is below 10000. <br>
+       Prerequisite: There are multiple employees in the displayed list and
+       the salary of at least one employee in the displayed list is below 10000. <br>
        Expected: No change in salaries of all employees. Error details shown in the status message.
 
 ### Undoing a modification
 
-1. Undo the previous command that caused a modification in employee data.
+1. Undo the previous command that caused a modification in employee data
 
     1. Test case: `delete 1` followed by `undo`<br>
        Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
@@ -768,12 +768,12 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `undo`<br>
        Prerequisite: All commands have been undone or no commands that made a modification to employee data has been made.<br>
-       Expected: No change in displayed list and employee data. Error details shown in the status message.
-        1. Tip: A quick way to achieve the prerequisite is to close and reopen the application.
+       Tip: A quick way to achieve the prerequisite is to close and reopen the application.<br>
+       Expected: No change in displayed list and employee data. Error details shown in the status message. 
 
 ### Redoing the previous undone command
 
-1. Redo the previous undone command caused by `undo`.
+1. Redo the previous undone command caused by `undo`
 
     1. Test case: `delete 1` followed by `undo` followed by `redo`<br>
        Prerequisite: List all persons using the `list` command. At least one person in the list.<br>
@@ -785,7 +785,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing an employee
 
-1. Editing an employee in the displayed list of employees.
+1. Editing an employee in the displayed list of employees
 
     1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
 
@@ -803,7 +803,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting the list
 
-1. Sorting the displayed list of employees.
+1. Sorting the displayed list of employees
 
     1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
@@ -818,7 +818,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding an employee
 
-1. Finds an employee by the given field.
+1. Finds an employee by the given field
 
     1. Tip: Create distinct employees, one with the name `John`, one with the department `Finance`, 
    and one with the role `Manager` to effectively test whether the find command works for each field.
@@ -837,7 +837,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing command history
 
-1. Viewing the command history.
+1. Viewing the command history
 
     1. Test case: `delete 1` followed by `history 1`<br>
        Expected: The previous command `delete 1` is shown in the status message.
@@ -847,7 +847,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Exporting data file
 
-1. Exporting the data file.
+1. Exporting the data file
 
     1. Test case: `export fy2324.json`<br>
        Prerequisite: The application has write access to the directory where EmployeeManager is.<br>
@@ -862,7 +862,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Importing data file
 
-1. Importing the data file.
+1. Importing the data file
 
     1. Test case: `export fy2324.json`, followed by `clear`, then `import fy2324.json`<br>
        Prerequisites: The application has read access to the specified file path. The file `fy2324.json` must exist
