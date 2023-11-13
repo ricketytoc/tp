@@ -34,7 +34,6 @@ If you are an **experienced user**:
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -74,7 +73,6 @@ If you are an **experienced user**:
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## How to use command line interface
 
 <img src="images/CommandLineGuide.png" width="700" />
@@ -92,14 +90,13 @@ If you are an **experienced user**:
    * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Prefix summary
 
-The prefixes are commonly used in commands such as `add`, `edit`, `find`, `sort` etc.
+The prefixes are commonly used in commands such as `add`, `edit`, `find`, and `sort`.
 The table below provides a summary on the corresponding prefix for each employee's attribute.
 
-The constraint for the attributes are also listed in the table. The constraint only applies
-to the `add` and `edit` commands where the attribute must fit the constraint for the command
+The constraint for the attributes are listed in the table below. The constraint only applies
+to the `add` and `edit` commands where the attribute value must fit the constraint for the command
 to succeed.
 
 | Prefix | Attribute   | Constraint (only applies to `add` & `edit` commands)         |
@@ -112,10 +109,7 @@ to succeed.
 | `r/`   | Role        | Alphanumeric characters and whitespaces only                 |
 | `s/`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
 
-
-
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -291,12 +285,12 @@ that updates the data. This will ensure that the list remains sorted even after 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * **Exactly one of the prefix must be specified.**
-* The prefix specifies the attribute to be sorted with. Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
+* The prefix specifies the attribute to be sorted with. Refer to the [Prefix summary](#prefix-summary) for help on the mapping of the attribute and prefix.
+* Attributes are sorted by _lexicographical order_. For example, "Alice" comes before "Bob",
+  and "10" comes before "20". Keep in mind uppercase letters come before lowercase letters. For example, `Z` comes before `a`.
 * Extraneous parameters entered after the prefix will be ignored. 
   * E.g. `sort s/123` will sort by salary, the value `123` will be ignored. 
   * E.g. `sort s/p/`, `p/` is treated as a value and not a prefix. Since the value `p/` is ignored, the command will sort by salary.
-* Attributes are sorted by _lexicographical order_. For example, "Alice" comes before "Bob", 
-and "100" comes before "200". Keep in mind upper case letters come before lower case letters. For example, `Z` comes before `a`.
 
 Examples:
 * `sort i/` sorts the list by **ID**.
@@ -306,8 +300,6 @@ Examples:
 * `sort r/` sorts the list by **role**.
 * `sort n/` sorts the list by **name**.
 * `sort p/` sorts the list by **phone**.
-* `sort p/9001` sorts the list by phone. The parameter `9001` is ignored.
-* `sort s/p/` sorts the list by salary. The parameter `p/` is ignored.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -358,13 +350,13 @@ Imports an EmployeeManager data file into the application.
 
 Format: `import FILE_PATH`
 
-* Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
+* Please refer to [Specifying data file path](#specifying-data-file-path) for help on usage of `FILE_PATH`.
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
 
 Examples:
-* `import ./persons.json` imports the "persons.json" data file.
+* `import ./persons.json` imports the `persons.json` data file from the same folder as EmployeeManager.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
@@ -374,7 +366,7 @@ data, it is recommended to use the `export` command to save a copy of the curren
 
 #### GUI option
 Alternatively, you may use the GUI option to import the data file if you are unfamiliar with file paths.
-1. Click File > Import in the top left corner of the application.<br>
+1. Click **File > Import** in the top left corner of the application.<br>
    <img src="images/ug-import-gui.png" width="243" />
 
 
@@ -393,12 +385,14 @@ Exports the data file in EmployeeManager to the specified path.
 
 Format: `export FILE_PATH`
 
-* Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
+* Please refer to [Specifying data file path](#specifying-data-file-path) for help on usage of `FILE_PATH`.
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
-* The file path must be valid, and the application must have permission to write to the directory.
+* The file path must be valid, and the application must have permission to save to the file path.
+* Depending on your system and user permission, you might not be allowed to save to certain folders such as
+`C:\Windows`. EmployeeManager will show an error message in such scenarios.
 
 Examples:
-* `export ./data.json` will create the data file under the specified path.
+* `export ./data.json` will create the data file in the same folder as EmployeeManager.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 The export command will **overwrite** any file with the same name in the specified location.
@@ -442,19 +436,21 @@ Exits the program.
 
 Format: `exit`
 
-### Specifying file path
-Valid file paths used in the `export` and `import` command depends on the operating system (OS). Listed below are
+### Specifying data file path
+The data file path used in `export` and `import` command must refer to a `.json` file. The extension `.json` is 
+also case-sensitive. Valid file paths also depends on the operating system (OS). Listed below are
 examples of different file path formats and their result.
 
+| Path                   | Description                                                                                                                                                |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `data.json`            | The file `data.json` in the same directory where `EmployeeManager.jar` is located in.                                                                      |
+| `/Documents/data.json` | The slash `/` at the front represent an absolute file path from root of the **current drive**. E.g. It might point to `C:/Documents/data.json` in Windows. |
+| `Documents/data.json`  | With no slash `/` at the front, it is a relative path from the directory where `EmployeeManager.jar` is located in.                                        |
+| `./data.json`          | A dot `.` at the front is also a relative path from the directory where `EmployeeManager.jar` is located in.                                               |
 
-| Path                     | Description                                                                                                                                                |
-|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `data.json`              | The file `data.json` in the same directory where `EmployeeManager.jar` is located in.                                                                      |
-| `/Documents/data.json`   | The slash `/` at the front represent an absolute file path from root of the **current drive**. E.g. It might point to `C:/Documents/data.json` in Windows. |
-| `Documents/data.json`    | With no slash `/` at the front, it is a relative path from the directory where `EmployeeManager.jar` is located in.                                        |
-
-* Valid files names can consist only of the extension e.g. `.json`. On most OS, the file will be treated as a hidden 
-file and only visible by changing settings. It is thus not recommended to export data file without a name.
+* Valid files names can consist only of the extension without a name e.g. `.json`. On most systems, the file will be 
+treated as a hidden file and only visible by changing settings. It is thus not recommended to export data file without 
+a name.
 
 
 
@@ -501,11 +497,11 @@ To safeguard against potential data loss, we recommend backing up the original d
 | **Delete**    | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                 |
 | **Edit**      | `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`<br> e.g., `edit 1 p/91234567 e/johndoe@example.com`, `edit 2 n/Betsy Crower`                                                                                    |
 | **Exit**      | `exit`                                                                                                                                                                                                                                              |
-| **Export**    | `export FILE_PATH`<br> e.g., `export C:\Users\user\Downloads\EmployeeList.json`                                                                                                                                                                     |
+| **Export**    | `export FILE_PATH`<br> e.g., `export ./data.json`                                                                                                                                                                                                   |
 | **Find**      | `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`<br> e.g., `find n/John`, `find i/A00 p/9001`, `find r/executive manager` |
 | **History**   | `history N`<br> e.g., `history 2`                                                                                                                                                                                                                   |
 | **Increment** | `increment INCREMENT`<br> e.g., `increment 1000`, `increment -100.65`                                                                                                                                                                               |
-| **Import**    | `import FILE_PATH`<br> e.g., `import C:\Users\user\Downloads\EmployeeList.json`                                                                                                                                                                     |
+| **Import**    | `import FILE_PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                   |
 | **List**      | `list`                                                                                                                                                                                                                                              |
 | **Redo**      | `redo`                                                                                                                                                                                                                                              |
 | **Sort**      | `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`<br> e.g., `sort i/`, `sort n/`, `sort p/`                                                                                                                                                                 |
