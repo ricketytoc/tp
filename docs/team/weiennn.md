@@ -31,8 +31,8 @@ Given below are my contributions to the project.
       * Updated the `clear` command section.
       * Updated the `help` command section.
     * Developer Guide:
-      * Updated the links to our repo Github page. 
+      * Updated the links to our repo GitHub page. 
       * Added the `history` command section and the `history` class diagram.
-      * Updated the `clear` command section.
+      * Updated the `clear` command section and the `clear` command sequence diagram.
       * Updated the `help` command section.
       * Added multiple Use Cases.

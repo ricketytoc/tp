@@ -9,15 +9,15 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
+* Some code adapted from [Marco Jakob's JavaFX Tutorial](http://code.makery.ch/library/javafx-8-tutorial/) 
 
-* Some code inspired by https://github.com/se-edu/addressbook-level4 by CS2103T Teaching Team
+* Some code inspired by [SE-EDU AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
 
-* Copyright by Susumu Yoshida - http://www.mcdodesign.com/
-  * address_book_32.png
+* Copyright by Susumu Yoshida - [Mcdodesign](http://www.mcdodesign.com/)
+  * address_book_32
 
-* Copyright by Jan Jan Kovařík - http://glyphicons.com/
-  * calendar.png
+* Copyright by Jan Jan Kovařík - [Glyphicons](http://glyphicons.com/)
+  * calendar
 
 --------------------------------------------------------------------------------------------------------------------
 
