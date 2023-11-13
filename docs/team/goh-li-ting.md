@@ -45,10 +45,11 @@ Given below are my contributions to the project.
   * Updated `index.md` [#73](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/73)
 
 * **Review/mentoring contributions**:
-  * 14 pull requests reviewed (with non-trivial comments):
+  * 19 pull requests reviewed (with non-trivial comments):
     e.g. [#115](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/115),
     [#133](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/133),
     [#196](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/196)
+    * 60 pull requests reviewed in total
 
 * **Contributions beyond the project team**:
   * Reported bugs and suggestions for other team:
