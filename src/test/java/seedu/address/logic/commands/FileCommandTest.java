@@ -37,7 +37,7 @@ class FileCommandTest {
      * Tests the isValidDataFilePath function of abstract class FileCommand.
      */
     @Test
-    void isValidDataFilePath_invalidPath_falseReturned() {
+    public void isValidDataFilePath_invalidPath_falseReturned() {
         // Directory Paths
         FileCommand fileCommand = new ImportCommand(Path.of(ROOT_ONLY));
         assertFalse(fileCommand.isValidDataFilePath());
@@ -68,7 +68,7 @@ class FileCommandTest {
     }
 
     @Test
-    void isValidDataFilePath_validPath_trueReturned() {
+    public void isValidDataFilePath_validPath_trueReturned() {
         FileCommand fileCommand = new ImportCommand(Path.of(ROOT_FILE));
         assertTrue(fileCommand.isValidDataFilePath());
 
