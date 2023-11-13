@@ -43,6 +43,7 @@ Given below are my contributions to the project.
   * Created and closed issues
   * Wrote introduction and command line interface section for user guide
   * Updated `index.md` [#73](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/73)
+  * Added v1.4 release
 
 * **Review/mentoring contributions**:
   * 19 pull requests reviewed (with non-trivial comments):
