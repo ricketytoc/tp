@@ -358,7 +358,7 @@ Imports an EmployeeManager data file into the application.
 Format: `import FILE_PATH`
 
 * Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
-* The data file must be of `.json` file type. Otherwise, an error will be shown.
+* The data file must be of `.json` file type. Otherwise, an error message will be shown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
 
@@ -393,7 +393,7 @@ Exports the data file in EmployeeManager to the specified path.
 Format: `export FILE_PATH`
 
 * Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
-* The data file must be of `.json` file type. Otherwise, an error will be shown.
+* The data file must be of `.json` file type. Otherwise, an error message will be shown.
 * The file path must be valid, and the application must have permission to write to the directory.
 
 Examples:

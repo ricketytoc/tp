@@ -644,10 +644,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user enters an invalid attribute.
-    * 1a1. EmployeeManager informs user that the attribute is invalid.
-    * 1a2. User enters a new attribute.
-    * Steps 1a1-1a2 are repeated until the attribute is valid.
-    * Use case resumes from step 2.
+    * 1b1. EmployeeManager shows an error message.
+
+  Use case ends.
+
+
+* 1b. The user enters multiple attributes.
+    * 1b1. EmployeeManager shows an error message.
+  
+  Use case ends.
 
 **Use case: UC9 - Export data file**
 
