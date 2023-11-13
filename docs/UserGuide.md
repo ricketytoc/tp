@@ -28,15 +28,12 @@ If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 ## Table of contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -76,8 +73,6 @@ If you are an **experienced user**:
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## How to use command line interface
 
 <img src="images/CommandLineGuide.png" width="700" />
@@ -95,8 +90,6 @@ If you are an **experienced user**:
    * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## Prefix summary
 
 The prefixes are commonly used in commands such as `add`, `edit`, `find`, and `sort`.
@@ -117,8 +110,6 @@ to succeed.
 | `s/`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -403,7 +394,9 @@ Format: `export FILE_PATH`
 
 * Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
-* The file path must be valid, and the application must have permission to write to the file path.
+* The file path must be valid, and the application must have permission to save to the file path.
+* Depending on your system and user permission, you might not be allowed to save to certain folders such as
+`C:\Windows`. EmployeeManager will throw an error in such scenarios.
 
 Examples:
 * `export ./data.json` will create the data file in the same folder as EmployeeManager.
@@ -455,11 +448,12 @@ Valid file paths used in the `export` and `import` command depends on the operat
 examples of different file path formats and their result.
 
 
-| Path                     | Description                                                                                                                                                |
-|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `data.json`              | The file `data.json` in the same directory where `EmployeeManager.jar` is located in.                                                                      |
-| `/Documents/data.json`   | The slash `/` at the front represent an absolute file path from root of the **current drive**. E.g. It might point to `C:/Documents/data.json` in Windows. |
-| `Documents/data.json`    | With no slash `/` at the front, it is a relative path from the directory where `EmployeeManager.jar` is located in.                                        |
+| Path                   | Description                                                                                                                                                |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `data.json`            | The file `data.json` in the same directory where `EmployeeManager.jar` is located in.                                                                      |
+| `/Documents/data.json` | The slash `/` at the front represent an absolute file path from root of the **current drive**. E.g. It might point to `C:/Documents/data.json` in Windows. |
+| `Documents/data.json`  | With no slash `/` at the front, it is a relative path from the directory where `EmployeeManager.jar` is located in.                                        |
+| `./data.json`          | A dot `.` at the front is also a relative path from the directory where `EmployeeManager.jar` is located in.                                               |
 
 * Valid files names can consist only of the extension e.g. `.json`. On most OS, the file will be treated as a hidden 
 file and only visible by changing settings. It is thus not recommended to export data file without a name.
@@ -508,11 +502,11 @@ To safeguard against potential data loss, we recommend backing up the original d
 | **Delete**    | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                 |
 | **Edit**      | `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] [s/SALARY]`<br> e.g., `edit 1 p/91234567 e/johndoe@example.com`, `edit 2 n/Betsy Crower`                                                                                    |
 | **Exit**      | `exit`                                                                                                                                                                                                                                              |
-| **Export**    | `export FILE_PATH`<br> e.g., `export C:\Users\user\Downloads\EmployeeList.json`                                                                                                                                                                     |
+| **Export**    | `export FILE_PATH`<br> e.g., `export ./data.json`                                                                                                                                                                                                   |
 | **Find**      | `find [i/KEYWORD] [n/KEYWORD [OTHER KEYWORD]] [p/KEYWORD] [e/KEYWORD [OTHER KEYWORD]] [d/KEYWORD [OTHER KEYWORD]] [r/KEYWORD [OTHER KEYWORD]] [s/LOWERBOUND - UPPERBOUND]`<br> e.g., `find n/John`, `find i/A00 p/9001`, `find r/executive manager` |
 | **History**   | `history N`<br> e.g., `history 2`                                                                                                                                                                                                                   |
 | **Increment** | `increment INCREMENT`<br> e.g., `increment 1000`, `increment -100.65`                                                                                                                                                                               |
-| **Import**    | `import FILE_PATH`<br> e.g., `import C:\Users\user\Downloads\EmployeeList.json`                                                                                                                                                                     |
+| **Import**    | `import FILE_PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                   |
 | **List**      | `list`                                                                                                                                                                                                                                              |
 | **Redo**      | `redo`                                                                                                                                                                                                                                              |
 | **Sort**      | `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`<br> e.g., `sort i/`, `sort n/`, `sort p/`                                                                                                                                                                 |
