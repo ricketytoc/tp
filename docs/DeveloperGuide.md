@@ -225,6 +225,17 @@ to be saved, placing it in the `logic` component is more appropriate. If the com
 across sessions, it might be better to place it in the `model` component, as this layer is generally responsible
 for data to be saved.
 
+### Help feature
+The `help` feature provides users with a summary of the commands and includes a link to the user guide for further reference.
+
+#### Implementation
+ 
+`HelpCommand`: Executes the help command.
+
+When the user inputs a `help` command, the `AddressBookParser` will process the input and create a `HelpCommand`.
+The `HelpCommand` is then executed by `Command#execute(model, commandHistory)` and produces a `CommandResult` that will display 
+the help window to the user.
+
 ### Sort feature
 
 #### Implementation
@@ -250,7 +261,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 </div>
 
   
-### Find Feature
+### Find feature
 
 #### Implementation
 
@@ -272,7 +283,7 @@ The following sequence diagram illustrates how the find feature works:
 
 </div>
 
-### Edit Feature
+### Edit feature
 The `edit` feature allows users to update specific information about certain employees. This feature is supported by 
 three classes, `EditCommand`, `EditCommandParser` and `Model`.
 
@@ -292,7 +303,7 @@ Step 2: `EditCommand` then gets executed. It calls `Model#setPerson()` to update
 The sequence diagram below illustrates how the edit command works: 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-### Increment Feature
+### Increment feature
 
 #### Implementation
 
@@ -405,7 +416,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Clear Feature
+### Clear feature
 
 The `clear` feature is used to clear all persons from the displayed list in EmployeeManager.
 
@@ -417,7 +428,7 @@ delete each person from the filtered list using `Model#deletePerson` until the l
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 
-### Export/Import Feature
+### Export/Import feature
 
 The `export` feature allows the data file to be saved as a `.json` file on the disk. The `import` feature allows a
 data file to be imported from the disk, replacing the current data in the application.
@@ -882,6 +893,12 @@ testers are expected to do more *exploratory* testing.
       Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
       data file).<br>
       Expected: Error details shown in the status message.
+
+### Viewing help window
+
+1. Test case: `help` <br>
+    Expected: A help window should open, accompanied by a success message stating `Opened help window.`.
+
 
 ## **Appendix: Planned Enhancements**
 
