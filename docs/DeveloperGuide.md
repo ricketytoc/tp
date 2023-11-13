@@ -582,24 +582,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to edit an employee with index and new details.
 2. EmployeeManager edits the employee.
 3. EmployeeManager shows an updated list of employees.
-4. Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
-    * 1a1. EmployeeManager informs user that the given index is invalid.
-    * 1a2. User enters new index.
-    * Steps 1a1-1a2 are repeated until the index entered is valid.
-    * Use case resumes from step 2.
+    * 1a1. EmployeeManager shows an error message.
+
+      Use case ends.
+  
 * 1b. EmployeeManager detects invalid information.
-    * 1b1. EmployeeManager informs user that some information is invalid.
-    * 1b2. EmployeeManager requests user to enter details of the employee.
-    * 1b3. User enters the requested details.
-    * Steps 1b1 - 1b3 are repeated until the data entered are correct.
-    * Use case resumes from step 2.
-* 1c. EmployeeManager detects a duplicate ID.
-    * 1c1. EmployeeManager informs user that the employee already exists.
-    * Use case ends.
+    * 1b1. EmployeeManager shows an error message.
+     
+      Use case ends
+  
+* 1c. No details are given.
+    * 1c1. EmployeeManager shows an error message.
+  
+      Use case ends.
+  
+* 1d. EmployeeManager detects a duplicate ID.
+    * 1d1. EmployeeManager shows an error message.
+      
+      Use case ends.
 
 **Use case: UC5 - Find an employee**
 
