@@ -140,9 +140,14 @@ public class FindCommandParserTest {
                 " " + PREFIX_SALARY + "500 -6000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // Invalid Salary input : negative numbers
+        // Invalid Salary input : lower bound negative number
         assertParseFailure(parser,
-                " " + PREFIX_SALARY + "-500 - 6000",
+                " " + PREFIX_SALARY + "-1 - 6000",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Invalid Salary input : upper bound negative number
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "1 - -6000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Salary input : lowerBound bigger than upperBound
@@ -150,16 +155,20 @@ public class FindCommandParserTest {
                 " " + PREFIX_SALARY + "5000 - 4000",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // Invalid Salary input : upperBound is bigger than max salary
+        // (BVA) Invalid Salary input : upperBound is one more than max salary
         int maxSalaryPlusOne = Salary.MAXIMUM_SALARY + 1;
         assertParseFailure(parser,
                 " " + PREFIX_SALARY + "5000 - " + maxSalaryPlusOne,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // Invalid Salary input : upperBound is a lot bigger than max salary
-        int maxSalaryPlusPLus = Salary.MAXIMUM_SALARY + 10000000;
+        // (BVA) Invalid Salary input : upperBound is the max size of long
         assertParseFailure(parser,
-                " " + PREFIX_SALARY + "5000 - " + maxSalaryPlusPLus,
+                " " + PREFIX_SALARY + "5000 - 9223372036854775807",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // (BVA) Invalid Salary input : upperBound is larger than a long can hold
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "5000 - 9223372036854775808",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Find Command args : ID argument contains "/"
@@ -212,7 +221,7 @@ public class FindCommandParserTest {
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
 
-        // Salary attribute - Boundary Value Analysis: lower bound and upper bound are both max salary
+        // (BVA) Salary attribute: lower bound and upper bound are both max salary
         predicateList.clear();
         predicateList.add(new SalaryWithinRangePredicate(Salary.MAXIMUM_SALARY_LONG, Salary.MAXIMUM_SALARY_LONG));
         expectedFindCommand =
@@ -220,14 +229,14 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_SALARY + Salary.MAXIMUM_SALARY + " - " + Salary.MAXIMUM_SALARY,
                 expectedFindCommand);
 
-        // Salary attribute - Boundary Value Analysis: lower and upper bound are both zero
+        // (BVA) Salary attribute: lower and upper bound are both zero
         predicateList.clear();
         predicateList.add(new SalaryWithinRangePredicate(0, 0));
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "0 - 0", expectedFindCommand);
 
-        // Salary attribute - Boundary Value Analysis: lower bound is zero and upper bound is max salary
+        // (BVA) Salary attribute: lower bound is zero and upper bound is max salary
         predicateList.clear();
         predicateList.add(new SalaryWithinRangePredicate(0, Salary.MAXIMUM_SALARY_LONG));
         expectedFindCommand =
