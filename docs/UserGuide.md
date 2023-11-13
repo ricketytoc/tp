@@ -131,8 +131,6 @@ to succeed.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ### Viewing help : `help`
 
 Shows a message explaining how to use the commands and where to look for more detailed help.
@@ -140,8 +138,6 @@ Shows a message explaining how to use the commands and where to look for more de
 Format: `help`
 
 ![help message](images/helpMessage.png)
-
-<div style="page-break-after: always;"></div>
 
 ### Adding an employee: `add`
 
@@ -155,15 +151,11 @@ Examples:
 * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` Adds an employee `John Doe` into the list.
 * Adding John Doe into EmployeeManager followed by executing `add i/A00001 n/Betsy Crowe p/82517642 e/betsycrowe@example.com d/Finance r/Intern s/1200.11` will **not** add Betsy into the list.
 
-<div style="page-break-after: always;"></div>
-
 ### Listing all employees : `list`
 
 Shows a list of all employees in EmployeeManager.
 
 Format: `list`
-
-<div style="page-break-after: always;"></div>
 
 ### Editing an employee : `edit`
 
