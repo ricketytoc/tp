@@ -228,7 +228,7 @@ public class FindCommandParserTest {
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + Salary.MAXIMUM_SALARY + " - " + Salary.MAXIMUM_SALARY,
                 expectedFindCommand);
-        
+
         // (BVA) Salary attribute: lower and upper bound are both zero
         predicateList.clear();
         predicateList.add(new SalaryWithinRangePredicate(0, 0));
