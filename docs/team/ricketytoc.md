@@ -18,8 +18,7 @@ Given below are my contributions to the project.
     * **New Feature**: Extended upon the Find feature so that users can find employees by all of their attributes instead of only by their names. 
     * What it does: This feature allows the user to find employees based on multiple attributes in one find command. 
     * Justification: This extension allows the user to find a more specific group of employees that they are interested in. This is useful when used in conjunction with the bulk features such as the Clear and Increment feature as it allows the user to narrow down the employees to the ones he is interested in and then execute a bulk command on all the found employees.
-    * Highlights: This extension requires the user to enter the Find command in a specific format which differs from attribute to attribute. For example the parameter structure for finding an employee by name differs from that for finding by salary. It was challenging to decide what would be the best way to search for different attributes and it was also difficult to make the user guide clear so that users are clear about the nuances in the formatting. 
-    * _Coming soon_
+    * Highlights: This extension requires the user to enter the Find command in a specific format which differs from attribute to attribute. For example the parameter structure for finding an employee by name differs from that for finding by salary. It was challenging to decide what would be the best way to search for different attributes and it was also difficult to make the user guide clear so that users are clear about the nuances in the formatting.
 
 * **Documentation**:
     * User Guide:
@@ -32,10 +31,15 @@ Given below are my contributions to the project.
         * Add manual testing for `find`.
 
 * **Contributions to team-based tasks**:
-    * To be added soon
+    * Set up Github Pages for the team's project website.
+    * Gave my insights during team meetings.
+    * Tested EmployeeManager and communicated found bugs to teammates.
 
 * **Review/mentoring contributions**:
-    * To be added soon
+    * Approved and reviewed 19 PRs from teammates.
 
 * **Contributions beyond the project team**:
-    * To be added soon
+    * Reported bugs and suggestions for other team:
+      e.g. [#146](https://github.com/AY2324S1-CS2103T-T12-3/tp/issues/146),
+      [#150](https://github.com/AY2324S1-CS2103T-T12-3/tp/issues/150),
+      [#160](https://github.com/AY2324S1-CS2103T-T12-3/tp/issues/160)

@@ -29,26 +29,24 @@ public class ExportCommand extends FileCommand {
     public static final String MESSAGE_SUMMARY = "Export: " + COMMAND_WORD + " FILE_PATH" + "\n"
             + "Example: " + COMMAND_WORD + " " + "./mydata/persons.json" + "\n";
 
-    private final Path filePath;
-
     /**
      * Creates an ExportCommand to export the data file to the specified {@code Path}
      */
     public ExportCommand(Path filePath) {
+        super(filePath);
         requireNonNull(filePath);
-        this.filePath = filePath;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        if (!isValidDataFilePath(filePath)) {
+        if (!isValidDataFilePath()) {
             throw new CommandException(MESSAGE_INVALID_FILE_PATH);
         }
 
         // Attempt to save address book into disk
         try {
-            new JsonAddressBookStorage(filePath).saveAddressBook(model.getAddressBook(), filePath);
+            new JsonAddressBookStorage(getFilePath()).saveAddressBook(model.getAddressBook(), getFilePath());
         } catch (IOException ex) {
             throw new CommandException(MESSAGE_FAILURE + ": " + ex.getMessage());
         }
@@ -67,6 +65,6 @@ public class ExportCommand extends FileCommand {
         }
 
         ExportCommand otherExportCommand = (ExportCommand) other;
-        return filePath.equals(otherExportCommand.filePath);
+        return getFilePath().equals(otherExportCommand.getFilePath());
     }
 }

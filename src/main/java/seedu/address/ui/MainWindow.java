@@ -28,6 +28,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String DEFAULT_FILE_NAME = "data.json";
+    private static final String FILECHOOSER_IMPORT_TITLE = "Choose Import File";
+    private static final String FILECHOOSER_EXPORT_TITLE = "Choose Export Location";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -151,36 +154,55 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the file chooser window and executes the import command on the selected file.
+     */
     @FXML
     public void handleImport() {
-        handleFileOperation("Choose Import File", ImportCommand.COMMAND_WORD, true);
+        handleFileOperation(FILECHOOSER_IMPORT_TITLE, ImportCommand.COMMAND_WORD);
     }
 
+    /**
+     * Opens the file chooser window and executes the export command at the selected path.
+     */
     @FXML
     public void handleExport() {
-        handleFileOperation("Choose Export Location", ExportCommand.COMMAND_WORD, false);
+        handleFileOperation(FILECHOOSER_EXPORT_TITLE, ExportCommand.COMMAND_WORD);
     }
 
-    private void handleFileOperation(String title, String commandWord, boolean isImport) {
+    /**
+     * Opens the file chooser window for a file operation, allowing the user to select a file or specify a location.
+     * Executes the corresponding command based on the operation type (import or export) and the selected
+     * file or location.
+     * @param title The title of the file chooser window.
+     * @param commandWord The command word associated with the file operation. (Either ImportCommand or ExportCommand)
+     */
+    private void handleFileOperation(String title, String commandWord) {
+        // Only import and export command words are allowed
+        assert(commandWord.equals(ImportCommand.COMMAND_WORD) || commandWord.equals(ExportCommand.COMMAND_WORD));
+
+        // Initialize file choose window
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(title);
         FileChooser.ExtensionFilter extFilter = getJsonExtensionFilter();
         fileChooser.getExtensionFilters().add(extFilter);
         fileChooser.setSelectedExtensionFilter(extFilter);
-
-        fileChooser.setInitialFileName("data.json");
+        fileChooser.setInitialFileName(DEFAULT_FILE_NAME);
 
         File selectedFile;
-        if (isImport) {
+        if (commandWord.equals(ImportCommand.COMMAND_WORD)) {
             selectedFile = fileChooser.showOpenDialog(primaryStage);
         } else {
             selectedFile = fileChooser.showSaveDialog(primaryStage);
         }
 
+        // The selectedFile will be null if no file was selected in the file chooser window. The operation will
+        // be cancelled by exiting this function.
         if (selectedFile == null) {
             return;
         }
 
+        // Execute the import/export command based on the selected file.
         try {
             String commandString = commandWord + " " + selectedFile.toPath();
             executeCommand(commandString);
