@@ -2,13 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -25,15 +21,12 @@ public class Person {
     private final Role role;
     private final Salary salary;
 
-    // Data fields
-    private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */
     public Person(Id id, Name name, Phone phone, Email email, Department department,
-                  Role role, Salary salary, Set<Tag> tags) {
-        requireAllNonNull(id, name, phone, email, department, role, salary, tags);
+                  Role role, Salary salary) {
+        requireAllNonNull(id, name, phone, email, department, role, salary);
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -41,7 +34,6 @@ public class Person {
         this.department = department;
         this.role = role;
         this.salary = salary;
-        this.tags.addAll(tags);
     }
 
     public Id getId() {
@@ -72,14 +64,6 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
-    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -89,7 +73,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getId().equals(getId());
     }
 
     /**
@@ -114,14 +98,13 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && department.equals(otherPerson.department)
                 && role.equals(otherPerson.role)
-                && salary.equals(otherPerson.salary)
-                && tags.equals(otherPerson.tags);
+                && salary.equals(otherPerson.salary);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, phone, email, department, role, salary, tags);
+        return Objects.hash(id, name, phone, email, department, role, salary);
     }
 
     @Override
@@ -134,7 +117,6 @@ public class Person {
                 .add("department", department)
                 .add("role", role)
                 .add("salary", salary)
-                .add("tags", tags)
                 .toString();
     }
 

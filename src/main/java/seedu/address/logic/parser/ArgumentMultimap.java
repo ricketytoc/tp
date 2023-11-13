@@ -56,6 +56,13 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns whether {@code prefix} exists inside the map.
+     */
+    public boolean hasPrefix(Prefix prefix) {
+        return argMultimap.containsKey(prefix);
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
@@ -74,5 +81,14 @@ public class ArgumentMultimap {
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    /**
+     * Returns the total number of non-empty prefixes in the argMultimap.
+     */
+    public int getPrefixCount() {
+        return (int) argMultimap.keySet().stream()
+                .filter(prefix -> !prefix.getPrefix().isBlank())
+                .count();
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -9,11 +10,14 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -24,6 +28,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String DEFAULT_FILE_NAME = "data.json";
+    private static final String FILECHOOSER_IMPORT_TITLE = "Choose Import File";
+    private static final String FILECHOOSER_EXPORT_TITLE = "Choose Export Location";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -110,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getSortedFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -146,6 +153,68 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    /**
+     * Opens the file chooser window and executes the import command on the selected file.
+     */
+    @FXML
+    public void handleImport() {
+        handleFileOperation(FILECHOOSER_IMPORT_TITLE, ImportCommand.COMMAND_WORD);
+    }
+
+    /**
+     * Opens the file chooser window and executes the export command at the selected path.
+     */
+    @FXML
+    public void handleExport() {
+        handleFileOperation(FILECHOOSER_EXPORT_TITLE, ExportCommand.COMMAND_WORD);
+    }
+
+    /**
+     * Opens the file chooser window for a file operation, allowing the user to select a file or specify a location.
+     * Executes the corresponding command based on the operation type (import or export) and the selected
+     * file or location.
+     * @param title The title of the file chooser window.
+     * @param commandWord The command word associated with the file operation. (Either ImportCommand or ExportCommand)
+     */
+    private void handleFileOperation(String title, String commandWord) {
+        // Only import and export command words are allowed
+        assert(commandWord.equals(ImportCommand.COMMAND_WORD) || commandWord.equals(ExportCommand.COMMAND_WORD));
+
+        // Initialize file choose window
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(title);
+        FileChooser.ExtensionFilter extFilter = getJsonExtensionFilter();
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setSelectedExtensionFilter(extFilter);
+        fileChooser.setInitialFileName(DEFAULT_FILE_NAME);
+
+        File selectedFile;
+        if (commandWord.equals(ImportCommand.COMMAND_WORD)) {
+            selectedFile = fileChooser.showOpenDialog(primaryStage);
+        } else {
+            selectedFile = fileChooser.showSaveDialog(primaryStage);
+        }
+
+        // The selectedFile will be null if no file was selected in the file chooser window. The operation will
+        // be cancelled by exiting this function.
+        if (selectedFile == null) {
+            return;
+        }
+
+        // Execute the import/export command based on the selected file.
+        try {
+            String commandString = commandWord + " " + selectedFile.toPath();
+            executeCommand(commandString);
+        } catch (CommandException | ParseException e) {
+            // Exceptions are already handled in executeCommand
+        }
+    }
+
+    private FileChooser.ExtensionFilter getJsonExtensionFilter() {
+        return new FileChooser.ExtensionFilter("Json files (*.json)", "*.json");
+    }
+
 
     void show() {
         primaryStage.show();

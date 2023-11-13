@@ -123,6 +123,66 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsLettersIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for letter sequence: null, empty, spacing in between letter sequence
+     * Invalid equivalence partitions for email: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsLettersIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com",
+                null));
+    }
+
+    @Test
+    public void containsLettersIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Letter parameter cannot be empty", ()
+                -> StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "  "));
+    }
+
+    @Test
+    public void containsLettersIgnoreCase_spacingBetweenLetters_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Letter parameter should not have any spacing between them", ()
+                -> StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "alice yeoh"));
+    }
+
+    @Test
+    public void containLettersIgnoreCase_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsLettersIgnoreCase(null, "alice"));
+    }
+
+    @Test
+    public void containsLettersIgnoreCase_validInputs_correctResult() {
+
+        // Empty email
+        assertFalse(StringUtil.containsLettersIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsLettersIgnoreCase("    ", "123"));
+
+        // Does not contain letter sequence
+        assertFalse(StringUtil.containsLettersIgnoreCase("aliceyeoh@examplecom", "teo"));
+        // Sentence word bigger than query word
+
+
+        // Email contains letter sequence, different upper/lower case letters
+
+        // Starting part of email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "alice"));
+        // Ending part of email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", ".com"));
+        // Email has different cases
+        assertTrue(StringUtil.containsLettersIgnoreCase("AlIceYeoh@examplecom", "alice"));
+        // Exact email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "aliceyeoh@example.com"));
+        // Leading/trailing spaces
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeoh@example.com", "  Alice  "));
+
+        // Matches multiple letter sequences in one email
+        assertTrue(StringUtil.containsLettersIgnoreCase("aliceyeohalice@example.com", "AliCe"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
@@ -139,5 +199,4 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
-
 }

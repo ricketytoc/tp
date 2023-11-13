@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Employee's ID in EmployeeManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class Id {
+public class Id implements Comparable<Id> {
     public static final String MESSAGE_CONSTRAINTS =
             "Employee IDs should only contain alphanumeric characters, and it should not be blank";
 
@@ -60,5 +60,10 @@ public class Id {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Id other) {
+        return this.value.compareTo(other.value);
     }
 }
