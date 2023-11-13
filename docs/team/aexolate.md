@@ -39,3 +39,13 @@ Given below are my contributions to the project.
   * Set up GitHub team organisation and repository.
   * Incorporated artifact building in the project workflow to streamline testing when reviewing pull requests.
   * Released v1.2 JAR File.
+* **Review/mentoring contributions**:
+  * 48 pull requests reviewed (with non-trivial comments):
+    e.g. [#251](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/251),
+    [#155](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/155),
+  * [#107](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/107)
+* **Contributions beyond the project team**:
+  * Reported bugs and suggestions for other team:
+    e.g. [#193](https://github.com/AY2324S1-CS2103T-T17-4/tp/issues/193),
+    [#91](https://github.com/AY2324S1-CS2103-F13-4/tp/issues/91),
+    [#90](https://github.com/AY2324S1-CS2103-F13-4/tp/issues/90)
