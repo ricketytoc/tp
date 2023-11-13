@@ -719,7 +719,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  **Cross-platform Capability**: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  **Storage Capacity**: Should be able to store up to `200` persons without a noticeable sluggishness in performance for typical usage.
+2.  **Performance**: Should be able to store up to `200` persons without a noticeable sluggishness in performance for typical usage.
 3.  **UI Responsiveness**: The UI should respond to user interaction. 
 4.  **Error Handling**: Should gracefully handle input errors without system crash and data loss.
 5.  **Code Documentation**: Code should be well-documented to facilitate maintenance and updates.
