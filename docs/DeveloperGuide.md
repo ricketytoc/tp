@@ -827,9 +827,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing an employee
 1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
+
 1. Test case: `edit 1 n/John Tan`<br>
    Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
->
 
 1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
    Expected: Similar to previous, the respective fields gets edited.
