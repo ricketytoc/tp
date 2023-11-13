@@ -388,7 +388,7 @@ Format: `export FILE_PATH`
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
 * The file path must be valid, and the application must have permission to save to the file path.
 * Depending on your system and user permission, you might not be allowed to save to certain folders such as
-`C:\Windows`. EmployeeManager will show an error in such scenarios.
+`C:\Windows`. EmployeeManager will show an error message in such scenarios.
 
 Examples:
 * `export ./data.json` will create the data file in the same folder as EmployeeManager.
