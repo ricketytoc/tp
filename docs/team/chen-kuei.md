@@ -22,7 +22,10 @@ Given below are my contributions to the project.
         * FAQ([#67](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/67))
         * Command Summary([#143](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/143))
     * Developer Guide:
-        * `Edit` feature([#144](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/144))
+        * Implementation - `Edit` feature([#144](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/144))
+        * Use cases - `Edit` feature
+        * Non-functional requirements
+        * Glossary
 
 * **Contributions to team-based tasks**:
     * PRs reviewed with non-trivial review comments([#141](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/141))
