@@ -611,19 +611,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1d1. EmployeeManager shows an error message.<br>
       Use case ends.
 
-**Use case: UC5 - Find an employee**
+**Use case: UC5 - Find employees from a department**
 
 **MSS**
 
-1. User requests to find an employee with name and surname
-2. EmployeeManager finds all employees whose names contain either the full name or surname keyword 
+1. User requests to find employees in a department.
+2. EmployeeManager finds all employees who are in the department.
 3. EmployeeManager updates the displayed list with the found employees.<br>
    Use case ends.
 
 
 **Extensions**
 
-* 1a. The user did not use a valid predefined prefix to search for employee by name
+* 1a. The user input is invalid.
   * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
