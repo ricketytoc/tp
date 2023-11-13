@@ -198,7 +198,7 @@ three classes, `CommandHistory`, `HistoryCommandParser` and `HistoryCommand`.
 `HistoryCommand`: Executes the history command.  
 
 After a successful user command has been executed `CommandHistory#add(input)` will be called to store the successful 
-user input in the `CommandHistory`. When a user inputs a inputs a history command with the appropriate argument, the 
+user input in the `CommandHistory`. When a user inputs a history command with the appropriate argument, the 
 `AddressBookParser` will be called to produce the `HistoryCommandParser` to properly parse the input. A 
 `HistoryCommand` object will be created. When the `Command#execute(model, commandHistory)` is called on the 
 `HistoryCommand`, the `HistoryCommand` will call `CommandHistory#getUserCommandHistory()` to get the list of
@@ -208,7 +208,7 @@ user has specified.
 ![History Command Class Diagram](images/HistoryCommandClassDiagram.png)
 
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect: Which component should we choose to store CommandHistory:**
 
@@ -473,7 +473,7 @@ duplication as both commands share the same logic for checking the validity of t
 
 **Target user profile**:
 
-* has a need to manage a significant number of employees
+* Oversees a large workforce, ranging from 50 to 200 employees, in a small to medium-sized enterprise.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -488,36 +488,39 @@ spent on data entry tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                                                                                              | So that ...                                                                                 |
-|----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| `*`      | potential user exploring the app    | view the app populated with sample data                                                                   | I can easily see how the app will look when it is in use                                    |
-| `* *`    | user paranoid about losing progress | have the data automatically saved                                                                         | I will not lose any progress when the application shuts down unexpectedly                   |
-| `* *`    | new user                            | clear all current data                                                                                    | I can get rid of experimental data I used for exploring the app                             |
-| `*`      | new user                            | view a user-friendly tutorial of the app                                                                  | I can understand the app's features                                                         |
-| `* * *`  | HR staff member                     | add an employee to the application                                                                        | I can keep track of their details                                                           |
-| `*`      | HR staff member                     | view two employees' details side by side                                                                  | I can easily compare the differences of the employees                                       |
-| `* * *`  | HR staff member                     | edit employees' details                                                                                   | I can keep the details of the employees up-to-date                                          |
-| `* * *`  | HR staff member                     | remove employees who have left the company                                                                | their data does not clutter the application                                                 |
-| `* * *`  | HR staff member                     | search for employees using their names                                                                    | I can find the employee that I am looking for                                               |
-| `* * *`  | HR staff member                     | search for employees based on their departments                                                           | I can obtain the contact information of the employees in a department                       |
-| `* * *`  | HR staff member                     | search for employees based on their roles                                                                 | I can easily increment the pay of all the staff with that role efficiently                  |
-| `* * *`  | HR staff member                     | search for employees using multiple attributes (e.g. department, salary, etc.)                            | I can narrow down my search to a target group of employees                                  |
-| `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                                            | I can easily fetch employees that I have analyzed recently and make my work more convenient |
-| `*`      | HR staff member                     | generate reports on employees' performance                                                                | I can provide the upper management better insights into their employees                     |
-| `* *`    | expert user                         | combine functions together                                                                                | I can save time on commonly performed tasks that requires more than one function            |
-| `* *`    | expert user                         | bind keyboard shortcuts for certain frequently used functions                                             | I can work more efficiently                                                                 |
-| `* * *`  | HR staff member                     | order my search results by various attributes (e.g. name, department, etc.)                               | I can view a list of employees in my desired manner                                         |
-| `* * *`  | long-time user                      | remove unused employee data                                                                               | I am not distracted by irrelevant data                                                      |
-| `* *`    | HR staff member                     | view the history of changes, including who made the change and when the change was made                   | I can use them for auditing purposes                                                        |
-| `* *`    | HR staff member                     | add notes to employees' details                                                                           | I can document important information and interactions                                       |
-| `*`      | advanced user                       | edit the saved data files manually without using the application                                          | I can update and organise new information more conveniently                                 |
-| `*`      | user with poor eyesight             | view the information without straining my eyes by adjusting the text size                                 | it is not difficult for me to use the application                                           |
-| `*`      | HR staff member                     | collect and view an analysis of diversity metrics                                                         | I can promote a more diverse workplace                                                      |
-| `* *`    | HR staff member                     | export and import employee details                                                                        | I can create backups and recover from data corruption                                       |
-| `*`      | HR staff member                     | set performance goals for employees                                                                       | I can align the employees with the company’s objectives                                     |
-| `* *`    | careless HR staff member            | undo my last command                                                                                      | I can easily revert to a copy with no mistakes if I made mistakes                           |
-| `* *`    | careless HR staff member            | redo my command                                                                                           | I can redo a command that I accidentally undid                                              |
-| `* *`    | HR staff member                     | increment and decrement multiple employees' salaries together by the same amount                          | I do not need to repeat the same action for multiple employees                              |
+| Priority | As a …​                             | I want to …​                                                                            | So that ...                                                                                 |
+|----------|-------------------------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `*`      | potential user exploring the app    | view the app populated with sample data                                                 | I can easily see how the app will look when it is in use                                    |
+| `* *`    | user paranoid about losing progress | have the data automatically saved                                                       | I will not lose any progress when the application shuts down unexpectedly                   |
+| `* *`    | new user                            | clear all current data                                                                  | I can get rid of experimental data I used for exploring the app                             |
+| `*`      | new user                            | view a user-friendly tutorial of the app                                                | I can understand the app's features                                                         |
+| `* * *`  | HR staff member                     | add an employee to the application                                                      | I can keep track of their details                                                           |
+| `*`      | HR staff member                     | view two employees' details side by side                                                | I can easily compare the differences of the employees                                       |
+| `* * *`  | HR staff member                     | edit employees' details                                                                 | I can keep the details of the employees up-to-date                                          |
+| `* * *`  | HR staff member                     | remove employees who have left the company                                              | their data does not clutter the application                                                 |
+| `* * *`  | HR staff member                     | search for employees using their names                                                  | I can find the employee that I am looking for                                               |
+| `* * *`  | HR staff member                     | search for employees based on their departments                                         | I can obtain the contact information of the employees in a department                       |
+| `* * *`  | HR staff member                     | search for employees based on their roles                                               | I can easily increment the pay of all the staff with that role efficiently                  |
+| `* * *`  | HR staff member                     | search for employees using multiple attributes (e.g. department, salary, etc.)          | I can narrow down my search to a target group of employees                                  |
+| `*`      | HR staff member                     | view who I have looked at recently when I click the search bar                          | I can easily fetch employees that I have analyzed recently and make my work more convenient |
+| `*`      | HR staff member                     | generate reports on employees' performance                                              | I can provide the upper management better insights into their employees                     |
+| `* *`    | expert user                         | combine functions together                                                              | I can save time on commonly performed tasks that requires more than one function            |
+| `* *`    | expert user                         | bind keyboard shortcuts for certain frequently used functions                           | I can work more efficiently                                                                 |
+| `* * *`  | HR staff member                     | order my search results by various attributes (e.g. name, department, etc.)             | I can view a list of employees in my desired manner                                         |
+| `* * *`  | long-time user                      | remove unused employee data                                                             | I am not distracted by irrelevant data                                                      |
+| `* *`    | HR staff member                     | view the history of changes, including who made the change and when the change was made | I can use them for auditing purposes                                                        |
+| `* *`    | HR staff member                     | add notes to employees' details                                                         | I can document important information and interactions                                       |
+| `*`      | advanced user                       | edit the saved data files manually without using the application                        | I can update and organise new information more conveniently                                 |
+| `*`      | user with poor eyesight             | view the information without straining my eyes by adjusting the text size               | it is not difficult for me to use the application                                           |
+| `*`      | HR staff member                     | collect and view an analysis of diversity metrics                                       | I can promote a more diverse workplace                                                      |
+| `* *`    | HR staff member                     | export and import employee details                                                      | I can create backups and recover from data corruption                                       |
+| `*`      | HR staff member                     | set performance goals for employees                                                     | I can align the employees with the company’s objectives                                     |
+| `* *`    | careless HR staff member            | undo my last command                                                                    | I can easily revert to a copy with no mistakes if I made mistakes                           |
+| `* *`    | careless HR staff member            | redo my command                                                                         | I can redo a command that I accidentally undid                                              |
+| `* *`    | HR staff member                     | increment and decrement multiple employees' salaries together by the same amount        | I do not need to repeat the same action for multiple employees                              |
+| `* *`    | user                                | view a list of commands available for me to use                                         | I can efficiently navigate through the app's features                                       |
+| `* *`    | HR staff member                     | I want to delete all employees displayed in the list                                    | I can efficiently delete employee data based on specific criteria                           |
+| `* *`    | user                                | I want to view the history of my previous commands                                      | I can review and track my past actions within the app                                       |
 
 ### Use cases
 
@@ -609,12 +612,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
     * Use case resumes from step 2.
 
-**Use case: UC6 - View Command History**
+**Use case: UC6 - View command history**
 
 **MSS**
 
-1. User requests to view the command history of a certain number of past commands.
-1. EmployeeManager fetches the required number of recent valid commands from the CommandHistory.
+1. User requests to view a specified number of recent commands.
+1. EmployeeManager fetches the required number of recent commands.
 1. EmployeeManager displays the fetched commands to the user.
 1. Use case ends.
 
@@ -622,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The user enters an invalid number.
     * 1a1. EmployeeManager informs user that the number is invalid.
-    * 1a2. User enters history command with number.
+    * 1a2. User enters new number.
     * Steps 1a1-1a2 are repeated until the number entered is valid.
     * Use case resumes from step 2.
 
@@ -709,9 +712,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample employees. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -735,7 +739,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting an employee from the displayed list
 
-   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+   1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message.
@@ -881,37 +885,37 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-### Export command FILENAME should be a non-empty String
+### 1. Export command FILE_NAME should be a non-empty String
 
-The current implementation of `export` command allows the use of an empty string as the FILENAME, allowing commands like `export .json` to execute successfully.
-While this behaviour is technically allowed on windows, it has led to inconsistencies on other operating systems, 
-where no file is created despite the command executing successfully. To address this, we plan to make the validation checks stricter for the 
-FILENAME in the `export` command. This enhancement will prevent the use of empty strings in FILENAME, 
+The current implementation of `export` command allows the use of an empty string as the FILE_NAME, allowing commands like `export .json` to be executed.
+This behaviour, while functional on Windows, results in the creation of hidden files in other operating systems, leading to inconsistent behavior. 
+To address this, we plan to make the validation checks stricter for the 
+FILE_NAME in the `export` command. This enhancement will prevent the use of empty strings in FILE_NAME, 
 thereby reducing the chances of bugs and ensuring a more consistent experience across different operating systems.
 
-### Allow the use of s/o in name field
+### 2. Allow the use of s/o in name field
 
 The current implementation of EmployeeManager designates `s/` as a prefix for salary. As a result, when the name field includes `s/o`, it triggers 
 several errors such as those related to multiple prefixes or salary constraints. 
 
 ![PlannedEnhancementSOError](images/PlannedEnhancementSOError.png)
 
-We plan to add an escape character, such as a backslash, "\", This will allow more flexibility for name entries. For example, with this enhancement, a command like `edit 1 n/John \s/o dep` would be valid,
+We plan to add an escape character, such as a backslash, "\\", This will allow more flexibility for name entries. For example, with this enhancement, a command like `edit 1 n/John \s/o dep` would be valid,
 changing the name of the person at index one to `John s/o dep`. The `s/o` will be recognised as part of a name rather than a salary prefix.
 
-### Change all mentions of addressbook to employeemanager
+### 3. Change all mentions of addressbook to employeemanager
 
 Our project is a brownfield project adapted from AB3, it contains several references to addressbook such as the `AddressBookParser` and `AddressBook`. 
 While our primary focus has been on enhancing and improving the functionality of the software to cater to our target audience, we recognise the 
 need to have consistent naming conventions for clarity. Therefore, we plan to update all mentions of `addressbook` to `employeemanager`.
 
-### Stringent email validation
+### 4. Stringent email validation
 
 The current implementation of EmployeeManager allows invalid emails such as `abc@gmail`, which fall short of the standard email address formats. 
 We understand the importance of data validation to our target audience, hence we plan add more stringent email validation that checks for proper
 `username@domainname.extension` formatting.
 
-### Improve clarity of success message for `undo` commands
+### 5. Improve clarity of success message for `undo` commands
 
 The current implementation of the `undo` command only shows that the command has been undone successfully, it does not specify what command has been undone. 
 
@@ -919,7 +923,7 @@ The current implementation of the `undo` command only shows that the command has
 
 To enhance user experience and provide detailed feedback to the user, we plan to include the specific command that was undone.
 
-### Improve clarity of success message for `redo` commands
+### 6. Improve clarity of success message for `redo` commands
 
 The current implementation of the `redo` command only shows that the command has been redone successfully, it does not specify what command has been redone.
 
@@ -927,7 +931,7 @@ The current implementation of the `redo` command only shows that the command has
 
 To enhance user experience and provide detailed feedback to the user, we plan to include the specific command that was redone.
 
-### Enhance validation for `sort` command
+### 7. Enhance validation for `sort` command
 
 The current implementation of the `sort` command allows users to input additional values after the sorting prefix, although they will be ignored. 
 For example commands like `sort n/abc` and `sort n/s/` are both valid sort commands that will sort by name. 

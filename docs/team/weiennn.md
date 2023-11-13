@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**:
   * Improved `clear` Command
-    * `clear` command has been updated to only clear the currently displayed list, instead of the whole list.
+    * `clear` command has been improved to only clear the currently displayed list, instead of the whole list.
   * `history` Command
     * Added `history` command to allow users to view their previously entered valid commands.
   * Improved `help` Command
