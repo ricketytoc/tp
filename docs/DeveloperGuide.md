@@ -611,11 +611,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1d1. EmployeeManager shows an error message.<br>
       Use case ends.
 
-**Use case: UC5 - Find an employees from a department**
+**Use case: UC5 - Find employees from a department**
 
 **MSS**
 
-1. User requests to find an employees in a department.
+1. User requests to find employees in a department.
 2. EmployeeManager finds all employees who are in the department.
 3. EmployeeManager updates the displayed list with the found employees.<br>
    Use case ends.
