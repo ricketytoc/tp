@@ -52,6 +52,6 @@ Given below are my contributions to the project.
   * Helped to test new features and check for code quality issues.
 * **Contributions beyond the project team**:
   * Reported bugs and suggestions for other team:
-    e.g. [#193](https://github.com/AY2324S1-CS2103T-T17-4/tp/issues/193),
+    e.g. [#146](https://github.com/AY2324S1-CS2103-F13-4/tp/issues/146),
     [#91](https://github.com/AY2324S1-CS2103-F13-4/tp/issues/91),
     [#90](https://github.com/AY2324S1-CS2103-F13-4/tp/issues/90)
