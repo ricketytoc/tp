@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -26,6 +27,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
+import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryWithinRangePredicate;
 
 public class FindCommandParserTest {
@@ -37,7 +39,58 @@ public class FindCommandParserTest {
         assertParseFailure(parser,
                 "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser,
+                "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_noPrefix_throwsParseException() {
+        assertParseFailure(parser,
+                " alex",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_duplicatePrefix_throwsParseException() {
+        // duplicate name prefix
+        assertParseFailure(parser,
+                " " + PREFIX_NAME + "alex " + PREFIX_NAME + "bernice ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_NAME);
+
+        //duplicate ID prefix
+        assertParseFailure(parser,
+                " " + PREFIX_ID + "A001 " + PREFIX_ID + "A002 ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_ID);
+
+        // duplicate department prefix
+        assertParseFailure(parser,
+                " " + PREFIX_DEPARTMENT + "finance " + PREFIX_DEPARTMENT + "marketing ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_DEPARTMENT);
+
+        // duplicate role prefix
+        assertParseFailure(parser,
+                " " + PREFIX_ROLE + "Manager " + PREFIX_ROLE + "Supervisor ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_ROLE);
+
+        // duplicate email prefix
+        assertParseFailure(parser,
+                " " + PREFIX_EMAIL + "alexyeoh@example.com " + PREFIX_EMAIL + "bernicetan@example.com ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_EMAIL);
+
+        // duplicate salary prefix
+        assertParseFailure(parser,
+                " " + PREFIX_SALARY + "3000 - 4000 " + PREFIX_SALARY + "4000 - 5000 ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_SALARY);
+
+        // duplicate phone prefix
+        assertParseFailure(parser,
+                " " + PREFIX_PHONE + "A001 " + PREFIX_PHONE + "A002 ",
+                MESSAGE_DUPLICATE_FIELDS + PREFIX_PHONE);
+    }
+
+
 
     @Test
     public void parse_emptyPrefix_throwsParseException() {
@@ -71,7 +124,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_invalidInput_throwsParseException() {
+    public void parse_invalidPrefixParameters_throwsParseException() {
         // Invalid Salary input : no numbers
         assertParseFailure(parser,
                 " " + PREFIX_SALARY + "abc - wxy",
@@ -98,13 +151,15 @@ public class FindCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Salary input : upperBound is bigger than max salary
+        int maxSalaryPlusOne = Salary.MAXIMUM_SALARY + 1;
         assertParseFailure(parser,
-                " " + PREFIX_SALARY + "5000 - 1000000001",
+                " " + PREFIX_SALARY + "5000 - " + maxSalaryPlusOne,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        // Invalid Salary input : upperBound is bigger than value that can be stored in Double
+        // Invalid Salary input : upperBound is a lot bigger than max salary
+        int maxSalaryPlusPLus = Salary.MAXIMUM_SALARY + 10000000;
         assertParseFailure(parser,
-                " " + PREFIX_SALARY + "5000 - 1000000000000000000",
+                " " + PREFIX_SALARY + "5000 - " + maxSalaryPlusPLus,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Invalid Find Command args : ID argument contains "/"
@@ -156,6 +211,28 @@ public class FindCommandParserTest {
         expectedFindCommand =
                 new FindCommand(new GeneralPredicate(predicateList));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "1000 - 5000", expectedFindCommand);
+
+        // Salary attribute - Boundary Value Analysis: lower bound and upper bound are both max salary
+        predicateList.clear();
+        predicateList.add(new SalaryWithinRangePredicate(Salary.MAXIMUM_SALARY_LONG, Salary.MAXIMUM_SALARY_LONG));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + Salary.MAXIMUM_SALARY + " - " + Salary.MAXIMUM_SALARY,
+                expectedFindCommand);
+
+        // Salary attribute - Boundary Value Analysis: lower and upper bound are both zero
+        predicateList.clear();
+        predicateList.add(new SalaryWithinRangePredicate(0, 0));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + "0 - 0", expectedFindCommand);
+
+        // Salary attribute - Boundary Value Analysis: lower bound is zero and upper bound is max salary
+        predicateList.clear();
+        predicateList.add(new SalaryWithinRangePredicate(0, Salary.MAXIMUM_SALARY_LONG));
+        expectedFindCommand =
+                new FindCommand(new GeneralPredicate(predicateList));
+        assertParseSuccess(parser, " " + PREFIX_SALARY + "0 - " + Salary.MAXIMUM_SALARY, expectedFindCommand);
 
         // Name attribute - no leading and trailing whitespaces
         predicateList.clear();

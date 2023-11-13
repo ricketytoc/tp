@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.nio.file.Path;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
@@ -15,12 +16,19 @@ import seedu.address.commons.core.increment.Increment;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Department;
+import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.IdContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryWithinRangePredicate;
 
 public class ParserUtilTest {
     private static final String INVALID_ID = "#000000";
@@ -33,6 +41,10 @@ public class ParserUtilTest {
     private static final String INVALID_INCREMENT = "^2";
     private static final String INVALID_HISTORY = "a";
 
+    private static final String INVALID_FIND_KEYWORD = "  ";
+
+    private static final String INVALID_SALARY_RANGE = "4000 - 3000";
+
     private static final String VALID_ID = "A000001";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -42,6 +54,10 @@ public class ParserUtilTest {
     private static final String VALID_SALARY = "5000";
     private static final String VALID_INCREMENT = "1000";
     private static final String VALID_HISTORY = "5";
+    private static final String VALID_SALARY_RANGE = "4000 - 5000";
+    private static final long VALID_LOWER_BOUND = 400000;
+    private static final long VALID_UPPER_BOUND = 500000;
+    private static final String VALID_FIND_KEYWORD = "anything";
 
     private static final String VALID_PATH = "./data/persons.json";
     private static final String INVALID_PATH = "./data/per" + '\0' + "sons.json";
@@ -298,4 +314,178 @@ public class ParserUtilTest {
         // Leading and trailing whitespaces
         assertEquals(1, ParserUtil.parseHistory("  1  "));
     }
+
+    @Test
+    public void parseIdKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIdKeyword((String) null));
+    }
+
+    @Test
+    public void parseIdKeyword_validValueWithoutWhitespace_returnsIdContainsKeywordsPredicate() throws Exception {
+        IdContainsKeywordsPredicate expectedPredicate = new IdContainsKeywordsPredicate(VALID_FIND_KEYWORD);
+        assertEquals(expectedPredicate, ParserUtil.parseIdKeyword(VALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseIdKeyword_validValueWithWhitespace_returnsIdContainsKeywordsPredicate() throws Exception {
+        IdContainsKeywordsPredicate expectedPredicate = new IdContainsKeywordsPredicate(VALID_FIND_KEYWORD);
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_FIND_KEYWORD + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parseIdKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parseIdKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIdKeyword(INVALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseNameKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNameKeyword((String) null));
+    }
+
+    @Test
+    public void parseNameKeyword_validValueWithoutWhitespace_returnsNameContainsKeywordsPredicate() throws Exception {
+        NameContainsKeywordsPredicate expectedPredicate = new NameContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        assertEquals(expectedPredicate, ParserUtil.parseNameKeyword(VALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseNameKeyword_validValueWithWhitespace_returnsNameContainsKeywordsPredicate() throws Exception {
+        NameContainsKeywordsPredicate expectedPredicate = new NameContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_FIND_KEYWORD + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parseNameKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parseNameKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNameKeyword(INVALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseRoleKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoleKeyword((String) null));
+    }
+
+    @Test
+    public void parseRoleKeyword_validValueWithoutWhitespace_returnsRoleContainsKeywordsPredicate() throws Exception {
+        RoleContainsKeywordsPredicate expectedPredicate = new RoleContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        assertEquals(expectedPredicate, ParserUtil.parseRoleKeyword(VALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseRoleKeyword_validValueWithWhitespace_returnsRoleContainsKeywordsPredicate() throws Exception {
+        RoleContainsKeywordsPredicate expectedPredicate = new RoleContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_FIND_KEYWORD + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parseRoleKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parseRoleKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoleKeyword(INVALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseDepartmentKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDepartmentKeyword((String) null));
+    }
+
+    @Test
+    public void parseDepartmentKeyword_validValueWithoutWhitespace_returnsDepartmentContainsKeywordsPredicate()
+            throws Exception {
+        DepartmentContainsKeywordsPredicate expectedPredicate = new DepartmentContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        assertEquals(expectedPredicate, ParserUtil.parseDepartmentKeyword(VALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseDepartmentKeyword_validValueWithWhitespace_returnsDepartmentContainsKeywordsPredicate()
+            throws Exception {
+        DepartmentContainsKeywordsPredicate expectedPredicate = new DepartmentContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_FIND_KEYWORD + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parseDepartmentKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parseDepartmentKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDepartmentKeyword(INVALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseEmailKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmailKeyword((String) null));
+    }
+
+    @Test
+    public void parseEmailKeyword_validValueWithoutWhitespace_returnsEmailContainsKeywordsPredicate() throws Exception {
+        EmailContainsKeywordsPredicate expectedPredicate = new EmailContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        assertEquals(expectedPredicate, ParserUtil.parseEmailKeyword(VALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseEmailKeyword_validValueWithWhitespace_returnsEmailContainsKeywordsPredicate() throws Exception {
+        EmailContainsKeywordsPredicate expectedPredicate = new EmailContainsKeywordsPredicate(Collections
+                .singletonList(VALID_FIND_KEYWORD));
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_FIND_KEYWORD + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parseEmailKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parseEmailKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmailKeyword(INVALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parsePhoneKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhoneKeyword((String) null));
+    }
+
+    @Test
+    public void parsePhoneKeyword_validValueWithoutWhitespace_returnsPhoneContainsKeywordsPredicate() throws Exception {
+        PhoneContainsKeywordsPredicate expectedPredicate = new PhoneContainsKeywordsPredicate(VALID_FIND_KEYWORD);
+        assertEquals(expectedPredicate, ParserUtil.parsePhoneKeyword(VALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parsePhoneKeyword_validValueWithWhitespace_returnsPhoneContainsKeywordsPredicate() throws Exception {
+        PhoneContainsKeywordsPredicate expectedPredicate = new PhoneContainsKeywordsPredicate(VALID_FIND_KEYWORD);
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_FIND_KEYWORD + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parsePhoneKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parsePhoneKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneKeyword(INVALID_FIND_KEYWORD));
+    }
+
+    @Test
+    public void parseSalaryKeyword_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSalaryKeyword((String) null));
+    }
+
+    @Test
+    public void parseSalaryKeyword_validValueWithoutWhitespace_returnsSalaryWithinRangePredicate() throws Exception {
+        SalaryWithinRangePredicate expectedPredicate = new SalaryWithinRangePredicate(VALID_LOWER_BOUND,
+                VALID_UPPER_BOUND);
+        assertEquals(expectedPredicate, ParserUtil.parseSalaryKeyword(VALID_SALARY_RANGE));
+    }
+
+    @Test
+    public void parseSalaryKeyword_validValueWithWhitespace_returnsSalaryWithinRangePredicate() throws Exception {
+        SalaryWithinRangePredicate expectedPredicate = new SalaryWithinRangePredicate(VALID_LOWER_BOUND,
+                VALID_UPPER_BOUND);
+        String validKeywordWithWhitespaces = WHITESPACE + VALID_SALARY_RANGE + WHITESPACE;
+        assertEquals(expectedPredicate, ParserUtil.parseSalaryKeyword(validKeywordWithWhitespaces));
+    }
+
+    @Test
+    public void parseSalaryKeyword_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSalaryKeyword(INVALID_SALARY_RANGE));
+    }
+
 }
