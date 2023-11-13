@@ -544,7 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to view all employees.
 1. EmployeeManager shows a list of employees.
-1. Use case ends.
+</br>Use case ends.
 
 **Use case: UC2 - Add a new employee**
 
@@ -553,23 +553,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new employee with the employee's details.
 1. EmployeeManager adds the employee.
 1. EmployeeManager shows an updated list of employees.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
 * 1a. EmployeeManager detects that not all required information is entered.
-  * 1a1. EmployeeManager informs user that some information is missing.
-  * 1a2. User enters the employee's details.
-  * Steps 1a1 - 1a2 are repeated until the data entered is correct.
-  * Use case resumes from step 2.
+  * 1a1. EmployeeManager shows an error message.
+
+  Use case ends.
 * 1b. EmployeeManager detects invalid information.
-  * 1b1. EmployeeManager informs user that some information is invalid.
-  * 1b2. User enters the employee's details.
-  * Steps 1b1 - 1b2 are repeated until the data entered is correct.
-  * Use case resumes from step 2.
+  * 1b1. EmployeeManager shows an error message.
+
+  Use case ends.
 * 1c. EmployeeManager detects a duplicate employee.
-  * 1c1. EmployeeManager informs user that the employee already exists.
-  * Use case ends.
+  * 1c1. EmployeeManager shows an error message.
+
+  Use case ends.
 
 **Use case: UC3 - Delete an employee**
 
@@ -578,15 +577,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to delete an employee with an index.
 1. EmployeeManager deletes the employee.
 1. EmployeeManager shows an updated list of employees.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
-  * 1a1. EmployeeManager informs user that the given index is invalid.
-  * 1a2. User enters new index.
-  * Steps 1a1-1a2 are repeated until the index entered is valid.
-  * Use case resumes from step 2.
+  * 1a1. EmployeeManager shows an error message.
+
+  Use case ends.
 
 **Use case: UC4 - Edit an employee**
 
@@ -595,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to edit an employee with index and new details.
 2. EmployeeManager edits the employee.
 3. EmployeeManager shows an updated list of employees.
-   Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
@@ -626,15 +624,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to find an employee with name and surname
 2. EmployeeManager finds all employees whose names contain either the full name or surname keyword 
 3. EmployeeManager updates the displayed list with the found employees.
-3. Use case ends.
+</br>Use case ends.
+
 
 **Extensions**
 
 * 1a. The user did not use a valid predefined prefix to search for employee by name
-    * 1a1. EmployeeManager informs user that the input is invalid.
-    * 1a2. User enters new input and new prefix.
-    * Steps 1a1-1a2 are repeated until the input is valid.
-    * Use case resumes from step2.
+  * 1a1. EmployeeManager shows an error message.
+
+  Use case ends.
 
 **Use case: UC6 - Bulk increment salaries**
 
@@ -643,15 +641,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to increment salaries of all employees in the displayed list by an increment amount.
 1. EmployeeManager increments the salaries of all employees in the displayed list.
 1. EmployeeManager shows an updated list of employees.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
 * 1a. The given increment amount is invalid.
-    * 1a1. EmployeeManager informs user that the increment amount is invalid.
-    * 1a2. User enters new increment amount.
-    * Steps 1a1-1a2 are repeated until the increment amount entered is valid.
-    * Use case resumes from step 2.
+  * 1a1. EmployeeManager shows an error message.
+
+  Use case ends.
 
 **Use case: UC7 - View command history**
 
@@ -660,15 +657,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to view a specified number of recent commands.
 1. EmployeeManager fetches the required number of recent commands.
 1. EmployeeManager displays the fetched commands to the user.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid number.
-    * 1a1. EmployeeManager informs user that the number is invalid.
-    * 1a2. User enters new number.
-    * Steps 1a1-1a2 are repeated until the number entered is valid.
-    * Use case resumes from step 2.
+  * 1a1. EmployeeManager shows an error message.
+
+  Use case ends.
 
 **Use case: UC8 - Sort the displayed list**
 
@@ -676,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to sort the displayed list based on an attribute.
 1. EmployeeManager displays the sorted list based on the specified attribute.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
@@ -698,13 +694,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to export the data file to a specified file path.
 1. EmployeeManager saves the data file to the specified file path.
 1. EmployeeManager displays a success message.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-    * 1a1. EmployeeManager shows an error message.
-    * Use case ends.
+  * 1a1. EmployeeManager shows an error message.
+
+  Use case ends.
 
 **Use case: UC10 - Import data file**
   
@@ -713,19 +710,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to import the data file from a specified file path.
 1. EmployeeManager reads the data file from the specified file path.
 1. EmployeeManager shows the updated list of employees imported from the data file.
-1. Use case ends.
+</br>Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid file path.
     * 1a1. EmployeeManager shows an error message.
-    * Use case ends.
+    
+    Use case ends.
+
+
 * 1b. The user enters a file path where the file doesn't exist.
     * 1b1. EmployeeManager shows an error message.
-    * Use case ends.
+   
+    Use case ends.
+
+
 * 1c. The user enters a file path where the data file is corrupted.
     * 1c1. EmployeeManager shows an error message.
-    * Use case ends.
+    
+    Use case ends.
 
 ### Non-Functional Requirements
 
