@@ -979,3 +979,10 @@ We plan to enhance the error message to make it clearer. For example, by stating
 
 The current implementation of EmployeeManager is optimized for standard screen resolutions, specifically 1920x1080, and is best viewed at a screen scale of 100%.
 We plan to enhance EmployeeManager's display compatibility with a broader range of screen resolutions and scales, to suit all office needs.
+
+### 10. Allow `sort` to be case-insensitive 
+
+The current implementation of the `sort` command sorts the person list by their attribute in lexicographical order. However, this can lead to unintended behaviour as it is case-sensitive. For example, if there are three persons with departments: `Finance`, `IT`, `finance`, the persons from the finance department would be separated by `IT` due to lexicographical order. We intend to make `sort` command case-insensitive by default, and allow case-sensitive by specifying an addition flag.
+
+The original command looks like: `sort d/`, and our new proposed format might look like `sort d/ case/` with the `case/` flag specifying the sort should be case-sensitive, and lack of flag specifying the sort should be case-insensitive.
+
