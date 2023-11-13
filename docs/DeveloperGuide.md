@@ -981,7 +981,7 @@ This list highlights some of the key challenges we faced:
 1. The implementation of the `sort` command was not straightforward. JavaFX API only has `SortedList` and `FilteredList`. To achieve both effects, we had to find a way to ‘combine’ them to allow sorting and filtering on the same list.
 1. For the `import` and `export` commands, the file path was difficult to handle. Different operating systems have different formats and specifications. The tests had to be designed for the different OS as well.
 1. For the `history` command, we had to decide where to store the class that was supposed to store the previous command and how it should be integrated into the application.
-1. For the ‘find’ command, we had to find a way to combine all the predicates into one so that we can find employees who fulfill multiple find parameters. There was also a challenge faced with finding employees by salary which is related to the aforementioned challenge with salary.
+1. For the `find` command, we had to find a way to combine all the predicates into one so that we can find employees who fulfill multiple find parameters. There was also a challenge faced with finding employees by salary which is related to the aforementioned challenge with salary.
 1. We had to create and go through multiple mockups for the UI to decide which design was best suited for the product.
 
 ### Effort required
