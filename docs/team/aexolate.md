@@ -33,9 +33,9 @@ Given below are my contributions to the project.
     * Added [SortSequenceDiagram](https://ay2324s1-cs2103t-t14-1.github.io/tp/DeveloperGuide.html#sort-feature)
     and [FileCommandClassDiagram](https://ay2324s1-cs2103t-t14-1.github.io/tp/DeveloperGuide.html#exportimport-feature)
     * Updated target user profile & value proposition.
-    * Added use cases for `sort, ``import` and `export`.
+    * Added use cases for `sort`, `import` and `export`.
     * Added instructions for manual testing for `import` and `export`.
 * **Contributions to team-based tasks**:
   * Set up GitHub team organisation and repository.
   * Incorporated artifact building in the project workflow to streamline testing when reviewing pull requests.
-
+  * Released v1.2 JAR File.
