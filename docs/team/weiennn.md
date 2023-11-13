@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**:
   * Improved `clear` Command
-    * `clear` command has been updated to only clear the currently displayed list, instead of the whole list.
+    * `clear` command has been improved to only clear the currently displayed list, instead of the whole list.
   * `history` Command
     * Added `history` command to allow users to view their previously entered valid commands.
   * Improved `help` Command
@@ -30,9 +30,32 @@ Given below are my contributions to the project.
       * Added the `history` command section.
       * Updated the `clear` command section.
       * Updated the `help` command section.
+      * Updated the `list` command section.
     * Developer Guide:
-      * Updated the links to our repo Github page. 
-      * Added the `history` command section and the `history` class diagram.
-      * Updated the `clear` command section.
-      * Updated the `help` command section.
-      * Added multiple Use Cases.
+      * Updated the links to our repo GitHub page. 
+      * Added the Acknowledgements section.
+      * Updated the `logic` component class diagram and sequence diagram.
+      * Added the `history` feature section and the `history` class diagram.
+      * Updated the `clear` feature section and the `clear` command sequence diagram.
+      * Added the `help` feature section.
+      * Added use case 6 and use case 7.
+      * Added the Appendix: Planned Enhancements section.
+
+* **Contributions to team-based tasks**:
+  * Updated the Acknowledgements section.
+  * Added GitHub Issues and User Stories.
+  * Added v1.3 releases.
+  * Renamed instances of `AB3` to `EmployeeManager` in user guide.
+
+* **Review/mentoring contributions**:
+  * 70 Pull Request reviewed.
+    e.g. [#110](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/110),
+  [#161](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/161),
+  [#197](https://github.com/AY2324S1-CS2103T-T14-1/tp/pull/197)
+
+* **Contributions beyond the project team**:
+  * Reported bugs and suggestions for other team:
+  e.g. [#140](https://github.com/AY2324S1-CS2103-F13-2/tp/issues/140),
+  [#142](https://github.com/AY2324S1-CS2103-F13-2/tp/issues/142),
+  [#144](https://github.com/AY2324S1-CS2103-F13-2/tp/issues/144)
+  

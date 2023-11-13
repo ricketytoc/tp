@@ -48,25 +48,25 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Stores all the predicates that were parsed from the prefix keywords into an ArrayList.
+        /*
+        Stores all the predicates that will be created from parsing the prefix keywords into predicateList that will
+        be used to create a GeneralPredicate which in turn is used to create the FindCommand.
+         */
         ArrayList<Predicate<Person>> predicateList = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
             String idKeyword = argMultimap.getValue(PREFIX_ID).get();
-            IdContainsKeywordsPredicate idContainsKeywordsPredicate = ParserUtil
-                    .parseIdKeyword(idKeyword);
+            IdContainsKeywordsPredicate idContainsKeywordsPredicate = ParserUtil.parseIdKeyword(idKeyword);
             predicateList.add(idContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String nameKeyword = argMultimap.getValue(PREFIX_NAME).get();
-            NameContainsKeywordsPredicate nameContainsKeywordsPredicate = ParserUtil
-                    .parseNameKeyword(nameKeyword);
+            NameContainsKeywordsPredicate nameContainsKeywordsPredicate = ParserUtil.parseNameKeyword(nameKeyword);
             predicateList.add(nameContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             String roleKeyword = argMultimap.getValue(PREFIX_ROLE).get();
-            RoleContainsKeywordsPredicate roleContainsKeywordsPredicate = ParserUtil
-                    .parseRoleKeyword(roleKeyword);
+            RoleContainsKeywordsPredicate roleContainsKeywordsPredicate = ParserUtil.parseRoleKeyword(roleKeyword);
             predicateList.add(roleContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
@@ -77,20 +77,17 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String emailKeyword = argMultimap.getValue(PREFIX_EMAIL).get();
-            EmailContainsKeywordsPredicate emailContainsKeywordsPredicate = ParserUtil
-                    .parseEmailKeyword(emailKeyword);
+            EmailContainsKeywordsPredicate emailContainsKeywordsPredicate = ParserUtil.parseEmailKeyword(emailKeyword);
             predicateList.add(emailContainsKeywordsPredicate);
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             String salaryKeyword = argMultimap.getValue(PREFIX_SALARY).get();
-            SalaryWithinRangePredicate salaryWithinRangePredicate = ParserUtil
-                    .parseSalaryKeyword(salaryKeyword);
+            SalaryWithinRangePredicate salaryWithinRangePredicate = ParserUtil.parseSalaryKeyword(salaryKeyword);
             predicateList.add(salaryWithinRangePredicate);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String phoneKeyword = argMultimap.getValue(PREFIX_PHONE).get();
-            PhoneContainsKeywordsPredicate phoneContainsKeywordsPredicate = ParserUtil
-                    .parsePhoneKeyword(phoneKeyword);
+            PhoneContainsKeywordsPredicate phoneContainsKeywordsPredicate = ParserUtil.parsePhoneKeyword(phoneKeyword);
             predicateList.add(phoneContainsKeywordsPredicate);
         }
 

@@ -21,7 +21,7 @@ This User Guide aims to help both new and experienced users use EmployeeManager.
 EmployeeManager to make managing employees easier!
 
 If you are a **new user**:
-* Get started with EmployeeManager by going through [Quick start](#quick-start)
+* Get started with EmployeeManager by going through the [Quick start](#quick-start)
 * If you have no prior experience with CLI or require a refresher, refer to this [guide](#how-to-use-command-line-interface)
 
 If you are an **experienced user**:
@@ -56,7 +56,7 @@ If you are an **experienced user**:
 1. Open a command terminal, type the `cd FOLDER` command, substituting `FOLDER` with the folder path of the folder you put the jar file in.<br>
    _The `cd` command changes the working directory of the terminal, allowing EmployeeManager to be launched in the next step._
 
-1. Type the `java -jar employeemanager.jar` command to run the application.<br>
+1. Type the `java -jar EmployeeManager.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -325,7 +325,7 @@ Examples:
 ### Undoing a modification : `undo`
 
   Restores EmployeeManager to the state before the last command that made a modification to the data in EmployeeManager.
-  Such commands include `add`, `delete`, `edit`, `clear` and `increment`.
+  Such commands include `add`, `delete`, `edit`, `clear`, `increment` and `redo`.
 
   Format: `undo`
 
@@ -336,7 +336,7 @@ Examples:
 ### Redoing the previous undone command : `redo`
 
 Restores EmployeeManager to the state before the last `undo` as long as no command that made a modification to the data in EmployeeManager was executed since the last `undo`.
-Commands that change the data in EmployeeManager include `add`, `delete`, `edit`, `clear` and `increment`.
+Commands that change the data in EmployeeManager include `add`, `delete`, `edit`, `clear`, `increment` and `undo`.
 
 Format: `redo`
 
