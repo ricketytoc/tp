@@ -558,18 +558,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. EmployeeManager detects that not all required information is entered.
-  * 1a1. EmployeeManager shows an error message.
-
+  * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 * 1b. EmployeeManager detects invalid information.
-  * 1b1. EmployeeManager shows an error message.
-
+  * 1b1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 * 1c. EmployeeManager detects a duplicate employee.
-  * 1c1. EmployeeManager shows an error message.
-
+  * 1c1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 **Use case: UC3 - Delete an employee**
@@ -584,8 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given index is invalid.
-  * 1a1. EmployeeManager shows an error message.
-
+  * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 **Use case: UC4 - Edit an employee**
@@ -600,23 +596,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given index is invalid.
-    * 1a1. EmployeeManager shows an error message.
-
+    * 1a1. EmployeeManager shows an error message.<br>
       Use case ends.
   
 * 1b. EmployeeManager detects invalid information.
-    * 1b1. EmployeeManager shows an error message.
-     
+    * 1b1. EmployeeManager shows an error message.<br>
       Use case ends
   
 * 1c. No details are given.
-    * 1c1. EmployeeManager shows an error message.
-  
+    * 1c1. EmployeeManager shows an error message.<br>
       Use case ends.
   
 * 1d. EmployeeManager detects a duplicate ID.
-    * 1d1. EmployeeManager shows an error message.
-      
+    * 1d1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 **Use case: UC5 - Find an employee**
@@ -632,8 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user did not use a valid predefined prefix to search for employee by name
-  * 1a1. EmployeeManager shows an error message.
-
+  * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 **Use case: UC6 - Bulk increment salaries**
@@ -648,8 +639,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given increment amount is invalid.
-  * 1a1. EmployeeManager shows an error message.
-
+  * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 **Use case: UC7 - View command history**
@@ -664,8 +654,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user enters an invalid number.
-  * 1a1. EmployeeManager shows an error message.
-
+  * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 **Use case: UC8 - Sort the displayed list**
@@ -679,14 +668,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user enters an invalid attribute.
-    * 1a1. EmployeeManager shows an error message.
-
+    * 1a1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 
 * 1b. The user enters multiple attributes.
-    * 1b1. EmployeeManager shows an error message.
-  
+    * 1b1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 **Use case: UC9 - Export data file**
@@ -701,8 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-  * 1a1. EmployeeManager shows an error message.
-
+  * 1a1. EmployeeManager shows an error message.<br>
     Use case ends.
 
 **Use case: UC10 - Import data file**
@@ -717,20 +703,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-    * 1a1. EmployeeManager shows an error message.
-    
+    * 1a1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 
 * 1b. The user enters a file path where the file doesn't exist.
-    * 1b1. EmployeeManager shows an error message.
-   
+    * 1b1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 
 * 1c. The user enters a file path where the data file is corrupted.
-    * 1c1. EmployeeManager shows an error message.
-    
+    * 1c1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 ### Non-Functional Requirements
