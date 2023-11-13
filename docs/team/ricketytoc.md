@@ -37,3 +37,9 @@ Given below are my contributions to the project.
 
 * **Review/mentoring contributions**:
     * Approved and reviewed 19 PRs from teammates.
+
+* **Contributions beyond the project team**:
+    * Reported bugs and suggestions for other team:
+      e.g. [#146](https://github.com/AY2324S1-CS2103T-T12-3/tp/issues/146),
+      [#150](https://github.com/AY2324S1-CS2103T-T12-3/tp/issues/150),
+      [#160](https://github.com/AY2324S1-CS2103T-T12-3/tp/issues/160)
