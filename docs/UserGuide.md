@@ -349,7 +349,7 @@ Imports an EmployeeManager data file into the application.
 
 Format: `import FILE_PATH`
 
-* Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
+* Please refer to [Specifying data file path](#specifying-data-file-path) for help on usage of `FILE_PATH`.
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
 * The file path must be valid, and the application must have permission to read from the file.
 * No changes will be made if the data file is invalid or not found.
@@ -384,11 +384,11 @@ Exports the data file in EmployeeManager to the specified path.
 
 Format: `export FILE_PATH`
 
-* Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
+* Please refer to [Specifying data file path](#specifying-data-file-path) for help on usage of `FILE_PATH`.
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
 * The file path must be valid, and the application must have permission to save to the file path.
 * Depending on your system and user permission, you might not be allowed to save to certain folders such as
-`C:\Windows`. EmployeeManager will throw an error in such scenarios.
+`C:\Windows`. EmployeeManager will show an error in such scenarios.
 
 Examples:
 * `export ./data.json` will create the data file in the same folder as EmployeeManager.
@@ -435,10 +435,10 @@ Exits the program.
 
 Format: `exit`
 
-### Specifying file path
-Valid file paths used in the `export` and `import` command depends on the operating system (OS). Listed below are
+### Specifying data file path
+The data file path used in `export` and `import` command must refer to a `.json` file. The extension `.json` is 
+also case-sensitive. Valid file paths also depends on the operating system (OS). Listed below are
 examples of different file path formats and their result.
-
 
 | Path                   | Description                                                                                                                                                |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -447,8 +447,9 @@ examples of different file path formats and their result.
 | `Documents/data.json`  | With no slash `/` at the front, it is a relative path from the directory where `EmployeeManager.jar` is located in.                                        |
 | `./data.json`          | A dot `.` at the front is also a relative path from the directory where `EmployeeManager.jar` is located in.                                               |
 
-* Valid files names can consist only of the extension e.g. `.json`. On most OS, the file will be treated as a hidden 
-file and only visible by changing settings. It is thus not recommended to export data file without a name.
+* Valid files names can consist only of the extension without a name e.g. `.json`. On most systems, the file will be 
+treated as a hidden file and only visible by changing settings. It is thus not recommended to export data file without 
+a name.
 
 
 
