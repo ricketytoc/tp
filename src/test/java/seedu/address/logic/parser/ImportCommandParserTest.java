@@ -11,20 +11,22 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.ImportCommand;
 
 public class ImportCommandParserTest {
-
-    private ImportCommandParser parser = new ImportCommandParser();
+    private static final String VALID_PATH = "data.json";
+    private static final String INVALID_PATH = "ABC" + '\0' + "DEF";
+    private static final String EMPTY_PATH = "";
+    private final ImportCommandParser parser = new ImportCommandParser();
 
     @Test
     public void parse_validArgs_returnsImportCommand() {
-        String currentDirectoryPath = "data.json";
-        Path path = Path.of(currentDirectoryPath);
-        assertParseSuccess(parser, currentDirectoryPath, new ImportCommand(path));
+        Path path = Path.of(VALID_PATH);
+        assertParseSuccess(parser, VALID_PATH, new ImportCommand(path));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        String path = "ABC" + '\0' + "DEF";
-        assertParseFailure(parser, path, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, INVALID_PATH, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ImportCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, EMPTY_PATH, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ImportCommand.MESSAGE_USAGE));
     }
 }
