@@ -68,7 +68,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -184,7 +184,7 @@ The following activity diagram summarizes what happens when a user executes the 
 Aspect: What is considered a duplicate employee:
 * **Alternative 1:** Check if the name of the given employee matches the name of another employee in EmployeeManager.
   * Pros: Only need to check for duplicate names.
-  * Cons: Employees can have the same names so it is not realistic to restrict the addition of employees to only employees with different names.
+  * Cons: Employees can have the same names, so it is not realistic to restrict the addition of employees to only employees with different names.
 * **Alternative 2 (current choice):** Check if the ID of an employee matches the ID of another employee in EmployeeManager.
   * Pros: Able to store employees with the same attributes if their IDs are different.
   * Cons: Need to store an additional field for ID.
@@ -741,7 +741,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **UI**: User Interface, the graphical or textual interface through which a user interacts with a software application.
-* **Git Miletone**: A git milestone is a way to track progress on a group of issues or pull requests in a repository which can achieved within a specified amount of time by setting a start and due date.
+* **Git Milestone**: A git milestone is a way to track progress on a group of issues or pull requests in a repository which can achieved within a specified amount of time by setting a start and due date.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -898,7 +898,7 @@ testers are expected to do more *exploratory* testing.
    Prerequisites: The file `fy9999.json` does not exist in the directory where EmployeeManager is.<br>
    Expected: Error details shown in the status message.
 
-1. Test case: `export fy2324.json`, followed by removing some of the brackets in the exported `fy2324.json` file 
+1. Test case: `export fy2324.json`, followed by removing some brackets in the exported `fy2324.json` file 
    using any text editor, followed by `import fy2324.json`.<br>
    Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
    data file).<br>
