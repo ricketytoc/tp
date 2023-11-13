@@ -486,11 +486,11 @@ duplication as both commands share the same logic for checking the validity of t
 
 **Target user profile**:
 
-* Oversees a large workforce, ranging from 50 to 200 employees, in a small to medium-sized enterprise.
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Oversees a large workforce, ranging from 50 to 200 employees, in a small to medium-sized enterprise
+* Prefers desktop apps over other types of apps
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: The application streamlines the process of handling 
 large-scale employee data. With rapid typing capabilities, users
