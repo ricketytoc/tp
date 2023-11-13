@@ -955,6 +955,27 @@ For example commands like `sort n/abc` and `sort n/s/` are both valid sort comma
 We plan to enhance validation such that an error message will be shown if extra values are input after the sorting prefix.
 The proposed error message, `The sort command prefixes should not be used with values`, will guide the user towards the correct usage of the `sort` command.
 
+### 8. Enhance error message for `edit` command
+
+The current implementation of EmployeeManager checks for duplicate employees based on their `Id` field.
+Consequently, editing an employee's `Id` to a value that already exists will result in an error message `This person already exists in the address book.`.
+This might be unclear to the users as the error message is not specific in stating what causes the duplicate.
+We plan to enhance the error message to make it clearer. For example, by stating that 
+`This employee id is already in use and may result in a duplicate person.`.
+
+![PlannedEnhancementEditErrorMessage](images/PlannedEnhancementEditErrorMessage.png)
+
+### 9. Increase support for a broader range of display compatibility
+
+The current implementation of EmployeeManager is optimized for standard screen resolutions, specifically 1920x1080, and is best viewed at a screen scale of 100%.
+We plan to enhance EmployeeManager's display compatibility with a broader range of screen resolutions and scales, to suit all office needs.
+
+### 10. Allow `sort` to be case-insensitive 
+
+The current implementation of the `sort` command sorts the person list by their attribute in lexicographical order. However, this can lead to unintended behaviour as it is case-sensitive. For example, if there are three persons with departments: `Finance`, `IT`, `finance`, the persons from the finance department would be separated by `IT` due to lexicographical order. We intend to make `sort` command case-insensitive by default, and allow case-sensitive by specifying an addition flag.
+
+The original command looks like: `sort d/`, and our new proposed format might look like `sort d/ case/` with the `case/` flag specifying the sort should be case-sensitive, and lack of flag specifying the sort should be case-insensitive.
+
 ## **Appendix: Effort**
 
 ### Difficulty level
@@ -982,4 +1003,3 @@ This list highlights some of the key challenges we faced:
    1. Forking Workflow
    1. Issues Tracker, Milestones, etc.
    1. Code Quality
-
