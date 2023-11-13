@@ -28,9 +28,7 @@ If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
-
 ## Table of contents
 
 * Table of Contents
@@ -291,12 +289,12 @@ that updates the data. This will ensure that the list remains sorted even after 
 Format: `sort [i/] [d/] [e/] [s/] [r/] [n/] [p/]`
 
 * **Exactly one of the prefix must be specified.**
-* The prefix specifies the attribute to be sorted with. Refer to the [Prefix Summary](#prefix-summary) for help on the mapping of the attribute and prefix.
+* The prefix specifies the attribute to be sorted with. Refer to the [Prefix summary](#prefix-summary) for help on the mapping of the attribute and prefix.
+* Attributes are sorted by _lexicographical order_. For example, "Alice" comes before "Bob",
+  and "10" comes before "20". Keep in mind uppercase letters come before lowercase letters. For example, `Z` comes before `a`.
 * Extraneous parameters entered after the prefix will be ignored. 
   * E.g. `sort s/123` will sort by salary, the value `123` will be ignored. 
   * E.g. `sort s/p/`, `p/` is treated as a value and not a prefix. Since the value `p/` is ignored, the command will sort by salary.
-* Attributes are sorted by _lexicographical order_. For example, "Alice" comes before "Bob", 
-and "100" comes before "200". Keep in mind upper case letters come before lower case letters. For example, `Z` comes before `a`.
 
 Examples:
 * `sort i/` sorts the list by **ID**.
@@ -306,8 +304,6 @@ Examples:
 * `sort r/` sorts the list by **role**.
 * `sort n/` sorts the list by **name**.
 * `sort p/` sorts the list by **phone**.
-* `sort p/9001` sorts the list by phone. The parameter `9001` is ignored.
-* `sort s/p/` sorts the list by salary. The parameter `p/` is ignored.
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -364,7 +360,7 @@ Format: `import FILE_PATH`
 * No changes will be made if the data file is invalid or not found.
 
 Examples:
-* `import ./persons.json` imports the "persons.json" data file.
+* `import ./persons.json` imports the `persons.json` data file from the same folder as EmployeeManager.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
@@ -374,7 +370,7 @@ data, it is recommended to use the `export` command to save a copy of the curren
 
 #### GUI option
 Alternatively, you may use the GUI option to import the data file if you are unfamiliar with file paths.
-1. Click File > Import in the top left corner of the application.<br>
+1. Click **File > Import** in the top left corner of the application.<br>
    <img src="images/ug-import-gui.png" width="243" />
 
 
@@ -395,10 +391,10 @@ Format: `export FILE_PATH`
 
 * Refer to [Specifying file path](#specifying-file-path) for help on usage of `FILE_PATH`.
 * The data file must be of `.json` file type. Otherwise, an error message will be shown.
-* The file path must be valid, and the application must have permission to write to the directory.
+* The file path must be valid, and the application must have permission to write to the file path.
 
 Examples:
-* `export ./data.json` will create the data file under the specified path.
+* `export ./data.json` will create the data file in the same folder as EmployeeManager.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 The export command will **overwrite** any file with the same name in the specified location.
