@@ -5,8 +5,9 @@ title: Leong Yuan Kun's Project Portfolio Page
 
 ### Project: EmployeeManager
 
-EmployeeManager is a desktop application for Human Resources (HR) staff to manage employees in a small or 
-medium-sized enterprise (SME).
+EmployeeManager is a desktop application used by Human Resource (HR) staff in a small or medium-sized company (of 50 - 200 employees).
+EmployeeManager has HR management features to provide HR staff a convenient way to access and update employee details.
+
 
 Given below are my contributions to the project.
 
@@ -23,14 +24,17 @@ Given below are my contributions to the project.
   * Modified `FindCommand` to support searching by any attribute instead of just name.
 * **Documentation**:
   * User Guide:
-    * `sort` command
-    * `export` command
-    * `import` command
-    * Prefix Summary
+    * Added documentation for features: `sort`, `import`, `export`.
+    * Added Prefix summary section.
+    * Added Specifying file path section.
   * Developer Guide:
-    * Sort feature
-    * Use cases for `import` and `export`
-    * Instructions for manual testing for `import` and `export`
+    * Added implementation details for `sort`, `import`, and `export`.
+    * Updated [Model](https://ay2324s1-cs2103t-t14-1.github.io/tp/DeveloperGuide.html#model-component) diagram and description.
+    * Added [SortSequenceDiagram](https://ay2324s1-cs2103t-t14-1.github.io/tp/DeveloperGuide.html#sort-feature)
+    and [FileCommandClassDiagram](https://ay2324s1-cs2103t-t14-1.github.io/tp/DeveloperGuide.html#exportimport-feature)
+    * Updated target user profile & value proposition.
+    * Added use cases for `sort, ``import` and `export`.
+    * Added instructions for manual testing for `import` and `export`.
 * **Contributions to team-based tasks**:
   * Set up GitHub team organisation and repository.
   * Incorporated artifact building in the project workflow to streamline testing when reviewing pull requests.
