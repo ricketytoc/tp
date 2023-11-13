@@ -3,11 +3,7 @@
 skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
-participant ":EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -15,38 +11,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit 2 p/12345678")
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand("edit 2 p/12345678")
-activate AddressBookParser
-
-create EditCommandParser
-AddressBookParser -> EditCommandParser
-activate EditCommandParser
-
-EditCommandParser --> AddressBookParser
-deactivate EditCommandParser
-
-AddressBookParser -> EditCommandParser : parse(" 2 p/12345678")
-activate EditCommandParser
-
-create EditCommand
-EditCommandParser -> EditCommand
-activate EditCommand
-
-EditCommand --> EditCommandParser : e
-deactivate EditCommand
-
-EditCommandParser --> AddressBookParser : e
-deactivate EditCommandParser
-EditCommandParser -[hidden]-> AddressBookParser : e
-destroy EditCommandParser
-
-AddressBookParser --> LogicManager : e
-deactivate AddressBookParser
-
-LogicManager -> EditCommand : execute(model)
+[-> EditCommand : execute(model)
 activate EditCommand
 
 EditCommand -> Model : getPersonList()
@@ -55,26 +20,7 @@ activate Model
 Model --> EditCommand : personToEdit
 deactivate Model
 
-create EditPersonDescriptor
-EditCommand -> EditPersonDescriptor
-activate EditPersonDescriptor
-
-EditPersonDescriptor --> EditCommand
-deactivate EditPersonDescriptor
-
-EditCommand -> EditPersonDescriptor :
-activate EditPersonDescriptor
-
-EditPersonDescriptor -> EditPersonDescriptor : setPhone()
-activate EditPersonDescriptor
-
-EditPersonDescriptor --> EditPersonDescriptor :
-deactivate EditPersonDescriptor
-
-EditPersonDescriptor --> EditCommand : editPersonDescriptor
-deactivate EditPersonDescriptor
-
-EditCommand -> EditCommand : createEditedPerson(personToEdit, editPersonDescriptor)
+EditCommand -> EditCommand : createEditedPerson
 activate EditCommand
 
 EditCommand --> EditCommand : editedPerson
@@ -93,10 +39,7 @@ activate CommandResult
 CommandResult --> EditCommand : result
 deactivate CommandResult
 
-EditCommand --> LogicManager : result
+EditCommand -->[ : result
 deactivate EditCommand
-
-LogicManager -->[
-deactivate LogicManager
 
 @enduml
