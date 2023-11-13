@@ -28,12 +28,15 @@ If you are an **experienced user**:
 * Refer to the [Table of contents](#table-of-contents) to jump to the section that you are looking for
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Table of contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -73,6 +76,8 @@ If you are an **experienced user**:
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## How to use command line interface
 
 <img src="images/CommandLineGuide.png" width="700" />
@@ -90,6 +95,8 @@ If you are an **experienced user**:
    * `add i/A00001 n/John Doe p/97328601 e/johndoe@example.com d/Marketing r/Manager s/5000` is executed to add an employee named `John Doe`.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Prefix summary
 
 The prefixes are commonly used in commands such as `add`, `edit`, `find`, and `sort`.
@@ -110,6 +117,8 @@ to succeed.
 | `s/`   | Salary      | Numerical value up to 2 decimal point, and up to one billion |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -130,6 +139,7 @@ to succeed.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -139,6 +149,7 @@ In cases where the help window is already open but minimized, executing the `hel
 Format: `help`
 
 ![help message](images/helpMessage.png)
+<div style="page-break-after: always;"></div>
 
 ### Adding an employee: `add`
 
@@ -168,6 +179,9 @@ Format: `edit INDEX [i/ID] [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [r/ROLE] 
 * If there already exists an employee with a certain ID in EmployeeManager, editing another employee to the same ID will not be allowed.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div style="page-break-after: always;"></div>
+<br>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
@@ -199,6 +213,7 @@ Format: `find n/KEYWORD [OTHER KEYWORD]`
 Examples:
 * `find n/John` return employees with names `john` and `John Doe`.
 * `find n/alex david` returns employees with names `Alex Yeoh`, `David Li`.
+<div style="page-break-after: always;"></div>
 
 #### Finding an employee by department: `find d/`
 
@@ -239,6 +254,7 @@ Format: `find i/KEYWORD`
 
 Examples:
 * `find i/A00` returns employees with IDs `A00`, `A00001` and `a0001`.
+<div style="page-break-after: always;"></div>
 
 #### Finding an employee by phone number: `find p/`
 
@@ -275,6 +291,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in EmployeeManager.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+<div style="page-break-after: always;"></div>
 
 ### Sorting displayed employees : `sort`
 
@@ -300,6 +317,7 @@ Examples:
 * `sort r/` sorts the list by **role**.
 * `sort n/` sorts the list by **name**.
 * `sort p/` sorts the list by **phone**.
+<div style="page-break-after: always;"></div>
 
 ### Incrementing multiple employees' salaries: `increment`
 
@@ -325,6 +343,7 @@ Examples:
   Examples:
 * `clear` followed by `undo` restores EmployeeManager to the state before `clear` was executed.
 * `delete 3` followed by `sort n/` followed by `undo` restores EmployeeManager to the state before `delete 3` was executed.
+<div style="page-break-after: always;"></div>
 
 ### Redoing the previous undone command : `redo`
 
@@ -357,6 +376,7 @@ Format: `import FILE_PATH`
 
 Examples:
 * `import ./persons.json` imports the `persons.json` data file from the same folder as EmployeeManager.
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Danger:**
 The import command will **overwrite** existing data in the application. If you wish to keep a copy of the existing
@@ -377,7 +397,7 @@ Only `.json` files can be selected as that is the expected format of the data fi
 
 3. After opening your data file, EmployeeManager will attempt to load the data into the application.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Exporting data : `export`
 
@@ -423,6 +443,8 @@ Do note that `history` will only show you the executed commands for this session
 Format: `history N`
 * N specifies the number of most recent valid commands to be displayed, not inclusive of the current `history` command.
 * N must be a positive integer that is less than or equal to 1000.
+<div style="page-break-after: always;"></div>
+<br>
 
 Examples:
 * `history 5` displays up to the last 5 valid user commands.
@@ -453,6 +475,7 @@ treated as a hidden file and only visible by changing settings. It is thus not r
 a name.
 
 
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 
@@ -471,6 +494,7 @@ To safeguard against potential data loss, we recommend backing up the original d
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -487,6 +511,7 @@ To safeguard against potential data loss, we recommend backing up the original d
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
