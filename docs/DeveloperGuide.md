@@ -954,3 +954,32 @@ The current implementation of the `sort` command allows users to input additiona
 For example commands like `sort n/abc` and `sort n/s/` are both valid sort commands that will sort by name. 
 We plan to enhance validation such that an error message will be shown if extra values are input after the sorting prefix.
 The proposed error message, `The sort command prefixes should not be used with values`, will guide the user towards the correct usage of the `sort` command.
+
+## **Appendix: Effort**
+
+### Difficulty level
+We felt that the difficulty level was moderate. The original AB3 codebase was large and it took us some time to understand how the components worked together. 
+
+### Challenges encountered
+This list highlights some of the key challenges we faced:
+1. It was challenging to change the person class at the start of our project as we needed to coordinate extensively with one another to avoid high amounts of merge conflicts.
+1. As our salary attribute needed to hold a number and conduct operations on it, there were problems arising from the usage of floating point numbers. We had to change from using `double` to using `long` to fix those bugs.
+1. The implementation of the `sort` command was not straightforward. JavaFX API only has `SortedList` and `FilteredList`. To achieve both effects, we had to find a way to ‘combine’ them to allow sorting and filtering on the same list.
+1. For the `import` and `export` commands, the file path was difficult to handle. Different operating systems have different formats and specifications. The tests had to be designed for the different OS as well.
+1. For the `history` command, we had to decide where to store the class that was supposed to store the previous command and how it should be integrated into the application.
+1. For the `find` command, we had to find a way to combine all the predicates into one so that we can find employees who fulfill multiple find parameters. There was also a challenge faced with finding employees by salary which is related to the aforementioned challenge with salary.
+1. We had to create and go through multiple mockups for the UI to decide which design was best suited for the product.
+
+### Effort required
+1. Modified code base heavily.
+1. Weekly meetings to discuss progress and plan weekly tasks.
+1. We created a comprehensive suite of tests to cover a wide range of cases.
+
+### Achievements
+1. Successfully met all milestones and deadlines.
+1. Implemented most of our important user stories.
+1. Practiced good software engineering practices.
+   1. Forking Workflow
+   1. Issues Tracker, Milestones, etc.
+   1. Code Quality
+
