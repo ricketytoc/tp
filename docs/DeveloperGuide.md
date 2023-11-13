@@ -633,7 +633,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. EmployeeManager displays an empty list.
 1. Use case ends.
 
-**Use case: UC8 - Export data file**
+**Use case: UC8 - Sort the displayed list**
+
+**MSS**
+
+1. User requests to sort the displayed list based on an attribute.
+1. EmployeeManager displays the sorted list based on the specified attribute.
+1. Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid attribute.
+    * 1a1. EmployeeManager informs user that the attribute is invalid.
+    * 1a2. User enters a new attribute.
+    * Steps 1a1-1a2 are repeated until the attribute is valid.
+    * Use case resumes from step 2.
+
+**Use case: UC9 - Export data file**
 
 **MSS**
 
@@ -648,7 +664,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. EmployeeManager shows an error message.
     * Use case ends.
 
-**Use case: UC9 - Import data file**
+**Use case: UC10 - Import data file**
 
 **MSS**
 
