@@ -8,7 +8,8 @@ title: EmployeeManager
 
 ![Ui](images/Ui.png)
 
-**EmployeeManager is a desktop application for managing your employees' details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**EmployeeManager is a desktop application for managing your employees' details.**
+While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using EmployeeManager, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing EmployeeManager, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

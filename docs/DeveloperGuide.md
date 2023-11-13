@@ -68,7 +68,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -184,7 +184,7 @@ The following activity diagram summarizes what happens when a user executes the 
 Aspect: What is considered a duplicate employee:
 * **Alternative 1:** Check if the name of the given employee matches the name of another employee in EmployeeManager.
   * Pros: Only need to check for duplicate names.
-  * Cons: Employees can have the same names so it is not realistic to restrict the addition of employees to only employees with different names.
+  * Cons: Employees can have the same names, so it is not realistic to restrict the addition of employees to only employees with different names.
 * **Alternative 2 (current choice):** Check if the ID of an employee matches the ID of another employee in EmployeeManager.
   * Pros: Able to store employees with the same attributes if their IDs are different.
   * Cons: Need to store an additional field for ID.
@@ -486,11 +486,11 @@ duplication as both commands share the same logic for checking the validity of t
 
 **Target user profile**:
 
-* Oversees a large workforce, ranging from 50 to 200 employees, in a small to medium-sized enterprise.
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Oversees a large workforce, ranging from 50 to 200 employees, in a small to medium-sized enterprise
+* Prefers desktop apps over other types of apps
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: The application streamlines the process of handling 
 large-scale employee data. With rapid typing capabilities, users
@@ -531,8 +531,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | careless HR staff member            | redo my command                                                                         | I can redo a command that I accidentally undid                                              |
 | `* *`    | HR staff member                     | increment and decrement multiple employees' salaries together by the same amount        | I do not need to repeat the same action for multiple employees                              |
 | `* *`    | user                                | view a list of commands available for me to use                                         | I can efficiently navigate through the app's features                                       |
-| `* *`    | HR staff member                     | I want to delete all employees displayed in the list                                    | I can efficiently delete employee data based on specific criteria                           |
-| `* *`    | user                                | I want to view the history of my previous commands                                      | I can review and track my past actions within the app                                       |
+| `* *`    | HR staff member                     | delete all employees displayed in the list                                              | I can efficiently delete employee data based on specific criteria                           |
+| `* *`    | user                                | view the history of my previous commands                                                | I can review and track my past actions within the app                                       |
 
 ### Use cases
 
@@ -543,8 +543,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all employees.
-1. EmployeeManager shows a list of employees.
-</br>Use case ends.
+1. EmployeeManager shows a list of employees.<br>
+   Use case ends.
 
 **Use case: UC2 - Add a new employee**
 
@@ -552,23 +552,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a new employee with the employee's details.
 1. EmployeeManager adds the employee.
-1. EmployeeManager shows an updated list of employees.
-</br>Use case ends.
+1. EmployeeManager shows an updated list of employees.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. EmployeeManager detects that not all required information is entered.
-  * 1a1. EmployeeManager shows an error message.
+  * 1a1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
-  Use case ends.
 * 1b. EmployeeManager detects invalid information.
-  * 1b1. EmployeeManager shows an error message.
+  * 1b1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
-  Use case ends.
 * 1c. EmployeeManager detects a duplicate employee.
-  * 1c1. EmployeeManager shows an error message.
-
-  Use case ends.
+  * 1c1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
 **Use case: UC3 - Delete an employee**
 
@@ -576,15 +575,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to delete an employee with an index.
 1. EmployeeManager deletes the employee.
-1. EmployeeManager shows an updated list of employees.
-</br>Use case ends.
+1. EmployeeManager shows an updated list of employees.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
-  * 1a1. EmployeeManager shows an error message.
-
-  Use case ends.
+  * 1a1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
 **Use case: UC4 - Edit an employee**
 
@@ -592,29 +590,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to edit an employee with index and new details.
 2. EmployeeManager edits the employee.
-3. EmployeeManager shows an updated list of employees.
-</br>Use case ends.
+3. EmployeeManager shows an updated list of employees.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
-    * 1a1. EmployeeManager shows an error message.
-
+    * 1a1. EmployeeManager shows an error message.<br>
       Use case ends.
   
 * 1b. EmployeeManager detects invalid information.
-    * 1b1. EmployeeManager shows an error message.
-     
+    * 1b1. EmployeeManager shows an error message.<br>
       Use case ends
   
 * 1c. No details are given.
-    * 1c1. EmployeeManager shows an error message.
-  
+    * 1c1. EmployeeManager shows an error message.<br>
       Use case ends.
   
 * 1d. EmployeeManager detects a duplicate ID.
-    * 1d1. EmployeeManager shows an error message.
-      
+    * 1d1. EmployeeManager shows an error message.<br>
       Use case ends.
 
 **Use case: UC5 - Find an employee**
@@ -623,16 +617,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find an employee with name and surname
 2. EmployeeManager finds all employees whose names contain either the full name or surname keyword 
-3. EmployeeManager updates the displayed list with the found employees.
-</br>Use case ends.
+3. EmployeeManager updates the displayed list with the found employees.<br>
+   Use case ends.
 
 
 **Extensions**
 
 * 1a. The user did not use a valid predefined prefix to search for employee by name
-  * 1a1. EmployeeManager shows an error message.
-
-  Use case ends.
+  * 1a1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
 **Use case: UC6 - Bulk increment salaries**
 
@@ -640,15 +633,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to increment salaries of all employees in the displayed list by an increment amount.
 1. EmployeeManager increments the salaries of all employees in the displayed list.
-1. EmployeeManager shows an updated list of employees.
-</br>Use case ends.
+1. EmployeeManager shows an updated list of employees.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given increment amount is invalid.
-  * 1a1. EmployeeManager shows an error message.
-
-  Use case ends.
+  * 1a1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
 **Use case: UC7 - View command history**
 
@@ -656,36 +648,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to view a specified number of recent commands.
 1. EmployeeManager fetches the required number of recent commands.
-1. EmployeeManager displays the fetched commands to the user.
-</br>Use case ends.
+1. EmployeeManager displays the fetched commands to the user.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid number.
-  * 1a1. EmployeeManager shows an error message.
-
-  Use case ends.
+  * 1a1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
 **Use case: UC8 - Sort the displayed list**
 
 **MSS**
 
 1. User requests to sort the displayed list based on an attribute.
-1. EmployeeManager displays the sorted list based on the specified attribute.
-</br>Use case ends.
+1. EmployeeManager displays the sorted list based on the specified attribute.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid attribute.
-    * 1a1. EmployeeManager shows an error message.
-
-  Use case ends.
+    * 1a1. EmployeeManager shows an error message.<br>
+      Use case ends.
 
 
 * 1b. The user enters multiple attributes.
-    * 1b1. EmployeeManager shows an error message.
-  
-  Use case ends.
+    * 1b1. EmployeeManager shows an error message.<br>
+      Use case ends.
 
 **Use case: UC9 - Export data file**
 
@@ -693,15 +682,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to export the data file to a specified file path.
 1. EmployeeManager saves the data file to the specified file path.
-1. EmployeeManager displays a success message.
-</br>Use case ends.
+1. EmployeeManager displays a success message.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-  * 1a1. EmployeeManager shows an error message.
-
-  Use case ends.
+  * 1a1. EmployeeManager shows an error message.<br>
+    Use case ends.
 
 **Use case: UC10 - Import data file**
   
@@ -709,27 +697,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to import the data file from a specified file path.
 1. EmployeeManager reads the data file from the specified file path.
-1. EmployeeManager shows the updated list of employees imported from the data file.
-</br>Use case ends.
+1. EmployeeManager shows the updated list of employees imported from the data file.<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The user enters an invalid file path.
-    * 1a1. EmployeeManager shows an error message.
-    
-    Use case ends.
+    * 1a1. EmployeeManager shows an error message.<br>
+      Use case ends.
 
 
 * 1b. The user enters a file path where the file doesn't exist.
-    * 1b1. EmployeeManager shows an error message.
-   
-    Use case ends.
+    * 1b1. EmployeeManager shows an error message.<br>
+      Use case ends.
 
 
 * 1c. The user enters a file path where the data file is corrupted.
-    * 1c1. EmployeeManager shows an error message.
-    
-    Use case ends.
+    * 1c1. EmployeeManager shows an error message.<br>
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -745,7 +730,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **UI**: User Interface, the graphical or textual interface through which a user interacts with a software application.
-* **Git Miletone**: A git milestone is a way to track progress on a group of issues or pull requests in a repository which can achieved within a specified amount of time by setting a start and due date.
+* **Git Milestone**: A git milestone is a way to track progress on a group of issues or pull requests in a repository which can achieved within a specified amount of time by setting a start and due date.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -830,9 +816,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing an employee
 1. Prerequisites: List all employees using the `list` command. At least one employee in the list.
+
 1. Test case: `edit 1 n/John Tan`<br>
    Expected: First employee in the list has their name edited to `John Tan`. Details of the edited employee is shown in the status message.
->
 
 1. Other correct edit commands to try: `edit 1 p/12345678`, `edit 1 d/Accounting` and `edit 1 r/Manager`<br>
    Expected: Similar to previous, the respective fields gets edited.
@@ -901,7 +887,7 @@ testers are expected to do more *exploratory* testing.
    Prerequisites: The file `fy9999.json` does not exist in the directory where EmployeeManager is.<br>
    Expected: Error details shown in the status message.
 
-1. Test case: `export fy2324.json`, followed by removing some of the brackets in the exported `fy2324.json` file 
+1. Test case: `export fy2324.json`, followed by removing some brackets in the exported `fy2324.json` file 
    using any text editor, followed by `import fy2324.json`.<br>
    Prerequisites: The file `fy2324.json` is corrupted (the data does not conform to the format of EmployeeManager's 
    data file).<br>
@@ -968,3 +954,32 @@ The current implementation of the `sort` command allows users to input additiona
 For example commands like `sort n/abc` and `sort n/s/` are both valid sort commands that will sort by name. 
 We plan to enhance validation such that an error message will be shown if extra values are input after the sorting prefix.
 The proposed error message, `The sort command prefixes should not be used with values`, will guide the user towards the correct usage of the `sort` command.
+
+## **Appendix: Effort**
+
+### Difficulty level
+We felt that the difficulty level was moderate. The original AB3 codebase was large and it took us some time to understand how the components worked together. 
+
+### Challenges encountered
+This list highlights some of the key challenges we faced:
+1. It was challenging to change the person class at the start of our project as we needed to coordinate extensively with one another to avoid high amounts of merge conflicts.
+1. As our salary attribute needed to hold a number and conduct operations on it, there were problems arising from the usage of floating point numbers. We had to change from using `double` to using `long` to fix those bugs.
+1. The implementation of the `sort` command was not straightforward. JavaFX API only has `SortedList` and `FilteredList`. To achieve both effects, we had to find a way to ‘combine’ them to allow sorting and filtering on the same list.
+1. For the `import` and `export` commands, the file path was difficult to handle. Different operating systems have different formats and specifications. The tests had to be designed for the different OS as well.
+1. For the `history` command, we had to decide where to store the class that was supposed to store the previous command and how it should be integrated into the application.
+1. For the `find` command, we had to find a way to combine all the predicates into one so that we can find employees who fulfill multiple find parameters. There was also a challenge faced with finding employees by salary which is related to the aforementioned challenge with salary.
+1. We had to create and go through multiple mockups for the UI to decide which design was best suited for the product.
+
+### Effort required
+1. Modified code base heavily.
+1. Weekly meetings to discuss progress and plan weekly tasks.
+1. We created a comprehensive suite of tests to cover a wide range of cases.
+
+### Achievements
+1. Successfully met all milestones and deadlines.
+1. Implemented most of our important user stories.
+1. Practiced good software engineering practices.
+   1. Forking Workflow
+   1. Issues Tracker, Milestones, etc.
+   1. Code Quality
+
