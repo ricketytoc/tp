@@ -140,6 +140,7 @@ to succeed.
 ### Viewing help : `help`
 
 Shows a message explaining how to use the commands and where to look for more detailed help.
+In cases where the help window is already open but minimized, executing the `help` command will not trigger a new window popup.
 
 Format: `help`
 
