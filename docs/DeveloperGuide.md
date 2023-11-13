@@ -531,8 +531,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | careless HR staff member            | redo my command                                                                         | I can redo a command that I accidentally undid                                              |
 | `* *`    | HR staff member                     | increment and decrement multiple employees' salaries together by the same amount        | I do not need to repeat the same action for multiple employees                              |
 | `* *`    | user                                | view a list of commands available for me to use                                         | I can efficiently navigate through the app's features                                       |
-| `* *`    | HR staff member                     | I want to delete all employees displayed in the list                                    | I can efficiently delete employee data based on specific criteria                           |
-| `* *`    | user                                | I want to view the history of my previous commands                                      | I can review and track my past actions within the app                                       |
+| `* *`    | HR staff member                     | delete all employees displayed in the list                                              | I can efficiently delete employee data based on specific criteria                           |
+| `* *`    | user                                | view the history of my previous commands                                                | I can review and track my past actions within the app                                       |
 
 ### Use cases
 
