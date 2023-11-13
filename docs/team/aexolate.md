@@ -39,7 +39,7 @@ Given below are my contributions to the project.
     * Updated target user profile & value proposition.
     * Added use cases for `sort`, `import` and `export`.
     * Added instructions for manual testing for `import` and `export`.
-    * Added some of the planned enhancements
+    * Added some planned enhancements.
 * **Contributions to team-based tasks**:
   * Set up GitHub team organisation and repository.
   * Incorporated artifact building in the project workflow to streamline testing when reviewing pull requests.
