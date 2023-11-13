@@ -495,7 +495,7 @@ duplication as both commands share the same logic for checking the validity of t
 **Value proposition**: The application streamlines the process of handling 
 large-scale employee data. With rapid typing capabilities, users
 can efficiently input and update employee details, reducing time
-spent on data entry tasks.
+spent on data management tasks.
 
 ### User stories
 
