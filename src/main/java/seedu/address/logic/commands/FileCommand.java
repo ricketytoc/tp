@@ -18,10 +18,10 @@ public abstract class FileCommand extends Command {
      * contain a file name, and the file name should end with ".json". Note that a valid file path
      * does not imply the file exists or can be read/written to.
      */
-    boolean isValidDataFilePath() {
-        Path fileNamePath = filePath.getFileName();
+    protected boolean isValidDataFilePath() {
+        Path fileNamePath = getFilePath().getFileName();
         // Check for missing file name, or if the file path is a directory
-        if (fileNamePath == null || Files.isDirectory(filePath)) {
+        if (fileNamePath == null || Files.isDirectory(getFilePath())) {
             return false;
         }
 
@@ -29,7 +29,7 @@ public abstract class FileCommand extends Command {
         return fileNamePath.toString().endsWith(".json");
     }
 
-    Path getFilePath() {
+    protected Path getFilePath() {
         return this.filePath;
     }
 }
